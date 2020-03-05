@@ -7,7 +7,6 @@ using UnityEngine;
 /// This Script gather player action relativ to movement, like actual move or facing direction system
 /// </summary> 
 
-[RequireComponent(typeof (PlayerManager))]
 public class PlayerMovement : MonoBehaviour
 {
     #region Hidden var Statement
