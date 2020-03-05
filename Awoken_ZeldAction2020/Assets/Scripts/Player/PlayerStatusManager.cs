@@ -2,210 +2,182 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Rémi Sécher
+/// This class is used to test different state of the player and capacity Availability
+/// It is acessable from anywhere by using the PlayerStatusManager.Instacnce command
+/// </summary>
+
+
 [RequireComponent(typeof(PlayerManager))]
 public class PlayerStatusManager : MonoBehaviour
 {
     public static PlayerStatusManager Instance;
+    private enum State { neutral, block, attack, interract, spin, charge };
 
-    //Current State Algorithm
+    #region Current State Algorithm
+    [SerializeField] private State currentState = State.neutral;
+    private State lastState = State.neutral;
 
-    public int currentState;
-    public int lastState;
+    #endregion
 
-    //In Time Status
+    #region In Time Status
 
-    public static bool isDashing;       // state 1
-    public static bool isFalling;       // state 2
-    public static bool isAttacking;     // state 3
-    public static bool isUsing;         // state 4
-    public static bool isInteracting;   // state 5
+    [HideInInspector] public bool isBlocking;
+    [HideInInspector] public bool isAttacking;
+    [HideInInspector] public bool isInteracting;
+    [HideInInspector] public bool isSpinning;
+    [HideInInspector] public bool isCharging;
 
-    public static bool isLoading;
+    [HideInInspector] public static bool isLoading;
 
+    #endregion
 
-    //Status Ending
+    #region Status Ending
 
-    public static bool needToEndDash;
-    public static bool needToEndFall;
-    public static bool needToEndAttack;
-    public static bool needToEndUse;
-    public static bool needToEndInteract;
+    [HideInInspector] public bool needToEndBlock;
+    [HideInInspector] public bool needToEndAttack;
+    [HideInInspector] public bool needToEndInteract;
+    [HideInInspector] public bool needToEndSpin;
+    [HideInInspector] public bool needToEndCharge;
 
-    public static bool needToEndLoad;
+    [HideInInspector] public bool needToEndLoad;
 
-    //CD Status
+    #endregion
 
-    public static bool cdOnDash;
-    public static bool cdOnAttack;
-    public static bool cdOnInteract;
+    #region CD Status
+    [Space][Header("CD Status")]
+    public bool cdOnBlock;
+    public bool cdOnAttack;
+    public bool cdOnInteract;
+    public bool cdOnSpin;
+    public bool cdOnCharge;
 
-    //Availability
+    #endregion
 
-    public static bool canMove;
-    public static bool canDash;
-    public static bool canFall;
-    public static bool canAttack;
-    public static bool canUse;
-    public static bool canInteract;
-    public static bool canPick;
-    public static bool canScroll;
+    #region Availability
+    [Space] [Header("Availability")]
+    public bool canMove = true;
+    public bool canBlock = true;
+    public bool canAttack = true;
+    public bool canInteract = true;
+    public bool canSpin = true;
+    public bool canCharge = true;
+    public bool canChangeDirection = true;
+
+    #endregion
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void Start()
+    private void Update()
     {
-        currentState = 0;
-        lastState = 0;
-
-        isDashing = false;
-        isFalling = false;
-        isAttacking = false;
-        isUsing = false;
-        isInteracting = false;
-        isLoading = false;
-
-        needToEndAttack = false;
-        needToEndDash = false;
-        needToEndFall = false;
-        needToEndInteract = false;
-        needToEndUse = false;
-        needToEndLoad = false;
-
-        cdOnAttack = false;
-        cdOnDash = false;
-        cdOnInteract = false;
-
-        canAttack = true;
-        canDash = true;
-        canFall = true;
-        canInteract = true;
-        canMove = true;
-        canPick = true;
-        canScroll = true;
-        canUse = true;
-
+        NeedToEnd();
+        StateManagement();
     }
-    private void FixedUpdate()
+
+    void NeedToEnd()
     {
-
-
-        if (needToEndDash == true)
+        if (needToEndBlock == true)
         {
             if (cdOnAttack == false) { canAttack = true; }
 
-            if (cdOnInteract == false) { canInteract = true; }
+            if (cdOnSpin == false) { canSpin = true; }
 
-            canMove = true;
-            canPick = true;
-            canFall = true;
-            canUse = true;
+            if (cdOnCharge == false) { canCharge = true; }
 
-            needToEndDash = false;
-            isDashing = false;
+            
+            needToEndBlock = false;
+            isBlocking = false;
 
-        }
-        else if (needToEndFall == true)
-        {
-            if (cdOnDash == false) { canDash = true; }
-
-            if (cdOnAttack == false) { canAttack = true; }
-
-            if (cdOnInteract == false) { canInteract = true; }
-
-            canMove = true;
-            canPick = true;
-            canUse = true;
-
-            needToEndFall = false;
-            isFalling = false;
         }
         else if (needToEndAttack == true)
         {
-            if (cdOnDash == false) { canDash = true; }
+            if (cdOnBlock == false) { canBlock = true; }
 
-            if (cdOnInteract == false) { canInteract = true; }
+            if (cdOnSpin == false) { canSpin = true; }
 
-            canMove = true;
-            canPick = true;
-            canFall = true;
-            canUse = true;
-            canScroll = true;
+            if (cdOnCharge == false) { canCharge = true; }
 
             needToEndAttack = false;
             isAttacking = false;
         }
-        else if (needToEndUse == true)
-        {
-            if (cdOnAttack == false) { canAttack = true; }
-
-            if (cdOnInteract == false) { canInteract = true; }
-
-            if (cdOnDash == false) { canDash = true; }
-
-            canMove = true;
-            canPick = true;
-            canFall = true;
-            canScroll = true;
-
-            needToEndUse = false;
-            isUsing = false;
-        }
         else if (needToEndInteract == true)
         {
+            if (cdOnBlock == false) { canBlock = true; }
+
             if (cdOnAttack == false) { canAttack = true; }
 
-            if (cdOnDash == false) { canDash = true; }
+            if (cdOnSpin == false) { canSpin = true; }
 
-            canMove = true;
-            canPick = true;
-            canScroll = true;
-            canFall = true;
-            canUse = true;
+            if (cdOnCharge == false) { canCharge = true; }
 
             needToEndInteract = false;
             isInteracting = false;
         }
+        else if (needToEndSpin == true)
+        {
+            if (cdOnBlock == false) { canBlock = true; }
+
+            if (cdOnAttack == false) { canAttack = true; }
+
+            if (cdOnCharge == false) { canCharge = true; }
+
+            needToEndSpin = false;
+            isSpinning = false;
+        }
+        else if (needToEndCharge == true)
+        {
+            if (cdOnBlock == false) { canBlock = true; }
+
+            if (cdOnAttack == false) { canAttack = true; }
+
+            if (cdOnSpin == false) { canSpin = true; }
+
+            needToEndCharge = false;
+            isCharging = false;
+        }
         else if (needToEndLoad == true)
         {
-            canAttack = true;
-            canDash = true;
-            canFall = true;
-            canInteract = true;
             canMove = true;
-            canPick = true;
-            canScroll = true;
-            canUse = true;
+            canBlock = true;
+            canAttack = true;
+            canInteract = true;
+            canSpin = true;
+            canCharge = true;
         }
-
+    }
+    void StateManagement()
+    {
         if (isLoading == true)
         {
-            canAttack = false;
-            canDash = false;
-            canFall = false;
-            canInteract = false;
             canMove = false;
-            canPick = false;
-            canScroll = false;
-            canUse = false;
-            PlayerMovement.playerRgb.velocity = new Vector3(0, 0, 0);
+            canBlock = false;
+            canAttack = false;
+            canInteract = false;
+            canSpin = false;
+            canCharge = false;
+            canChangeDirection = false;
+
+            PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
+
         }
 
 
-        if (isDashing == true) { currentState = 1; }
+        if (isBlocking == true) { currentState = State.block; }
 
-        else if (isFalling == true) { currentState = 2; }
+        else if (isAttacking == true) { currentState = State.attack; }
 
-        else if (isAttacking == true) { currentState = 3; }
+        else if (isInteracting == true) { currentState = State.interract; }
 
-        else if (isUsing == true) { currentState = 4; }
+        else if (isSpinning == true) { currentState = State.spin; }
 
-        else if (isInteracting == true) { currentState = 5; }
+        else if (isCharging == true) { currentState = State.charge; }
 
         else
-        { currentState = 0; }
+        { currentState = State.neutral; }
 
         if (currentState != lastState && isLoading == false)
         {
@@ -213,60 +185,51 @@ public class PlayerStatusManager : MonoBehaviour
 
             switch (currentState)
             {
-                case 1:
-                    canMove = false;
-                    canDash = false;
-                    canFall = false;
+                case State.block:
                     canAttack = false;
                     canInteract = false;
-                    canUse = false;
-                    canPick = false;
+                    canSpin = false;
+                    canCharge = false;
+                    canChangeDirection = false;
                     break;
 
-                case 2:
-                    canMove = false;
-                    canDash = false;
-                    canFall = false;
+                case State.attack:
+                    canBlock = false;
                     canAttack = false;
-                    canUse = false;
                     canInteract = false;
-                    canPick = false;
-                    PlayerMovement.playerRgb.velocity = new Vector3(0, 0, 0);
+                    canSpin = false;
+                    canCharge = false;
+                    canChangeDirection = false;
                     break;
 
-                case 3:
+                case State.interract:
                     canMove = false;
-                    canDash = false;
-                    canFall = false;
+                    canBlock = false;
                     canAttack = false;
-                    canUse = false;
                     canInteract = false;
-                    canPick = false;
-                    canScroll = false;
-                    PlayerMovement.playerRgb.velocity = new Vector3(0, 0, 0);
+                    canSpin = false;
+                    canCharge = false;
+                    canChangeDirection = false;
                     break;
 
-                case 4:
-                    canMove = true;
-                    canDash = false;
-                    canFall = false;
+                case State.spin:
+                    canMove = false;
+                    canBlock = false;
                     canAttack = false;
-                    canUse = false;
                     canInteract = false;
-                    canPick = false;
-                    canScroll = false;
+                    canSpin = false;
+                    canCharge = false;
+                    canChangeDirection = false;
                     break;
 
-                case 5:
+                case State.charge:
                     canMove = false;
-                    canDash = false;
-                    canFall = false;
+                    canBlock = false;
                     canAttack = false;
-                    canUse = false;
                     canInteract = false;
-                    canPick = false;
-                    canScroll = false;
-                    PlayerMovement.playerRgb.velocity = new Vector3(0, 0, 0);
+                    canSpin = false;
+                    canCharge = false;
+                    canChangeDirection = false;
                     break;
 
                 default:
@@ -275,16 +238,19 @@ public class PlayerStatusManager : MonoBehaviour
 
         }
 
-        if (currentState == 0 && isLoading == false)
+        if (currentState == State.neutral && isLoading == false)
         {
-            if (cdOnDash == false) { canDash = true; }
+            if (cdOnBlock == false) { canBlock = true; }
 
             if (cdOnAttack == false) { canAttack = true; }
 
-            if (cdOnInteract == false) { canInteract = true; }
+            if (cdOnSpin == false) { canSpin = true; }
 
-            canFall = true;
-            canUse = true;
+            if (cdOnCharge == false) { canCharge = true; }
+
+            canMove = true;
+            canInteract = true;
+            canChangeDirection = true;
         }
     }
 }

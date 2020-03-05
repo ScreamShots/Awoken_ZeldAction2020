@@ -11,19 +11,20 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     #region Hidden var Statement
-    private enum Direction { up, down, left, right }
+    public enum Direction { up, down, left, right }
 
-    private Rigidbody2D playerRgb;    
-    private Direction watchDirection;
+    public static Rigidbody2D playerRgb;    
+    [HideInInspector] public Direction watchDirection = Direction.down;
 
     private float horizontalAxis;
     private float verticalAxis;
     private Vector2 move;
+    [HideInInspector] public bool isRunning;
 
     #endregion
 
     #region Inspector Visible var Statement
-    [Space] [Header ("Stats")] 
+    [Space]  [Header ("Stats")] 
     
     [SerializeField] [Min (0)] [Tooltip ("speed of the player on his basic movement (Min: 0)")]
     private float speed;
@@ -33,14 +34,18 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         playerRgb = GetComponent<Rigidbody2D>();
-        watchDirection = Direction.up;                  // we set a direction on the object creation as a security 
     }
 
     private void FixedUpdate()      // usage of the Fixed Update because we are working on physics and rigidBody
     {
-        Move();
-
-        SetDirection();
+        if (PlayerStatusManager.Instance.canMove)
+        {
+            Move();            
+        }
+        if (PlayerStatusManager.Instance.canChangeDirection)
+        {
+            SetDirection();
+        }       
     }   
 
     void Move()                     // PlayerBasic Movement
@@ -48,8 +53,12 @@ public class PlayerMovement : MonoBehaviour
         horizontalAxis = Input.GetAxis("HorizontalAxis");           //getting axis values from the inputSystem Files (mapped input)
         verticalAxis = Input.GetAxis("VerticalAxis");
         move = new Vector2(horizontalAxis, verticalAxis);           // setting a vector that give the player the direction of the movement
+        move = move.normalized;                                     // normalizing the direction to prevent the player to move faster on diagonal directions 
 
         playerRgb.velocity = move * speed * Time.fixedDeltaTime;    // actualy do the player move (Time.fixedDeltaTime) is required to prevent lag issue
+
+        if (playerRgb.velocity.x != 0 || playerRgb.velocity.y != 0) { isRunning = true; }
+        else { isRunning = false; }
     }                  
 
     void SetDirection()            // this part is used to determined the direction where the player is Watching / Mooving (for Animation && Attack)
