@@ -7,7 +7,7 @@ public class InputSystemTest : MonoBehaviour
     /// <summary>
     /// Made by Rémi Sécher
     /// This script is used to test that all the maped input work
-    /// You can new one if u map new input
+    /// You can add new one if u map new input
     /// </summary>
     /// 
 

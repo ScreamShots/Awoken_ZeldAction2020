@@ -194,6 +194,7 @@ public class PlayerStatusManager : MonoBehaviour
                     break;
 
                 case State.attack:
+                    canMove = false;
                     canBlock = false;
                     canAttack = false;
                     canInteract = false;

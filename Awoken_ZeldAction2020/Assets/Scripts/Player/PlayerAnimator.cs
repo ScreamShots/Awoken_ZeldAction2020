@@ -7,12 +7,17 @@ using UnityEngine;
 /// </summary>
 public class PlayerAnimator : MonoBehaviour
 {
+    #region HideInInspector var Statement 
+
     private Animator plyAnimator;
     private PlayerMovement playerMoveScript;
+    private bool alreadyAttacked;
+
+    #endregion
 
     private void Start()
     {
-        plyAnimator = GetComponent<Animator>();
+        plyAnimator = GetComponent<Animator>();                                     //finding requiered component
         playerMoveScript = GetComponentInParent<PlayerMovement>();
     }
 
@@ -20,9 +25,10 @@ public class PlayerAnimator : MonoBehaviour
     {
         SetWatchDirection();
         Running();
+        TempAttack();
     }
 
-    void SetWatchDirection()
+    void SetWatchDirection()                                                        //giving information relative to the watch direction to the animator
     {
         switch (playerMoveScript.watchDirection)
         {
@@ -49,8 +55,20 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
-    void Running()
+    void Running()                                                                  //Launch run animation   
     {
-        plyAnimator.SetBool("isRunning", playerMoveScript.isRunning);
+        plyAnimator.SetBool("isRunning", playerMoveScript.isRunning);               
+    }    
+    void TempAttack()                                                               //Launch attack animation    
+    {
+        if (PlayerStatusManager.Instance.isAttacking && !alreadyAttacked)          
+        {
+            alreadyAttacked = true;
+            plyAnimator.SetTrigger("Temp_LaunchAttack");
+        }
+        else if (!PlayerStatusManager.Instance.isAttacking && alreadyAttacked)
+        {
+            alreadyAttacked = false;                                                //security to avoid animation starting twice for a single attack
+        }
     }
 }

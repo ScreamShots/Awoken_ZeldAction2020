@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    #region Hidden var Statement
+    #region HideInInspector var Statement
     public enum Direction { up, down, left, right }
 
     public static Rigidbody2D playerRgb;    
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #region Inspector Visible var Statement
+    #region SerializeField var Statement
     [Space]  [Header ("Stats")] 
     
     [SerializeField] [Min (0)] [Tooltip ("speed of the player on his basic movement (Min: 0)")]
