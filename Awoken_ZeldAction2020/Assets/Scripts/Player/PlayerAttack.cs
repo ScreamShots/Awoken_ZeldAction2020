@@ -126,7 +126,7 @@ public class PlayerAttack : MonoBehaviour
                 attackZoneBehaviour.detectedElement[i].GetComponent<BasicHealthSystem>().TakeDmg(dmg);
             }
 
-            GamePad.SetVibration(playerIndex, 0.02f, 0.02f);
+            GamePad.SetVibration(playerIndex, vibrateIntensity, vibrateIntensity);
         }
         
         yield return new WaitForSeconds(0.25f);                                 //Wait for the animation end
@@ -137,7 +137,7 @@ public class PlayerAttack : MonoBehaviour
         PlayerStatusManager.Instance.needToEndAttack = true;                    //security state change (see PlayerStatusManager)
         PlayerStatusManager.Instance.cdOnAttack = true;                         //security state change (see PlayerStatusManager)
 
-        yield return new WaitForSeconds(0.1f);                                  //attackspeed
+        yield return new WaitForSeconds(timeBtwAttack);                                  //attackspeed
 
         PlayerStatusManager.Instance.cdOnAttack = false;                        //security state change (see PlayerStatusManager)
 

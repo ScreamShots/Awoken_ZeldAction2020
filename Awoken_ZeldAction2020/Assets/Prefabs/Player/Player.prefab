@@ -14,7 +14,7 @@ GameObject:
   m_Layer: 8
   m_Name: AttackZone
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6371173129605335748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6371173129741758255}
@@ -45,7 +45,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   watchDirection: 0
   isRunning: 0
-  speed: 3000
+  speed: 150
 --- !u!114 &6371173129741758250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,9 +241,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackZone: {fileID: 6371173129605335748}
   dmg: 10
-  attackProjection: 0.07
-  timeBtwAttack: 0
-  vibrateIntensity: 0
+  attackProjection: 0.0035
+  timeBtwAttack: 0.01
+  vibrateIntensity: 0.02
   autoAttack: 0
 --- !u!1 &6371173130185707794
 GameObject:
