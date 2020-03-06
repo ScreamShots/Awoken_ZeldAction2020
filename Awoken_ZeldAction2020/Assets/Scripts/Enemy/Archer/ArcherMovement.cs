@@ -9,8 +9,17 @@ using UnityEngine;
 
 public class ArcherMovement : MonoBehaviour
 {
+    #region Variables
+    [Header("Archer Speed")]
+
     [SerializeField] [Min(0)]
-    private float speed = 0;
+    private float chaseSpeed;
+
+    [SerializeField] [Min(0)]
+    private float retreatSpeed;
+
+    [Header("Archer Movement")]
+
     public float retreatDistance;
     public float chaseDistance;
     public float attackDistance;
@@ -18,6 +27,7 @@ public class ArcherMovement : MonoBehaviour
     private GameObject player;
 
     private Rigidbody2D rb;
+    #endregion
 
     private void Start()
     {
@@ -40,11 +50,11 @@ public class ArcherMovement : MonoBehaviour
 
         if (distance < chaseDistance && distance > attackDistance)                                  //Move to player
         {
-            rb.velocity = direction * speed * Time.fixedDeltaTime;
+            rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
         }
         else if (distance < retreatDistance)                                                        //Escape from player
         {
-            rb.velocity = direction * -speed * Time.fixedDeltaTime;
+            rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
         }
         else if (distance < attackDistance && distance > retreatDistance)                           //Stop at his position
         {

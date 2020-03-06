@@ -188,7 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7132708ca9664cf40857f088424f4cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2000
+  chaseSpeed: 1500
+  retreatSpeed: 2100
   retreatDistance: 40
   chaseDistance: 160
   attackDistance: 80
@@ -285,6 +286,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6371173129741758240, guid: a67fab304ea4c16429066c80235b2135,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 6371173129741758255, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_LocalPosition.x
