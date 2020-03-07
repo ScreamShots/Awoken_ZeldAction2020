@@ -27,6 +27,9 @@ public class ArcherMovement : MonoBehaviour
     private GameObject player;
 
     private Rigidbody2D rb;
+
+    [HideInInspector]
+    public bool archerCanAttack;
     #endregion
 
     private void Start()
@@ -52,14 +55,17 @@ public class ArcherMovement : MonoBehaviour
         if (intDistance < chaseDistance && intDistance > attackDistance)                            //Move to player
         {
             rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
+            archerCanAttack = false;
         }
         else if (intDistance < retreatDistance)                                                     //Escape from player
         {
             rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
+            archerCanAttack = false;
         }
         else if (intDistance == attackDistance)                                                     //Stop at his position
         {
             rb.velocity = Vector2.zero;
+            archerCanAttack = true;
         }
     }
 }
