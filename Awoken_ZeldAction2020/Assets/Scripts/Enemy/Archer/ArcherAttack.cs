@@ -12,9 +12,18 @@ public class ArcherAttack : MonoBehaviour
     #region Variables
     private GameObject player;
 
+    [Header("Attack Settings")]
+    public float timeBeforeShoot;
+
+    [Header("Bullet initiate")]
     public GameObject archerBullet;
 
+    public Transform shootPoint;
+
     private bool archerIsShooting;
+
+    [HideInInspector]
+    public bool archerIsAttacking;
     #endregion
 
     private void Start()
@@ -26,8 +35,9 @@ public class ArcherAttack : MonoBehaviour
     {
         if (gameObject.GetComponent<ArcherMovement>().archerCanAttack && !archerIsShooting)         //if player is in attack zone and archer isn't shooting
         {
-            ArcherShoot();
-            StartCoroutine(CooldownShoot());
+            StartCoroutine(PrepareToShoot());
+            archerIsShooting = true;
+            archerIsAttacking = true;
         }
     }
 
@@ -35,14 +45,21 @@ public class ArcherAttack : MonoBehaviour
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;            //Calculate direction between archer && player
 
-        GameObject bulletInstance = Instantiate(archerBullet, transform.position, Quaternion.identity);
+        GameObject bulletInstance = Instantiate(archerBullet, shootPoint.position, shootPoint.rotation);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = direction * archerBullet.GetComponent<BulletComportement>().bulletSpeed;
     }
 
     IEnumerator CooldownShoot()                                                                     //Time between shoots
     {
-        archerIsShooting = true;
         yield return new WaitForSeconds(archerBullet.GetComponent<BulletComportement>().timeBtwShots);
         archerIsShooting = false;
+    }
+
+    IEnumerator PrepareToShoot()                                                                    //Time before attack : time of the animation
+    {
+        yield return new WaitForSeconds(timeBeforeShoot);
+        ArcherShoot();
+        archerIsAttacking = false;
+        StartCoroutine(CooldownShoot());
     }
 }

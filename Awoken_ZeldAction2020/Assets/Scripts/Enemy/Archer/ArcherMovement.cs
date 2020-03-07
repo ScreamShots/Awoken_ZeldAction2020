@@ -19,7 +19,6 @@ public class ArcherMovement : MonoBehaviour
     private float retreatSpeed;
 
     [Header("Archer Movement")]
-
     public float retreatDistance;
     public float chaseDistance;
     public float attackDistance;
@@ -46,23 +45,23 @@ public class ArcherMovement : MonoBehaviour
 
     void Move()
     {
-        float distance = Vector2.Distance(transform.position, player.transform.position);           //Calculate distance between archer && player
+        float distance = Vector2.Distance(transform.position, player.transform.position);                                                   //Calculate distance between archer && player
         int intDistance = (int)distance;
         Debug.Log(intDistance);
 
-        Vector2 direction = (player.transform.position - transform.position).normalized;            //Calculate direction between archer && player
+        Vector2 direction = (player.transform.position - transform.position).normalized;                                                    //Calculate direction between archer && player
 
-        if (intDistance < chaseDistance && intDistance > attackDistance)                            //Move to player
+        if (intDistance < chaseDistance && intDistance > attackDistance && !gameObject.GetComponent<ArcherAttack>().archerIsAttacking)      //Move to player if archer isn't attack
         {
             rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
             archerCanAttack = false;
         }
-        else if (intDistance < retreatDistance)                                                     //Escape from player
+        else if (intDistance < retreatDistance && !gameObject.GetComponent<ArcherAttack>().archerIsAttacking)                               //Escape from player if archer isn't attack
         {
             rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
             archerCanAttack = false;
         }
-        else if (intDistance == attackDistance)                                                     //Stop at his position
+        else if (intDistance == attackDistance)                                                                                             //Stop at his position
         {
             rb.velocity = Vector2.zero;
             archerCanAttack = true;
