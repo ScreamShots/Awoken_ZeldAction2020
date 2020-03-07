@@ -44,19 +44,20 @@ public class ArcherMovement : MonoBehaviour
     void Move()
     {
         float distance = Vector2.Distance(transform.position, player.transform.position);           //Calculate distance between archer && player
-        Debug.Log(distance);
+        int intDistance = (int)distance;
+        Debug.Log(intDistance);
 
         Vector2 direction = (player.transform.position - transform.position).normalized;            //Calculate direction between archer && player
 
-        if (distance < chaseDistance && distance > attackDistance)                                  //Move to player
+        if (intDistance < chaseDistance && intDistance > attackDistance)                            //Move to player
         {
             rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
         }
-        else if (distance < retreatDistance)                                                        //Escape from player
+        else if (intDistance < retreatDistance)                                                     //Escape from player
         {
             rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
         }
-        else if (distance < attackDistance && distance > retreatDistance)                           //Stop at his position
+        else if (intDistance == attackDistance)                                                     //Stop at his position
         {
             rb.velocity = Vector2.zero;
         }
