@@ -29,20 +29,26 @@ public class AttackZone : MonoBehaviour
     {
         GameObject element = collision.gameObject;
 
-        if(element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)          //Adding gameobject that are in the range following the target assigned to a List.
+        if (element.transform != element.transform.root)
         {
-            detectedElement.Add(element.transform.parent.gameObject);
-        }
+            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)         //Removing gameobject that are not in the range anymore.
+            {
+                detectedElement.Add(element.transform.parent.gameObject);
+            }
+        }        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         GameObject element = collision.gameObject;
 
-        if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)         //Removing gameobject that are not in the range anymore.
+        if (element.transform != element.transform.root)
         {
-            detectedElement.Remove(element.transform.parent.gameObject);
-        }
+            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)         //Removing gameobject that are not in the range anymore.
+            {
+                detectedElement.Remove(element.transform.parent.gameObject);
+            }
+        }        
     }
 
     [ContextMenu("Refresh Tag List")]

@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     private AttackZone attackZoneBehaviour;
     private PlayerMovement playerMoveScript;
+    private List<GameObject> inRangeElement;
     PlayerIndex playerIndex;                        //requiered for gamepad vibrations
 
     #endregion
@@ -119,11 +120,13 @@ public class PlayerAttack : MonoBehaviour
                 break;
         }
 
-        if(attackZoneBehaviour.detectedElement.Count > 0)                      //if there is enemies in range infligt damages to them and do vibration on the gamepad
+        inRangeElement = attackZoneBehaviour.detectedElement;
+
+        if (inRangeElement.Count > 0)                      //if there is enemies in range infligt damages to them and do vibration on the gamepad
         {
-            for (int i = 0; i < attackZoneBehaviour.detectedElement.Count; i++)
+            for (int i = 0; i < inRangeElement.Count; i++)
             {
-                attackZoneBehaviour.detectedElement[i].GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(dmg);
             }
 
             GamePad.SetVibration(playerIndex, vibrateIntensity, vibrateIntensity);

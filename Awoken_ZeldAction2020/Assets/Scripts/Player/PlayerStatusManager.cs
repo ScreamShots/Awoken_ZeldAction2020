@@ -29,7 +29,7 @@ public class PlayerStatusManager : MonoBehaviour
     [HideInInspector] public bool isSpinning;
     [HideInInspector] public bool isCharging;
 
-    [HideInInspector] public static bool isLoading;
+    [HideInInspector] public bool isLoading;
 
     #endregion
 
