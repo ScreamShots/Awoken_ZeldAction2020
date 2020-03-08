@@ -29,7 +29,7 @@ public class AttackZone : MonoBehaviour
     {
         GameObject element = collision.gameObject;
 
-        if(element.transform.parent.tag == targetedElement && element.tag == "HitBox")          //Adding gameobject that are in the range following the target assigned to a List.
+        if(element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)          //Adding gameobject that are in the range following the target assigned to a List.
         {
             detectedElement.Add(element.transform.parent.gameObject);
         }
@@ -39,7 +39,7 @@ public class AttackZone : MonoBehaviour
     {
         GameObject element = collision.gameObject;
 
-        if (element.transform.parent.tag == targetedElement && element.tag == "HitBox")         //Removing gameobject that are not in the range anymore.
+        if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)         //Removing gameobject that are not in the range anymore.
         {
             detectedElement.Remove(element.transform.parent.gameObject);
         }
