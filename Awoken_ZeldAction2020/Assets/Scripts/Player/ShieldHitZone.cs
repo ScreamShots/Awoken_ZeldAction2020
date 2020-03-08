@@ -12,6 +12,12 @@ public class ShieldHitZone : MonoBehaviour
 
     private void Update()
     {
+
+        if(detectedElements.Count > 0)
+        {
+            CleanList();
+        }
+
         if(isActivated && !l_isActivated)
         {
             Debug.Log("Active");
@@ -104,6 +110,17 @@ public class ShieldHitZone : MonoBehaviour
             if (element.GetComponent<BlockHandler>().isBlocked == true)
             {
                 element.GetComponent<BlockHandler>().isBlocked = false;
+            }
+        }
+    }
+
+    void CleanList()
+    {
+        for(int i = 0; i < detectedElements.Count; i++)
+        {
+            if(detectedElements[i] == null)
+            {
+                detectedElements.Remove(detectedElements[i]);
             }
         }
     }

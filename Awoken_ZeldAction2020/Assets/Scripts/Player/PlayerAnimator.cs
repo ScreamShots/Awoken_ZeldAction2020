@@ -26,8 +26,14 @@ public class PlayerAnimator : MonoBehaviour
         SetWatchDirection();
         Running();
         TempAttack();
+        SetBlock();
     }
 
+
+    void SetBlock()
+    {
+        plyAnimator.SetBool("isBlocking", PlayerStatusManager.Instance.isBlocking);
+    }                                                              //Launch block animation
     void SetWatchDirection()                                                        //giving information relative to the watch direction to the animator
     {
         switch (playerMoveScript.watchDirection)
@@ -54,7 +60,6 @@ public class PlayerAnimator : MonoBehaviour
                 break;
         }
     }
-
     void Running()                                                                  //Launch run animation   
     {
         plyAnimator.SetBool("isRunning", playerMoveScript.isRunning);               

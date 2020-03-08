@@ -9,6 +9,7 @@ public class ProjectileThrower : MonoBehaviour
     [SerializeField] private GameObject projectile;
     [SerializeField] private float fireRate;
     [SerializeField] private bool fire = true;
+    [SerializeField] private float projectileSpeed;
     private bool isShooting;
 
     private void Update()
@@ -42,7 +43,9 @@ public class ProjectileThrower : MonoBehaviour
             default:
                 break;
         }
-        
+
+        thisProjectile.GetComponent<ClassicProjectile>().speed = projectileSpeed;
+
         yield return new WaitForSeconds(fireRate);
 
         if (fire)

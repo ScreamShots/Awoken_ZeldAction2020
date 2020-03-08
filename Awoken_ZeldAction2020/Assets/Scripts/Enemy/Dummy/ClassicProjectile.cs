@@ -8,11 +8,13 @@ public class ClassicProjectile : MonoBehaviour
 {
     public enum Direction { up, down, right, left };
     public Direction projectileOrientation = Direction.up;
-    [SerializeField] private float speed;
+    public float speed;
     private Rigidbody2D projectileRgb;
     private Vector2 aimDirection;
+    private BlockHandler blockHandle;
     [SerializeField] private float lifeTime;
     [SerializeField] private float dmg;
+    [SerializeField] private float staminaLose;
 
     [Header("Target Tag Selection")]
 
@@ -22,6 +24,7 @@ public class ClassicProjectile : MonoBehaviour
     private void Start()
     {
         projectileRgb = GetComponent<Rigidbody2D>();
+        blockHandle = GetComponent<BlockHandler>();
 
         switch (projectileOrientation)
         {
@@ -48,15 +51,32 @@ public class ClassicProjectile : MonoBehaviour
         projectileRgb.velocity = aimDirection * speed * Time.fixedDeltaTime;
     }
 
+    private void Update()
+    {
+        if (blockHandle.isBlocked)
+        {
+            OnBlocked();
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject element = collision.gameObject;
-
-        if (element.transform.parent.tag == targetedElement && element.tag == "HitBox")          
+        if(element.transform != element.transform.root)
         {
-            element.transform.parent.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
-            Destroy(gameObject);
-        }
+            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox")
+            {
+                element.transform.parent.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                Destroy(gameObject);
+            }
+        }        
+    }
+
+    void OnBlocked()
+    {
+        PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLose);
+        Destroy(gameObject);
     }
 
     IEnumerator TimerDestroy()

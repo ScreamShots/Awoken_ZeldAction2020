@@ -241,13 +241,17 @@ public class PlayerStatusManager : MonoBehaviour
 
         if (currentState == State.neutral && isLoading == false)
         {
-            if (cdOnBlock == false) { canBlock = true; }
+            if (cdOnBlock == false) canBlock = true;
+            else canBlock = false;
 
-            if (cdOnAttack == false) { canAttack = true; }
+            if (cdOnAttack == false) canAttack = true;
+            else canAttack = false;
 
-            if (cdOnSpin == false) { canSpin = true; }
+            if (cdOnSpin == false) canSpin = true;
+            else canSpin = false;
 
-            if (cdOnCharge == false) { canCharge = true; }
+            if (cdOnCharge == false) canCharge = true;
+            else canCharge = false;
 
             canMove = true;
             canInteract = true;

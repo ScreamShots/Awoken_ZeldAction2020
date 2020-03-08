@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
     #region SerializeField var Statement
     [Space]  [Header ("Stats")] 
     
-    [SerializeField] [Min (0)] [Tooltip ("speed of the player on his basic movement (Min: 0)")]
-    private float speed;
+    [Min (0)] [Tooltip ("speed of the player on his basic movement (Min: 0)")]
+    public float speed;
 
     #endregion
 

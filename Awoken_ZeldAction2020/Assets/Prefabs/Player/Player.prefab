@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedElements: []
+  isActivated: 0
 --- !u!1 &1481287664031012636
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedElements: []
+  isActivated: 0
 --- !u!1 &2408675283722412055
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedElements: []
+  isActivated: 0
 --- !u!1 &3318330977147395281
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedElements: []
+  isActivated: 0
 --- !u!1 &6371173129605335748
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +465,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -500,6 +504,7 @@ MonoBehaviour:
   isInteracting: 0
   isSpinning: 0
   isCharging: 0
+  isLoading: 0
   needToEndBlock: 0
   needToEndAttack: 0
   needToEndInteract: 0
@@ -561,7 +566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackZone: {fileID: 6371173129605335748}
   dmg: 10
-  attackProjection: 0.0035
+  attackProjection: 35
   timeBtwAttack: 0.01
   vibrateIntensity: 0.02
   autoAttack: 0
@@ -582,6 +587,14 @@ MonoBehaviour:
   - {fileID: 327994453116283817}
   - {fileID: 1481287664031012636}
   - {fileID: 2408675283722412055}
+  knockBackIntensity: 200
+  slowRatio: 0.55
+  maxStamina: 100
+  currentStamina: 0
+  staminaLoseSpeed: 10
+  staminaReloadSpeed: 50
+  timeBeforeReload: 3
+  vibrateIntensity: 0.3
 --- !u!1 &6371173130185707794
 GameObject:
   m_ObjectHideFlags: 0

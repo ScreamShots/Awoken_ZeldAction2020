@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Min(0)]
     [SerializeField] private float dmg;
-    [Range(0f,0.5f)]
+    [Range(0f,50f)]
     [SerializeField] private float attackProjection;
     [Min(0)]
     [SerializeField] private float timeBtwAttack;
@@ -88,33 +88,28 @@ public class PlayerAttack : MonoBehaviour
     {
         PlayerStatusManager.Instance.isAttacking = true;                        //security state change (see PlayerStatusManager)
 
+        yield return new WaitForFixedUpdate();
+        PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
+
         switch (playerMoveScript.watchDirection)                                //Add force to the player on the targeted direction when it hit (intensity depends on attackprojection value
         {
             case PlayerMovement.Direction.down:
-
-                yield return new WaitForFixedUpdate();
-                PlayerMovement.playerRgb.velocity = new Vector2(0,0);
+                               
                 PlayerMovement.playerRgb.AddForce(new Vector2(0,-1) * attackProjection);
 
                 break;
             case PlayerMovement.Direction.up:
 
-                yield return new WaitForFixedUpdate();
-                PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
                 PlayerMovement.playerRgb.AddForce(new Vector2(0, 1) * attackProjection); ;
 
                 break;
             case PlayerMovement.Direction.right:
 
-                yield return new WaitForFixedUpdate();
-                PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
                 PlayerMovement.playerRgb.AddForce(new Vector2(1, 0) * attackProjection); ;
 
                 break;
             case PlayerMovement.Direction.left:
 
-                yield return new WaitForFixedUpdate();
-                PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
                 PlayerMovement.playerRgb.AddForce(new Vector2(-1, 0) * attackProjection); ;
 
                 break;
@@ -131,11 +126,14 @@ public class PlayerAttack : MonoBehaviour
 
             GamePad.SetVibration(playerIndex, vibrateIntensity, vibrateIntensity);
         }
-        
-        yield return new WaitForSeconds(0.25f);                                 //Wait for the animation end
 
-        PlayerMovement.playerRgb.velocity = new Vector2(0, 0);                  //Reset velocity to be sure Force added upward is stopped
+        yield return new WaitForSeconds(0.15f);                                 //Wait for the animation end
+
         GamePad.SetVibration(playerIndex, 0f, 0f);                              //Stop gamepad vibration
+
+        yield return new WaitForSeconds(0.1f);                                 //Wait for the animation end
+
+        PlayerMovement.playerRgb.velocity = new Vector2(0, 0);                  //Reset velocity to be sure Force added upward is stopped       
 
         PlayerStatusManager.Instance.needToEndAttack = true;                    //security state change (see PlayerStatusManager)
         PlayerStatusManager.Instance.cdOnAttack = true;                         //security state change (see PlayerStatusManager)
