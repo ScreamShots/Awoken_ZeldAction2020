@@ -15,6 +15,8 @@ public class ArcherAttack : MonoBehaviour
     [Header("Attack Settings")]
     public float timeBeforeShoot;
 
+    [SerializeField] float timeBtwShots;
+
     [Header("Bullet initiate")]
     public GameObject archerBullet;
 
@@ -24,10 +26,10 @@ public class ArcherAttack : MonoBehaviour
 
     [HideInInspector]
     public bool archerIsAttacking;
-    #endregion
 
-    [SerializeField] float timeBtwShots;
+    [HideInInspector]
     public bool archerCanAttack;
+    #endregion
 
     private void Start()
     {
@@ -36,7 +38,7 @@ public class ArcherAttack : MonoBehaviour
 
     private void Update()
     {
-        if (archerCanAttack && !archerIsShooting)         //if player is in attack zone and archer isn't shooting
+        if (archerCanAttack && !archerIsShooting)                                                   //if player is in attack zone and archer isn't shooting
         {
             StartCoroutine(PrepareToShoot());
             archerIsShooting = true;

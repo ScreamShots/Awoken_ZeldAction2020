@@ -21,10 +21,12 @@ public class BulletComportement : MonoBehaviour
     public float TimeBeforeDestroy;
     
     private GameObject player;
-    #endregion
+
     [HideInInspector]
     public Vector2 aimDirection;
+
     private Rigidbody2D bulletRgb;
+    #endregion
 
     private void Start()
     {

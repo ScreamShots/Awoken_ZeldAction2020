@@ -45,22 +45,22 @@ public class ArcherMovement : MonoBehaviour
 
     void Move()
     {                                                
-        int distance = (int) Vector2.Distance(transform.position, player.transform.position);                                            //Calculate distance between archer && player
+        int distance = (int) Vector2.Distance(transform.position, player.transform.position);                                           //Calculate distance between archer && player
 
-        Vector2 direction = (player.transform.position - transform.position).normalized;                                                   //Calculate direction between archer && player
+        Vector2 direction = (player.transform.position - transform.position).normalized;                                                //Calculate direction between archer && player
 
 
-        if (distance < chaseDistance && distance > attackDistance && !GetComponent<ArcherAttack>().archerIsAttacking)      //Move to player if archer isn't attack
+        if (distance < chaseDistance && distance > attackDistance && !GetComponent<ArcherAttack>().archerIsAttacking)                   //Move to player if archer isn't attack
         {
             rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
-        else if (distance < retreatDistance && !gameObject.GetComponent<ArcherAttack>().archerIsAttacking)                               //Escape from player if archer isn't attack
+        else if (distance < retreatDistance && !gameObject.GetComponent<ArcherAttack>().archerIsAttacking)                              //Escape from player if archer isn't attack
         {
             rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
-        else if (distance < chaseDistance && distance > retreatDistance)                                                                                             //Stop at his position
+        else if (distance < chaseDistance && distance > retreatDistance)                                                                //Stop at his position
         {
             rb.velocity = Vector2.zero;
             GetComponent<ArcherAttack>().archerCanAttack = true;
