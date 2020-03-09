@@ -15,32 +15,32 @@ public class PlayerAttack : MonoBehaviour
     private AttackZone attackZoneBehaviour;
     private PlayerMovement playerMoveScript;
     private List<GameObject> inRangeElement;
-    PlayerIndex playerIndex;                        //requiered for gamepad vibrations
+    PlayerIndex playerIndex = PlayerIndex.One;                        //requiered for gamepad vibrations
 
     #endregion
 
     #region SerializeField var Statement
     [Header("Requiered Elements")]
 
-    [SerializeField] private GameObject attackZone;
+    [SerializeField] private GameObject attackZone = null;
 
     [Header("Stats")]
 
     [Min(0)]
-    [SerializeField] private float dmg;
+    [SerializeField] private float dmg = 0;
     [Range(0f,50f)]
-    [SerializeField] private float attackProjection;
+    [SerializeField] private float attackProjection = 0;
     [Min(0)]
-    [SerializeField] private float timeBtwAttack;
+    [SerializeField] private float timeBtwAttack = 0;
 
     [Header("FeedBack")]
 
     [Min(0)]
-    [SerializeField] private float vibrateIntensity;
+    [SerializeField] private float vibrateIntensity = 0;
 
     [Header("Dev Tools")]
 
-    [SerializeField] private bool autoAttack;
+    [SerializeField] private bool autoAttack = false;
 
     #endregion 
 

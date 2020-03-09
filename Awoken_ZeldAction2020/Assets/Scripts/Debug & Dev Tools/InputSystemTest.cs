@@ -11,7 +11,7 @@ public class InputSystemTest : MonoBehaviour
     /// </summary>
     /// 
 
-    [SerializeField] private bool showAxis;
+    [SerializeField] private bool showAxis = false;
 
     void Update()
     {  

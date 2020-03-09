@@ -2,31 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Rémi Sécher
+/// This script is made for testing.
+/// It's a Object that fire preset projectile (selectionned in the inspector) in a chosen direction.
+/// You can choose the fire direction, fire rate and the projectile speed from this script.
+/// </summary>
+
 public class ProjectileThrower : MonoBehaviour
 {
+    #region HideInInspector var Statement
+
     private enum Direction {up, down, right, left };
-    [SerializeField] private Direction shootDirection = Direction.up;
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private float fireRate;
-    [SerializeField] private bool fire = true;
-    [SerializeField] private float projectileSpeed;
+
     private bool isShooting;
 
+    #endregion
+
+    #region SerializeField var Statement    
+
+    [Header("Requiered Elements")]
+
+    [SerializeField] private GameObject projectile = null;
+
+    [Header("Stats")]
+
+    [SerializeField] private Direction shootDirection = Direction.up;
+
+    [SerializeField] private float fireRate = 0;
+    [SerializeField] private bool fire = true;
+    [SerializeField] private float projectileSpeed = 0;
+
+    #endregion
+    
     private void Update()
     {
-        if(fire && !isShooting)
+        if(fire && !isShooting)             //if fire is activate and the thrower is not shotting activate shooting
         {
             StartCoroutine(Shoot());
             isShooting = true;
         }
     }
 
-    IEnumerator Shoot()
+    IEnumerator Shoot()                 //Throw determined projectile is selectionned direction (loop every fire rate value if fire is activated)
     {
-        GameObject thisProjectile;
-        thisProjectile = Instantiate(projectile, transform.position, transform.rotation);
+        GameObject thisProjectile;                  //reference for the instancitate projectile
 
-        switch (shootDirection)
+        thisProjectile = Instantiate(projectile, transform.position, transform.rotation);       //create an instance of the projectile preset
+
+        switch (shootDirection)             //setting projectile movement direction dpending on the selectionned direction
         {
             case Direction.up:
                 thisProjectile.GetComponent<ClassicProjectile>().projectileOrientation = ClassicProjectile.Direction.up;
@@ -44,13 +68,13 @@ public class ProjectileThrower : MonoBehaviour
                 break;
         }
 
-        thisProjectile.GetComponent<ClassicProjectile>().speed = projectileSpeed;
+        thisProjectile.GetComponent<ClassicProjectile>().speed = projectileSpeed;               //set projectile speed depending on the one referenced here
 
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSeconds(fireRate);                                              //Waiting the fire Rate Time
 
-        if (fire)
+        if (fire)                                                                               
         {
-            StartCoroutine(Shoot());
+            StartCoroutine(Shoot());                                                            //if fire is activated loop on the shoot
         }
         else
         {

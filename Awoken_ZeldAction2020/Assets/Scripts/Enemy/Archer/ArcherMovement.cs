@@ -10,7 +10,7 @@ using UnityEngine;
 public class ArcherMovement : MonoBehaviour
 {
     [SerializeField] [Min(0)]
-    private float speed;
+    private float speed = 0;
     public float retreatDistance;
     public float chaseDistance;
     public float attackDistance;

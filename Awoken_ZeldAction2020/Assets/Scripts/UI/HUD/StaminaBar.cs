@@ -19,7 +19,7 @@ public class StaminaBar : MonoBehaviour
     #region SerialiazeFiled var Statement
 
     [Header("Requiered Elements")]
-    [SerializeField] private Image fillStaminaBar;
+    [SerializeField] private Image fillStaminaBar = null;
 
     #endregion
 
@@ -28,7 +28,7 @@ public class StaminaBar : MonoBehaviour
     {
         if (PlayerManager.Instance != null)
         {
-            playerShieldSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerShield>();       // getting the player's health managment script
+            playerShieldSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerShield>();       // getting the player's shield managment script
         }
     }
 
@@ -36,11 +36,11 @@ public class StaminaBar : MonoBehaviour
     {
         if(playerShieldSystem.currentStamina >= playerShieldSystem.maxStamina)
         {
-            fillStaminaBar.transform.parent.gameObject.SetActive(false);
+            fillStaminaBar.transform.parent.gameObject.SetActive(false);                        //if the stamina is at his max value hide the stamina bar
         }
         else
         {
-            fillStaminaBar.transform.parent.gameObject.SetActive(true);
+            fillStaminaBar.transform.parent.gameObject.SetActive(true);                        //if the stamina is not at his max vanue display the stamina bar     
         }
 
         if (playerShieldSystem != null)

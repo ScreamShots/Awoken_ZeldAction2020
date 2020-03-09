@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Made by Rémi Sécher
+/// Place this Script on the main parent object of an element that could be block by the player
+/// </summary>
+
 public class BlockHandler: MonoBehaviour
 {
-    public bool isBlocked;
-
-    private void Update()
-    {
-        if(isBlocked == true)
-        {
-            Debug.Log("blocked");
-        }
-    }
+    public bool isBlocked = false;              //Test this bool in other behaviour script of the element to creat a behaviour on blocked
 }

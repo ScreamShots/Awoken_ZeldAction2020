@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region SerializeField var Statement
-    [Space]  [Header ("Stats")] 
+    [Header ("Stats")] 
     
     [Min (0)] [Tooltip ("speed of the player on his basic movement (Min: 0)")]
     public float speed;

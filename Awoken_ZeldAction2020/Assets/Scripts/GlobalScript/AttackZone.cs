@@ -15,7 +15,7 @@ public class AttackZone : MonoBehaviour
 
     [Header("Target Tag Selection")]
 
-    [SerializeField] private string targetedElement;
+    [SerializeField] private string targetedElement = null;
     [SerializeField] private string[] allTags;
     
     [Header("Element Detection")]

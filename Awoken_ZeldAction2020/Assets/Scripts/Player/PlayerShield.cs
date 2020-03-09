@@ -3,39 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
 
+/// <summary>
+/// Made by Rémi Sécher
+/// This script is used to managed shield behoviour (block and pary) following shieldZone informations.
+/// Other elements behaviour depending on player block are managed specificly into these elements scripts.
+/// </summary>
+
 public class PlayerShield : MonoBehaviour
 {
-    [SerializeField] private GameObject[] allShieldHitZones;
+    #region HideInInspector var Statement
+
+    
     private Dictionary<string, ShieldHitZone> allShieldZoneScrpit = new Dictionary<string, ShieldHitZone>();
     private PlayerMovement movementScript;
-    [Min(0)]
-    [SerializeField] private float knockBackIntensity;
-    [Range(0.1f,1f)]
-    [SerializeField]
-    private float slowRatio;
+
+    private bool canReload = true;                  //use to know if the stamina can recover or not
+
+    PlayerIndex playerIndex = PlayerIndex.One;                        //requiered for gamepad vibrations
+
+    #endregion
+
+    #region SerializeField var Statement
+
+    [Header("Requiered Elements")]
+
+    [SerializeField] [Tooltip("References of all shieldHitZones GameObject")]
+     private GameObject[] allShieldHitZones = null;
+
+    [Header("Stats")]
+
+    [SerializeField] [Min(0)] 
+    private float knockBackIntensity = 0;
+
+    [SerializeField] [Range(0f,1f)]    
+    private float slowRatio = 0;
+
+    [Header("Stamina Informations")]
+
     [Min(0)]
     public float maxStamina;
+
     [Min(0)]
     public float currentStamina;
-    [Min(0)]
-    [SerializeField] private float staminaLoseSpeed = 1;
-    [Min(0)]
-    [SerializeField] private float staminaReloadSpeed = 1;
-    [SerializeField] private float timeBeforeReload;
-    private bool canReload = true;
-    PlayerIndex playerIndex;                        //requiered for gamepad vibrations
-    [Min(0)]
-    [SerializeField] float vibrateIntensity;
 
+    [SerializeField] [Min(0)] [Tooltip("Speed at which the stamina bar fall off")]
+    private float staminaLoseSpeed = 1;
+    [SerializeField] [Min(0)] [Tooltip("Speed at which the stamina recover")]
+    private float staminaReloadSpeed = 1;
+    [SerializeField] [Min(0)] [Tooltip("Time before the stamina start recover if it fall behind 0")]
+    private float timeBeforeReload = 0;
+
+    [Header("FeedBack")]
+
+    [Min(0)]
+    [SerializeField] float vibrateIntensity = 0;
+
+    #endregion
 
     private void Start()
     {
         movementScript = GetComponent<PlayerMovement>();
-        for (int i = 0; i < allShieldHitZones.Length; i++)
+
+        for (int i = 0; i < allShieldHitZones.Length; i++)                                      // Getting the ShieldHitZone Component of the referenced gameobjects
         {
-            allShieldZoneScrpit.Add(allShieldHitZones[i].name, allShieldHitZones[i].GetComponent<ShieldHitZone>());
+            allShieldZoneScrpit.Add(allShieldHitZones[i].name, allShieldHitZones[i].GetComponent<ShieldHitZone>());         
         }
-        currentStamina = maxStamina;
+
+        currentStamina = maxStamina;                                                            //Initializing stamina
     }
 
     private void Update()
@@ -54,7 +88,8 @@ public class PlayerShield : MonoBehaviour
         if (!PlayerStatusManager.Instance.isBlocking)
         {
             ShieldRotation();
-            if (canReload && currentStamina < maxStamina)
+
+            if (canReload && currentStamina < maxStamina)                       //the stamina can reload only if the shield is not activated
             {
                 
                 ReloadStamina();
@@ -62,44 +97,48 @@ public class PlayerShield : MonoBehaviour
         }
         else
         {
-            UseStamina();
+            UseStamina();                       //use stamina if the shield is activated
         }
 
         if (PlayerStatusManager.Instance.cdOnBlock)
         {
-            if(currentStamina >= maxStamina)
+            if(currentStamina >= maxStamina)                                
             {
-                PlayerStatusManager.Instance.cdOnBlock = false;
+                currentStamina = maxStamina;
+                PlayerStatusManager.Instance.cdOnBlock = false;                // if the block is impossible to activate due to stamina value falling off behind 0, reunable the block utilisation when stamina goes back to max stamina value;
             }
         }
     }
 
-    void UseStamina()
+    void UseStamina()                       //reduce stamina value by time following staminaLoseSpeed value (ratio)
     {
-        currentStamina -= Time.deltaTime * staminaLoseSpeed;
-        if(currentStamina <= 0.001f)
+        currentStamina -= Time.deltaTime * staminaLoseSpeed;        //Lose stamina every Tick (intensity of the lose depends on staminaLoseSpeed
+
+        if (currentStamina <= 0.001f)                               //If the value fall to 0 on utilisation activate the linked behaviour
         {
-            canReload = false;
+            currentStamina = 0;
+            canReload = false;                                      //Disable recover capacity;
             DesactivateBlock();
-            StartCoroutine(TimerBeforeReload());
-            PlayerStatusManager.Instance.cdOnBlock = true;
+            StartCoroutine(TimerBeforeReload());                    //Start cd before stamina goes back to recover
+
+            PlayerStatusManager.Instance.cdOnBlock = true;          //Giving information to the StatusManager that block is on Cd
         }
     }
 
-    void ReloadStamina()
+    void ReloadStamina()                    //recover stamina value by time following staminaReloadSpeed value (ratio)
     {
-        currentStamina += Time.deltaTime * staminaReloadSpeed;
+        currentStamina += Time.deltaTime * staminaReloadSpeed;           //Recover stamina every Tick (intensity of the gain depends on staminaReloadSpeed)
     }
 
-    void ShieldRotation()
+    void ShieldRotation()                   //Make the Shield zone accurate to the watch direction in real time if the shield is not activated;
     {
 
-        foreach(GameObject shieldZone in allShieldHitZones)
+        foreach(GameObject shieldZone in allShieldHitZones)     //Desactivate all ShieldHitZone GameObjects
         {
             shieldZone.SetActive(false);
         }
 
-        switch (movementScript.watchDirection)
+        switch (movementScript.watchDirection)              //Activate the only-one GameObject that match the watch direction
         {
             case PlayerMovement.Direction.up:
                 allShieldZoneScrpit["Up"].gameObject.SetActive(true);
@@ -118,12 +157,13 @@ public class PlayerShield : MonoBehaviour
         }
     }
 
-    void ActivateBlock()
+    void ActivateBlock()                    //On dedicated input, Activate the shield following watch direction;
     {
-        PlayerStatusManager.Instance.isBlocking = true;
-        movementScript.speed *= slowRatio;
+        PlayerStatusManager.Instance.isBlocking = true;             //Giving information to the StatusManager That we are blocking
 
-        switch (movementScript.watchDirection)
+        movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+
+        switch (movementScript.watchDirection)                      //Activate on single ShieldHitZone (On specific element behaviour) following watch direction
         {
             case PlayerMovement.Direction.up:
                 allShieldZoneScrpit["Up"].isActivated = true;
@@ -142,12 +182,13 @@ public class PlayerShield : MonoBehaviour
         }
     }
 
-    void DesactivateBlock()
+    void DesactivateBlock()                 //Desactivate block if the player relaese the dedicated input
     {
-        PlayerStatusManager.Instance.needToEndBlock = true;
-        movementScript.speed *= 1 / slowRatio;
+        PlayerStatusManager.Instance.needToEndBlock = true;             //Telling the StatusManager that we need to stop block behaviour
 
-        switch (movementScript.watchDirection)
+        movementScript.speed *= 1 / slowRatio;                          //Getting player movement speed back to normal
+
+        switch (movementScript.watchDirection)                          //Desactivated the ShieldHitZone Component that was activated during the block.
         {
             case PlayerMovement.Direction.up:
                 allShieldZoneScrpit["Up"].isActivated = false;
@@ -166,21 +207,24 @@ public class PlayerShield : MonoBehaviour
         }
     }
 
-    public void OnElementBlocked(float staminaLose)
+    public void OnElementBlocked(float staminaLose)         //Function called by extern element to apply block consequences on the player
     {
-        currentStamina -= staminaLose;
-        StartCoroutine(OnBlocked());
+        currentStamina -= staminaLose;                              //Stamina lost due to attack block
+
+        StartCoroutine(OnBlocked());                                //KnockBack & Feedback
         
     }
 
-    IEnumerator OnBlocked()
+    IEnumerator OnBlocked()                                 //Manage the player KnockBack and the vibration feedback
     {
-        PlayerStatusManager.Instance.canMove = false;
-        yield return new WaitForFixedUpdate();
-        PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
-        GamePad.SetVibration(playerIndex, vibrateIntensity, vibrateIntensity);
+        PlayerStatusManager.Instance.canMove = false;               //Disable Movement during the knockBack
 
-        switch (movementScript.watchDirection)
+        yield return new WaitForFixedUpdate();                      //Erasing all physics before knockback
+        PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
+
+        GamePad.SetVibration(playerIndex, vibrateIntensity, vibrateIntensity);      //Start vibration (intensity depends on vibrate intensity)
+
+        switch (movementScript.watchDirection)                  //KnockBack the player in the opposite direction of the watch direction (intensity depends on the knockback intensity)
         {
             case PlayerMovement.Direction.up:
                 PlayerMovement.playerRgb.AddForce(new Vector2(0, -1) * knockBackIntensity);
@@ -197,16 +241,20 @@ public class PlayerShield : MonoBehaviour
             default:
                 break;
         }
-        yield return new WaitForSeconds(0.1f);
-        GamePad.SetVibration(playerIndex, 0, 0);
+
+        yield return new WaitForSeconds(0.1f);                          //Duration of the knockBack
+
+        yield return new WaitForFixedUpdate();                          //Erasing all physics due to the knockback
         PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
-        PlayerStatusManager.Instance.canMove = true;
+
+        GamePad.SetVibration(playerIndex, 0, 0);                        //Stopping vibrations
+        
+        PlayerStatusManager.Instance.canMove = true;                    //Enable Movement
     }
 
-    IEnumerator TimerBeforeReload()
+    IEnumerator TimerBeforeReload()                 //Manage Time before recover can restart after stamina value fell behind 0
     {
         yield return new WaitForSeconds(timeBeforeReload);
-        canReload = true;
-        
+        canReload = true;        
     }
 }

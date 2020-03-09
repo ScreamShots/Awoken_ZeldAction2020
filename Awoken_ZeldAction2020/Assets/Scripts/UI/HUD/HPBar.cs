@@ -18,7 +18,7 @@ public class HPBar : MonoBehaviour
     #region SerialiazeFiled var Statement
 
     [Header("Requiered Elements")]
-    [SerializeField] private Image fillHpBar;
+    [SerializeField] private Image fillHpBar = null;
 
     #endregion
 
