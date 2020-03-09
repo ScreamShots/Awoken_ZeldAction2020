@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5405033374428895737
 Transform:
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5165069117394731194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4, y: -6.49, z: 0}
+  m_LocalPosition: {x: -0.4, y: 1.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7408942957006063677}
@@ -85,7 +85,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.631418, y: 4.1603975}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!1 &5776414423349690270
 GameObject:
@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 18ce674c2aba2654287115e162fd2b17, type: 3}
-  m_Color: {r: 0, g: 0.369128, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 0.015337683, b: 0, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7408942955329442410}
   m_Layer: 0
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 7408942957006063678}
   - component: {fileID: 7408942957006063676}
   - component: {fileID: 69895412}
+  - component: {fileID: 6783038870490230826}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Enemy
@@ -400,3 +401,17 @@ MonoBehaviour:
     type: 3}
   shootPoint: {fileID: 7668245286677637594}
   archerIsAttacking: 0
+--- !u!114 &6783038870490230826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408942957006063679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bab47d60a1b5e34380323a33f0814b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 50
+  currentHp: 0
