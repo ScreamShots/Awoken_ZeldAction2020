@@ -16,20 +16,28 @@ public class BulletComportement : MonoBehaviour
     [SerializeField] private float dmg;
 
     public float bulletSpeed;
-
-    public float timeBtwShots;
     
     [Space]
     public float TimeBeforeDestroy;
-
+    
     private GameObject player;
     #endregion
+    [HideInInspector]
+    public Vector2 aimDirection;
+    private Rigidbody2D bulletRgb;
 
     private void Start()
     {
+        bulletRgb = GetComponent<Rigidbody2D>();
+
         Destroy(gameObject, TimeBeforeDestroy);                 //Destroy bullet after x time : security
 
         player = PlayerManager.Instance.gameObject;
+    }
+
+    private void FixedUpdate()
+    {
+        bulletRgb.velocity = aimDirection * bulletSpeed * Time.fixedDeltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)             //When collide with player destroy bullet

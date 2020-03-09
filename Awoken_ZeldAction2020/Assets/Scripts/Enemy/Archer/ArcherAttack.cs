@@ -26,6 +26,9 @@ public class ArcherAttack : MonoBehaviour
     public bool archerIsAttacking;
     #endregion
 
+    [SerializeField] float timeBtwShots;
+    public bool archerCanAttack;
+
     private void Start()
     {
         player = PlayerManager.Instance.gameObject;
@@ -33,7 +36,7 @@ public class ArcherAttack : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.GetComponent<ArcherMovement>().archerCanAttack && !archerIsShooting)         //if player is in attack zone and archer isn't shooting
+        if (archerCanAttack && !archerIsShooting)         //if player is in attack zone and archer isn't shooting
         {
             StartCoroutine(PrepareToShoot());
             archerIsShooting = true;
@@ -46,12 +49,12 @@ public class ArcherAttack : MonoBehaviour
         Vector2 direction = (player.transform.position - transform.position).normalized;            //Calculate direction between archer && player
 
         GameObject bulletInstance = Instantiate(archerBullet, shootPoint.position, shootPoint.rotation);
-        bulletInstance.GetComponent<Rigidbody2D>().velocity = direction * archerBullet.GetComponent<BulletComportement>().bulletSpeed;
+        bulletInstance.GetComponent<BulletComportement>().aimDirection = direction;
     }
 
     IEnumerator CooldownShoot()                                                                     //Time between shoots
     {
-        yield return new WaitForSeconds(archerBullet.GetComponent<BulletComportement>().timeBtwShots);
+        yield return new WaitForSeconds(timeBtwShots);
         archerIsShooting = false;
     }
 
