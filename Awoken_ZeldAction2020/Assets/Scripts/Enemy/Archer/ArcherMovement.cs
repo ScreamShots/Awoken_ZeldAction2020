@@ -13,10 +13,10 @@ public class ArcherMovement : MonoBehaviour
     [Header("Archer Speed")]
 
     [SerializeField] [Min(0)]
-    private float chaseSpeed;
+    private float chaseSpeed = 0;
 
     [SerializeField] [Min(0)]
-    private float retreatSpeed;
+    private float retreatSpeed = 0;
 
     [Header("Archer Movement")]
     public float retreatDistance;

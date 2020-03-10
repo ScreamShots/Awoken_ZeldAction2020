@@ -15,7 +15,7 @@ public class ArcherAttack : MonoBehaviour
     [Header("Attack Settings")]
     public float timeBeforeShoot;
 
-    [SerializeField] float timeBtwShots;
+    [SerializeField] float timeBtwShots = 0;
 
     [Header("Bullet initiate")]
     public GameObject archerBullet;
