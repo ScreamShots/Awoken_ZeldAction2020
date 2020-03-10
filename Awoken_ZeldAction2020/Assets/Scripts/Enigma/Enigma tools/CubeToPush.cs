@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CubeToPush : MonoBehaviour
 {
-    public  Rigidbody2D cubeRgb;
+    private  Rigidbody2D cubeRgb;
     private PlayerMovement playerMovement;
+
 
     private void Start()
     {

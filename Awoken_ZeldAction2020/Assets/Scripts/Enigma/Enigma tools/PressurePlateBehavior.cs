@@ -12,12 +12,12 @@ public abstract class PressurePlateBehavior : MonoBehaviour
     [SerializeField] protected List<GameObject> elementsOnPlate;
     protected virtual void OnTriggerEnter2D(Collider2D other) //Looks if the Player enters the pressure plate
     {
-        if (other.gameObject.transform.root.CompareTag("Player"))
+        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
         {
             isPressed = true;
             elementsOnPlate.Add(other.transform.root.gameObject);
         }
-        else if (other.gameObject.tag == "ObjectToMove")
+        if (other.gameObject.tag == "ObjectToMove" && isPressed == false)
         {
             isPressed = true;
             elementsOnPlate.Add(other.gameObject);
@@ -26,11 +26,23 @@ public abstract class PressurePlateBehavior : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D other) //Looks if the player leaves the pressure plate
     {
-        if (other.gameObject.transform.root.CompareTag("Player") || other.gameObject.tag == "ObjectToMove")
+        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
         {
-            isPressed = false;
             elementsOnPlate.Remove(other.transform.root.gameObject);
+            if (elementsOnPlate.Count == 0)
+            {
+                isPressed = false;
+            }
         }
+        if (other.gameObject.tag == "ObjectToMove")
+        {
+            elementsOnPlate.Remove(other.transform.root.gameObject);
+            if (elementsOnPlate.Count == 0)
+            {
+                isPressed = false;
+            }
+        }
+
     }
     protected virtual void OnTriggerStay2D(Collider2D other) //Looks if the player is on the pressure plate and press a specific input
     {

@@ -16,9 +16,13 @@ public class StayPressurePlate : PressurePlateBehavior
 
     protected override void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.transform.root.CompareTag("Player") || other.gameObject.tag == "ObjectToMove" && isPressed == false && elementsOnPlate != null)
+        /*if(other.tag == "CollisionDetection" && other.transform.root.tag == "Player" && elementsOnPlate != null)
         {
             isPressed = true;
         }
+        if (other.gameObject.tag == "ObjectToMove" && isPressed == false && elementsOnPlate != null)
+        {
+            isPressed = true;
+        }*/
     }
 }
