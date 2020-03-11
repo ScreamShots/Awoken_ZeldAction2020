@@ -19,6 +19,7 @@ public class ArcherAttack : MonoBehaviour
 
     [Header("Bullet initiate")]
     public GameObject archerBullet;
+    [SerializeField] private float bulletSpeed = 0;
 
     public Transform shootPoint;
 
@@ -52,6 +53,7 @@ public class ArcherAttack : MonoBehaviour
 
         GameObject bulletInstance = Instantiate(archerBullet, shootPoint.position, shootPoint.rotation);
         bulletInstance.GetComponent<BulletComportement>().aimDirection = direction;
+        bulletInstance.GetComponent<BulletComportement>().bulletSpeed = bulletSpeed;
     }
 
     IEnumerator CooldownShoot()                                                                     //Time between shoots
