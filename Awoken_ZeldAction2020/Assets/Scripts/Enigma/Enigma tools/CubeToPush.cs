@@ -1,50 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Made by Bastien Prigent helped by Rémi Secher
+/// Gives physics to the cube and make it move
+/// </summary>
 public class CubeToPush : MonoBehaviour
 {
-    private  Rigidbody2D cubeRgb;
-    private PlayerMovement playerMovement;
+    #region cube statement
+    public Rigidbody2D cubeRgb;
+    public bool playerPushing = false;
+    public Vector2 move;
+    public float moveSpeed;
+    #endregion
+
 
 
     private void Start()
     {
         cubeRgb = GetComponent<Rigidbody2D>();
-        playerMovement = PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>();
     }
-    private void Update()
-    {
 
-    }
-    private void OnCollisionEnter2D(Collision2D other)
+    private void FixedUpdate()
     {
-        if (other.gameObject.transform.root.CompareTag("Player") /*&& PlayerMovement.playerRgb.velocity.x != 0 || PlayerMovement.playerRgb.velocity.y != 0*/)
+        if (playerPushing == true) //Looking if the player is pushing the cube
         {
-            switch (playerMovement.watchDirection)
+            Move(); //If yes the cube moves
+        }
+        else if (playerPushing == false) //The player isn't pushing the cube
+        {
+            if (cubeRgb.velocity.x != 0 || cubeRgb.velocity.y != 0) //Looking if the cube has a vertical or horizontal velocity
             {
-                case PlayerMovement.Direction.down:
-                    cubeRgb.velocity = new Vector2 (0,-1);
-                    break;
-                case PlayerMovement.Direction.up:
-                    cubeRgb.velocity = new Vector2 (0, 1);
-                    break;
-                case PlayerMovement.Direction.right:
-                    cubeRgb.velocity = new Vector2 (1, 0);
-                    break;
-                case PlayerMovement.Direction.left:
-                    cubeRgb.velocity = new Vector2(-1, 0) ;
-                    break;
+                cubeRgb.velocity = new Vector2(0, 0); //Cube has got a vertical or horizontal velocity so we stop the cube
             }
         }
-    }   
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.transform.root.CompareTag("Player"))
-        {
-            cubeRgb.velocity = Vector2.zero;
-        }
+        
     }
 
+    /// <summary>
+    /// Method that makes the cube move
+    /// </summary>
+    private void Move()
+    {
+        cubeRgb.velocity = move * moveSpeed * Time.fixedDeltaTime;
+    }
 }

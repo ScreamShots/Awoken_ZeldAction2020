@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Bastien Prigent
+/// This script takes the pressure plate behavior szcript and applies the on triggerENter and on triggerStay of it
+/// </summary>
 public class StayPressurePlate : PressurePlateBehavior
 {
     protected override void OnTriggerEnter2D(Collider2D other)
