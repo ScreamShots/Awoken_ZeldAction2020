@@ -154,11 +154,11 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 1.5234451, y: -4.5}
+  - {x: 1.5, y: -4.5}
   - {x: 0.24188471, y: -4.5}
   - {x: 0.29653013, y: 0.87565947}
   - {x: 1.4864011, y: 0.87630737}
-  - {x: 1.4580207, y: -4.5}
+  - {x: 1.5, y: -4.5}
 --- !u!4 &1198631320
 Transform:
   m_ObjectHideFlags: 0
@@ -416,6 +416,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1318067005465419712, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: edgeDirection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764258816039022503, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764258816039022503, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_Name
+      value: RightEdge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2735432952970420452, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: edgeDirection
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161826762181388100, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444163612221689735, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: edgeDirection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5384909465165097886, guid: 8582163bda5cf5b48bdb3c400ee12d20,
         type: 3}
       propertyPath: m_Layer
@@ -479,6 +509,46 @@ PrefabInstance:
     - target: {fileID: 5384909465515891162, guid: 8582163bda5cf5b48bdb3c400ee12d20,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613296854431074291, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918001193160900902, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5918001193160900902, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_Name
+      value: LeftEdge
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345847489254634614, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525078135392356903, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525078135392356903, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_Name
+      value: DownEdge
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107780384008058142, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203929839932559182, guid: 8582163bda5cf5b48bdb3c400ee12d20,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

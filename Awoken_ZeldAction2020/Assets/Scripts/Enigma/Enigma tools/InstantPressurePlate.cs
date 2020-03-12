@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Bastien Prigent
+/// This script takes the pressure plate behavior szcript and applies the on TriggerEnter of it
+/// </summary>
 public class InstantPressurePlate : PressurePlateBehavior
 {
     protected override void OnTriggerEnter2D(Collider2D other)

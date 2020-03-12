@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public static Rigidbody2D playerRgb;    
     [HideInInspector] public Direction watchDirection = Direction.down;
 
-    private float horizontalAxis;
-    private float verticalAxis;
+    [HideInInspector] public float horizontalAxis;
+    [HideInInspector] public float verticalAxis;
     private Vector2 move;
     [HideInInspector] public bool isRunning;
 
