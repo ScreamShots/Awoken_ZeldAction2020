@@ -28,10 +28,18 @@ public class PoulionMovement : MonoBehaviour
     [Header("Poulion Movement")]
     public float chaseDistance;
     public float attackDistance;
+
+    [Header("State 1")]
     public float timeChangingDirection;
     public float timeBeforePause;
-
     private float timeLeft;
+
+    [Header("State 2")]
+    [Range(1, 10)]
+    public int magnitudeMin;
+    [Range(1, 10)]
+    public int magnitudeMax;
+    public float frequency;
 
     private GameObject player;
 
@@ -88,11 +96,14 @@ public class PoulionMovement : MonoBehaviour
     {
         float distance = Vector2.Distance(transform.position, player.transform.position);                                           //Calculate distance between poulion && player
 
+        Vector2 direction = (player.transform.position - transform.position).normalized;                                            //Calculate direction between poulion && player
 
-        Vector2 direction = (player.transform.position - transform.position).normalized;                                                //Calculate direction between poulion && player
+        Vector2 normalToDirection = Vector2.Perpendicular(direction);                                                               //Normal Vector (perpendicular) of vector direction
+
+        Vector2 randomPerpendicular = normalToDirection.normalized * Mathf.Sin(Time.fixedTime * frequency) * Random.Range(magnitudeMin, magnitudeMax);      //Random perpendicular vector of vector direction
 
 
-        if (distance > chaseDistance)                                                                                                   //Random movement 
+        if (distance > chaseDistance)                                                                                               //Random movement 
         {
             timeLeft -= Time.fixedDeltaTime;
 
@@ -101,11 +112,12 @@ public class PoulionMovement : MonoBehaviour
                 StartCoroutine(RandomMove());
             }
         }
-        else if (distance > attackDistance && distance < chaseDistance)                                                                 //Move to player in zigzagging
+        else if (distance > attackDistance && distance < chaseDistance)                                                             //Move to player in zigzagging
         {
-            rb.velocity = Vector2.zero;
+            rb.velocity = (randomPerpendicular + direction) * chaseSpeed * Time.fixedDeltaTime;
+            
         }
-        else if (distance < attackDistance)                                                                                             //Attack of the poulion
+        else if (distance < attackDistance)                                                                                         //Attack of the poulion
         {
             rb.velocity = Vector2.zero;
         }
