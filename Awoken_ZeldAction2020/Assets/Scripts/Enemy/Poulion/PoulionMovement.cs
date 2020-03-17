@@ -21,10 +21,6 @@ public class PoulionMovement : MonoBehaviour
     [Min(0)]
     private float chaseSpeed = 0;
 
-    [SerializeField]
-    [Min(0)]
-    private float attackSpeed = 0;
-
     [Header("Poulion Movement")]
     public float chaseDistance;
     public float attackDistance;
@@ -103,8 +99,10 @@ public class PoulionMovement : MonoBehaviour
         Vector2 randomPerpendicular = normalToDirection.normalized * Mathf.Sin(Time.fixedTime * frequency) * Random.Range(magnitudeMin, magnitudeMax);      //Random perpendicular vector of vector direction
 
 
-        if (distance > chaseDistance)                                                                                               //Random movement 
+        if (distance > chaseDistance && !GetComponent<PoulionAttack>().poulionIsAttacking)                                                                  //Random movement 
         {
+            GetComponent<PoulionAttack>().poulionCanAttack = false;
+
             timeLeft -= Time.fixedDeltaTime;
 
             if(timeLeft <= 0)
@@ -112,14 +110,14 @@ public class PoulionMovement : MonoBehaviour
                 StartCoroutine(RandomMove());
             }
         }
-        else if (distance > attackDistance && distance < chaseDistance)                                                             //Move to player in zigzagging
+        else if (distance > attackDistance && distance < chaseDistance && !GetComponent<PoulionAttack>().poulionIsAttacking)                                //Move to player in zigzagging
         {
             rb.velocity = (randomPerpendicular + direction) * chaseSpeed * Time.fixedDeltaTime;
-            
+            GetComponent<PoulionAttack>().poulionCanAttack = false;
         }
-        else if (distance < attackDistance)                                                                                         //Attack of the poulion
+        else if (distance <= attackDistance)                                                                                                                //Attack of the poulion
         {
-            rb.velocity = Vector2.zero;
+            GetComponent<PoulionAttack>().poulionCanAttack = true;
         }
     }
 
