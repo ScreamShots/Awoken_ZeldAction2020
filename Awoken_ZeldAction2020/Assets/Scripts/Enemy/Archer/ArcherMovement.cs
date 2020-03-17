@@ -82,12 +82,12 @@ public class ArcherMovement : MonoBehaviour
         Vector2 direction = (player.transform.position - transform.position).normalized;                                                //Calculate direction between archer && player
 
 
-        if (distance <= chaseDistance && distance > attackDistance && !GetComponent<ArcherAttack>().archerIsAttacking)                   //Move to player if archer isn't attack
+        if (distance <= chaseDistance && distance > attackDistance && !GetComponent<ArcherAttack>().archerIsAttacking)                  //Move to player if archer isn't attack
         {
             rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
-        else if (distance <= retreatDistance && !gameObject.GetComponent<ArcherAttack>().archerIsAttacking)                              //Escape from player if archer isn't attack
+        else if (distance <= retreatDistance && !gameObject.GetComponent<ArcherAttack>().archerIsAttacking)                             //Escape from player if archer isn't attack
         {
             rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
