@@ -18,6 +18,8 @@ public class BasicHealthSystem : MonoBehaviour
     public float maxHp;
     [Min(0)] [Tooltip("current hp value (min:0")]
     public float currentHp;
+    [Space]
+    public bool canTakeDmg = true;
 
     #endregion
 
@@ -36,7 +38,10 @@ public class BasicHealthSystem : MonoBehaviour
 
     public virtual void TakeDmg(float dmgTaken)         //can be override in children class
     {
-        currentHp -= dmgTaken;                          //use this function to Infligt Dmg
+        if (canTakeDmg)
+        {
+            currentHp -= dmgTaken;                      //use this function to Infligt Dmg
+        }
     }
 
     public virtual void Heal(float healValue)           //can be override in children class

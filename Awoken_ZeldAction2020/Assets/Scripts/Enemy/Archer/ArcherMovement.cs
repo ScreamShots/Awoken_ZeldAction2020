@@ -71,7 +71,8 @@ public class ArcherMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();  
+        Move();
+        OnValidate();
     }
 
     void Move()

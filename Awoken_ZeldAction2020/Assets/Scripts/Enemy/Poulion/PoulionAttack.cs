@@ -5,18 +5,21 @@ using UnityEngine;
 public class PoulionAttack : MonoBehaviour
 {
     #region Variables
-    private GameObject player;
-
-    private Rigidbody2D rb;
-
     [Header("Attack Settings")]
-    public float timeBeforeAttack;
+    public float timeBeforeCharge;
+
+    public float timeStun;
+
+    public float timeCharge;
+
+    [Space]
 
     [SerializeField]
     [Min(0)]
     private float attackSpeed = 0;
 
-    public float maxChargeDistance;
+    [Min(0)]
+    [SerializeField] private float dmg = 0;
 
     [HideInInspector]
     public bool poulionIsAttacking;
@@ -24,9 +27,13 @@ public class PoulionAttack : MonoBehaviour
     [HideInInspector]
     public bool poulionCanAttack;
 
-    private bool attackInProgress = false;
+    private bool attackInProgress;
 
-    private Vector2 startPosition;
+    private bool chargeOn;
+
+    private GameObject player;
+
+    private Rigidbody2D rb;
     #endregion
 
     private void Start()
@@ -44,39 +51,53 @@ public class PoulionAttack : MonoBehaviour
             poulionIsAttacking = true;
             StartCoroutine(PrepareToAttack());
         }
-
-        float distanceOfCharge = Vector2.Distance(startPosition, transform.position);
-
-        if(distanceOfCharge >= maxChargeDistance)       
-        {
-            Stun();
-        }
     }
 
     void Attack()
     {
-        Vector2 direction = (player.transform.position - transform.position).normalized;
+        chargeOn = true;
 
+        Vector2 direction = (player.transform.position - transform.position).normalized;                                //Get the position of Player at the end of charge animation
         rb.velocity = direction * attackSpeed * Time.fixedDeltaTime;
-
-        startPosition = transform.position;                                                                             //Distance of Charge start 
     }
 
-    void Stun()                                                                                                         //For the stun state
+    void Stun()
     {
+        chargeOn = false;
+        GetComponent<BasicHealthSystem>().canTakeDmg = true;
+
         rb.velocity = Vector2.zero;
-        //poulionIsAttacking = false;                                           
-        //attackInProgress = false;
-        //Poulion can't take dmg
-        //Stop the stun on wall / player / distance max
+        StartCoroutine(DeStun());
     }
+
+    private void OnCollisionEnter2D(Collision2D other)                                                                  //When collide with player = Stun Poulion
+    {
+        if (other.gameObject.CompareTag("Player") && chargeOn)
+        {
+            Stun();
+            player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+        }
+    }
+
+    //Insert OnCollisionEnter2D with a wall = Stunt without dmg to Player
 
     IEnumerator PrepareToAttack()
     {
-        //Vector2 direction = (player.transform.position - transform.position).normalized;                              //If we want more let the Player to escape
+        //Vector2 direction = (player.transform.position - transform.position).normalized;                              //Get the position of Player before the charge animation
         rb.velocity = Vector2.zero;
+        GetComponent<BasicHealthSystem>().canTakeDmg = false;
 
-        yield return new WaitForSeconds(timeBeforeAttack);
+        yield return new WaitForSeconds(timeBeforeCharge);
         Attack();
+
+        yield return new WaitForSeconds(timeCharge);
+        Stun();
+    }
+
+    IEnumerator DeStun()
+    {
+        yield return new WaitForSeconds(timeStun);
+        poulionIsAttacking = false;
+        attackInProgress = false;
     }
 }
