@@ -86,6 +86,7 @@ public class PoulionMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        OnValidate();
     }
 
     void Move()
@@ -118,6 +119,10 @@ public class PoulionMovement : MonoBehaviour
         else if (distance <= attackDistance)                                                                                                                //Attack of the poulion
         {
             GetComponent<PoulionAttack>().poulionCanAttack = true;
+        }
+        else
+        {
+            GetComponent<PoulionAttack>().poulionCanAttack = false;
         }
     }
 
