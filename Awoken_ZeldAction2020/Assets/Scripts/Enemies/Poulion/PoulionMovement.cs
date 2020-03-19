@@ -41,6 +41,13 @@ public class PoulionMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private Vector2 direction;
+
+    public enum Direction { up, down, left, right }
+    [HideInInspector] public Direction watchDirection = Direction.down;
+
+    [HideInInspector] public bool isRunning;
+
     [Header("DevTools")]                                    //variables for dev tools
 
     [SerializeField] private bool showRanges = false;
@@ -86,6 +93,7 @@ public class PoulionMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        SetDirection();
         OnValidate();
     }
 
@@ -93,7 +101,7 @@ public class PoulionMovement : MonoBehaviour
     {
         float distance = Vector2.Distance(transform.position, player.transform.position);                                           //Calculate distance between poulion && player
 
-        Vector2 direction = (player.transform.position - transform.position).normalized;                                            //Calculate direction between poulion && player
+        direction = (player.transform.position - transform.position).normalized;                                                    //Calculate direction between poulion && player
 
         Vector2 normalToDirection = Vector2.Perpendicular(direction);                                                               //Normal Vector (perpendicular) of vector direction
 
@@ -123,6 +131,38 @@ public class PoulionMovement : MonoBehaviour
         else
         {
             GetComponent<PoulionAttack>().poulionCanAttack = false;
+        }
+
+        if (rb.velocity.x != 0 || rb.velocity.y != 0) { isRunning = true; }                                                                                 //Check if poulion are moving
+        else { isRunning = false; }
+    }
+
+    void SetDirection()
+    {
+        if (rb.velocity.x != 0 || rb.velocity.y != 0)
+        {
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+            {
+                if (direction.x > 0)
+                {
+                    watchDirection = Direction.right;
+                }
+                else
+                {
+                    watchDirection = Direction.left;
+                }
+            }
+            else
+            {
+                if (direction.y > 0)
+                {
+                    watchDirection = Direction.up;
+                }
+                else
+                {
+                    watchDirection = Direction.down;
+                }
+            }
         }
     }
 
