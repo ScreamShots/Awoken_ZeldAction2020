@@ -12,7 +12,6 @@ public class PoulionMovement : MonoBehaviour
 {
     #region Variables
     [Header("Poulion Speed")]
-
     [SerializeField]
     [Min(0)]
     private float neutralSpeed = 0;
@@ -43,12 +42,14 @@ public class PoulionMovement : MonoBehaviour
 
     private Vector2 direction;
 
-    public enum Direction { up, down, left, right }
-    [HideInInspector] public Direction watchDirection = Direction.down;
-
     [HideInInspector] public bool isRunning;
 
-    [Header("DevTools")]                                    //variables for dev tools
+    public enum Direction { up, down, left, right }
+    [HideInInspector] public Direction watchDirection = Direction.down;
+    #endregion
+
+    #region Tools
+    [Header("DevTools")]                                        //variables for dev tools
 
     [SerializeField] private bool showRanges = false;
     private GameObject allRangesCircles;

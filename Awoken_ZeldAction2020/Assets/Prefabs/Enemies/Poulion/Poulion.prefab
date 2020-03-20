@@ -307,6 +307,8 @@ MonoBehaviour:
   magnitudeMin: 1
   magnitudeMax: 3
   frequency: 20
+  watchDirection: 1
+  isRunning: 0
   showRanges: 0
 --- !u!114 &5539085140102970486
 MonoBehaviour:
@@ -323,10 +325,12 @@ MonoBehaviour:
   timeBeforeCharge: 1
   timeStun: 2
   timeCharge: 0.4
-  attackSpeed: 600
+  attackSpeed: 450
   dmg: 20
   poulionIsAttacking: 0
   poulionCanAttack: 0
+  chargeOn: 0
+  isStun: 0
 --- !u!114 &5539085140102970473
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,6 +21,10 @@ public class PoulionAttack : MonoBehaviour
     [Min(0)]
     [SerializeField] private float dmg = 0;
 
+    private GameObject player;
+
+    private Rigidbody2D rb;
+
     [HideInInspector]
     public bool poulionIsAttacking;
 
@@ -29,11 +33,11 @@ public class PoulionAttack : MonoBehaviour
 
     private bool attackInProgress;
 
-    private bool chargeOn;
+    [HideInInspector]
+    public bool chargeOn;
 
-    private GameObject player;
-
-    private Rigidbody2D rb;
+    [HideInInspector]
+    public bool isStun;
     #endregion
 
     private void Start()
@@ -96,8 +100,10 @@ public class PoulionAttack : MonoBehaviour
 
     IEnumerator DeStun()
     {
+        isStun = true;
         yield return new WaitForSeconds(timeStun);
         poulionIsAttacking = false;
         attackInProgress = false;
+        isStun = false;
     }
 }
