@@ -13,13 +13,14 @@ public class PoulionAnimator : MonoBehaviour
 
     private Animator poulionAnimator;
     private PoulionMovement poulionMoveScript;
-    private bool alreadyAttacked;
+    private PoulionAttack poulionAttackScript;
     #endregion
 
     private void Start()
     {
         poulionAnimator = GetComponent<Animator>();
         poulionMoveScript = GetComponentInParent<PoulionMovement>();
+        poulionAttackScript = GetComponentInParent<PoulionAttack>();
     }
 
     private void Update()
@@ -29,7 +30,7 @@ public class PoulionAnimator : MonoBehaviour
         Attack();
     }
 
-    void SetWatchDirection()                                                        //giving information relative to the watch direction to the animator
+    void SetWatchDirection()                                                                        //giving information relative to the watch direction to the animator
     {
         switch (poulionMoveScript.watchDirection)
         {
@@ -63,14 +64,10 @@ public class PoulionAnimator : MonoBehaviour
 
     void Attack()
     {
-        if (GetComponentInParent<PoulionAttack>().poulionIsAttacking && !alreadyAttacked)           //Remplace with enemies manager later
-        {
-            alreadyAttacked = true;
-            poulionAnimator.SetTrigger("isAttacking");
-        }
-        else if (!GetComponentInParent<PoulionAttack>().poulionIsAttacking && alreadyAttacked)
-        {
-            alreadyAttacked = false;                                                                //security to avoid animation starting twice for a single attack
-        }
+        poulionAnimator.SetBool("isAttacking", poulionAttackScript.poulionIsAttacking);
+
+        poulionAnimator.SetBool("isCharging", poulionAttackScript.chargeOn);
+
+        poulionAnimator.SetBool("isStun", poulionAttackScript.isStun);
     }
 }
