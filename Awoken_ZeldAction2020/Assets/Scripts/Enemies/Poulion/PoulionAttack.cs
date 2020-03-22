@@ -25,6 +25,8 @@ public class PoulionAttack : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private Vector2 direction;
+
     [HideInInspector]
     public bool poulionIsAttacking;
 
@@ -38,6 +40,9 @@ public class PoulionAttack : MonoBehaviour
 
     [HideInInspector]
     public bool isStun;
+
+    public enum Direction { up, down, left, right }
+    [HideInInspector] public Direction watchDirection;
     #endregion
 
     private void Start()
@@ -57,11 +62,42 @@ public class PoulionAttack : MonoBehaviour
         }
     }
 
+    void SetDirectionAttack()
+    {
+        direction = (player.transform.position - transform.position).normalized;
+
+        if (rb.velocity.x != 0 || rb.velocity.y != 0)
+        {
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+            {
+                if (direction.x > 0)
+                {
+                    watchDirection = Direction.right;
+                }
+                else
+                {
+                    watchDirection = Direction.left;
+                }
+            }
+            else
+            {
+                if (direction.y > 0)
+                {
+                    watchDirection = Direction.up;
+                }
+                else
+                {
+                    watchDirection = Direction.down;
+                }
+            }
+        }
+    }
+
     void Attack()
     {
         chargeOn = true;
 
-        Vector2 direction = (player.transform.position - transform.position).normalized;                                //Get the position of Player at the end of charge animation
+        direction = (player.transform.position - transform.position).normalized;                                //Get the position of Player at the end of charge animation
         rb.velocity = direction * attackSpeed * Time.fixedDeltaTime;
     }
 
@@ -87,7 +123,9 @@ public class PoulionAttack : MonoBehaviour
 
     IEnumerator PrepareToAttack()
     {
-        //Vector2 direction = (player.transform.position - transform.position).normalized;                              //Get the position of Player before the charge animation
+        //direction = (player.transform.position - transform.position).normalized;                              //Get the position of Player before the charge animation
+        
+        SetDirectionAttack();
         rb.velocity = Vector2.zero;
         GetComponent<BasicHealthSystem>().canTakeDmg = false;
 

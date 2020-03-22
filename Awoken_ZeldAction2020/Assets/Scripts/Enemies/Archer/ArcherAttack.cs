@@ -12,6 +12,8 @@ public class ArcherAttack : MonoBehaviour
     #region Variables
     private GameObject player;
 
+    private Rigidbody2D rb;
+
     [Header("Attack Settings")]
     public float timeBeforeShoot;
 
@@ -25,16 +27,23 @@ public class ArcherAttack : MonoBehaviour
 
     private bool archerIsShooting;
 
+    private Vector2 direction;
+
     [HideInInspector]
     public bool archerIsAttacking;
 
     [HideInInspector]
     public bool archerCanAttack;
+
+    public enum Direction { up, down, left, right }
+    [HideInInspector] public Direction watchDirection;
     #endregion
 
     private void Start()
     {
         player = PlayerManager.Instance.gameObject;
+
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -47,9 +56,37 @@ public class ArcherAttack : MonoBehaviour
         }
     }
 
+    void SetDirectionAttack()
+    {
+        direction = (player.transform.position - transform.position).normalized;
+
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                watchDirection = Direction.right;
+            }
+            else
+            {
+                watchDirection = Direction.left;
+            }
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                watchDirection = Direction.up;
+            }
+            else
+            {
+                watchDirection = Direction.down;
+            }
+        }
+    }
+
     void ArcherShoot()
     {
-        Vector2 direction = (player.transform.position - transform.position).normalized;            //Calculate direction between archer && player
+        direction = (player.transform.position - transform.position).normalized;            //Calculate direction between archer && player
 
         GameObject bulletInstance = Instantiate(archerBullet, shootPoint.position, shootPoint.rotation);
         bulletInstance.GetComponent<BulletComportement>().aimDirection = direction;
@@ -64,6 +101,7 @@ public class ArcherAttack : MonoBehaviour
 
     IEnumerator PrepareToShoot()                                                                    //Time before attack : time of the animation
     {
+        SetDirectionAttack();
         yield return new WaitForSeconds(timeBeforeShoot);
         ArcherShoot();
         archerIsAttacking = false;

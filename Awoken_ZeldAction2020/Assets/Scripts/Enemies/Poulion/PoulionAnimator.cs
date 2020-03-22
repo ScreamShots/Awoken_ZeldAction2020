@@ -26,6 +26,7 @@ public class PoulionAnimator : MonoBehaviour
     private void Update()
     {
         SetWatchDirection();
+        SetWatchDirectionAttack();
         Running();
         Attack();
     }
@@ -53,6 +54,33 @@ public class PoulionAnimator : MonoBehaviour
             default:
                 poulionAnimator.SetFloat("XMovement", 0);
                 poulionAnimator.SetFloat("YMovement", -1);
+                break;
+        }
+    }
+
+    void SetWatchDirectionAttack()                                                                        
+    {
+        switch (poulionAttackScript.watchDirection)
+        {
+            case PoulionAttack.Direction.down:
+                poulionAnimator.SetFloat("XAttack", 0);
+                poulionAnimator.SetFloat("YAttack", -1);
+                break;
+            case PoulionAttack.Direction.up:
+                poulionAnimator.SetFloat("XAttack", 0);
+                poulionAnimator.SetFloat("YAttack", 1);
+                break;
+            case PoulionAttack.Direction.left:
+                poulionAnimator.SetFloat("XAttack", -1);
+                poulionAnimator.SetFloat("YAttack", 0);
+                break;
+            case PoulionAttack.Direction.right:
+                poulionAnimator.SetFloat("XAttack", 1);
+                poulionAnimator.SetFloat("YAttack", 0);
+                break;
+            default:
+                poulionAnimator.SetFloat("XAttack", 0);
+                poulionAnimator.SetFloat("YAttack", -1);
                 break;
         }
     }

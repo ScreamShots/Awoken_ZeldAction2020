@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7408942957006063677
 Transform:
   m_ObjectHideFlags: 0
@@ -336,6 +336,7 @@ MonoBehaviour:
   chaseDistance: 8
   attackDistance: 4
   isRunning: 0
+  isRetrait: 0
   watchDirection: 1
   showRanges: 0
 --- !u!114 &69895412
@@ -358,6 +359,7 @@ MonoBehaviour:
   shootPoint: {fileID: 7668245286677637594}
   archerIsAttacking: 0
   archerCanAttack: 0
+  watchDirection: 0
 --- !u!114 &6783038870490230826
 MonoBehaviour:
   m_ObjectHideFlags: 0

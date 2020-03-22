@@ -94,7 +94,6 @@ public class PoulionMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        SetDirection();
         OnValidate();
     }
 
@@ -119,15 +118,21 @@ public class PoulionMovement : MonoBehaviour
             {
                 StartCoroutine(RandomMove());
             }
+
+            watchDirection = Direction.down;
         }
         else if (distance > attackDistance && distance < chaseDistance && !GetComponent<PoulionAttack>().poulionIsAttacking)                                //Move to player in zigzagging
         {
             rb.velocity = (randomPerpendicular + direction) * chaseSpeed * Time.fixedDeltaTime;
             GetComponent<PoulionAttack>().poulionCanAttack = false;
+
+            SetDirection();
         }
         else if (distance <= attackDistance)                                                                                                                //Attack of the poulion
         {
             GetComponent<PoulionAttack>().poulionCanAttack = true;
+
+            SetDirection();
         }
         else
         {
