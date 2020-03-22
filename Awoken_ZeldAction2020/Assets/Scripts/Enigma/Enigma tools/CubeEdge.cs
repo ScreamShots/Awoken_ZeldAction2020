@@ -10,7 +10,7 @@ public class CubeEdge : MonoBehaviour
 {
     #region Edge collider statement
     public enum Direction { up, down, right, left};
-    public Direction edgeDirection = Direction.down;
+    public Direction edgeDirection;
     private bool playerCollisionning = false;
     private CubeToPush cubeScript;
     private PlayerMovement playerMoveScript;

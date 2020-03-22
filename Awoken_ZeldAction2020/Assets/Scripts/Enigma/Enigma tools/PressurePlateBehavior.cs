@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public abstract class PressurePlateBehavior : MonoBehaviour
 {
-    [SerializeField] protected  bool isPressed;
+    [SerializeField] public bool isPressed;
     [SerializeField] protected List<GameObject> elementsOnPlate;
     protected virtual void OnTriggerEnter2D(Collider2D other) //Looks if the Player enters the pressure plate
     {
