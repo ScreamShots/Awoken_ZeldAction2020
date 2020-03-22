@@ -27,6 +27,7 @@ public class ArcherAnimator : MonoBehaviour
     private void Update()
     {
         SetWatchDirection();
+        SetWatchDirectionAttack();
         Running();
         Attack();
     }
@@ -58,21 +59,42 @@ public class ArcherAnimator : MonoBehaviour
         }
     }
 
+    void SetWatchDirectionAttack()
+    {
+        switch (archerAttackScript.watchDirection)
+        {
+            case ArcherAttack.Direction.down:
+                archerAnimator.SetFloat("XAttack", 0);
+                archerAnimator.SetFloat("YAttack", -1);
+                break;
+            case ArcherAttack.Direction.up:
+                archerAnimator.SetFloat("XAttack", 0);
+                archerAnimator.SetFloat("YAttack", 1);
+                break;
+            case ArcherAttack.Direction.left:
+                archerAnimator.SetFloat("XAttack", -1);
+                archerAnimator.SetFloat("YAttack", 0);
+                break;
+            case ArcherAttack.Direction.right:
+                archerAnimator.SetFloat("XAttack", 1);
+                archerAnimator.SetFloat("YAttack", 0);
+                break;
+            default:
+                archerAnimator.SetFloat("XAttack", 0);
+                archerAnimator.SetFloat("YAttack", -1);
+                break;
+        }
+    }
+
     void Running()                                                                                  //Launch run animation   
     {
         archerAnimator.SetBool("isRunning", archerMoveScript.isRunning);
+
+        archerAnimator.SetBool("isRetrait", archerMoveScript.isRetrait);
     }
 
     void Attack()
     {
-        if (archerAttackScript.archerIsAttacking && !alreadyAttacked)
-        {
-            alreadyAttacked = true;
-            archerAnimator.SetTrigger("isAttacking");
-        }
-        else if (!archerAttackScript.archerIsAttacking && alreadyAttacked)
-        {
-            alreadyAttacked = false;                                                
-        }
+        archerAnimator.SetBool("isAttacking", archerAttackScript.archerIsAttacking);
     }
 }

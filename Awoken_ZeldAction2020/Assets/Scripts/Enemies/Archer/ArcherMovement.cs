@@ -30,6 +30,8 @@ public class ArcherMovement : MonoBehaviour
 
     [HideInInspector] public bool isRunning;
 
+    [HideInInspector] public bool isRetrait;
+
     private Vector2 direction;
 
     public enum Direction { up, down, left, right }
@@ -82,7 +84,6 @@ public class ArcherMovement : MonoBehaviour
     {
         Move();
         OnValidate();
-        SetDirection();
     }
 
     void Move()
@@ -95,21 +96,28 @@ public class ArcherMovement : MonoBehaviour
 
         if (distance <= chaseDistance && distance > attackDistance && !GetComponent<ArcherAttack>().archerIsAttacking)                  //Move to player if archer isn't attack
         {
+            SetDirection();
+            isRetrait = false;
             rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
         else if (distance <= retreatDistance && !gameObject.GetComponent<ArcherAttack>().archerIsAttacking)                             //Escape from player if archer isn't attack
         {
+            SetDirection();
+            isRetrait = true;
             rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
         else if (distance < chaseDistance && distance > retreatDistance)                                                                //Stop at his position
         {
+            SetDirection();
+            isRetrait = false;
             rb.velocity = Vector2.zero;
             GetComponent<ArcherAttack>().archerCanAttack = true;
         }
         else if(distance > chaseDistance)
         {
+            watchDirection = Direction.down;
             rb.velocity = Vector2.zero;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
@@ -120,29 +128,26 @@ public class ArcherMovement : MonoBehaviour
 
     void SetDirection()
     {
-        if (rb.velocity.x != 0 || rb.velocity.y != 0)
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+            if (direction.x > 0)
             {
-                if (direction.x > 0)
-                {
-                    watchDirection = Direction.right;
-                }
-                else
-                {
-                    watchDirection = Direction.left;
-                }
+                watchDirection = Direction.right;
             }
             else
             {
-                if (direction.y > 0)
-                {
-                    watchDirection = Direction.up;
-                }
-                else
-                {
-                    watchDirection = Direction.down;
-                }
+                watchDirection = Direction.left;
+            }
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                watchDirection = Direction.up;
+            }
+            else
+            {
+                watchDirection = Direction.down;
             }
         }
     }
