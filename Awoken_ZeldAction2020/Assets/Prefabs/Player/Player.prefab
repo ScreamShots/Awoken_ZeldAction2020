@@ -471,7 +471,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &6371173129741758241
@@ -537,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   currentHp: 0
+  canTakeDmg: 1
 --- !u!114 &6371173129741758252
 MonoBehaviour:
   m_ObjectHideFlags: 0
