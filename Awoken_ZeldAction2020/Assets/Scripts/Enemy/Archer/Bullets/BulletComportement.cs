@@ -17,7 +17,7 @@ public class BulletComportement : MonoBehaviour
 
     public float bulletSpeed;
 
-    [SerializeField] private float staminaLoseOnBlock;
+    [SerializeField] private float staminaLoseOnBlock = 0;
     private BlockHandler blockHandle;
 
     [Space]

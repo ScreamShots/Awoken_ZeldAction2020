@@ -11,6 +11,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private Animator plyAnimator;
     private PlayerMovement playerMoveScript;
+    private PlayerAttack playerAttackScript;
     private bool alreadyAttacked;
 
     #endregion
@@ -19,6 +20,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         plyAnimator = GetComponent<Animator>();                                     //finding requiered component
         playerMoveScript = GetComponentInParent<PlayerMovement>();
+        playerAttackScript = GetComponentInParent<PlayerAttack>();
     }
 
     private void Update()
@@ -30,10 +32,59 @@ public class PlayerAnimator : MonoBehaviour
     }
 
 
-    void SetBlock()
+    void SetBlock()                                                                  //Launch block animation
     {
         plyAnimator.SetBool("isBlocking", PlayerStatusManager.Instance.isBlocking);
-    }                                                              //Launch block animation
+
+        if(PlayerStatusManager.Instance.isBlocking == true)
+        {
+            switch (playerMoveScript.watchDirection)
+            {
+                case PlayerMovement.Direction.down:
+                    if(PlayerMovement.playerRgb.velocity.y > 0)
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                    }
+                    else
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                    }
+                    break;
+                case PlayerMovement.Direction.up:
+                    if (PlayerMovement.playerRgb.velocity.y < 0)
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                    }
+                    else
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                    }
+                    break;
+                case PlayerMovement.Direction.left:
+                    if (PlayerMovement.playerRgb.velocity.x > 0)
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                    }
+                    else
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                    }
+                    break;
+                case PlayerMovement.Direction.right:
+                    if (PlayerMovement.playerRgb.velocity.x < 0)
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                    }
+                    else
+                    {
+                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                    }
+                    break;
+                default:                                    
+                    break;
+            }
+        }               //change animation speed to -1 when he goes opposite of the looked direction to prevent moonwalk
+    }                                                             
     void SetWatchDirection()                                                        //giving information relative to the watch direction to the animator
     {
         switch (playerMoveScript.watchDirection)
@@ -66,6 +117,7 @@ public class PlayerAnimator : MonoBehaviour
     }    
     void TempAttack()                                                               //Launch attack animation    
     {
+        plyAnimator.SetInteger("AttackState", (int)playerAttackScript.attackState);
         if (PlayerStatusManager.Instance.isAttacking && !alreadyAttacked)          
         {
             alreadyAttacked = true;

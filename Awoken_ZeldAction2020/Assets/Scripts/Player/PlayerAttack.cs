@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerMovement playerMoveScript;
     private List<GameObject> inRangeElement;
     PlayerIndex playerIndex = PlayerIndex.One;                        //requiered for gamepad vibrations
+    public float attackState = 0;
 
     #endregion
 
@@ -27,11 +28,20 @@ public class PlayerAttack : MonoBehaviour
     [Header("Stats")]
 
     [Min(0)]
-    [SerializeField] private float dmg = 0;
-    [Range(0f,50f)]
+    [SerializeField] private float firstAttackdmg = 0;
+    [Min(0)]
+    [SerializeField] private float secondAttackdmg = 0;
+    [Min(0)]
+    [SerializeField] private float thirdAttackdmg = 0;
+    [Range(0f, 50f)]
     [SerializeField] private float attackProjection = 0;
     [Min(0)]
     [SerializeField] private float timeBtwAttack = 0;
+    [Min(0)]
+    [SerializeField] private float timeBtwCombo = 0;
+    [Min(0)]
+    [SerializeField] private float timeComboFade = 0;
+
 
     [Header("FeedBack")]
 
@@ -84,18 +94,50 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    IEnumerator LaunchAttack()
+    IEnumerator FadeComboTimer()
     {
-        PlayerStatusManager.Instance.isAttacking = true;                        //security state change (see PlayerStatusManager)
+        float timer = timeComboFade;
 
+        while (timer > 0)
+        {
+            yield return new WaitForEndOfFrame();
+            if (PlayerStatusManager.Instance.isAttacking)
+            {
+                break;
+            }
+            if (PlayerStatusManager.Instance.canMove && PlayerMovement.playerRgb.velocity.x != 0 || PlayerMovement.playerRgb.velocity.y != 0)
+            {
+                attackState = 0;
+                break;
+            }
+            if (PlayerStatusManager.Instance.isBlocking)
+            {
+                attackState = 0;
+                break;
+            }
+
+            timer -= Time.deltaTime;
+
+        }
+        if (timer <= 0)
+        {
+            attackState = 0;
+        }
+    }
+
+
+    public IEnumerator LaunchAttack()
+    {
+        attackState += 1;
+        PlayerStatusManager.Instance.isAttacking = true;
         yield return new WaitForFixedUpdate();
         PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
 
         switch (playerMoveScript.watchDirection)                                //Add force to the player on the targeted direction when it hit (intensity depends on attackprojection value
         {
             case PlayerMovement.Direction.down:
-                               
-                PlayerMovement.playerRgb.AddForce(new Vector2(0,-1) * attackProjection);
+
+                PlayerMovement.playerRgb.AddForce(new Vector2(0, -1) * attackProjection);
 
                 break;
             case PlayerMovement.Direction.up:
@@ -121,10 +163,24 @@ public class PlayerAttack : MonoBehaviour
         {
             for (int i = 0; i < inRangeElement.Count; i++)
             {
-                inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                switch (attackState)
+                {
+                    case 1:
+                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(firstAttackdmg);
+                        break;
+                    case 2:
+                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(secondAttackdmg);
+                        break;
+                    case 3:
+                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(thirdAttackdmg);
+                        break;
+                    default:
+                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(firstAttackdmg);
+                        break;
+                }
             }
 
-            GamePad.SetVibration(playerIndex, vibrateIntensity, vibrateIntensity);
+            GamePad.SetVibration(playerIndex, vibrateIntensity * Mathf.Pow(attackState, 3) , vibrateIntensity*attackState);
         }
 
         yield return new WaitForSeconds(0.15f);                                 //Wait for the animation end
@@ -138,9 +194,18 @@ public class PlayerAttack : MonoBehaviour
         PlayerStatusManager.Instance.needToEndAttack = true;                    //security state change (see PlayerStatusManager)
         PlayerStatusManager.Instance.cdOnAttack = true;                         //security state change (see PlayerStatusManager)
 
-        yield return new WaitForSeconds(timeBtwAttack);                                  //attackspeed
+        if (attackState == 3)
+        {
+            attackState = 0;
+            yield return new WaitForSeconds(timeBtwCombo);
+            PlayerStatusManager.Instance.cdOnAttack = false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(timeBtwAttack);                                  //attackspeed
 
-        PlayerStatusManager.Instance.cdOnAttack = false;                        //security state change (see PlayerStatusManager)
-
+            PlayerStatusManager.Instance.cdOnAttack = false;                        //security state change (see PlayerStatusManager)
+            StartCoroutine(FadeComboTimer());
+        }
     }
 }

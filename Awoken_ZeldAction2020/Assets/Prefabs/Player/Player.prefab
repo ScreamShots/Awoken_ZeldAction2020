@@ -347,13 +347,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6371173129605335748}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6371173129741758255}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!60 &6371173129605335746
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -550,6 +550,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   watchDirection: 0
+  horizontalAxis: 0
+  verticalAxis: 0
   isRunning: 0
   speed: 150
 --- !u!114 &6371173129741758250
@@ -564,10 +566,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce5cffaf1427a24d9d18d63bebb588d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackState: 0
   attackZone: {fileID: 6371173129605335748}
-  dmg: 10
+  firstAttackdmg: 10
+  secondAttackdmg: 10
+  thirdAttackdmg: 30
   attackProjection: 35
-  timeBtwAttack: 0.01
+  timeBtwAttack: 0.05
+  timeBtwCombo: 0.5
+  timeComboFade: 0.5
   vibrateIntensity: 0.02
   autoAttack: 0
 --- !u!114 &5459978421040826452
@@ -667,7 +674,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4057157287783517734, guid: 64e80f4c79aab4843a59e7be0597a216,
+  m_Sprite: {fileID: 6901892218282276047, guid: 9b0b6fcc90d964943a1d470536d0d76a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

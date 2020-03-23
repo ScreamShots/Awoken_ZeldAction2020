@@ -98,6 +98,12 @@ public class PlayerShield : MonoBehaviour
         else
         {
             UseStamina();                       //use stamina if the shield is activated
+
+            if (Input.GetButtonDown("Attack") && !PlayerStatusManager.Instance.cdOnAttack)              //Stop usage of shield when attack's input is pressed and attack.
+            {
+                DesactivateBlock();
+                StartCoroutine(GetComponent<PlayerAttack>().LaunchAttack());
+            }
         }
 
         if (PlayerStatusManager.Instance.cdOnBlock)
