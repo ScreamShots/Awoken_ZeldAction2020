@@ -15,16 +15,21 @@ public class BossState1 : MonoBehaviour
     public float timeBtwLightning;
     private float timeLeft;
 
+    public GameObject Lightning;
+    private GameObject player;
+
     #endregion
 
     private void Start()
     {
+        player = PlayerManager.Instance.gameObject;
+
         timeLeft = timeBtwLightning;
     }
 
     private void Update()
     {
-        //AttackState1();
+        AttackState1();
         Move();
     }
 
@@ -40,16 +45,26 @@ public class BossState1 : MonoBehaviour
         }
     }
 
-    /*void AttackState1()
+    void AttackState1()
     {
         if (BossManager.Instance.s1_Pattern1)
         {
-            timeLeft -= Time.deltaTime;
-
-            if (timeLeft <= 0)
-            {
-
-            }
+            Pattern1();
         }
-    }*/
+        else if (BossManager.Instance.s1_Pattern2)
+        {
+
+        }
+    }
+
+    void Pattern1()
+    {
+        timeLeft -= Time.deltaTime;
+
+        if (timeLeft <= 0)
+        {
+            timeLeft += timeBtwLightning;
+            Instantiate(Lightning, player.transform.position, Lightning.transform.rotation);
+        }
+    }
 }
