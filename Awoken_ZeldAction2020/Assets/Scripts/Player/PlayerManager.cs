@@ -25,4 +25,20 @@ public class PlayerManager : MonoBehaviour
         }
         #endregion
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(Time.timeScale == 1)
+            {
+                Time.timeScale = 0.001f;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                
+            }
+        }
+    }
 }

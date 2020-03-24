@@ -58,8 +58,8 @@ public class BulletComportement : MonoBehaviour
     {
         if (other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Player"))
         {
-            Destroy(gameObject);
             player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+            Destroy(gameObject);
         }
     }
 
