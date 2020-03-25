@@ -10,17 +10,19 @@ using UnityEngine;
 public class LightningComportement : MonoBehaviour
 {
     #region Variables
-
+    [Header ("Fade In settings")]
     public float FadeInTime;
     public Color alphaStart;
     public Color alphaEnd;
 
     private float timeLeft;
 
+    [Header("Dammage")]
     [Min(0)]
     [SerializeField] private float dmgLightning = 0;
 
-    public List<GameObject> inLightningZone;
+    private int sameGameObjectList;
+    [Space] public List<GameObject> inLightningZone;
     #endregion
 
     private void Start()
@@ -30,7 +32,7 @@ public class LightningComportement : MonoBehaviour
         timeLeft = FadeInTime;
     }
 
-    private void Update()
+    private void Update()                               //For the future : call destroy function with animation key frame
     {
        timeLeft -= Time.deltaTime;
 
@@ -45,7 +47,7 @@ public class LightningComportement : MonoBehaviour
                 }
             }
 
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -53,9 +55,24 @@ public class LightningComportement : MonoBehaviour
     {
         if (other.CompareTag("HitBox"))
         {
-            if (!inLightningZone.Contains(other.gameObject) && other.gameObject.GetComponentInParent<BasicHealthSystem>())
+            if (!inLightningZone.Contains(other.gameObject) && other.gameObject.GetComponentInParent<BasicHealthSystem>())                     //if Game Object contain a Health system
             {
                 inLightningZone.Add(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject);
+
+                for (int i = 0; i < inLightningZone.Count; i++)                                                                                //if Game Object have many hitbox
+                {
+                    if (other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject == inLightningZone[i].gameObject.GetComponentInParent<BasicHealthSystem>().gameObject)
+                    {
+                        sameGameObjectList++;
+                    }
+                }
+
+                if (sameGameObjectList > 1)                                                                                                     //if Game Object have many hitbox, just take one 
+                {
+                    inLightningZone.Remove(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject);
+                }
+
+                sameGameObjectList = 0;
             }
         }
     }
@@ -64,9 +81,11 @@ public class LightningComportement : MonoBehaviour
     {
         if ((other.CompareTag("HitBox")))
         {
-            if (inLightningZone.Contains(other.gameObject))
+            if (inLightningZone.Contains(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject))
             {
-                inLightningZone.Remove(other.gameObject);
+                inLightningZone.Remove(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject);
+
+                sameGameObjectList = 0;
             }
         }
     }

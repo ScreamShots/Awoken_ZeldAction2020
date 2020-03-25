@@ -49,7 +49,7 @@ public class BossState1 : MonoBehaviour
     {
         if (BossManager.Instance.s1_Pattern1)
         {
-            Pattern1();
+            Pattern1();                                                                                 //Instantiate the lightning 
         }
         else if (BossManager.Instance.s1_Pattern2)
         {
