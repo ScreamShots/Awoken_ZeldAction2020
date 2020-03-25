@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4407154718642225632}
-  - component: {fileID: 6783165858142667001}
+  - component: {fileID: 2092311196213403304}
+  - component: {fileID: 4373817628741521588}
   m_Layer: 0
   m_Name: big_rocks_1
   m_TagString: Untagged
@@ -32,8 +33,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &6783165858142667001
-PolygonCollider2D:
+--- !u!61 &2092311196213403304
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -45,7 +46,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.35375154, y: -0.47991443}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,20 +56,35 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.9788511, y: 0.014262438}
-      - {x: 0.5312977, y: 0.0389179}
-      - {x: 0.055663586, y: 0.4751687}
-      - {x: -0.5007043, y: 0.28860545}
-      - {x: -0.5347686, y: -0.07987702}
-      - {x: -0.9749124, y: -0.0885824}
-      - {x: -1.0048056, y: -0.6612818}
-      - {x: -0.6911609, y: -0.81696904}
-      - {x: -0.17702866, y: -0.8441577}
-      - {x: -0.102152586, y: -0.9963715}
-      - {x: 0.8661053, y: -0.97600853}
-      - {x: 1.0067203, y: -0.60546136}
+  serializedVersion: 2
+  m_Size: {x: 1.2919066, y: 1.1286368}
+  m_EdgeRadius: 0
+--- !u!61 &4373817628741521588
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851961544820276974}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5813398, y: -0.5219691}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8169402, y: 0.6190367}
+  m_EdgeRadius: 0
 --- !u!1 &4192512411081791799
 GameObject:
   m_ObjectHideFlags: 0
