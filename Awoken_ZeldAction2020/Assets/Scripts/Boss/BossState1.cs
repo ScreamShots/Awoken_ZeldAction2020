@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class BossState1 : MonoBehaviour
 {
-    #region Movement
-    public Transform middleArena;
+    #region Pattern1
+    [Header("Pattern1")] public Transform throneArena;
 
-    public Transform throneArena;
-
-    #endregion
-
-    #region Attack
     public float timeBtwLightning;
     private float timeLeft;
 
     public GameObject Lightning;
-    private GameObject player;
-
     #endregion
+
+    #region Pattern2
+    [Header("Pattern2")] public Transform middleArena;
+
+    public float timeBtwShockWave;
+    private float timeLeft2;
+
+    public GameObject ShockWave;
+    #endregion
+
+    private GameObject player;
 
     private void Start()
     {
         player = PlayerManager.Instance.gameObject;
 
         timeLeft = timeBtwLightning;
+        timeLeft2 = timeBtwShockWave;
     }
 
     private void Update()
@@ -51,9 +56,9 @@ public class BossState1 : MonoBehaviour
         {
             Pattern1();                                                                                 //Instantiate the lightning 
         }
-        else if (BossManager.Instance.s1_Pattern2)
+        else if (BossManager.Instance.s1_Pattern2)                                                    
         {
-
+            Pattern2();                                                                                 //Instantiate the shock wave
         }
     }
 
@@ -65,6 +70,17 @@ public class BossState1 : MonoBehaviour
         {
             timeLeft += timeBtwLightning;
             Instantiate(Lightning, player.transform.position, Lightning.transform.rotation);
+        }
+    }
+
+    void Pattern2()
+    {
+        timeLeft2 -= Time.deltaTime;
+
+        if (timeLeft2 <= 0)
+        {
+            timeLeft2 += timeBtwShockWave;
+            Instantiate(ShockWave, transform.position, ShockWave.transform.rotation);
         }
     }
 }
