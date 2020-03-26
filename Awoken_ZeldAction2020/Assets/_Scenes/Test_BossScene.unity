@@ -265,10 +265,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8f6b937e27b45439dc57d91e733b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  middleArena: {fileID: 1470540191}
   throneArena: {fileID: 845798809}
   timeBtwLightning: 2
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
+    type: 3}
+  middleArena: {fileID: 1470540191}
+  timeBtwShockWave: 4
+  ShockWave: {fileID: 6172370753812073735, guid: 3c1644414c6a8c24e8971c7873a1366e,
     type: 3}
 --- !u!50 &920100052
 Rigidbody2D:
@@ -361,7 +364,7 @@ PrefabInstance:
     - target: {fileID: 6371173129741758255, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.49
+      value: -5.28
       objectReference: {fileID: 0}
     - target: {fileID: 6371173129741758255, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
