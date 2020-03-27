@@ -22,6 +22,10 @@ public class ShockWaveComportement : MonoBehaviour
     private bool canTakeDmg = true;
 
     private GameObject player;
+
+    private Vector2 direction;
+    public enum Direction { up, down, left, right }
+    [HideInInspector] public Direction watchDirection;
     #endregion
 
     private void Start()
@@ -29,14 +33,45 @@ public class ShockWaveComportement : MonoBehaviour
         player = PlayerManager.Instance.gameObject;
 
         minScale = transform.localScale;
-        StartCoroutine(IncreaseScale(minScale, maxScale, durationToIncrease));
+        //StartCoroutine(IncreaseScale(minScale, maxScale, durationToIncrease));
     }
 
     private void Update()
     {
-        if (transform.localScale == maxScale)                                                               //To destroy shock wave when max scale is reached
+        if (transform.localScale == maxScale)                                                                                   //To destroy shock wave when max scale is reached
         {
             Destroy(gameObject);
+        }
+
+        SetDirection();
+        //Debug.Log(watchDirection);
+    }
+
+    void SetDirection()                                                                                                         //Calculate direction between shock wave && player
+    {
+        direction = (player.transform.position - transform.position).normalized;                                                
+
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                watchDirection = Direction.right;
+            }
+            else
+            {
+                watchDirection = Direction.left;
+            }
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                watchDirection = Direction.up;
+            }
+            else
+            {
+                watchDirection = Direction.down;
+            }
         }
     }
 
@@ -47,7 +82,7 @@ public class ShockWaveComportement : MonoBehaviour
             if (canTakeDmg && !PlayerStatusManager.Instance.isBlocking)
             {
                 canTakeDmg = false;
-                player.GetComponent<BasicHealthSystem>().TakeDmg(dmgShockWave);                             //Inflige dmg to Player when shock wave touch the Player
+                player.GetComponent<BasicHealthSystem>().TakeDmg(dmgShockWave);                                                 //Inflige dmg to Player when shock wave touch the Player
             }
 
         }
