@@ -35,6 +35,9 @@ public class ArcherAttack : MonoBehaviour
     [HideInInspector]
     public bool archerCanAttack;
 
+    [HideInInspector]
+    public bool animationAttack;
+
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
     #endregion
@@ -51,6 +54,7 @@ public class ArcherAttack : MonoBehaviour
         if (archerCanAttack && !archerIsShooting)                                                   //if player is in attack zone and archer isn't shooting
         {
             StartCoroutine(PrepareToShoot());
+            StartCoroutine(StartAnimation());
             archerIsShooting = true;
             archerIsAttacking = true;
         }
@@ -105,6 +109,13 @@ public class ArcherAttack : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeShoot);
         ArcherShoot();
         archerIsAttacking = false;
+        animationAttack = false;
         StartCoroutine(CooldownShoot());
+    }
+
+    IEnumerator StartAnimation()
+    {
+        yield return new WaitForSeconds(timeBeforeShoot - 0.5f);
+        animationAttack = true;
     }
 }
