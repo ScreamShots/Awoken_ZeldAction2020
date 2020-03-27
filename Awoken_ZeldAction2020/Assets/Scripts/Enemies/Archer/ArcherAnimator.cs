@@ -95,6 +95,6 @@ public class ArcherAnimator : MonoBehaviour
 
     void Attack()
     {
-        archerAnimator.SetBool("isAttacking", archerAttackScript.archerIsAttacking);
+        archerAnimator.SetBool("isAttacking", archerAttackScript.animationAttack);
     }
 }
