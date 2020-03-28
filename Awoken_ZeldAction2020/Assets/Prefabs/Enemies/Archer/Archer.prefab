@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef97053e03c43d4382388853a9ff771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeShoot: 0.5
+  timeBeforeShoot: 1
   timeBtwShots: 2
   archerBullet: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39,
     type: 3}
@@ -349,6 +349,7 @@ MonoBehaviour:
   shootPoint: {fileID: 7668245286677637594}
   archerIsAttacking: 0
   archerCanAttack: 0
+  animationAttack: 0
   watchDirection: 0
 --- !u!114 &6783038870490230826
 MonoBehaviour:
