@@ -108,10 +108,15 @@ public class ArcherMovement : MonoBehaviour
             rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
+        else if (isRetrait && distance <= attackDistance)
+        {
+            SetDirection();
+            rb.velocity = direction * -retreatSpeed * Time.fixedDeltaTime;
+            GetComponent<ArcherAttack>().archerCanAttack = false;
+        }
         else if (distance < chaseDistance && distance > retreatDistance)                                                                //Stop at his position
         {
             SetDirection();
-            isRetrait = false;
             rb.velocity = Vector2.zero;
             GetComponent<ArcherAttack>().archerCanAttack = true;
         }
