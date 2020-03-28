@@ -29,11 +29,15 @@ public class ArcherAnimator : MonoBehaviour
 
     private void Update()
     {
-        SetWatchDirection();
-        SetWatchDirectionAttack();
-        Running();
-        Attack();
-        Death();
+        if (!alreadyDead)
+        {
+            SetWatchDirection();
+            SetWatchDirectionAttack();
+            Running();
+            Attack();
+            Death();
+        }
+      
     }
 
     void SetWatchDirection()                                                                        //giving information relative to the watch direction to the animator
@@ -107,6 +111,9 @@ public class ArcherAnimator : MonoBehaviour
         if (archerHealthScript.isDead && !alreadyDead)
         {
             alreadyDead = true;
+            archerAnimator.SetBool("isAttacking", false);
+            archerAnimator.SetBool("isRetrait", false);
+            archerAnimator.SetBool("isRunning", false);
             archerAnimator.SetTrigger("isDead");
         }
     }

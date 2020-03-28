@@ -43,8 +43,6 @@ public class PoulionAttack : MonoBehaviour
     [HideInInspector]
     public bool isStun;
 
-    private BlockHandler blockHandle;
-
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
     #endregion
@@ -54,32 +52,21 @@ public class PoulionAttack : MonoBehaviour
         player = PlayerManager.Instance.gameObject;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
-
-        blockHandle = GetComponent<BlockHandler>();
     }
 
     private void FixedUpdate()
     {
-        if (poulionCanAttack && !attackInProgress)
-        {
-            attackInProgress = true;
-            poulionIsAttacking = true;
-            StartCoroutine(PrepareToAttack());
-        }
-    }
 
-    private void Update()
-    {
-        if (blockHandle.isBlocked)          //Testin if the Poulion has been blocked
+        if (!isStun)
         {
-            OnBlocked();                    //Apply behaviour design for the Poulion when it's blocked
+            if (poulionCanAttack && !attackInProgress)
+            {
+                attackInProgress = true;
+                poulionIsAttacking = true;
+                StartCoroutine(PrepareToAttack());
+            }
         }
-    }
 
-    void OnBlocked()                        //What happen when the Poulion is blocked
-    {
-        PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLoseOnBlock);        //cause player lost stamina
-        Stun();
     }
 
     void SetDirectionAttack()
@@ -130,21 +117,32 @@ public class PoulionAttack : MonoBehaviour
         StartCoroutine(DeStun());
     }
 
-    private void OnCollisionEnter2D(Collision2D other)                                                                  //When collide with player = Stun Poulion
+    private void OnTriggerEnter2D(Collider2D collision)                                                         //When collide with player = Stun Poulion
     {
-        if (other.gameObject.CompareTag("Player") && chargeOn && !blockHandle.isBlocked)
+        if (collision.transform.root.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("HitBox"))
         {
             Stun();
             player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
         }
+        if (collision.transform.root.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("ShieldZone"))
+        {
+            if (collision.gameObject.GetComponent<ShieldHitZone>().isActivated)
+            {
+                Stun();
+                PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().OnElementBlocked(10);
+            }
+        }
     }
+
+    
+
 
     //Insert OnCollisionEnter2D with a wall = Stunt without dmg to Player
 
     IEnumerator PrepareToAttack()
     {
         //direction = (player.transform.position - transform.position).normalized;                              //Get the position of Player before the charge animation
-        
+
         SetDirectionAttack();
         rb.velocity = Vector2.zero;
         GetComponent<BasicHealthSystem>().canTakeDmg = false;
