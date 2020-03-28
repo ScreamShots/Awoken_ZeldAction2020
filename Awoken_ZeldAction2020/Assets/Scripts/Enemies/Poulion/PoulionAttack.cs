@@ -21,6 +21,8 @@ public class PoulionAttack : MonoBehaviour
     [Min(0)]
     [SerializeField] private float dmg = 0;
 
+    [SerializeField] private float staminaLoseOnBlock = 0;
+
     private GameObject player;
 
     private Rigidbody2D rb;
@@ -41,6 +43,8 @@ public class PoulionAttack : MonoBehaviour
     [HideInInspector]
     public bool isStun;
 
+    private BlockHandler blockHandle;
+
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
     #endregion
@@ -50,6 +54,8 @@ public class PoulionAttack : MonoBehaviour
         player = PlayerManager.Instance.gameObject;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        blockHandle = GetComponent<BlockHandler>();
     }
 
     private void FixedUpdate()
@@ -60,6 +66,20 @@ public class PoulionAttack : MonoBehaviour
             poulionIsAttacking = true;
             StartCoroutine(PrepareToAttack());
         }
+    }
+
+    private void Update()
+    {
+        if (blockHandle.isBlocked)          //Testin if the Poulion has been blocked
+        {
+            OnBlocked();                    //Apply behaviour design for the Poulion when it's blocked
+        }
+    }
+
+    void OnBlocked()                        //What happen when the Poulion is blocked
+    {
+        PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLoseOnBlock);        //cause player lost stamina
+        Stun();
     }
 
     void SetDirectionAttack()
@@ -112,7 +132,7 @@ public class PoulionAttack : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)                                                                  //When collide with player = Stun Poulion
     {
-        if (other.gameObject.CompareTag("Player") && chargeOn)
+        if (other.gameObject.CompareTag("Player") && chargeOn && !blockHandle.isBlocked)
         {
             Stun();
             player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
