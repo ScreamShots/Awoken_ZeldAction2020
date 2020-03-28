@@ -14,6 +14,7 @@ public class PoulionAnimator : MonoBehaviour
     private Animator poulionAnimator;
     private PoulionMovement poulionMoveScript;
     private PoulionAttack poulionAttackScript;
+    private BasicHealthSystem poulionHealthScript;
     #endregion
 
     private void Start()
@@ -21,6 +22,7 @@ public class PoulionAnimator : MonoBehaviour
         poulionAnimator = GetComponent<Animator>();
         poulionMoveScript = GetComponentInParent<PoulionMovement>();
         poulionAttackScript = GetComponentInParent<PoulionAttack>();
+        poulionHealthScript = GetComponentInParent<BasicHealthSystem>();
     }
 
     private void Update()
@@ -29,6 +31,7 @@ public class PoulionAnimator : MonoBehaviour
         SetWatchDirectionAttack();
         Running();
         Attack();
+        Death();
     }
 
     void SetWatchDirection()                                                                        //giving information relative to the watch direction to the animator
@@ -97,5 +100,10 @@ public class PoulionAnimator : MonoBehaviour
         poulionAnimator.SetBool("isCharging", poulionAttackScript.chargeOn);
 
         poulionAnimator.SetBool("isStun", poulionAttackScript.isStun);
+    }
+
+    void Death()
+    {
+        poulionAnimator.SetBool("isDead", poulionHealthScript.isDead);
     }
 }
