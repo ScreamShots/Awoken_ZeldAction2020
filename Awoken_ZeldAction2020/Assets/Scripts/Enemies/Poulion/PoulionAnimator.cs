@@ -15,6 +15,7 @@ public class PoulionAnimator : MonoBehaviour
     private PoulionMovement poulionMoveScript;
     private PoulionAttack poulionAttackScript;
     private BasicHealthSystem poulionHealthScript;
+    private bool alreadyDead;
     #endregion
 
     private void Start()
@@ -104,6 +105,10 @@ public class PoulionAnimator : MonoBehaviour
 
     void Death()
     {
-        poulionAnimator.SetBool("isDead", poulionHealthScript.isDead);
+        if (poulionHealthScript.isDead && !alreadyDead)
+        {
+            alreadyDead = true;
+            poulionAnimator.SetTrigger("isDead");
+        }
     }
 }
