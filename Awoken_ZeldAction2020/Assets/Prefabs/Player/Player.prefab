@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8028225501258370062}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 870074609161015675}
   - component: {fileID: 2984549913230336242}
   - component: {fileID: 4300766748554973103}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: ShieldZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,9 +164,9 @@ GameObject:
   - component: {fileID: 3014619908134539847}
   - component: {fileID: 8501357376138026665}
   - component: {fileID: 2703129291436300483}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Up
-  m_TagString: Untagged
+  m_TagString: ShieldZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,9 +293,9 @@ GameObject:
   - component: {fileID: 3296982509109283975}
   - component: {fileID: 9020509111854487444}
   - component: {fileID: 4755548205677760395}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Left
-  m_TagString: Untagged
+  m_TagString: ShieldZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,9 +365,9 @@ GameObject:
   - component: {fileID: 312341714507363585}
   - component: {fileID: 3159075421331564260}
   - component: {fileID: 93298078777659029}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Down
-  m_TagString: Untagged
+  m_TagString: ShieldZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,7 +618,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
