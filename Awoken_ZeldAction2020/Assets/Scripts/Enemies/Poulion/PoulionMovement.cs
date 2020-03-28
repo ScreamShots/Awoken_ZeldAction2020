@@ -94,7 +94,6 @@ public class PoulionMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        OnValidate();
     }
 
     void Move()
