@@ -2,45 +2,90 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Rémi Sécher based on Antoine Leroux work
+/// This class handle the poulion movement through 3 phase (random walk, chase, attack)/// 
+/// </summary>
 public class PoulionMovementReworked : MonoBehaviour
 {
-    [HideInInspector]
-    public Rigidbody2D poulionRgb;
-    private GameObject player;
+    #region HideInInspector Var Statement
 
-    Vector2 direction;
-
-    float playerDistance;
-    [HideInInspector]
-    public bool canMove = true;
+    //global
 
     public enum Direction { up, down, left, right }
-    //[HideInInspector] 
+    [HideInInspector]                                           //enum for animator direction
     public Direction watchDirection = Direction.down;
 
-    //Phase1 - Random Mouvement
-    Vector3 startPos;
-    [SerializeField] [Min(0)]
-    float maxRandomWalkDistance = 0;
-    [SerializeField] [Min(0)]
-    float stayDuration = 0;
-    float stayTimer;
-    [SerializeField] [Min(0)]
-    float randomMovSpeed = 0;
-    bool randomDirSet;
-    [SerializeField] [Min(0)]
-    float randomWalkDuration = 0;
-    float randomWalkTimer;
     [HideInInspector]
-    public bool isOnRandomMove;
+    public Rigidbody2D poulionRgb;                              //Requiered object or element for references
+    private GameObject player;
+
+    float playerDistance;                                       //distance btwn enemy and player
+
+    [HideInInspector]
+    public bool canMove = true;                                 //bool to know if the movement is handle by this class or override by the attack class
+    
+    Vector2 direction;                                          //move direction
+
+    //Phase1 - Random Mouvement
+
+    Vector3 startPos;                                           //spawn position the enemy can't stay too far while moving through random move
+
+    float randomWalkTimer;                                      //timer to know the duration of a single move in the random move phase
+    float stayTimer;                                            //timer to know the duration of interval time btwn two movement of the random move phase
+
+    bool randomDirSet;                                          //use to know if the direction of the random move has already been set
+    [HideInInspector]
+    public bool isOnRandomMove;                                 //use to know if the enemy is currently moving throug random logic (and not imobile during an interval time)
+
 
     //Phase2 - Chase
+
     [HideInInspector]
-    public bool playerDetected;
+    public bool playerDetected;                                 //use to know if the player is near enough to get detected and launch chase phase
+
+    //Phase3 - Attack
+
+    [HideInInspector]
+    public bool playerInAttackRange;                            //use to know if the player is near enough to start an attack
+
+    #endregion
+
+
+    #region Serialize Var Statement
+
+    //Phase1 - Random Mouvement
+    [Header("Distances")] [Header("Phase1 - Random Mouvement")]
+
+    [SerializeField] [Min(0)]
+    float maxRandomWalkDistance = 0;
+
+    [Header("Stats")]
+
+    [SerializeField] [Min(0)]
+    float randomMovSpeed = 0;
+    
+    [Header("Timers")]
+
+    [SerializeField] [Min(0)]
+    float randomWalkDuration = 0;
+    [SerializeField] [Min(0)]
+    float stayDuration = 0;
+
+    //Phase2 - Chase
+
+    [Header("Distances")] [Header("Phase2 - Chase")]
+
     [SerializeField] [Min(0)]
     float playerDetectionDistance = 0;
+
+    [Header("Stats")]
+
     [SerializeField] [Min(0)]
     float chaseSpeed = 0;
+
+    [Header("Sinusoidal Movement Properties")]
+
     [SerializeField] [Min(0)]
     float frequency = 0;
     [SerializeField] [Range(1, 10)]
@@ -49,15 +94,14 @@ public class PoulionMovementReworked : MonoBehaviour
     float maxAmplitude = 0;
 
     //Phase3 - Attack
-    [HideInInspector]
-    public bool playerInAttackRange;
+
+    [Header("Distances")] [Header("Phase3 - Attack")]
+
     [SerializeField] [Min(0)]
     float attackDistance = 0;
 
-
-
-
-
+    #endregion
+          
     private void Start()
     {
         if (PlayerManager.Instance != null)
@@ -73,56 +117,56 @@ public class PoulionMovementReworked : MonoBehaviour
 
     private void Update()
     {
-        playerDistance = (transform.position - player.transform.position).magnitude;
+        playerDistance = (transform.position - player.transform.position).magnitude;            //refresh the distance btwn enemy and player at every frame
 
-        if (playerDistance <= attackDistance)
-        {
-            if (!playerInAttackRange && canMove)
+        if (playerDistance <= attackDistance)                                                   //if player is near enough to start an attack 
+        {                                                                                       
+            if (!playerInAttackRange && canMove)                                                //change the bool saying that the enemy can attack (see attack class) + setting the move value to 0 once(stop previous move)
             {
                 poulionRgb.velocity = Vector2.zero;
             }
             playerInAttackRange = true;
             playerDetected = false;
         }
-        else if (playerDistance <= playerDetectionDistance)
+        else if (playerDistance <= playerDetectionDistance)                                     //if the player is near enough to be chase (but not enough to get attacked)
         {
-            playerInAttackRange = false;
+            playerInAttackRange = false;                                                        //change bool syaing so
             playerDetected = true;
         }
-        else
+        else                                                                                    //else change bool saying the player is to far (for random Move behaviour)
         {
             playerInAttackRange = false;
             playerDetected = false;
         }
 
-        SetDirection();
+        SetDirection();                                                                         //set the direction every frame for the animator
 
     }
 
     private void FixedUpdate()
     {
-        if (!playerInAttackRange && canMove)
+        if (!playerInAttackRange && canMove)                                //test to know if it's this class that handle move or if it's override by attack class
         {
-            if (playerDetected)
+            if (playerDetected)                                             //if this class hold move management and player is detected apply Chase behaviour (phase 1)
             {
                 Chase();
             }
-            else
+            else                                                            //else it's the random movement behaviour that apply (the player is to far)
             {
-                if (stayTimer > 0)
+                if (stayTimer > 0)                                              //if the timer is not at zero the enemy is in an interval pause moment of the phase 1 (not mooving)
                 {
-                    if(poulionRgb.velocity != Vector2.zero)
+                    if(poulionRgb.velocity != Vector2.zero)                         //if we are in this immmobile phase and the velocity is not sero we do so (so the enemy dont move in this phase)
                     {
                         poulionRgb.velocity = Vector2.zero;
                     }
-                    if (randomDirSet)
+                    if (randomDirSet)                                               //reset some value proper to that state
                     {
                         randomDirSet = false;
                     }
                     stayTimer -= Time.deltaTime;
                     isOnRandomMove = false;
                 }
-                else
+                else                                                            //if the timer is at 0, we can launch a random movement moment handled by the method RandomMove() 
                 {
                     isOnRandomMove = true;
                     RandomMove();
@@ -163,19 +207,19 @@ public class PoulionMovementReworked : MonoBehaviour
         }
     }
 
-    void Chase()
+    void Chase()                                        // method handling the chase phase (played every fixed update if the algorythm says we are in this phase)
     {
-        Vector2 playerDirection = player.transform.position - transform.position;
-        Vector2 sinRandomMove = Vector2.Perpendicular(playerDirection) * Mathf.Sin(Time.fixedTime * frequency) * Random.Range(minAmplitude, maxAmplitude);
-        direction = playerDirection + sinRandomMove;
+        Vector2 playerDirection = player.transform.position - transform.position;                                                                                //set a vector tower the player
+        Vector2 sinRandomMove = Vector2.Perpendicular(playerDirection) * Mathf.Sin(Time.fixedTime * frequency) * Random.Range(minAmplitude, maxAmplitude);       //set a perpendicular vertor to the first one modify by a sinusoid
+        direction = playerDirection + sinRandomMove;                                                                                                             //adding both of them to make the little shaking run of the enemy
         direction.Normalize();
 
-        poulionRgb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
+        poulionRgb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;                                                                 
     }
 
-    void SetDirection()
+    void SetDirection()                                 //method setting the direction for the animator
     {
-        if (!playerDetected)
+        if (!playerDetected)                                                //this part work if we are in phase 1
         {
             if (poulionRgb.velocity.x != 0 || poulionRgb.velocity.y != 0)
             {
@@ -203,7 +247,7 @@ public class PoulionMovementReworked : MonoBehaviour
                 }
             }
         }
-        else if (playerDetected)
+        else if (playerDetected)                                            //this part work if the enemy is charging (a bit different to avoid the enemy to change animation every frma due to the sinusoidal movement going up and down very fast)
         {
             Vector2 playerdirection = player.transform.position - transform.position;
             playerdirection.Normalize();

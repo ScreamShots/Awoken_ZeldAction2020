@@ -2,41 +2,77 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Rémi Sécher based on Antoine Leroux work
+/// Class handling poulion attack through 3 part (preparation , charge and stun)
+/// also handle player hit and block
+/// </summary>
+
+[RequireComponent(typeof(PoulionMovementReworked))]
 public class PoulionAttackReworked : MonoBehaviour
 {
+    #region HideInInspector Var Statement
+
+    //Requiered object and component for references
+
     PoulionMovementReworked poulionMoveScript;
     EnemyHealthSystem poulionHealthScript;
-    Rigidbody2D poulionRgb;
+    Rigidbody2D poulionRgb;                                 
     GameObject player;
-    GameObject overlappedShield;
+    GameObject overlappedShield;                    //use for security test on special case (player block)
 
-    Vector2 chargeDirection;
+    //charge informations
+
+    Vector2 chargeDirection;                //direction of the charge
+    float chargeTimer;                      //duation time of the charge
+
+    //Algorythm boolean for intern logic and animator
+
+    bool isAttacking;                       //is the enemy on and attack (prepa or charge or stun) 
+    [HideInInspector]
+    public bool isPreparingCharge;          //is the enemy preparing for charge
+    [HideInInspector]
+    public bool isCharging;                 //is the enemy currently charging
+    [HideInInspector]
+    public bool isStun;                     //is the enemy stun
+
+    //Some security test to handle case where the enemy is already into the player collider or shield collider when he start charging
+
+    bool isOverlappingPlayer;               //if the enemy is already on player hitbox
+    bool isOverlappingShield;               //if the enemy is already on player shield
+
+
+    #endregion
+
+    #region Serialize Var Statement
+
+    //Part1 - Preparation
+    [Header("Part1 - Preparation")]
 
     [SerializeField] [Min(0)]
     float prepareChargeTime = 0;
+
+    [Header("Part2 - Charge")]
+
     [SerializeField] [Min(0)]
     float chargeSpeed = 0;
     [SerializeField] [Min(0)]
     float chargeDistance = 0;
-    float chargeTimer;
+
+    [Header("Part3 - Stun")]
+
     [SerializeField] [Min(0)]
     float stunTime = 0;
+
+    [Header("Stats")]
+
     [SerializeField] [Min(0)]
     float dmg = 0;
     [SerializeField] [Min(0)]
     float staminaLost = 0;
 
-    bool isAttacking;
-    [HideInInspector]
-    public bool isCharging;
-    [HideInInspector]
-    public bool isStun;
-    bool isOverlappingPlayer;
-    bool isOverlappingShield;
-    [HideInInspector]
-    public bool isPreparingCharge;
-
-
+    #endregion
+       
     private void Start()
     {
         poulionMoveScript = GetComponent<PoulionMovementReworked>();
@@ -47,90 +83,70 @@ public class PoulionAttackReworked : MonoBehaviour
 
     private void Update()
     {
-        if (poulionMoveScript.playerInAttackRange && !isAttacking)
+        if (poulionMoveScript.playerInAttackRange && !isAttacking)          //if the movement class says the player is in range to attack and we are not already attacking
         {
-            poulionMoveScript.canMove = false;
+            poulionMoveScript.canMove = false;                              //override movement management (disable movement from the move class)
             isAttacking = true;
-            StartCoroutine(ChargePreparation());
+            StartCoroutine(ChargePreparation());                            //Launch the attack with part 1 -> preparation
         }
 
-        if (isCharging)
+        if (isCharging)                                                     //if we are currently charging
         {
-            if(chargeTimer > 0)
+            if(chargeTimer > 0)                                             //while the charge duration doesn't come to end just decrease charge timer
             {
                 chargeTimer -= Time.deltaTime;
             }
-            else
+            else                                                            //when the timer come to and end 
             {
-                isCharging = false;
+                isCharging = false;                                         //change some bool according to the enemy conception
                 poulionHealthScript.canTakeDmg = true;
                 isStun = true;
-                StartCoroutine(Stun());
+                StartCoroutine(Stun());                                     //launch part3 -> stun
             }
+                                                                            //The timer can be cut if the is charge bool is stoped before it falls to  0
         }
+
     }
     private void FixedUpdate()
     {
-        if (isCharging)
+        if (isCharging)                                                                         //What happen if the enemy is in part2 - charge
         {
-            if(isOverlappingShield == true)
-            {
-                if (overlappedShield.GetComponent<ShieldHitZone>().isActivated)
-                {
-                    isCharging = false;
-                    poulionHealthScript.canTakeDmg = true;
-                    isStun = true;
-                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
-                }                   
-            }
-            else if (isOverlappingPlayer == true && !isOverlappingShield)
-            {
-                isCharging = false;
-                poulionHealthScript.canTakeDmg = true;
-                isStun = true;
-                player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
-                StartCoroutine(Stun());
-            }
-            else
-            {
-                poulionRgb.velocity = chargeDirection * chargeSpeed * Time.fixedDeltaTime;
-            }
+            Charge();
         }   
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject detectedElement = collision.gameObject;
+        GameObject detectedElement = collision.gameObject;                  //store the gameObject we collid with for easier reference
         
-        if (isCharging)
+        if (isCharging)                                                     //if we are currently charging
         {
-            if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")
+            if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")       //if the collided element is a player hitbox
             {
-                isOverlappingPlayer = true;
+                isOverlappingPlayer = true;     //saying that we are overlapping a player hitbox(so if the enemy dont go out before the next attack if we trigger security check of charge method)
                 isCharging = false;
-                poulionHealthScript.canTakeDmg = true;
+                poulionHealthScript.canTakeDmg = true;                                                              //deal dmg and launch part3- stun
                 isStun = true;
                 StartCoroutine(Stun());
                 detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
             }
-            if (detectedElement.tag == "ShieldZone" && detectedElement.transform.root.gameObject.tag == "Player")
+            if (detectedElement.tag == "ShieldZone" && detectedElement.transform.root.gameObject.tag == "Player")   //if the collided element is a player shield zone
             {
-                overlappedShield = detectedElement;
-                isOverlappingShield = true;
-                if (detectedElement.GetComponent<ShieldHitZone>().isActivated)
+                overlappedShield = detectedElement;         //storing the actual shield zone for security test of charge method                                
+                isOverlappingShield = true;                 //saying that we are overlapping a player shield zone(so if the enemy dont go out before the next attack if we trigger security check of charge method)
+                if (detectedElement.GetComponent<ShieldHitZone>().isActivated)                          //if the shield zone is activated
                 {                    
                     isCharging = false;
                     poulionHealthScript.canTakeDmg = true;
-                    isStun = true;
+                    isStun = true;                                                                      //Apply Block behaviour and launch part3- stun
                     StartCoroutine(Stun());
                     detectedElement.transform.root.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
                 }               
             }
-            else if (detectedElement.tag == "Wall")
+            else if (detectedElement.tag == "Wall")                                 //if the collided element is a obstacle
             {
                 isCharging = false;
-                poulionHealthScript.canTakeDmg = true;
+                poulionHealthScript.canTakeDmg = true;                              //launch part 3- stun
                 isStun = true;
                 StartCoroutine(Stun());
             }
@@ -140,8 +156,8 @@ public class PoulionAttackReworked : MonoBehaviour
             if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")
             {
                 isOverlappingPlayer = true;                
-            }
-            if (detectedElement.tag == "ShieldZone" && detectedElement.transform.root.gameObject.tag == "Player")
+            }                                                                                                               //instruction for check security if the enemy overlap a shield or a hitbox and is not charging yet
+            if (detectedElement.tag == "ShieldZone" && detectedElement.transform.root.gameObject.tag == "Player")           //Purpose and functionnement still the same as upward
             {
                 overlappedShield = detectedElement;
                 isOverlappingShield = true;                
@@ -150,36 +166,71 @@ public class PoulionAttackReworked : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GameObject detectedElement = collision.gameObject;
+        GameObject detectedElement = collision.gameObject;                  //storing the gameobject we are colliding with for easier references
 
-        if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")
+        if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")           //if we are leaving the player hitbox disable security check
         {
             isOverlappingPlayer = false;            
         }
-        if (detectedElement.tag == "ShieldZone" && detectedElement.transform.root.gameObject.tag == "Player")
+        if (detectedElement.tag == "ShieldZone" && detectedElement.transform.root.gameObject.tag == "Player")       //if we are leaving the player shield zone disable security check
         {
             isOverlappingShield = false;
         }
     }
 
-    IEnumerator Stun()
+    void Charge()                               //method that handle movement and security check from collision during the charge
     {
-        poulionRgb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(stunTime);
-        isAttacking = false;
-        poulionMoveScript.canMove = true;
-        isStun = false;
+        if (isOverlappingShield == true)                                                     //security: if the enemy is overlapping a playershield do security check before the first move frame
+        {
+            if (overlappedShield.GetComponent<ShieldHitZone>().isActivated)                 //check if this shield is activated or not 
+            {
+                isCharging = false;
+                poulionHealthScript.canTakeDmg = true;
+                isStun = true;                                                              //if it is activated we pass to the part3- stun and we apply every consequences to the player (he did block)
+                player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                StartCoroutine(Stun());
+            }
+            else if (isOverlappingPlayer)                                                   //if it's disactivated we check if the enemy is overlapping the player hitbox
+            {
+                isCharging = false;
+                poulionHealthScript.canTakeDmg = true;
+                isStun = true;                                                              //if it's so we infligt damages to the player and launch the part3- stun
+                player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                StartCoroutine(Stun());
+            }
+        }
+        else if (isOverlappingPlayer == true && !isOverlappingShield)                       //security: if the enemy is overlapping hitbox but no shield
+        {
+            isCharging = false;
+            poulionHealthScript.canTakeDmg = true;
+            isStun = true;                                                                  //we infligt damages to the player and launch the part3- stun
+            player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+            StartCoroutine(Stun());
+        }
+        else
+        {
+            poulionRgb.velocity = chargeDirection * chargeSpeed * Time.fixedDeltaTime;      //if the poulion if overlapping nothing we juste charge
+        }
     }
 
-    IEnumerator ChargePreparation()
+    IEnumerator Stun()                  //Coroutine that handle stun
     {
-        isPreparingCharge = true;
-        yield return new WaitForSeconds(prepareChargeTime);
-        isPreparingCharge = false;
-        chargeDirection = player.transform.position - transform.position;
+        poulionRgb.velocity = Vector2.zero;                     //stop the enemy movement
+        yield return new WaitForSeconds(stunTime);              //wait the stun duration
+        isAttacking = false;                                    //saying that the attack is finished
+        poulionMoveScript.canMove = true;                       //giving movement management back to move class
+        isStun = false;                                         //bool for animator
+    }
+
+    IEnumerator ChargePreparation()     //Coroutine that handle Charge Preparation
+    {
+        isPreparingCharge = true;                                   //animator bool
+        yield return new WaitForSeconds(prepareChargeTime);         //Wait the preparation duration
+        isPreparingCharge = false;                                  //animator bool
+        chargeDirection = player.transform.position - transform.position;       //deffine the charge direction from the player position
         chargeDirection.Normalize();
-        chargeTimer = chargeDistance / (chargeSpeed * Time.fixedDeltaTime);
-        isCharging = true;
+        chargeTimer = chargeDistance / (chargeSpeed * Time.fixedDeltaTime);     //deffine the time duration the charge must be to fit with the distance assigned in the inspector (speed = distance / time <so> time = distance/ speed)
+        isCharging = true;                                                      
         poulionHealthScript.canTakeDmg = false;
     }
 }
