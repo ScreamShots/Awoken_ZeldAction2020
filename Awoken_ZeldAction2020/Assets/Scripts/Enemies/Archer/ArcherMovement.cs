@@ -129,11 +129,6 @@ public class ArcherMovement : MonoBehaviour
 
         if (rb.velocity.x != 0 || rb.velocity.y != 0) { isRunning = true; }                                                                                 //Check if poulion are moving
         else { isRunning = false; }
-
-        if (GetComponent<BasicHealthSystem>().isDead)
-        {
-            rb.velocity = Vector2.zero;
-        }
     }
 
     void SetDirection()

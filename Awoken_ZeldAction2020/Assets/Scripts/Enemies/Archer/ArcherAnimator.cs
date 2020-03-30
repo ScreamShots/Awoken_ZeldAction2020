@@ -15,7 +15,7 @@ public class ArcherAnimator : MonoBehaviour
     private ArcherMovement archerMoveScript;
     private ArcherAttack archerAttackScript;
     private BasicHealthSystem archerHealthScript;
-    private bool alreadyDead;
+    private bool alreadyDead = false;
 
     #endregion
 
@@ -35,7 +35,7 @@ public class ArcherAnimator : MonoBehaviour
             SetWatchDirectionAttack();
             Running();
             Attack();
-            Death();
+            //Death();
         }
       
     }
@@ -106,7 +106,7 @@ public class ArcherAnimator : MonoBehaviour
         archerAnimator.SetBool("isAttacking", archerAttackScript.animationAttack);
     }
 
-    void Death()
+    /*void Death()
     {
         if (archerHealthScript.isDead && !alreadyDead)
         {
@@ -116,5 +116,5 @@ public class ArcherAnimator : MonoBehaviour
             archerAnimator.SetBool("isRunning", false);
             archerAnimator.SetTrigger("isDead");
         }
-    }
+    }*/
 }

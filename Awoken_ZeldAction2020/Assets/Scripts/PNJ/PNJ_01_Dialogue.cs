@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class PNJ_01_Dialogue : MonoBehaviour
 {
     [SerializeField]
-    private GameObject pressX;
+    private GameObject pressX = null;
     [SerializeField]
-    private GameObject dialogue01;
+    private GameObject dialogue01 = null;
     private bool playerIsHere;
     private void OnTriggerEnter2D(Collider2D other)
     {

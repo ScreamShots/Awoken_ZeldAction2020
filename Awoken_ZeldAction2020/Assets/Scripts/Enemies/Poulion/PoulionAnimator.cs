@@ -32,7 +32,7 @@ public class PoulionAnimator : MonoBehaviour
         SetWatchDirectionAttack();
         Running();
         Attack();
-        Death();
+        //Death();
     }
 
     void SetWatchDirection()                                                                        //giving information relative to the watch direction to the animator
@@ -103,12 +103,12 @@ public class PoulionAnimator : MonoBehaviour
         poulionAnimator.SetBool("isStun", poulionAttackScript.isStun);
     }
 
-    void Death()
+    /*void Death()
     {
         if (poulionHealthScript.isDead && !alreadyDead)
         {
             alreadyDead = true;
             poulionAnimator.SetTrigger("isDead");
         }
-    }
+    }*/
 }

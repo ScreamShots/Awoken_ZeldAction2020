@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5539085139816166660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.519, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5539085140102970484}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 5539085140102970485}
   - component: {fileID: 5539085140102970487}
   - component: {fileID: 5539085140102970486}
-  - component: {fileID: 5539085140102970473}
+  - component: {fileID: 2421707242317786475}
   m_Layer: 9
   m_Name: Poulion
   m_TagString: Enemy
@@ -323,7 +323,7 @@ MonoBehaviour:
   chargeOn: 0
   isStun: 0
   watchDirection: 1
---- !u!114 &5539085140102970473
+--- !u!114 &2421707242317786475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,11 +332,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5539085140102970482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bab47d60a1b5e34380323a33f0814b0, type: 3}
+  m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 10
   currentHp: 0
   canTakeDmg: 1
-  deadAnimationTime: 0.75
-  isDead: 0
+  corps: {fileID: 9194243184529994227, guid: 46fe3d2f0d4af8f44b1e2d2f903338e4, type: 3}

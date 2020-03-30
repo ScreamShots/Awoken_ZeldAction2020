@@ -161,26 +161,33 @@ public class PlayerAttack : MonoBehaviour
 
         if (inRangeElement.Count > 0)                      //if there is enemies in range infligt damages to them and do vibration on the gamepad
         {
+            bool enemyIsImune = true;
             for (int i = 0; i < inRangeElement.Count; i++)
             {
                 switch (attackState)
                 {
                     case 1:
-                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(firstAttackdmg);
+                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(firstAttackdmg);
                         break;
                     case 2:
-                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(secondAttackdmg);
+                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(secondAttackdmg);
                         break;
                     case 3:
-                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(thirdAttackdmg);
+                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(thirdAttackdmg);
                         break;
                     default:
-                        inRangeElement[i].GetComponent<BasicHealthSystem>().TakeDmg(firstAttackdmg);
+                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(firstAttackdmg);
                         break;
                 }
+                if (inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg)
+                {
+                    enemyIsImune = false;
+                }
             }
-
-            GamePad.SetVibration(playerIndex, vibrateIntensity * Mathf.Pow(attackState, 3) , vibrateIntensity*attackState);
+            if(enemyIsImune == false)
+            {
+                GamePad.SetVibration(playerIndex, vibrateIntensity * Mathf.Pow(attackState, 3), vibrateIntensity * attackState);
+            }            
         }
 
         yield return new WaitForSeconds(0.15f);                                 //Wait for the animation end

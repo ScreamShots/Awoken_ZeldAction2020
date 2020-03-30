@@ -20,11 +20,7 @@ public class BasicHealthSystem : MonoBehaviour
     public float currentHp;
     [Space]
     public bool canTakeDmg = true;
-    [Space]
-    public float deadAnimationTime;
 
-    [HideInInspector]
-    public bool isDead;
 
     #endregion
 
@@ -56,13 +52,6 @@ public class BasicHealthSystem : MonoBehaviour
 
     public virtual void Death()                         //can be override in children class
     {
-        StartCoroutine(PlayAnimationBeforeDead());
-    }
-
-    IEnumerator PlayAnimationBeforeDead()
-    {
-        isDead = true;
-        yield return new WaitForSeconds(deadAnimationTime);
-        Destroy(gameObject);                            //instruction to follow if hp fall to 0
+        Destroy(gameObject);
     }
 }

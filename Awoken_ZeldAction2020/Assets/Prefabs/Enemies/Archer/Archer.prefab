@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 7408942957006063678}
   - component: {fileID: 7408942957006063676}
   - component: {fileID: 69895412}
-  - component: {fileID: 6783038870490230826}
+  - component: {fileID: 2931005998743311897}
   m_Layer: 9
   m_Name: Archer
   m_TagString: Enemy
@@ -351,7 +351,7 @@ MonoBehaviour:
   archerCanAttack: 0
   animationAttack: 0
   watchDirection: 0
---- !u!114 &6783038870490230826
+--- !u!114 &2931005998743311897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -360,11 +360,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7408942957006063679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bab47d60a1b5e34380323a33f0814b0, type: 3}
+  m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 20
   currentHp: 0
   canTakeDmg: 1
-  deadAnimationTime: 0.4
+  deadAnimationTime: 0
   isDead: 0
+  corps: {fileID: 4816546048056608632, guid: f21eb596806a2f94d8bec98f6afe60c2, type: 3}

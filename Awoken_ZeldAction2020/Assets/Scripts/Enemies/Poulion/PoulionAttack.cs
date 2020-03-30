@@ -21,7 +21,7 @@ public class PoulionAttack : MonoBehaviour
     [Min(0)]
     [SerializeField] private float dmg = 0;
 
-    [SerializeField] private float staminaLoseOnBlock = 0;
+    //[SerializeField] private float staminaLoseOnBlock = 0;
 
     private GameObject player;
 

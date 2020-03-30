@@ -29,10 +29,6 @@ public class PlayerShield : MonoBehaviour
 
     [SerializeField] [Tooltip("References of all shieldHitZones GameObject")]
      private GameObject[] allShieldHitZones = null;
-    [SerializeField] [Tooltip("References of up auxiliary hitbox of the player")]
-    private GameObject upHitBox = null;
-    [SerializeField] [Tooltip("References of down auxiliary hitbox of the player")]
-    private GameObject downHitBox = null;
 
     [Header("Stats")]
 
@@ -177,11 +173,9 @@ public class PlayerShield : MonoBehaviour
         {
             case PlayerMovement.Direction.up:
                 allShieldZoneScrpit["Up"].isActivated = true;
-                upHitBox.SetActive(false);
                 break;
             case PlayerMovement.Direction.down:
                 allShieldZoneScrpit["Down"].isActivated = true;
-                downHitBox.SetActive(false);
                 break;
             case PlayerMovement.Direction.left:
                 allShieldZoneScrpit["Left"].isActivated = true;
@@ -204,11 +198,9 @@ public class PlayerShield : MonoBehaviour
         {
             case PlayerMovement.Direction.up:
                 allShieldZoneScrpit["Up"].isActivated = false;
-                upHitBox.SetActive(true);
                 break;
             case PlayerMovement.Direction.down:
                 allShieldZoneScrpit["Down"].isActivated = false;
-                downHitBox.SetActive(true);
                 break;
             case PlayerMovement.Direction.left:
                 allShieldZoneScrpit["Left"].isActivated = false;
