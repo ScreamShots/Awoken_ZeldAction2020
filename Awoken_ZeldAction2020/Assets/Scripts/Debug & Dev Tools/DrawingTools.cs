@@ -17,8 +17,13 @@ namespace DevTools
 
     public static class DrawingTools
     {
-        public static void DrawCircle(this GameObject container, float radius, float lineWidth, int vertexNumber, Color lineColor, bool useWorldSpc)  //static function that you can call from anywhere to creat circles
+        public static void DrawCircle(this GameObject container, float radius, float lineWidth, int vertexNumber, Color lineColor, bool useWorldSpc, Vector2 center = new Vector2())  //static function that you can call from anywhere to creat circles
         {
+            bool useCenter = false;
+            if(useWorldSpc)
+            {
+                useCenter = true;
+            }
             var line = container.AddComponent<LineRenderer>();          //adding a line renderer component to the targeted gameobject holder
             line.useWorldSpace = useWorldSpc;                                 //allow the circle to move depending gameobject world position
             line.startColor = lineColor;                                //set the line color
@@ -40,7 +45,15 @@ namespace DevTools
                                            new Vector4(0, 0, 1, 0),
                                            new Vector4(0, 0, 0, 1));
                 Vector3 initialRelativePosition = new Vector3(0, radius, 0);
-                line.SetPosition(i, container.transform.position + rotationMatrix.MultiplyPoint(initialRelativePosition));
+                if (useCenter)
+                {
+                    line.SetPosition(i, (Vector3)center + rotationMatrix.MultiplyPoint(initialRelativePosition));
+                }
+                else
+                {
+                    line.SetPosition(i, container.transform.position + rotationMatrix.MultiplyPoint(initialRelativePosition));
+                }
+                
 
             }
         }

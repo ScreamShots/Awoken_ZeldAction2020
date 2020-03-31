@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DevTools;
 
 /// <summary>
 /// Made by Rémi Sécher based on Antoine Leroux work
@@ -50,8 +51,7 @@ public class PoulionMovementReworked : MonoBehaviour
     public bool playerInAttackRange;                            //use to know if the player is near enough to start an attack
 
     #endregion
-
-
+    
     #region Serialize Var Statement
 
     //Phase1 - Random Mouvement
@@ -101,7 +101,45 @@ public class PoulionMovementReworked : MonoBehaviour
     float attackDistance = 0;
 
     #endregion
-          
+
+    #region Tools
+    [Header("DevTools")]                                        //variables for dev tools
+
+    [SerializeField] private bool showRanges = false;
+    private GameObject allRangesCircles;
+
+    private bool areRangesDisplayed = false;
+    #endregion
+
+    private void OnValidate()                                   //do stuff when a value is change within the inspector
+    {
+        #region Activate / Desactivate range circles on tick the var bool 
+        if (showRanges == true && areRangesDisplayed == false)
+        {
+            if (allRangesCircles != null)
+            {
+                allRangesCircles.SetActive(true);
+                areRangesDisplayed = true;
+            }
+            else
+            {
+                DrawRangeCircles();
+                allRangesCircles.SetActive(true);
+                areRangesDisplayed = true;
+            }
+        }
+        else if (showRanges == false && areRangesDisplayed == true)
+        {
+            if (allRangesCircles != null)
+            {
+                allRangesCircles.SetActive(false);
+                areRangesDisplayed = false;
+            }
+        }
+
+        #endregion
+    }
+
     private void Start()
     {
         if (PlayerManager.Instance != null)
@@ -276,5 +314,44 @@ public class PoulionMovementReworked : MonoBehaviour
             }
         }
         
+    }
+
+    void DrawRangeCircles()                 //function that draw 2 circle, one for eache range the poulion has (attack and chase)
+    {
+        DestroyImmediate(allRangesCircles);
+
+        allRangesCircles = new GameObject { name = "All Range Circles" };
+        allRangesCircles.transform.parent = transform;
+        allRangesCircles.transform.localPosition = new Vector3(0, 0, 0);
+
+        var randomMoveCircle = new GameObject { name = "RandomMov MaxRange Circle" };
+        randomMoveCircle.transform.parent = allRangesCircles.transform;
+
+        var chaseRangeDisplay = new GameObject { name = "Detection Circle" };
+        chaseRangeDisplay.transform.parent = allRangesCircles.transform;
+
+        var attackRangeDisplay = new GameObject { name = "Attack Circle" };
+        attackRangeDisplay.transform.parent = allRangesCircles.transform;
+
+
+        randomMoveCircle.DrawCircle(maxRandomWalkDistance, 0.02f, 50, Color.green, true, startPos);
+        chaseRangeDisplay.DrawCircle(playerDetectionDistance, 0.02f, 50, Color.yellow, false);
+        attackRangeDisplay.DrawCircle(attackDistance, 0.02f, 50, Color.red, false);
+
+        attackRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);
+        chaseRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);
+
+        allRangesCircles.SetActive(false);
+    }
+
+    [ContextMenu("Refresh Range Circles")]
+    void RefreshRangeCircles()          //function that refresh the range circles by calling this function from the inspector (right click on the name of the script)
+    {
+        if (allRangesCircles != null)
+        {
+            DestroyImmediate(allRangesCircles);
+        }
+        DrawRangeCircles();
+        showRanges = false;
     }
 }

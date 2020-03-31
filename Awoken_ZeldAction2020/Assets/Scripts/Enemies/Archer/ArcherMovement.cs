@@ -53,10 +53,16 @@ public class ArcherMovement : MonoBehaviour
         if (showRanges == true && areRangesDisplayed == false)
         {
             if(allRangesCircles != null)
-            {
+            {                
                 allRangesCircles.SetActive(true);
                 areRangesDisplayed = true;
-            }           
+            }
+            else
+            {
+                DrawRangeCircles();
+                allRangesCircles.SetActive(true);
+                areRangesDisplayed = true;
+            }
         }
         else if (showRanges == false && areRangesDisplayed == true)
         {
@@ -77,7 +83,7 @@ public class ArcherMovement : MonoBehaviour
 
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        DrawRangeCircles();
+        
     }
 
     private void FixedUpdate()

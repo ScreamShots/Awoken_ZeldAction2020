@@ -171,7 +171,7 @@ public class PoulionMovement : MonoBehaviour
         }
     }
 
-    void DrawRangeCircles()
+    void DrawRangeCircles()                 //function that draw 2 circle, one for eache range the poulion has (attack and chase)
     {
         DestroyImmediate(allRangesCircles);
 
@@ -192,10 +192,10 @@ public class PoulionMovement : MonoBehaviour
         chaseRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);
 
         allRangesCircles.SetActive(false);
-    }                       //function that draw 2 circle, one for eache range the poulion has (attack and chase)
+    }                       
 
     [ContextMenu("Refresh Range Circles")]
-    void RefreshRangeCircles()
+    void RefreshRangeCircles()          //function that refresh the range circles by calling this function from the inspector (right click on the name of the script)
     {
         if (allRangesCircles != null)
         {
@@ -203,7 +203,7 @@ public class PoulionMovement : MonoBehaviour
         }
         DrawRangeCircles();
         showRanges = false;
-    }                       //function that refresh the range circles by calling this function from the inspector (right click on the name of the script)
+    }                       
 
     IEnumerator RandomMove()
     {
