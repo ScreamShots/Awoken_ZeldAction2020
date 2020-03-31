@@ -185,8 +185,8 @@ public class PoulionMovement : MonoBehaviour
         var attackRangeDisplay = new GameObject { name = "Chase Circle" };
         attackRangeDisplay.transform.parent = allRangesCircles.transform;
 
-        chaseRangeDisplay.DrawCircle(chaseDistance, 0.02f, 50, Color.yellow);
-        attackRangeDisplay.DrawCircle(attackDistance, 0.02f, 50, Color.red);
+        chaseRangeDisplay.DrawCircle(chaseDistance, 0.02f, 50, Color.yellow,false);
+        attackRangeDisplay.DrawCircle(attackDistance, 0.02f, 50, Color.red,false);
 
         attackRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);
         chaseRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);

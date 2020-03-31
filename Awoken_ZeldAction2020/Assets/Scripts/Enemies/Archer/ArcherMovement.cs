@@ -175,9 +175,9 @@ public class ArcherMovement : MonoBehaviour
         attackRangeDisplay.transform.parent = allRangesCircles.transform;
         
 
-        retreatRangeDisplay.DrawCircle(retreatDistance, 0.02f, 50, Color.green);
-        chaseRangeDisplay.DrawCircle(chaseDistance, 0.02f, 50, Color.yellow);
-        attackRangeDisplay.DrawCircle(attackDistance, 0.02f, 50, Color.red);
+        retreatRangeDisplay.DrawCircle(retreatDistance, 0.02f, 50, Color.green, false);
+        chaseRangeDisplay.DrawCircle(chaseDistance, 0.02f, 50, Color.yellow, false);
+        attackRangeDisplay.DrawCircle(attackDistance, 0.02f, 50, Color.red, false);
 
         attackRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);
         chaseRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);

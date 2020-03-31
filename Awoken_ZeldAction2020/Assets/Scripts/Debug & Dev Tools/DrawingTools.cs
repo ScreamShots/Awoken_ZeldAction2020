@@ -17,10 +17,10 @@ namespace DevTools
 
     public static class DrawingTools
     {
-        public static void DrawCircle(this GameObject container, float radius, float lineWidth, int vertexNumber, Color lineColor)  //static function that you can call from anywhere to creat circles
+        public static void DrawCircle(this GameObject container, float radius, float lineWidth, int vertexNumber, Color lineColor, bool useWorldSpc)  //static function that you can call from anywhere to creat circles
         {
             var line = container.AddComponent<LineRenderer>();          //adding a line renderer component to the targeted gameobject holder
-            line.useWorldSpace = false;                                 //allow the circle to move depending gameobject world position
+            line.useWorldSpace = useWorldSpc;                                 //allow the circle to move depending gameobject world position
             line.startColor = lineColor;                                //set the line color
             line.endColor = lineColor;
             line.material = new Material(Shader.Find("Sprites/Default"));   //set line material (to enable color to show)
