@@ -7,7 +7,7 @@ using UnityEngine;
 /// This script involve the healt system of Boss and the state corresponding to his life
 /// </summary>
 
-public class BossManager : BasicHealthSystem
+public class BossManager : EnemyHealthSystem
 {
     public static BossManager Instance;
 
@@ -98,10 +98,12 @@ public class BossManager : BasicHealthSystem
         canPlayState1 = false;
 
         s1_Pattern1 = true;
+        canTakeDmg = false;
         s1_Pattern2 = false;
 
         yield return new WaitForSeconds(s1_timeBtwPattern1And2);
         s1_Pattern1 = false;
+        canTakeDmg = true;
         s1_Pattern2 = true;
 
         yield return new WaitForSeconds(s1_timeBtwPattern1And2);
