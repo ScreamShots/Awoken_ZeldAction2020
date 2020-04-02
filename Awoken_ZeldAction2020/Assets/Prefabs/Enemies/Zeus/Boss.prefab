@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &102950559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102950560}
+  m_Layer: 9
+  m_Name: SpawnShockWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &102950560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102950559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.008, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3877349471966037667}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3877349471966037671
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +63,7 @@ Transform:
   - {fileID: 3877349472426867578}
   - {fileID: 3877349472697704530}
   - {fileID: 3877349472079212280}
+  - {fileID: 102950560}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,7 +106,7 @@ MonoBehaviour:
   corps: {fileID: 0}
   s1_Pattern1: 0
   s1_Pattern2: 0
-  s1_timeBtwPattern1And2: 30
+  s1_timeBtwPattern1And2: 15
   s2_Pattern1: 0
   s2_Pattern2: 0
   s2_Pattern3: 0
@@ -99,6 +130,7 @@ MonoBehaviour:
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
     type: 3}
   middleArena: {fileID: 0}
+  shockWaveSpawn: {fileID: 102950560}
   timeBtwShockWave: 4
   animShockWave: 0
   ShockWave: {fileID: 6172370753812073735, guid: 3c1644414c6a8c24e8971c7873a1366e,

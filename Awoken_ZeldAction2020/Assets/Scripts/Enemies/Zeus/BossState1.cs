@@ -7,6 +7,7 @@ public class BossState1 : MonoBehaviour
     #region Pattern1
     [Header("Pattern1")] public Transform throneArena;
 
+    [Space]
     public float timeBtwLightning;
     private float timeLeft;
 
@@ -16,8 +17,9 @@ public class BossState1 : MonoBehaviour
     #endregion
 
     #region Pattern2
-    [Header("Pattern2")] public Transform middleArena;
+    [Header("Pattern2")] public Transform middleArena; public Transform shockWaveSpawn;
 
+    [Space]
     public float timeBtwShockWave;
     private float timeLeft2;
 
@@ -86,7 +88,7 @@ public class BossState1 : MonoBehaviour
         timeLeft2 -= Time.deltaTime;
         animShockWave = false;
 
-        if(timeLeft2 <= 0.6 && timeLeft2 > 0.5)                         //Time for play the animation of Zeus
+        if(timeLeft2 <= 0.5 && timeLeft2 > 0.4)                         //Time for play the animation of Zeus
         {
             animShockWave = true;
         }
@@ -94,7 +96,7 @@ public class BossState1 : MonoBehaviour
         if (timeLeft2 <= 0)
         {
             timeLeft2 += timeBtwShockWave;
-            Instantiate(ShockWave, transform.position, ShockWave.transform.rotation);
+            Instantiate(ShockWave, shockWaveSpawn.position, ShockWave.transform.rotation);
         }
     }
 }
