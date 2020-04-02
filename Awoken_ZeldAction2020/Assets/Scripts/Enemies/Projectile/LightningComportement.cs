@@ -17,6 +17,8 @@ public class LightningComportement : MonoBehaviour
 
     private float timeLeft;
 
+    [HideInInspector] public bool thunderIsSlam;
+
     [Header("Dammage")]
     [Min(0)]
     [SerializeField] private float dmgLightning = 0;
@@ -32,22 +34,23 @@ public class LightningComportement : MonoBehaviour
         timeLeft = FadeInTime;
     }
 
-    private void Update()                               //For the future : call destroy function with animation key frame
+    private void Update()                               
     {
        timeLeft -= Time.deltaTime;
 
         if (timeLeft <= 0)
         {
+            StartCoroutine(ThunderSlam());
+
             if (inLightningZone.Count > 0)
             {
                 for (int i = 0; i < inLightningZone.Count; i++)
                 {
                     Debug.Log("inside");
                     inLightningZone[i].GetComponentInParent<BasicHealthSystem>().TakeDmg(dmgLightning);
+                    inLightningZone.Remove(inLightningZone[i].gameObject);
                 }
-            }
-
-            Destroy(gameObject);
+            }   
         }
     }
 
@@ -99,5 +102,13 @@ public class LightningComportement : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    IEnumerator ThunderSlam()
+    {
+        thunderIsSlam = true;
+        yield return new WaitForSeconds(0.3f); 
+        thunderIsSlam = false;
+        Destroy(gameObject);
     }
 }
