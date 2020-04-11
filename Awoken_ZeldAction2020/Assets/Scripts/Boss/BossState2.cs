@@ -10,7 +10,8 @@ public class BossState2 : MonoBehaviour
 {
     private GameObject player;
 
-    #region Pattern1 Statment
+    #region State2 pattenr1 and 2
+
     [SerializeField]
     private bool bossIsShooting;
     [SerializeField]
@@ -29,23 +30,37 @@ public class BossState2 : MonoBehaviour
     private Transform shootPoint;
     [SerializeField]
     private GameObject bossStrike;
+    [SerializeField]
+    private GameObject protectionWall;
+    [SerializeField]
+    private Transform wallTransform;
+    [SerializeField]
+    private float wallspawnTime;
+    [SerializeField]
+    private float destroyWallTIme;
+
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
 
     #endregion
 
+    #region pattern3
+    public float timeBtwLightning;
+    private float timeLeft;
+    public GameObject Lightning;
+    #endregion
+
     void Start()
     {
         player = PlayerManager.Instance.gameObject;
+        timeLeft = timeBtwLightning;
     }
 
     void Update()
     {
-        if (bossCanAttack && !bossIsShooting)
-        {
-            bossIsShooting = true;
-            StartCoroutine(PreperaForShoot());
-        }
+        //Pattern1();
+        //Pattern2();
+        //Pattern3();
     }
     void SetDirectionAttack()
     {
@@ -74,7 +89,8 @@ public class BossState2 : MonoBehaviour
             }
         }
     }
-    void BossAttackPattern1()
+
+    void BossAttackStrike()
     {
         direction = (player.transform.position - transform.position).normalized;
 
@@ -84,27 +100,92 @@ public class BossState2 : MonoBehaviour
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = strikeSpeed;
     }
 
-    IEnumerator Pattern1()
+    IEnumerator ProtectionWall()
     {
-        BossAttackPattern1();
+        direction = (player.transform.position - transform.position).normalized;
+
+        GameObject wallInstance = Instantiate(protectionWall, wallTransform.position, wallTransform.rotation);
+
+        yield return new WaitForSeconds(destroyWallTIme);
+
+        Destroy(wallInstance);
+    }
+
+    #region Pattern1
+    void Pattern1()
+    {
+        if (bossCanAttack && !bossIsShooting)
+        {
+            bossIsShooting = true;
+            StartCoroutine(PrepareForShoot1());
+        }
+    }
+
+    IEnumerator Pattern1Shoot()
+    {
+        BossAttackStrike();
         
         yield return new WaitForSeconds(quickShoot);
-        BossAttackPattern1();
+        BossAttackStrike();
         
         yield return new WaitForSeconds(quickShoot);
-        BossAttackPattern1();
+        BossAttackStrike();
 
         yield return new WaitForSeconds(timeBtwStrike);
         bossIsShooting = false;
     }
 
-    IEnumerator PreperaForShoot()
+    IEnumerator PrepareForShoot1()
     {
         willShoot = true;
         SetDirectionAttack();
 
         yield return new WaitForSeconds(timeBeforeShoot);
         willShoot = false;
-        StartCoroutine(Pattern1());
+        StartCoroutine(Pattern1Shoot());
+    }
+    #endregion
+
+    #region Pattern2
+    void Pattern2()
+    {
+        if (bossCanAttack && !bossIsShooting)
+        {
+            bossIsShooting = true;
+            StartCoroutine(PrepareForShoot2());
+        }
+    }
+
+    IEnumerator Pattern2Shoot()
+    {
+        BossAttackStrike();
+        yield return new WaitForSeconds(wallspawnTime);
+        StartCoroutine(ProtectionWall());
+
+        yield return new WaitForSeconds(timeBtwStrike);
+        bossIsShooting = false;
+    }
+
+    IEnumerator PrepareForShoot2()
+    {
+        willShoot = true;
+        SetDirectionAttack();
+
+        yield return new WaitForSeconds(timeBeforeShoot);
+        willShoot = false;
+        StartCoroutine(Pattern2Shoot());
+    }
+    #endregion
+
+
+    void Pattern3()
+    {
+        timeLeft -= Time.deltaTime;
+
+        if (timeLeft <= 0)
+        {
+            timeLeft += timeBtwLightning;
+            Instantiate(Lightning, player.transform.position, Lightning.transform.rotation);
+        }
     }
 }
