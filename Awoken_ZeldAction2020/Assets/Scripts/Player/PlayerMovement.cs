@@ -49,8 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()                     // PlayerBasic Movement
     {
-        horizontalAxis = Input.GetAxis("HorizontalAxis");           //getting axis values from the inputSystem Files (mapped input)
-        verticalAxis = Input.GetAxis("VerticalAxis");
+        if(GameManager.Instance.gameState == GameManager.GameState.Running)
+        {
+            horizontalAxis = Input.GetAxis("HorizontalAxis");           //getting axis values from the inputSystem Files (mapped input)
+            verticalAxis = Input.GetAxis("VerticalAxis");
+        }
         move = new Vector2(horizontalAxis, verticalAxis);           // setting a vector that give the player the direction of the movement
         move = move.normalized;                                     // normalizing the direction to prevent the player to move faster on diagonal directions 
 

@@ -23,22 +23,8 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("1 player Delete (can't be more than one player in the scene)");
         }
+        
         #endregion
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if(Time.timeScale == 1)
-            {
-                Time.timeScale = 0.001f;
-            }
-            else
-            {
-                Time.timeScale = 1;
-                
-            }
-        }
-    }
 }

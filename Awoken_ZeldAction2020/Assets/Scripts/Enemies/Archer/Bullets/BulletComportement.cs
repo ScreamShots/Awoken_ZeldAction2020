@@ -25,7 +25,7 @@ public class BulletComportement : MonoBehaviour
     
     private GameObject player;
 
-    [HideInInspector]
+    //[HideInInspector]
     public Vector2 aimDirection;
     private Vector2 perpendicularAimDirection;  //Needed to deffine postion of the ray for shield security check
 
@@ -39,7 +39,7 @@ public class BulletComportement : MonoBehaviour
     private void Start()
     {
         bulletRgb = GetComponent<Rigidbody2D>();
-        bulletCollider = GetComponent<CircleCollider2D>();       
+        bulletCollider = GetComponent<CircleCollider2D>();
 
         Destroy(gameObject, TimeBeforeDestroy);                 //Destroy bullet after x time : security
 
@@ -53,7 +53,17 @@ public class BulletComportement : MonoBehaviour
 
     private void Update()
     {
-        if (blockHandle.isBlocked)          //Testin if the projectile has been blocked
+
+        if (!blockHandle.isParied && !blockHandle.hasBeenLaunchBack)
+        {
+            blockHandle.projectileDirection = aimDirection;
+        }
+        else if(blockHandle.isParied && !blockHandle.hasBeenLaunchBack)
+        {
+            aimDirection = blockHandle.projectileDirection;
+        }
+
+        if (blockHandle.isBlocked && !blockHandle.isParied)          //Testin if the projectile has been blocked
         {
             OnBlocked();                    //Apply behaviour design for the projectile when it's blocked
         }   

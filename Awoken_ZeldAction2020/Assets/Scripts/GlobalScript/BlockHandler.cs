@@ -8,4 +8,10 @@
 public class BlockHandler: MonoBehaviour
 {
     public bool isBlocked = false;              //Test this bool in other behaviour script of the element to creat a behaviour on blocked
+    public bool isParied = false;               //Test this bool in other behaviour script of the element to creat a behaviour on paried
+    public bool hasBeenLaunchBack = false;
+
+    //[HideInInspector]
+    public Vector2 projectileDirection;
+    
 }

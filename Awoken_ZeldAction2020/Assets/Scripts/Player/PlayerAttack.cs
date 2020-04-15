@@ -62,17 +62,21 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        AttackRotation();
-
-        if (Input.GetButtonDown("Attack") && PlayerStatusManager.Instance.canAttack)
+        if(GameManager.Instance.gameState == GameManager.GameState.Running)
         {
-            StartCoroutine(LaunchAttack());
-        }
+            AttackRotation();
 
-        if (autoAttack && PlayerStatusManager.Instance.canAttack)                                   //Dev Tools enabling the auto attack (to test max attack rate)
-        {
-            StartCoroutine(LaunchAttack());
+            if (Input.GetButtonDown("Attack") && PlayerStatusManager.Instance.canAttack)
+            {
+                StartCoroutine(LaunchAttack());
+            }
+
+            if (autoAttack && PlayerStatusManager.Instance.canAttack)                                   //Dev Tools enabling the auto attack (to test max attack rate)
+            {
+                StartCoroutine(LaunchAttack());
+            }
         }
+        
     }
 
     void AttackRotation()                                                       //rotate the attack collider linked to the watch direction
