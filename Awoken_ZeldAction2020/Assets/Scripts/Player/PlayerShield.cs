@@ -15,7 +15,9 @@ public class PlayerShield : MonoBehaviour
 
     
     private Dictionary<string, ShieldHitZone> allShieldZoneScrpit = new Dictionary<string, ShieldHitZone>();
+    private Dictionary<string, ParyHitZone> allParyZoneScript = new Dictionary<string, ParyHitZone>();
     private PlayerMovement movementScript;
+    private PlayerMovement.Direction l_Direction = PlayerMovement.Direction.left;
 
     private bool canReload = true;                  //use to know if the stamina can recover or not
 
@@ -29,6 +31,9 @@ public class PlayerShield : MonoBehaviour
 
     [SerializeField] [Tooltip("References of all shieldHitZones GameObject")]
      private GameObject[] allShieldHitZones = null;
+
+    [SerializeField] [Tooltip("References of all paryHitZones GameObject")]
+    private GameObject[] allParyHitZones = null;
 
     [Header("Stats")]
 
@@ -69,51 +74,60 @@ public class PlayerShield : MonoBehaviour
             allShieldZoneScrpit.Add(allShieldHitZones[i].name, allShieldHitZones[i].GetComponent<ShieldHitZone>());         
         }
 
+        for (int i = 0; i < allParyHitZones.Length; i++)                                      // Getting the ParyHitZone Component of the referenced gameobjects
+        {
+            allParyZoneScript.Add(allParyHitZones[i].name, allParyHitZones[i].GetComponent<ParyHitZone>());
+        }
+
         currentStamina = maxStamina;                                                            //Initializing stamina
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Block") && PlayerStatusManager.Instance.canBlock)
+        if (GameManager.Instance.gameState == GameManager.GameState.Running)
         {
-            ActivateBlock();
-        }
-
-        if (Input.GetButtonUp("Block") && PlayerStatusManager.Instance.isBlocking)
-        {
-            DesactivateBlock();
-        }
-
-
-        if (!PlayerStatusManager.Instance.isBlocking)
-        {
-            ShieldRotation();
-
-            if (canReload && currentStamina < maxStamina)                       //the stamina can reload only if the shield is not activated
+            if (Input.GetButtonDown("Block") && PlayerStatusManager.Instance.canBlock)
             {
-                
-                ReloadStamina();
+                ActivateBlock();
             }
-        }
-        else
-        {
-            UseStamina();                       //use stamina if the shield is activated
 
-            if (Input.GetButtonDown("Attack") && !PlayerStatusManager.Instance.cdOnAttack)              //Stop usage of shield when attack's input is pressed and attack.
+            if (Input.GetButtonUp("Block") && PlayerStatusManager.Instance.isBlocking)
             {
                 DesactivateBlock();
-                StartCoroutine(GetComponent<PlayerAttack>().LaunchAttack());
             }
-        }
 
-        if (PlayerStatusManager.Instance.cdOnBlock)
-        {
-            if(currentStamina >= maxStamina)                                
+
+            if (!PlayerStatusManager.Instance.isBlocking)
             {
-                currentStamina = maxStamina;
-                PlayerStatusManager.Instance.cdOnBlock = false;                // if the block is impossible to activate due to stamina value falling off behind 0, reunable the block utilisation when stamina goes back to max stamina value;
+                ShieldRotation();
+
+                if (canReload && currentStamina < maxStamina)                       //the stamina can reload only if the shield is not activated
+                {
+
+                    ReloadStamina();
+                }
+            }
+            else
+            {
+                UseStamina();                       //use stamina if the shield is activated
+
+                if (Input.GetButtonDown("Attack") && !PlayerStatusManager.Instance.cdOnAttack)              //Stop usage of shield when attack's input is pressed and attack.
+                {
+                    DesactivateBlock();
+                    StartCoroutine(GetComponent<PlayerAttack>().LaunchAttack());
+                }
+            }
+
+            if (PlayerStatusManager.Instance.cdOnBlock)
+            {
+                if (currentStamina >= maxStamina)
+                {
+                    currentStamina = maxStamina;
+                    PlayerStatusManager.Instance.cdOnBlock = false;                // if the block is impossible to activate due to stamina value falling off behind 0, reunable the block utilisation when stamina goes back to max stamina value;
+                }
             }
         }
+          
     }
 
     void UseStamina()                       //reduce stamina value by time following staminaLoseSpeed value (ratio)
@@ -138,29 +152,43 @@ public class PlayerShield : MonoBehaviour
 
     void ShieldRotation()                   //Make the Shield zone accurate to the watch direction in real time if the shield is not activated;
     {
-
-        foreach(GameObject shieldZone in allShieldHitZones)     //Desactivate all ShieldHitZone GameObjects
+        if(l_Direction != movementScript.watchDirection)
         {
-            shieldZone.SetActive(false);
-        }
+            l_Direction = movementScript.watchDirection;
 
-        switch (movementScript.watchDirection)              //Activate the only-one GameObject that match the watch direction
-        {
-            case PlayerMovement.Direction.up:
-                allShieldZoneScrpit["Up"].gameObject.SetActive(true);
-                break;
-            case PlayerMovement.Direction.down:
-                allShieldZoneScrpit["Down"].gameObject.SetActive(true);
-                break;
-            case PlayerMovement.Direction.left:
-                allShieldZoneScrpit["Left"].gameObject.SetActive(true);
-                break;
-            case PlayerMovement.Direction.right:
-                allShieldZoneScrpit["Right"].gameObject.SetActive(true);
-                break;
-            default:
-                break;
-        }
+            foreach(GameObject shieldZone in allShieldHitZones)
+            {
+                shieldZone.SetActive(false);
+            }
+
+            foreach(GameObject paryZone in allParyHitZones)
+            {
+                paryZone.SetActive(false);
+            }
+
+            switch (movementScript.watchDirection)              //Activate the only-one GameObject that match the watch direction
+            {
+                case PlayerMovement.Direction.up:
+                    allShieldZoneScrpit["Up"].gameObject.SetActive(true);
+                    allParyZoneScript["Up"].gameObject.SetActive(true);
+                    break;
+                case PlayerMovement.Direction.down:
+                    allShieldZoneScrpit["Down"].gameObject.SetActive(true);
+                    allParyZoneScript["Down"].gameObject.SetActive(true);
+                    break;
+                case PlayerMovement.Direction.left:
+                    allShieldZoneScrpit["Left"].gameObject.SetActive(true);
+                    allParyZoneScript["Left"].gameObject.SetActive(true);
+                    break;
+                case PlayerMovement.Direction.right:
+                    allShieldZoneScrpit["Right"].gameObject.SetActive(true);
+                    allParyZoneScript["Right"].gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
+
+        }        
     }
 
     void ActivateBlock()                    //On dedicated input, Activate the shield following watch direction;
@@ -169,19 +197,78 @@ public class PlayerShield : MonoBehaviour
 
         movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
 
+        GameObject pariedElement = null;
+
         switch (movementScript.watchDirection)                      //Activate on single ShieldHitZone (On specific element behaviour) following watch direction
         {
-            case PlayerMovement.Direction.up:
-                allShieldZoneScrpit["Up"].isActivated = true;
+            case PlayerMovement.Direction.up:                
+
+                for(int i =0; i< allParyZoneScript["Up"].detectedElements.Count; i++)
+                {
+                    if (allParyZoneScript["Up"].detectedElements[i] != null)
+                    {
+                        pariedElement = allParyZoneScript["Up"].detectedElements[i];
+                        pariedElement.GetComponent<BlockHandler>().isParied = true;
+                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        break;
+                    }
+                }
+                if(pariedElement == null)
+                {
+                    allShieldZoneScrpit["Up"].isActivated = true;
+                }                
+                
                 break;
             case PlayerMovement.Direction.down:
-                allShieldZoneScrpit["Down"].isActivated = true;
+
+                for (int i = 0; i < allParyZoneScript["Down"].detectedElements.Count; i++)
+                {
+                    if (allParyZoneScript["Down"].detectedElements[i] != null)
+                    {
+                        pariedElement = allParyZoneScript["Down"].detectedElements[i];
+                        pariedElement.GetComponent<BlockHandler>().isParied = true;
+                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        break;
+                    }
+                }
+                if (pariedElement == null)
+                {
+                    allShieldZoneScrpit["Down"].isActivated = true;
+                }
                 break;
             case PlayerMovement.Direction.left:
-                allShieldZoneScrpit["Left"].isActivated = true;
+
+                for (int i = 0; i < allParyZoneScript["Left"].detectedElements.Count; i++)
+                {
+                    if (allParyZoneScript["Left"].detectedElements[i] != null)
+                    {
+                        pariedElement = allParyZoneScript["Left"].detectedElements[i];
+                        pariedElement.GetComponent<BlockHandler>().isParied = true;
+                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        break;
+                    }
+                }
+                if (pariedElement == null)
+                {
+                    allShieldZoneScrpit["Left"].isActivated = true;
+                }
                 break;
             case PlayerMovement.Direction.right:
-                allShieldZoneScrpit["Right"].isActivated = true;
+
+                for (int i = 0; i < allParyZoneScript["Right"].detectedElements.Count; i++)
+                {
+                    if (allParyZoneScript["Right"].detectedElements[i] != null)
+                    {
+                        pariedElement = allParyZoneScript["Right"].detectedElements[i];
+                        pariedElement.GetComponent<BlockHandler>().isParied = true;
+                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        break;
+                    }
+                }
+                if (pariedElement == null)
+                {
+                    allShieldZoneScrpit["Right"].isActivated = true;
+                }
                 break;
             default:
                 break;

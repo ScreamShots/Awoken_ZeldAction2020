@@ -70,22 +70,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5412d1a4357a40e43a32846eec6cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  watchDirection: 1
   poulionRgb: {fileID: 0}
   canMove: 1
-  watchDirection: 1
-  maxRandomWalkDistance: 5
-  stayDuration: 2
-  randomMovSpeed: 100
-  randomWalkDuration: 0.7
   isOnRandomMove: 0
   playerDetected: 0
+  playerInAttackRange: 0
+  maxRandomWalkDistance: 7
+  randomMovSpeed: 100
+  randomWalkDuration: 0.7
+  stayDuration: 2
   playerDetectionDistance: 5
   chaseSpeed: 200
   frequency: 20
   minAmplitude: 2.69
   maxAmplitude: 8.52
-  playerInAttackRange: 0
   attackDistance: 1.5
+  showRanges: 0
 --- !u!114 &506266972536926345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,15 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b18654f1fba2b64e945eac3c8dbc40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPreparingCharge: 0
+  isCharging: 0
+  isStun: 0
   prepareChargeTime: 2
   chargeSpeed: 300
   chargeDistance: 2.5
   stunTime: 3
   dmg: 10
   staminaLost: 0
-  isCharging: 0
-  isStun: 0
-  isPreparingCharge: 0
 --- !u!114 &506266972536926346
 MonoBehaviour:
   m_ObjectHideFlags: 0
