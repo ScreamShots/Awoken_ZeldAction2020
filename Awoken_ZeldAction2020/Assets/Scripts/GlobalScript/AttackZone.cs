@@ -15,7 +15,7 @@ public class AttackZone : MonoBehaviour
 
     [Header("Target Tag Selection")]
 
-    [SerializeField] private string targetedElement = null;
+    [SerializeField] public string targetedElement = null;
     [SerializeField] private string[] allTags;
     
     [Header("Element Detection")]
@@ -25,7 +25,7 @@ public class AttackZone : MonoBehaviour
 
     #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject element = collision.gameObject;
 
@@ -38,7 +38,7 @@ public class AttackZone : MonoBehaviour
         }        
     }
    
-    private void OnTriggerExit2D(Collider2D collision)
+    public virtual void OnTriggerExit2D(Collider2D collision)
     {
         GameObject element = collision.gameObject;
 
