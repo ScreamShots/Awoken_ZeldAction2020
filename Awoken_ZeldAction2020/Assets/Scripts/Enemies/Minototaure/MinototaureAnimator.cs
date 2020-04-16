@@ -34,6 +34,7 @@ public class MinototaureAnimator : MonoBehaviour
         minototaureAnim.SetBool("PrepaAttack", minototaureAttackScript.isPreparingAttack);
         minototaureAnim.SetBool("Attack", minototaureAttackScript.lauchAttack);
         minototaureAnim.SetBool("Stun", minototaureAttackScript.isStun);
+        minototaureAnim.SetBool("Cooldown", minototaureMoveScript.minototaureCooldown);
     }
 
 

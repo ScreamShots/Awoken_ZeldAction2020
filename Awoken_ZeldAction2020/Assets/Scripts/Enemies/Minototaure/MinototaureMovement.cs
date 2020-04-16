@@ -15,6 +15,9 @@ public class MinototaureMovement : MonoBehaviour
     public Rigidbody2D minototaureRgb;                              
     private GameObject player;
 
+    MinototaureAttack minototaureAttackScript;
+    EnemyHealthSystem minototaureHealthScript;
+
     //global
     public enum Direction { up, down, left, right }
     [HideInInspector]                                           //enum for animator direction
@@ -33,6 +36,9 @@ public class MinototaureMovement : MonoBehaviour
 
     [HideInInspector]
     public bool playerDetected;
+
+    [HideInInspector]
+    public bool minototaureCooldown;
 
     //random Move
     float randomWalkTimer;                                      
@@ -92,6 +98,13 @@ public class MinototaureMovement : MonoBehaviour
     [Min(0)]
     float attackDistance = 0;
 
+    [Header("Stats")]
+    [Header("Phase4 - Cooldown")]
+
+    [SerializeField]
+    [Min(0)]
+    float btwAttackSpeed = 0;
+
     #endregion
 
     #region Tools
@@ -140,6 +153,8 @@ public class MinototaureMovement : MonoBehaviour
         }
 
         minototaureRgb = GetComponent<Rigidbody2D>();
+        minototaureAttackScript = GetComponent<MinototaureAttack>();
+        minototaureHealthScript = GetComponent<EnemyHealthSystem>();
 
         startPos = transform.position;
         stayTimer = stayDuration;
@@ -156,19 +171,47 @@ public class MinototaureMovement : MonoBehaviour
                 if (!playerInAttackRange && canMove)                                                //change the bool saying that the enemy can attack (see attack class) + setting the move value to 0 once(stop previous move)
                 {
                     minototaureRgb.velocity = Vector2.zero;
+                    isOnRandomMove = false;
                 }
                 playerInAttackRange = true;
-                playerDetected = true;
+                playerDetected = false;
             }
             else if (playerDistance <= playerDetectionDistance)
             {
                 playerInAttackRange = false;
                 playerDetected = true;
+                if (!minototaureCooldown)
+                {
+                    minototaureHealthScript.canTakeDmg = true;
+                }
             }
             else                                                                                    //else change bool saying the player is to far (for random Move behaviour)
             {
-                playerInAttackRange = false;
-                playerDetected = false;
+                if (!minototaureCooldown)
+                {
+                    minototaureHealthScript.canTakeDmg = true;
+                    playerInAttackRange = false;
+                    playerDetected = false;
+                }
+                if (minototaureCooldown)
+                {
+                    minototaureHealthScript.canTakeDmg = false;
+                    playerDetected = true;
+                    playerInAttackRange = false;
+                }
+            }
+
+            if (minototaureAttackScript.cooldownAttack)
+            {
+                if (playerInAttackRange)
+                {
+                    minototaureRgb.velocity = Vector2.zero;
+                }
+                minototaureCooldown = true;
+            }
+            else
+            {
+                minototaureCooldown = false;
             }
         }
 
@@ -185,6 +228,7 @@ public class MinototaureMovement : MonoBehaviour
             if (playerDetected)                                             
             {
                 minototaureRgb.velocity = playerDirection.normalized * chaseSpeed * Time.fixedDeltaTime;
+                isOnRandomMove = false;
             }
             else                                                            //else it's the random movement behaviour that apply (the player is to far)
             {
@@ -207,6 +251,11 @@ public class MinototaureMovement : MonoBehaviour
                     RandomMove();
                 }
             }
+        }
+
+        if (minototaureCooldown && !playerInAttackRange)
+        {
+            minototaureRgb.velocity = playerDirection.normalized * btwAttackSpeed * Time.fixedDeltaTime;
         }
     }
 
@@ -246,11 +295,14 @@ public class MinototaureMovement : MonoBehaviour
     {
         if (!playerDetected)                                                //this part work if we are in phase 1
         {
-            if (minototaureRgb.velocity.x != 0 || minototaureRgb.velocity.y != 0)
+            if (playerInAttackRange)
             {
-                if (Mathf.Abs(minototaureRgb.velocity.x) > Mathf.Abs(minototaureRgb.velocity.y))
+                Vector2 playerdirection = player.transform.position - transform.position;
+                playerdirection.Normalize();
+
+                if (Mathf.Abs(playerdirection.x) > Mathf.Abs(playerdirection.y))
                 {
-                    if (minototaureRgb.velocity.x > 0)
+                    if (playerdirection.x > 0)
                     {
                         watchDirection = Direction.right;
                     }
@@ -261,7 +313,7 @@ public class MinototaureMovement : MonoBehaviour
                 }
                 else
                 {
-                    if (minototaureRgb.velocity.y > 0)
+                    if (playerdirection.y > 0)
                     {
                         watchDirection = Direction.up;
                     }
@@ -271,6 +323,34 @@ public class MinototaureMovement : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if (minototaureRgb.velocity.x != 0 || minototaureRgb.velocity.y != 0)
+                {
+                    if (Mathf.Abs(minototaureRgb.velocity.x) > Mathf.Abs(minototaureRgb.velocity.y))
+                    {
+                        if (minototaureRgb.velocity.x > 0)
+                        {
+                            watchDirection = Direction.right;
+                        }
+                        else
+                        {
+                            watchDirection = Direction.left;
+                        }
+                    }
+                    else
+                    {
+                        if (minototaureRgb.velocity.y > 0)
+                        {
+                            watchDirection = Direction.up;
+                        }
+                        else
+                        {
+                            watchDirection = Direction.down;
+                        }
+                    }
+                }
+            }         
         }
         else if (playerDetected)                                            
         {
@@ -300,7 +380,6 @@ public class MinototaureMovement : MonoBehaviour
                 }
             }
         }
-
     }
 
     void DrawRangeCircles()                 

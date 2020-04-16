@@ -27,6 +27,8 @@ public class MinototaureAttack : MonoBehaviour
     public bool lauchAttack;                //is the enemy attack
     [HideInInspector]
     public bool isStun;                     //is the enemy stun
+    [HideInInspector]
+    public bool cooldownAttack;             //is the enemy is on cooldown;
     #endregion
 
     #region Inspector Settings
@@ -38,6 +40,10 @@ public class MinototaureAttack : MonoBehaviour
     [SerializeField]
     [Min(0)]
     float prepareChargeTime = 0;
+
+    [SerializeField]
+    [Min(0)]
+    float timeBtwAttack = 0;
 
     [Header("Part2 - Stun")]
 
@@ -65,9 +71,12 @@ public class MinototaureAttack : MonoBehaviour
 
     private void Update()
     {
-        AttackRotation();
+        if (!isStun)
+        {
+            AttackRotation();
+        }
 
-        if (minototaureMoveScript.playerInAttackRange && !isAttacking)          
+        if (minototaureMoveScript.playerInAttackRange && !isAttacking && !cooldownAttack)          
         {
             minototaureMoveScript.canMove = false;                              
             isAttacking = true;
@@ -147,10 +156,21 @@ public class MinototaureAttack : MonoBehaviour
 
     IEnumerator Stun()                  //Coroutine that handle stun
     {
+        minototaureHealthScript.canTakeDmg = true;
         yield return new WaitForSeconds(stunTime + 0.5f);       //wait the stun duration
+        minototaureHealthScript.canTakeDmg = false;
         isStun = false;
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;                                    //saying that the attack is finished
-        minototaureMoveScript.canMove = true;                   
+        minototaureMoveScript.canMove = true;
+
+        StartCoroutine(WaitBeforeAttack());
+    }
+
+    IEnumerator WaitBeforeAttack()
+    {
+        cooldownAttack = true;
+        yield return new WaitForSeconds(timeBtwAttack);
+        cooldownAttack = false;
     }
 }
