@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4057268985291287874}
   - component: {fileID: 2476358240767762504}
   - component: {fileID: 5890713997769813937}
+  - component: {fileID: 1359344264}
   m_Layer: 9
   m_Name: AttackZone
-  m_TagString: AttackZone
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +82,27 @@ MonoBehaviour:
   isOverlappingShield: 0
   overlappedShield: {fileID: 0}
   minototaure: {fileID: 8183913270917537701}
+--- !u!50 &1359344264
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103080870856343294}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8183913269211416870
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +396,7 @@ MonoBehaviour:
   maxHp: 40
   currentHp: 0
   canTakeDmg: 1
-  corps: {fileID: 0}
+  corps: {fileID: 6871134627997535689, guid: ef594f67c4ac7d04da9ce63495d69555, type: 3}
 --- !u!114 &8183913270917537706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +414,7 @@ MonoBehaviour:
   canMove: 1
   playerInAttackRange: 0
   playerDetected: 0
+  minototaureCooldown: 0
   isOnRandomMove: 0
   maxRandomWalkDistance: 1.5
   randomMovSpeed: 75
@@ -400,6 +423,7 @@ MonoBehaviour:
   playerDetectionDistance: 5
   chaseSpeed: 250
   attackDistance: 1.5
+  btwAttackSpeed: 100
   showRanges: 0
 --- !u!114 &8183913270917537705
 MonoBehaviour:
@@ -417,8 +441,10 @@ MonoBehaviour:
   isPreparingAttack: 0
   lauchAttack: 0
   isStun: 0
+  cooldownAttack: 0
   attackZone: {fileID: 103080870856343294}
   prepareChargeTime: 0.5
+  timeBtwAttack: 4
   stunTime: 1
   dmg: 30
   staminaLost: 0
