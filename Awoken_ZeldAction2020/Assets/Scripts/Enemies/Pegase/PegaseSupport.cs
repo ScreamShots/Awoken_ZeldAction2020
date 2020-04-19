@@ -1,0 +1,75 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Made by Antoine
+/// This script involve support of Pegase for enemies
+/// </summary>
+
+public class PegaseSupport : MonoBehaviour
+{
+    #region Variables
+    EnemyHealthSystem pegaseHealthScript;
+    #endregion
+
+    #region Inspector Settings
+    [Header("Target Tag Selection")]
+    [SerializeField] private string targetedElement = null;
+
+    [Header("Element in Zone")]
+    [Space]
+
+    public List<GameObject> detectedElement;
+
+    #endregion
+
+    private void Start()
+    {
+        pegaseHealthScript = gameObject.transform.root.GetComponent<EnemyHealthSystem>();
+    }
+
+    private void Update()
+    {
+        if(detectedElement.Count > 0)
+        {
+            for (int i = 0; i < detectedElement.Count; i++)
+            {
+                if (detectedElement[i].gameObject != null && pegaseHealthScript.currentHp >= 0)
+                {
+                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().canTakeDmg = false;
+                }
+                else if (detectedElement[i].gameObject == null)
+                {
+                    detectedElement.Remove(detectedElement[i].gameObject);
+                }
+                
+                if(pegaseHealthScript.currentHp <= 0)
+                {
+                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().canTakeDmg = true;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject element = collision.gameObject;
+
+        if (element.transform != element.transform.root)
+        {
+            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)         
+            {
+                for(int i = 0; i < detectedElement.Count; i++)
+                {
+                    if (detectedElement[i].gameObject.transform.root.name == element.transform.root.name)
+                    {
+                        detectedElement.Remove(element.transform.parent.gameObject);
+                    }
+                }
+
+                detectedElement.Add(element.transform.parent.gameObject);
+            }
+        }
+    }
+}
