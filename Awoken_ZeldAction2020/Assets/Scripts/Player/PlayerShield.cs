@@ -208,8 +208,11 @@ public class PlayerShield : MonoBehaviour
                     if (allParyZoneScript["Up"].detectedElements[i] != null)
                     {
                         pariedElement = allParyZoneScript["Up"].detectedElements[i];
-                        pariedElement.GetComponent<BlockHandler>().isParied = true;
-                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        if (!pariedElement.GetComponent<BlockHandler>().isParied)
+                        {
+                            pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            GameManager.Instance.ProjectileParyStart(pariedElement);
+                        }                        
                         break;
                     }
                 }
@@ -226,8 +229,11 @@ public class PlayerShield : MonoBehaviour
                     if (allParyZoneScript["Down"].detectedElements[i] != null)
                     {
                         pariedElement = allParyZoneScript["Down"].detectedElements[i];
-                        pariedElement.GetComponent<BlockHandler>().isParied = true;
-                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        if (!pariedElement.GetComponent<BlockHandler>().isParied)
+                        {
+                            pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            GameManager.Instance.ProjectileParyStart(pariedElement);
+                        }
                         break;
                     }
                 }
@@ -243,8 +249,11 @@ public class PlayerShield : MonoBehaviour
                     if (allParyZoneScript["Left"].detectedElements[i] != null)
                     {
                         pariedElement = allParyZoneScript["Left"].detectedElements[i];
-                        pariedElement.GetComponent<BlockHandler>().isParied = true;
-                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        if (!pariedElement.GetComponent<BlockHandler>().isParied)
+                        {
+                            pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            GameManager.Instance.ProjectileParyStart(pariedElement);
+                        }
                         break;
                     }
                 }
@@ -260,8 +269,11 @@ public class PlayerShield : MonoBehaviour
                     if (allParyZoneScript["Right"].detectedElements[i] != null)
                     {
                         pariedElement = allParyZoneScript["Right"].detectedElements[i];
-                        pariedElement.GetComponent<BlockHandler>().isParied = true;
-                        GameManager.Instance.ProjectileParyStart(pariedElement);
+                        if (!pariedElement.GetComponent<BlockHandler>().isParied)
+                        {
+                            pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            GameManager.Instance.ProjectileParyStart(pariedElement);
+                        }
                         break;
                     }
                 }
