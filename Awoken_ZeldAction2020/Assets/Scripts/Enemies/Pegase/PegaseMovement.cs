@@ -41,10 +41,18 @@ public class PegaseMovement : MonoBehaviour
     public bool isOnRandomMove;                                
 
 
-    //Phase2 - Chase
+    //Phase2 - Teleport
 
     [HideInInspector]
-    public bool playerDetected;                                
+    public bool playerDetected;
+
+    [HideInInspector]
+    public bool prepareTeleport;
+
+    [HideInInspector]
+    public bool isTeleport;
+
+    EnemyHealthSystem pegaseHealthScript;
     #endregion
 
     #region Serialize Var Statement
@@ -83,6 +91,9 @@ public class PegaseMovement : MonoBehaviour
 
     [Header("Stats")]
 
+    [SerializeField]
+    [Min(0)]
+    float teleportationTime = 0;
     [SerializeField]
     [Min(0)]
     float maxRadiusTeleport = 0;
@@ -140,6 +151,8 @@ public class PegaseMovement : MonoBehaviour
 
         startPos = transform.position;
         stayTimer = stayDuration;
+
+        pegaseHealthScript = gameObject.transform.root.GetComponent<EnemyHealthSystem>();
     }
 
     private void Update()
@@ -225,12 +238,11 @@ public class PegaseMovement : MonoBehaviour
 
     void Teleport()                                     
     {
-        Vector3 randomPosition = Random.insideUnitCircle * (maxRadiusTeleport - minRadiusTeleport);
-        transform.position = player.transform.position + randomPosition.normalized * minRadiusTeleport + randomPosition;
+        pegaseRgb.velocity = Vector2.zero;
+        pegaseHealthScript.canTakeDmg = false;
+        canMove = false;
 
-        startPos = transform.position;
-        RefreshRangeCircles();
-        allRangesCircles.SetActive(true);
+        StartCoroutine(WaitBeforeTp());
     }
 
     void SetDirection()                                 //method setting the direction for the animator
@@ -325,5 +337,24 @@ public class PegaseMovement : MonoBehaviour
         }
         DrawRangeCircles();
         showRanges = false;
+    }
+
+    IEnumerator WaitBeforeTp()
+    {
+        prepareTeleport = true;
+        yield return new WaitForSeconds(teleportationTime - 0.4f);
+
+        prepareTeleport = false;
+        yield return new WaitForSeconds(0.4f);
+
+        isTeleport = true;
+        Vector3 randomPosition = Random.insideUnitCircle * (maxRadiusTeleport - minRadiusTeleport);
+        transform.position = player.transform.position + randomPosition.normalized * minRadiusTeleport + randomPosition;
+        startPos = transform.position;
+        pegaseHealthScript.canTakeDmg = true;
+
+        yield return new WaitForSeconds(0.4f);
+        isTeleport = false;
+        canMove = true;
     }
 }
