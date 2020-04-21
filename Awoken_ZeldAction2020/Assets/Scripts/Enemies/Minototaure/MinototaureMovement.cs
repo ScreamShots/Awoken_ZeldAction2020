@@ -11,22 +11,25 @@ using DevTools;
 public class MinototaureMovement : MonoBehaviour
 {
     #region Variables
-    [HideInInspector]
-    public Rigidbody2D minototaureRgb;                              
-    private GameObject player;
 
+    //global
+
+    [HideInInspector]
+    public Rigidbody2D minototaureRgb;
+    private GameObject player;
     MinototaureAttack minototaureAttackScript;
     EnemyHealthSystem minototaureHealthScript;
 
-    //global
     public enum Direction { up, down, left, right }
-    [HideInInspector]                                           //enum for animator direction
+    [HideInInspector]                                           
     public Direction watchDirection = Direction.down;
 
     Vector3 startPos;
 
     float playerDistance;
     Vector2 direction;
+
+    //attack information
 
     [HideInInspector]
     public bool canMove = true;
@@ -74,7 +77,7 @@ public class MinototaureMovement : MonoBehaviour
     [Min(0)]
     float stayDuration = 0;
 
-    //Phase2 - Chase
+    //Phase2 - Chase PJ
 
     [Header("Distances")]
     [Header("Phase2 - Chase")]
@@ -103,8 +106,7 @@ public class MinototaureMovement : MonoBehaviour
 
     [SerializeField]
     [Min(0)]
-    float btwAttackSpeed = 0;
-
+    float cooldownSpeed = 0;
     #endregion
 
     #region Tools
@@ -168,7 +170,7 @@ public class MinototaureMovement : MonoBehaviour
         {
             if (playerDistance <= attackDistance)
             {
-                if (!playerInAttackRange && canMove)                                                //change the bool saying that the enemy can attack (see attack class) + setting the move value to 0 once(stop previous move)
+                if (!playerInAttackRange && canMove)                                            //change the bool saying that the enemy can attack (see attack class) + setting the move value to 0 once(stop previous move)
                 {
                     minototaureRgb.velocity = Vector2.zero;
                     isOnRandomMove = false;
@@ -184,8 +186,12 @@ public class MinototaureMovement : MonoBehaviour
                 {
                     minototaureHealthScript.canTakeDmg = true;
                 }
+                else if (minototaureCooldown)
+                {
+                    minototaureHealthScript.canTakeDmg = false;
+                }
             }
-            else                                                                                    //else change bool saying the player is to far (for random Move behaviour)
+            else                                                                                //else change bool saying the player is to far (for random Move behaviour)
             {
                 if (!minototaureCooldown)
                 {
@@ -193,7 +199,7 @@ public class MinototaureMovement : MonoBehaviour
                     playerInAttackRange = false;
                     playerDetected = false;
                 }
-                if (minototaureCooldown)
+                else if (minototaureCooldown)
                 {
                     minototaureHealthScript.canTakeDmg = false;
                     playerDetected = true;
@@ -207,7 +213,7 @@ public class MinototaureMovement : MonoBehaviour
                 {
                     minototaureRgb.velocity = Vector2.zero;
                 }
-                minototaureCooldown = true;
+                minototaureCooldown = true;                                                     //change bool saying Minototaure is on cooldown phase
             }
             else
             {
@@ -225,16 +231,16 @@ public class MinototaureMovement : MonoBehaviour
 
         if (!playerInAttackRange && canMove)                                
         {
-            if (playerDetected)                                             
+            if (playerDetected)                                                                 //if Player is detected, Minototaure rush on him with speed increase                                   
             {
                 minototaureRgb.velocity = playerDirection.normalized * chaseSpeed * Time.fixedDeltaTime;
                 isOnRandomMove = false;
             }
-            else                                                            //else it's the random movement behaviour that apply (the player is to far)
+            else                                                                                //else it's the random movement behaviour that apply (the player is to far)
             {
                 if (stayTimer > 0)                                              
                 {
-                    if (minototaureRgb.velocity != Vector2.zero)                         //if we are in this immmobile phase and the velocity is not sero we do so (so the enemy dont move in this phase)
+                    if (minototaureRgb.velocity != Vector2.zero)                                //if we are in this immmobile phase and the velocity is not sero we do so (so the enemy dont move in this phase)
                     {
                         minototaureRgb.velocity = Vector2.zero;
                     }
@@ -253,9 +259,9 @@ public class MinototaureMovement : MonoBehaviour
             }
         }
 
-        if (minototaureCooldown && !playerInAttackRange)
+        if (minototaureCooldown && !playerInAttackRange)                                        //if Minotoaure is on cooldown phase, follow Player with slow speed
         {
-            minototaureRgb.velocity = playerDirection.normalized * btwAttackSpeed * Time.fixedDeltaTime;
+            minototaureRgb.velocity = playerDirection.normalized * cooldownSpeed * Time.fixedDeltaTime;
         }
     }
 
