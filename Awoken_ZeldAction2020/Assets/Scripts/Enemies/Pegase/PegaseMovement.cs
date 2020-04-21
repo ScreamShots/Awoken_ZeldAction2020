@@ -5,12 +5,12 @@ using DevTools;
 
 /// <summary>
 /// Made by Antoine
-/// This script gather movement of Pegase
+/// This script gather movement of Pegase & teleportation 
 /// </summary>
 
 public class PegaseMovement : MonoBehaviour
 {
-    #region HideInInspector Var Statement
+    #region Variables
 
     //global
 
@@ -27,7 +27,9 @@ public class PegaseMovement : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;                                
 
-    Vector2 direction;                                       
+    Vector2 direction;
+
+    EnemyHealthSystem pegaseHealthScript;
 
     //Phase1 - Random Mouvement
 
@@ -40,7 +42,6 @@ public class PegaseMovement : MonoBehaviour
     [HideInInspector]
     public bool isOnRandomMove;                                
 
-
     //Phase2 - Teleport
 
     [HideInInspector]
@@ -51,11 +52,9 @@ public class PegaseMovement : MonoBehaviour
 
     [HideInInspector]
     public bool isTeleport;
-
-    EnemyHealthSystem pegaseHealthScript;
     #endregion
 
-    #region Serialize Var Statement
+    #region Inspector Settings
 
     //Phase1 - Random Mouvement
     [Header("Distances")]
@@ -80,7 +79,7 @@ public class PegaseMovement : MonoBehaviour
     [Min(0)]
     float stayDuration = 0;
 
-    //Phase2 - Chase
+    //Phase2 - Teleportation
 
     [Header("Distances")]
     [Header("Phase2 - Teleport")]
@@ -92,7 +91,7 @@ public class PegaseMovement : MonoBehaviour
     [Header("Stats")]
 
     [SerializeField]
-    [Min(0)]
+    [Min(0.4f)]
     float teleportationTime = 0;
     [SerializeField]
     [Min(0)]
@@ -148,18 +147,17 @@ public class PegaseMovement : MonoBehaviour
         }
 
         pegaseRgb = GetComponent<Rigidbody2D>();
+        pegaseHealthScript = gameObject.transform.root.GetComponent<EnemyHealthSystem>();
 
         startPos = transform.position;
         stayTimer = stayDuration;
-
-        pegaseHealthScript = gameObject.transform.root.GetComponent<EnemyHealthSystem>();
     }
 
     private void Update()
     {
         playerDistance = (transform.position - player.transform.position).magnitude;          
 
-        if (playerDistance <= playerDetectionDistance)                                    
+        if (playerDistance <= playerDetectionDistance)                  //if Player is too close of Pegase                           
         {                                                      
             playerDetected = true;
         }
@@ -169,33 +167,32 @@ public class PegaseMovement : MonoBehaviour
         }
 
         SetDirection();                                                                        
-
     }
 
     private void FixedUpdate()
     {
         if (canMove)                          
         {
-            if (playerDetected)                                             
+            if (playerDetected)                                         //Start the teleportation of Pegase                        
             {
                 Teleport();
             }
             else                                                            //else it's the random movement behaviour that apply (the player is to far)
             {
-                if (stayTimer > 0)                                              //if the timer is not at zero the enemy is in an interval pause moment of the phase 1 (not mooving)
+                if (stayTimer > 0)                                          //if the timer is not at zero the enemy is in an interval pause moment of the phase 1 (not mooving)
                 {
-                    if (pegaseRgb.velocity != Vector2.zero)                         //if we are in this immmobile phase and the velocity is not sero we do so (so the enemy dont move in this phase)
+                    if (pegaseRgb.velocity != Vector2.zero)                 //if we are in this immmobile phase and the velocity is not sero we do so (so the enemy dont move in this phase)
                     {
                         pegaseRgb.velocity = Vector2.zero;
                     }
-                    if (randomDirSet)                                               //reset some value proper to that state
+                    if (randomDirSet)                                       //reset some value proper to that state
                     {
                         randomDirSet = false;
                     }
                     stayTimer -= Time.deltaTime;
                     isOnRandomMove = false;
                 }
-                else                                                            //if the timer is at 0, we can launch a random movement moment handled by the method RandomMove() 
+                else                                                        //if the timer is at 0, we can launch a random movement moment handled by the method RandomMove() 
                 {
                     isOnRandomMove = true;
                     RandomMove();
@@ -236,7 +233,7 @@ public class PegaseMovement : MonoBehaviour
         }
     }
 
-    void Teleport()                                     
+    void Teleport()                                                                                          
     {
         pegaseRgb.velocity = Vector2.zero;
         pegaseHealthScript.canTakeDmg = false;
@@ -245,7 +242,7 @@ public class PegaseMovement : MonoBehaviour
         StartCoroutine(WaitBeforeTp());
     }
 
-    void SetDirection()                                 //method setting the direction for the animator
+    void SetDirection()                     //method setting the direction for the animator
     {
         if (!playerDetected)                                                //this part work if we are in phase 1
         {
@@ -329,7 +326,7 @@ public class PegaseMovement : MonoBehaviour
     }
 
     [ContextMenu("Refresh Range Circles")]
-    void RefreshRangeCircles()          //function that refresh the range circles by calling this function from the inspector (right click on the name of the script)
+    void RefreshRangeCircles()              //function that refresh the range circles by calling this function from the inspector (right click on the name of the script)
     {
         if (allRangesCircles != null)
         {
@@ -341,19 +338,19 @@ public class PegaseMovement : MonoBehaviour
 
     IEnumerator WaitBeforeTp()
     {
-        prepareTeleport = true;
+        prepareTeleport = true;                                         //play animation of flashing Pegase before teleport it
         yield return new WaitForSeconds(teleportationTime - 0.4f);
 
         prepareTeleport = false;
         yield return new WaitForSeconds(0.4f);
 
-        isTeleport = true;
-        Vector3 randomPosition = Random.insideUnitCircle * (maxRadiusTeleport - minRadiusTeleport);
+        isTeleport = true;                                                                                                      //play animation of teleportation
+        Vector3 randomPosition = Random.insideUnitCircle * (maxRadiusTeleport - minRadiusTeleport);                             //find random position inside cercle with paramaters of radius fill in inspector
         transform.position = player.transform.position + randomPosition.normalized * minRadiusTeleport + randomPosition;
-        startPos = transform.position;
+        startPos = transform.position;                                                                                          //update the position of Pegase for showing the new random walk cercle
         pegaseHealthScript.canTakeDmg = true;
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.4f);                                                                                  //wait this time for not walk directly after teleportation (animation is playing) 
         isTeleport = false;
         canMove = true;
     }
