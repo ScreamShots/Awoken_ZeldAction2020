@@ -21,7 +21,6 @@ public class PegaseSupport : MonoBehaviour
     [Space]
 
     public List<GameObject> detectedElement;
-
     #endregion
 
     private void Start()
@@ -37,14 +36,14 @@ public class PegaseSupport : MonoBehaviour
             {
                 if (detectedElement[i].gameObject != null && pegaseHealthScript.currentHp >= 0)
                 {
-                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().canTakeDmg = false;
+                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().canTakeDmg = false;                             //if a element is in the liste, he's can't take damage
                 }
-                else if (detectedElement[i].gameObject == null)
+                else if (detectedElement[i].gameObject == null)                                                                     //remove a element of the list if he's = null 
                 {
                     detectedElement.Remove(detectedElement[i].gameObject);
                 }
                 
-                if(pegaseHealthScript.currentHp <= 0)
+                if(pegaseHealthScript.currentHp <= 0)                                                                               //when Pegase die, the ennemies can take damage again
                 {
                     detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().canTakeDmg = true;
                 }
@@ -60,7 +59,7 @@ public class PegaseSupport : MonoBehaviour
         {
             if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)         
             {
-                for(int i = 0; i < detectedElement.Count; i++)
+                for(int i = 0; i < detectedElement.Count; i++)                                                                        //for not add twice same element in the list
                 {
                     if (detectedElement[i].gameObject.transform.root.name == element.transform.root.name)
                     {

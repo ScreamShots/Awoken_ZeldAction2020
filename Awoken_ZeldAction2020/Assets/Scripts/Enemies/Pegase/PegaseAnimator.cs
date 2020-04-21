@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Antoine
+/// This script involve animation of Pegase
+/// </summary>
+
 public class PegaseAnimator : MonoBehaviour
 {
+    #region Variables
     Animator pegaseAnim;
     PegaseSupport pegasenSupportScript;
     PegaseMovement pegaseMoveScript;
 
     PegaseMovement.Direction animDirection;
+    #endregion
 
     private void Start()
     {
@@ -25,7 +32,6 @@ public class PegaseAnimator : MonoBehaviour
         pegaseAnim.SetBool("PrepareTP", pegaseMoveScript.prepareTeleport);
         pegaseAnim.SetBool("TP", pegaseMoveScript.isTeleport);
     }
-
 
     void SetAnimDirection()
     {
