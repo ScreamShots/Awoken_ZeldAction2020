@@ -9,11 +9,13 @@ using UnityEngine;
 
 public class MinototaureAnimator : MonoBehaviour
 {
+    #region Variables
     Animator minototaureAnim;
     MinototaureAttack minototaureAttackScript;
     MinototaureMovement minototaureMoveScript;
 
     MinototaureMovement.Direction animDirection;
+    #endregion
 
     private void Start()
     {
@@ -31,9 +33,11 @@ public class MinototaureAnimator : MonoBehaviour
 
         minototaureAnim.SetBool("RandomWalk", minototaureMoveScript.isOnRandomMove);
         minototaureAnim.SetBool("Chase", minototaureMoveScript.playerDetected);
+
         minototaureAnim.SetBool("PrepaAttack", minototaureAttackScript.isPreparingAttack);
         minototaureAnim.SetBool("Attack", minototaureAttackScript.lauchAttack);
         minototaureAnim.SetBool("Stun", minototaureAttackScript.isStun);
+
         minototaureAnim.SetBool("Cooldown", minototaureMoveScript.minototaureCooldown);
     }
 

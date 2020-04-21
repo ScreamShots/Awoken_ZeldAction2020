@@ -17,7 +17,7 @@ public class MinototaureAttack : MonoBehaviour
     EnemyHealthSystem minototaureHealthScript;
     GameObject player;
 
-    //attack
+    //attack information
 
     [HideInInspector]
     public bool isAttacking;                //is the enemy on and attack state
@@ -41,10 +41,6 @@ public class MinototaureAttack : MonoBehaviour
     [Min(0)]
     float prepareChargeTime = 0;
 
-    [SerializeField]
-    [Min(0)]
-    float timeBtwAttack = 0;
-
     [Header("Part2 - Stun")]
 
     [SerializeField]
@@ -59,6 +55,12 @@ public class MinototaureAttack : MonoBehaviour
     [SerializeField]
     [Min(0)]
     float staminaLost = 0;
+
+    [Header("Part3 - Cooldown")]
+
+    [SerializeField]
+    [Min(0)]
+    float timeBtwAttack = 0;
     #endregion
 
     private void Start()
