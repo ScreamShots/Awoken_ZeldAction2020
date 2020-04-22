@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Antoine
+/// This script gather attacks relative to state 1 of Zeus
+/// </summary>
+
 public class BossState1 : MonoBehaviour
 {
     #region Pattern1
