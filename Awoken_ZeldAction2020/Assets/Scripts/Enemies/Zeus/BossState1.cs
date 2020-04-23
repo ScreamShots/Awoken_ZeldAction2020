@@ -10,6 +10,8 @@ using UnityEngine;
 public class BossState1 : MonoBehaviour
 {
     #region Pattern1
+    [HideInInspector ]public bool pattern1IsRunning;
+
     [Header("Pattern1")] public Transform throneArena;
 
     [Space]
@@ -19,18 +21,22 @@ public class BossState1 : MonoBehaviour
     [HideInInspector] public bool animThunder;
 
     public GameObject Lightning;
+    private GameObject newLightning;
     #endregion
 
     #region Pattern2
+    [HideInInspector] public bool pattern2IsRunning;
+
     [Header("Pattern2")] public Transform middleArena; public Transform shockWaveSpawn;
 
     [Space]
-    public float timeBtwShockWave;
+    public float timeBtwShockWave;                              //need to be superior of alive time of ShockWave
     private float timeLeft2;
 
     [HideInInspector] public bool animShockWave;
 
     public GameObject ShockWave;
+    private GameObject newShockWave;
     #endregion
 
     private GameObject player;
@@ -39,14 +45,36 @@ public class BossState1 : MonoBehaviour
     {
         player = PlayerManager.Instance.gameObject;
 
-        timeLeft = timeBtwLightning;
-        timeLeft2 = timeBtwShockWave;
+        timeLeft = 1f;
+        timeLeft2 = 1f;
     }
 
     private void Update()
     {
         AttackState1();
         Move();
+        CheckPatternRunning();
+    }
+
+    void CheckPatternRunning()
+    {
+        if (newLightning != null)
+        {
+            pattern1IsRunning = true;
+        }
+        else
+        {
+            pattern1IsRunning = false;
+        }
+
+        if (newShockWave != null)
+        {
+            pattern2IsRunning = true;
+        }
+        else
+        {
+            pattern2IsRunning = false;
+        }
     }
 
     void Move()
@@ -84,7 +112,8 @@ public class BossState1 : MonoBehaviour
         {
             animThunder = true;
             timeLeft += timeBtwLightning;
-            Instantiate(Lightning, player.transform.position, Lightning.transform.rotation);
+            GameObject lightningInstance = Instantiate(Lightning, player.transform.position, Lightning.transform.rotation);
+            newLightning = lightningInstance;
         }
     }
 
@@ -101,7 +130,8 @@ public class BossState1 : MonoBehaviour
         if (timeLeft2 <= 0)
         {
             timeLeft2 += timeBtwShockWave;
-            Instantiate(ShockWave, shockWaveSpawn.position, ShockWave.transform.rotation);
+            GameObject shockWaveInstance = Instantiate(ShockWave, shockWaveSpawn.position, ShockWave.transform.rotation);
+            newShockWave = shockWaveInstance;
         }
     }
 }

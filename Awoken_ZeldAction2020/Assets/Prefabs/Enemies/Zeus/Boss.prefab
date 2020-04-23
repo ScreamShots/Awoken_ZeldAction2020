@@ -158,23 +158,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3877349471966037671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4de292400c181f4bbf0acf08bfde649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 650
+  maxHp: 520
   currentHp: 0
   canTakeDmg: 1
   corps: {fileID: 0}
   s1_Pattern1: 0
   s1_Pattern2: 0
-  s1_timeBtwPattern1And2: 15
+  s1_pattern1_DurationTime: 4
+  s1_pattern2_DurationTime: 8
+  s1_pauseTimePattern1_2: 0
   s2_Pattern1: 0
   s2_Pattern2: 0
   s2_Pattern3: 0
-  s2_timeBtwPattern1And2: 5
-  s2_timeBtwPattern3And1: 2
+  s2_pattern1_DurationTime: 6
+  s2_pattern2_DurationTime: 6
+  s2_pattern3_DurationTime: 3
+  s2_pauseTimePattern1_2: 0
+  s2_pauseTimePattern3_1: 0
 --- !u!114 &3877349471966037668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,16 +187,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3877349471966037671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c8f6b937e27b45439dc57d91e733b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pattern1IsRunning: 0
   throneArena: {fileID: 0}
   timeBtwLightning: 2
   animThunder: 0
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
     type: 3}
+  pattern2IsRunning: 0
   middleArena: {fileID: 0}
   shockWaveSpawn: {fileID: 102950560}
   timeBtwShockWave: 4
@@ -210,15 +217,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696b42cbd1514934ba5aeb3965a05097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pattern1IsRunning: 0
   watchDirection: 0
   bossIsShooting: 0
+  shoot3bullets: 0
   shootPoint: {fileID: 1058051325}
   bossStrike: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39,
     type: 3}
   timeBeforeShoot: 1
   timeBtwStrike: 2
-  strikeSpeed: 1500
-  quickShoot: 0.5
+  strikeSpeed: 800
+  quickShoot: 0.7
+  pattern2IsRunning: 0
   rightArena: {fileID: 0}
   leftArena: {fileID: 0}
   downArena: {fileID: 0}
@@ -227,6 +237,8 @@ MonoBehaviour:
   wallTransform: {fileID: 1647592546}
   wallspawnTime: 0.3
   destroyWallTIme: 1
+  shoot1bullets: 0
+  pattern3IsRunning: 0
   throneArena: {fileID: 0}
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
     type: 3}
