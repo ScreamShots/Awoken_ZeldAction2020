@@ -168,6 +168,7 @@ MonoBehaviour:
   dmg: 10
   bulletSpeed: 1000
   staminaLoseOnBlock: 0
+  launchBackAccelerationRatio: 1.5
   TimeBeforeDestroy: 10
   aimDirection: {x: 0, y: 0}
 --- !u!114 &6945283257090487486
@@ -183,3 +184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlocked: 0
+  isParied: 0
+  hasBeenLaunchBack: 0
+  projectileDirection: {x: 0, y: 0}
