@@ -34,7 +34,7 @@ public class StaminaBar : MonoBehaviour
 
     private void Update()
     {
-        if(playerShieldSystem.currentStamina >= playerShieldSystem.maxStamina)
+        if (playerShieldSystem.currentStamina >= playerShieldSystem.maxStamina - playerShieldSystem.maxStamina * 0.01) // the soustraction on the second part of the test creat a margin that smooth the stamina bar display
         {
             fillStaminaBar.transform.parent.gameObject.SetActive(false);                        //if the stamina is at his max value hide the stamina bar
         }

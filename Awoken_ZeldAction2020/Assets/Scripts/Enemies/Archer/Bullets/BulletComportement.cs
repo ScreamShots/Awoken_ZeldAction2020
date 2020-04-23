@@ -19,6 +19,9 @@ public class BulletComportement : MonoBehaviour
 
     [SerializeField] private float staminaLoseOnBlock = 0;
     private BlockHandler blockHandle;
+    [SerializeField]
+    [Min(0)]
+    private float launchBackAccelerationRatio = 1;
 
     [Space]
     public float TimeBeforeDestroy;
@@ -34,6 +37,7 @@ public class BulletComportement : MonoBehaviour
 
     private int layerMaskPlyShield = 0;         //Layer mask to isolate the playerShield layer
     private bool blockDetected = false;         //true if the ray detected an activated shield
+    private bool l_hasBeenLaunchBack = false;
     #endregion
 
     private void Start()
@@ -53,6 +57,12 @@ public class BulletComportement : MonoBehaviour
 
     private void Update()
     {
+        if(blockHandle.hasBeenLaunchBack && blockHandle.hasBeenLaunchBack != l_hasBeenLaunchBack)       //when launch back through player pary (execute only once)
+        {
+            bulletSpeed *= launchBackAccelerationRatio;                         //augment the speed oif the bullet      
+            gameObject.layer = LayerMask.NameToLayer("PlayerProjectile");       //change the layer of the bullet from enemyProjectile (for player interraction) to playerProjectile (for enemy intrraction).
+            l_hasBeenLaunchBack = blockHandle.hasBeenLaunchBack;                //variable l_hasBeenLaunchBack is used to run through that part of the script only once
+        }
 
         if (!blockHandle.isParied && !blockHandle.hasBeenLaunchBack)
         {
@@ -77,18 +87,30 @@ public class BulletComportement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)             //When collide with player destroy bullet
     {
-        if (other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Player"))
+        if (!blockHandle.hasBeenLaunchBack)             //if the projectile has not been laucnh back through player parry
         {
-            if (blockDetected)                                                                                      //if we detected a shield before and that the bullet is collisionning with the hitbox of the player
-            {                                                                                                       // we run the block behaviour instead
-                OnBlocked();
-            }
-            else
+            if (other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Player"))
             {
-                player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
-                Destroy(gameObject);
-            }            
+                if (blockDetected)                                                                                      //if we detected a shield before and that the bullet is collisionning with the hitbox of the player
+                {                                                                                                       // we run the block behaviour instead
+                    OnBlocked();
+                }
+                else
+                {
+                    player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                    Destroy(gameObject);
+                }
+            }
         }
+        else                                //if the projectile has been launch back through player pary
+        {
+            if(other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Enemy"))
+            {
+                other.gameObject.transform.root.GetComponent<EnemyHealthSystem>().TakeDmg(dmg);
+                Destroy(gameObject);
+            }
+        }
+      
     }
 
     void OnBlocked()                        //What happen when the projectile is blocked
@@ -97,8 +119,15 @@ public class BulletComportement : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void RayCastSecurity()
+    void RayCastSecurity()      
     {
+        /// <summary>
+        /// /!\ WARNING /!\
+        /// This feature was deved to correct a bug with the collision between projectile and shield. After some time the bug has been discovered and fixed.
+        /// This feature could be deleted from the script and simplified the detection system. However his presence doesn't impact the function of the object.
+        /// Delete it if you have time or perfomance issue or bug.
+        /// </summary>
+
         /*1-*/
         RaycastHit2D centerHit = Physics2D.Raycast(transform.localPosition + (Vector3)aimDirection.normalized * bulletCollider.radius + (Vector3)(bulletRgb.velocity * Time.fixedDeltaTime), bulletRgb.velocity, (bulletRgb.velocity * Time.fixedDeltaTime).magnitude, layerMaskPlyShield);
         /*2-*/

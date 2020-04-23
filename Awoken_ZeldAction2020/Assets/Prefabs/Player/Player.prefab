@@ -117,9 +117,9 @@ GameObject:
   - component: {fileID: 3143229914719487905}
   - component: {fileID: 6837753715911852463}
   - component: {fileID: 8675468669900486257}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Right
-  m_TagString: ShieldZone
+  m_TagString: ParyZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.43601954}
+  m_Offset: {x: 0, y: -0.333488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -162,7 +162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6239728, y: 0.33390594}
+  m_Size: {x: 0.6239728, y: 0.24824587}
   m_EdgeRadius: 0
 --- !u!114 &8675468669900486257
 MonoBehaviour:
@@ -332,9 +332,9 @@ GameObject:
   - component: {fileID: 6340473503409755527}
   - component: {fileID: 7679662503891929217}
   - component: {fileID: 768732633761853316}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Up
-  m_TagString: ShieldZone
+  m_TagString: ParyZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -366,7 +366,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.43601954}
+  m_Offset: {x: 0, y: -0.333488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -377,7 +377,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6239728, y: 0.33390594}
+  m_Size: {x: 0.6239728, y: 0.24824587}
   m_EdgeRadius: 0
 --- !u!114 &768732633761853316
 MonoBehaviour:
@@ -489,8 +489,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5610701383928613835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.711, y: -0.046, z: 0}
-  m_LocalScale: {x: 140, y: 12, z: 1}
+  m_LocalPosition: {x: 0.711, y: 0, z: 0}
+  m_LocalScale: {x: 140, y: 3.5052001, z: 1}
   m_Children: []
   m_Father: {fileID: 2476626050433882228}
   m_RootOrder: 0
@@ -559,7 +559,7 @@ GameObject:
   m_Layer: 8
   m_Name: AttackZone
   m_TagString: AttackZone
-  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -654,7 +654,7 @@ GameObject:
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -816,6 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b5a6eed6d59ca42ab94272ace264bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPary: 0
   allShieldHitZones:
   - {fileID: 3318330977147395281}
   - {fileID: 327994453116283817}
@@ -848,9 +849,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientationArrow: {fileID: 6849812463414929201}
   angleAmplitude: 120
-  isActive: 0
-  buttonIsPressed: 1
   rotaSpeed: 30
+  timeBeforeLaunchBack: 5
+  buttonIsPressed: 1
 --- !u!1 &6371173130185707794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,9 +1082,9 @@ GameObject:
   - component: {fileID: 1134927901752714415}
   - component: {fileID: 5658074706845099629}
   - component: {fileID: 4121028122500889879}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Left
-  m_TagString: ShieldZone
+  m_TagString: ParyZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1115,7 +1116,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.43601954}
+  m_Offset: {x: 0, y: -0.333488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1126,7 +1127,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6239728, y: 0.33390594}
+  m_Size: {x: 0.6239728, y: 0.24824587}
   m_EdgeRadius: 0
 --- !u!114 &4121028122500889879
 MonoBehaviour:
@@ -1153,10 +1154,10 @@ GameObject:
   m_Layer: 0
   m_Name: OrientationArrow
   m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2476626050433882228
 Transform:
   m_ObjectHideFlags: 0
@@ -1183,9 +1184,9 @@ GameObject:
   - component: {fileID: 6800490533465723342}
   - component: {fileID: 4400565988267469045}
   - component: {fileID: 5171433961233439699}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Down
-  m_TagString: ShieldZone
+  m_TagString: ParyZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1217,7 +1218,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.43601954}
+  m_Offset: {x: 0, y: -0.333488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1228,7 +1229,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6239728, y: 0.33390594}
+  m_Size: {x: 0.6239728, y: 0.24824587}
   m_EdgeRadius: 0
 --- !u!114 &5171433961233439699
 MonoBehaviour:

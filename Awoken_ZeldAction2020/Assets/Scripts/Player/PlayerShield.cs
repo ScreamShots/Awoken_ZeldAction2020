@@ -20,6 +20,8 @@ public class PlayerShield : MonoBehaviour
     private PlayerMovement.Direction l_Direction = PlayerMovement.Direction.left;
 
     private bool canReload = true;                  //use to know if the stamina can recover or not
+    [HideInInspector]
+    public bool onPary = false;
 
     PlayerIndex playerIndex = PlayerIndex.One;                        //requiered for gamepad vibrations
 
@@ -40,8 +42,8 @@ public class PlayerShield : MonoBehaviour
     [SerializeField] [Min(0)] 
     private float knockBackIntensity = 0;
 
-    [SerializeField] [Range(0f,1f)]    
-    private float slowRatio = 0;
+    [Range(0f,1f)]    
+    public float slowRatio = 0;
 
     [Header("Stamina Informations")]
 
@@ -109,7 +111,11 @@ public class PlayerShield : MonoBehaviour
             }
             else
             {
-                UseStamina();                       //use stamina if the shield is activated
+                if (!onPary)
+                {
+                    UseStamina();                       //use stamina if the shield is activated
+                }
+               
 
                 if (Input.GetButtonDown("Attack") && !PlayerStatusManager.Instance.cdOnAttack)              //Stop usage of shield when attack's input is pressed and attack.
                 {
@@ -195,7 +201,7 @@ public class PlayerShield : MonoBehaviour
     {
         PlayerStatusManager.Instance.isBlocking = true;             //Giving information to the StatusManager That we are blocking
 
-        movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+
 
         GameObject pariedElement = null;
 
@@ -212,6 +218,7 @@ public class PlayerShield : MonoBehaviour
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
                             GameManager.Instance.ProjectileParyStart(pariedElement);
+                            onPary = true;
                         }                        
                         break;
                     }
@@ -219,6 +226,7 @@ public class PlayerShield : MonoBehaviour
                 if(pariedElement == null)
                 {
                     allShieldZoneScrpit["Up"].isActivated = true;
+                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
                 }                
                 
                 break;
@@ -233,6 +241,7 @@ public class PlayerShield : MonoBehaviour
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
                             GameManager.Instance.ProjectileParyStart(pariedElement);
+                            onPary = true;
                         }
                         break;
                     }
@@ -240,6 +249,7 @@ public class PlayerShield : MonoBehaviour
                 if (pariedElement == null)
                 {
                     allShieldZoneScrpit["Down"].isActivated = true;
+                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
                 }
                 break;
             case PlayerMovement.Direction.left:
@@ -253,6 +263,7 @@ public class PlayerShield : MonoBehaviour
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
                             GameManager.Instance.ProjectileParyStart(pariedElement);
+                            onPary = true;
                         }
                         break;
                     }
@@ -260,6 +271,7 @@ public class PlayerShield : MonoBehaviour
                 if (pariedElement == null)
                 {
                     allShieldZoneScrpit["Left"].isActivated = true;
+                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
                 }
                 break;
             case PlayerMovement.Direction.right:
@@ -273,6 +285,7 @@ public class PlayerShield : MonoBehaviour
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
                             GameManager.Instance.ProjectileParyStart(pariedElement);
+                            onPary = true;
                         }
                         break;
                     }
@@ -280,6 +293,7 @@ public class PlayerShield : MonoBehaviour
                 if (pariedElement == null)
                 {
                     allShieldZoneScrpit["Right"].isActivated = true;
+                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
                 }
                 break;
             default:
@@ -287,12 +301,43 @@ public class PlayerShield : MonoBehaviour
         }
     }
 
-    void DesactivateBlock()                 //Desactivate block if the player relaese the dedicated input
+    public void AfterParyBlockActivation()
+    {
+        switch (movementScript.watchDirection)                      //Activate on single ShieldHitZone (On specific element behaviour) following watch direction
+        {
+            case PlayerMovement.Direction.up:
+                allShieldZoneScrpit["Up"].isActivated = true;
+                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                break;
+            case PlayerMovement.Direction.down:
+
+                allShieldZoneScrpit["Down"].isActivated = true;
+                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block                
+                break;
+            case PlayerMovement.Direction.left:
+                allShieldZoneScrpit["Left"].isActivated = true;
+                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                break;
+            case PlayerMovement.Direction.right:
+                allShieldZoneScrpit["Right"].isActivated = true;
+                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void DesactivateBlock()                 //Desactivate block if the player relaese the dedicated input
     {
         PlayerStatusManager.Instance.needToEndBlock = true;             //Telling the StatusManager that we need to stop block behaviour
 
-        movementScript.speed *= 1 / slowRatio;                          //Getting player movement speed back to normal
 
+        if (!onPary)
+        {
+            movementScript.speed *= 1 / slowRatio;                          //Getting player movement speed back to normal
+        }
+
+        
         switch (movementScript.watchDirection)                          //Desactivated the ShieldHitZone Component that was activated during the block.
         {
             case PlayerMovement.Direction.up:
