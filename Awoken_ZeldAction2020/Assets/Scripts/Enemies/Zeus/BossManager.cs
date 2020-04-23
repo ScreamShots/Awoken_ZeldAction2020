@@ -23,7 +23,9 @@ public class BossManager : EnemyHealthSystem
     public float s1_pattern2_DurationTime;
     [Space]
     public float s1_pauseTimePattern1_2;
-    
+    [Space]
+    public float pauseTimeBtwState1_2;
+
     private bool canPlayState1_pattern1;
     private bool canPlayState1_pattern2;
     #endregion
@@ -49,6 +51,9 @@ public class BossManager : EnemyHealthSystem
     private bool canPlayState2_pattern3;
 
     #endregion
+
+    private bool canPlayNextState;
+    private bool playCoroutine;
 
     void Awake()
     {
@@ -91,7 +96,15 @@ public class BossManager : EnemyHealthSystem
             s1_Pattern1 = false;
             s1_Pattern2 = false;
 
-            State2();
+            if (!playCoroutine)
+            {
+                playCoroutine = true;
+                StartCoroutine(waitBeforeStartNextState());
+            }
+            if (canPlayNextState)
+            {
+                State2();
+            }
         }
         else if(currentHp <= 50 && currentHp > 0)           //state 3
         {
@@ -257,4 +270,11 @@ public class BossManager : EnemyHealthSystem
         }
     }
     #endregion
+
+    IEnumerator waitBeforeStartNextState()
+    {
+        canTakeDmg = false;
+        yield return new WaitForSeconds(pauseTimeBtwState1_2);
+        canPlayNextState = true;
+    }
 }

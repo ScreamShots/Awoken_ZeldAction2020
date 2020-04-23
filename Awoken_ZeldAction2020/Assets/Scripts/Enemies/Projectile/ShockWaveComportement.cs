@@ -58,9 +58,12 @@ public class ShockWaveComportement : MonoBehaviour
         SetDirection();
     }
 
-    void SetDirection()                                                                                                         //Calculate direction between shock wave && player
+    void SetDirection()                                                                                                         
     {
-        direction = (player.transform.position - transform.position).normalized;                                                
+        if(player != null)
+        {
+            direction = (player.transform.position - transform.position).normalized;                                                //Calculate direction between shock wave && player  
+        }                                           
 
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
@@ -91,7 +94,10 @@ public class ShockWaveComportement : MonoBehaviour
         if (other.tag == "HitBox" && other.gameObject.transform.root.tag == "Player")
         {
             canTakeDmg = false;
-            player.GetComponent<BasicHealthSystem>().TakeDmg(dmgShockWave);                                                 //Inflige dmg to Player when shock wave touch the Player
+            if(player != null)
+            {
+                player.GetComponent<BasicHealthSystem>().TakeDmg(dmgShockWave);                                                 //Inflige dmg to Player when shock wave touch the Player
+            }
             GetComponent<CircleCollider2D>().enabled = false;
         }
 

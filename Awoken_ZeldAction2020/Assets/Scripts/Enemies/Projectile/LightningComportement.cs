@@ -46,7 +46,6 @@ public class LightningComportement : MonoBehaviour
             {
                 for (int i = 0; i < inLightningZone.Count; i++)
                 {
-                    Debug.Log("inside");
                     inLightningZone[i].GetComponentInParent<BasicHealthSystem>().TakeDmg(dmgLightning);
                     inLightningZone.Remove(inLightningZone[i].gameObject);
                 }
