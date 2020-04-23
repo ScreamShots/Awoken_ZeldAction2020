@@ -151,7 +151,6 @@ public class PoulionMovementReworked : MonoBehaviour
 
         startPos = transform.position;
         stayTimer = stayDuration;
-        Debug.Log(transform.root.gameObject.name);
     }
 
     private void Update()

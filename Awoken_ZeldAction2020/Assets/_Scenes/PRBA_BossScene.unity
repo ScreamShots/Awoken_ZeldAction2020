@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -121,6 +121,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &623351035
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 144188320564182202, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.7963277
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5239004
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4091797
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a, type: 3}
 --- !u!1 &625644045
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,24 +507,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696b42cbd1514934ba5aeb3965a05097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pattern1IsRunning: 0
+  watchDirection: 0
   bossIsShooting: 0
-  bossCanAttack: 1
+  shoot3bullets: 0
+  shootPoint: {fileID: 1047414245}
+  bossStrike: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39,
+    type: 3}
   timeBeforeShoot: 1
   timeBtwStrike: 2
   strikeSpeed: 1500
   quickShoot: 0.5
-  shootPoint: {fileID: 1047414245}
-  bossStrike: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39,
-    type: 3}
+  animShoot: 0
+  pattern2IsRunning: 0
+  rightArena: {fileID: 0}
+  leftArena: {fileID: 0}
+  downArena: {fileID: 0}
   protectionWall: {fileID: 8249182235389160825, guid: 25cc648498b132c4eb409401669c1898,
     type: 3}
   wallTransform: {fileID: 1937318828}
   wallspawnTime: 0.3
   destroyWallTIme: 1
-  watchDirection: 0
-  timeBtwLightning: 1
+  shoot1bullets: 0
+  animWall: 0
+  pattern3IsRunning: 0
+  throneArena: {fileID: 0}
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
     type: 3}
+  timeBtwLightning: 1
+  animThunder: 0
 --- !u!114 &1284874132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,14 +551,21 @@ MonoBehaviour:
   maxHp: 650
   currentHp: 0
   canTakeDmg: 1
+  corps: {fileID: 0}
   s1_Pattern1: 0
   s1_Pattern2: 0
-  s1_timeBtwPattern1And2: 30
+  s1_pattern1_DurationTime: 0
+  s1_pattern2_DurationTime: 0
+  s1_pauseTimePattern1_2: 0
+  pauseTimeBtwState1_2: 0
   s2_Pattern1: 0
   s2_Pattern2: 0
   s2_Pattern3: 0
-  s2_timeBtwPattern1And2: 5
-  s2_timeBtwPattern3And1: 2
+  s2_pattern1_DurationTime: 0
+  s2_pattern2_DurationTime: 0
+  s2_pattern3_DurationTime: 0
+  s2_pauseTimePattern1_2: 0
+  s2_pauseTimePattern3_1: 0
 --- !u!50 &1284874133
 Rigidbody2D:
   serializedVersion: 4
