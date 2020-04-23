@@ -6,11 +6,13 @@ public class ZeusAnimator : MonoBehaviour
 {
     Animator ZeusAnim;
     BossState1 ZeusScriptState1;
+    BossState2 ZeusScriptState2;
 
     private void Start()
     {
         ZeusAnim = GetComponent<Animator>();
         ZeusScriptState1 = GetComponentInParent<BossState1>();
+        ZeusScriptState2 = GetComponentInParent<BossState2>();
     }
 
     private void Update()
