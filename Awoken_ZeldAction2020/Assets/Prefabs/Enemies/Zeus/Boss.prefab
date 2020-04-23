@@ -163,22 +163,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4de292400c181f4bbf0acf08bfde649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 520
+  maxHp: 650
   currentHp: 0
   canTakeDmg: 1
   corps: {fileID: 0}
   s1_Pattern1: 0
   s1_Pattern2: 0
-  s1_pattern1_DurationTime: 4
+  s1_pattern1_DurationTime: 6
   s1_pattern2_DurationTime: 8
   s1_pauseTimePattern1_2: 0
+  pauseTimeBtwState1_2: 5
   s2_Pattern1: 0
   s2_Pattern2: 0
   s2_Pattern3: 0
   s2_pattern1_DurationTime: 6
-  s2_pattern2_DurationTime: 6
+  s2_pattern2_DurationTime: 8
   s2_pattern3_DurationTime: 3
-  s2_pauseTimePattern1_2: 0
+  s2_pauseTimePattern1_2: 1
   s2_pauseTimePattern3_1: 0
 --- !u!114 &3877349471966037668
 MonoBehaviour:
@@ -226,8 +227,9 @@ MonoBehaviour:
     type: 3}
   timeBeforeShoot: 1
   timeBtwStrike: 2
-  strikeSpeed: 800
+  strikeSpeed: 400
   quickShoot: 0.7
+  animShoot: 0
   pattern2IsRunning: 0
   rightArena: {fileID: 0}
   leftArena: {fileID: 0}
@@ -238,6 +240,7 @@ MonoBehaviour:
   wallspawnTime: 0.3
   destroyWallTIme: 1
   shoot1bullets: 0
+  animWall: 0
   pattern3IsRunning: 0
   throneArena: {fileID: 0}
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,

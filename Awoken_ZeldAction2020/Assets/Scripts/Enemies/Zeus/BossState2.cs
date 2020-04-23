@@ -42,6 +42,8 @@ public class BossState2 : MonoBehaviour
     private float quickShoot;
     private Vector2 direction;
     private float playerDistance;
+
+    [HideInInspector] public bool animShoot;                            //anim of shooting
     #endregion
 
     #region Pattern 2
@@ -67,6 +69,8 @@ public class BossState2 : MonoBehaviour
     private float destroyWallTIme;
     [SerializeField]
     private bool shoot1bullets;
+
+    [HideInInspector] public bool animWall;                             //anim of instantiate wall
     #endregion
 
     #region Pattern 3
@@ -83,7 +87,7 @@ public class BossState2 : MonoBehaviour
 
     public float timeBtwLightning;
     private float timeLeft;
-    [HideInInspector] public bool animThunder;
+    [HideInInspector] public bool animThunder;                         //anim of lightning
     #endregion
 
     void Start()
@@ -143,6 +147,7 @@ public class BossState2 : MonoBehaviour
         }
         else if (BossManager.Instance.s2_Pattern3)
         {
+            animWall = false;
             Pattern3();
         }
     }
@@ -297,6 +302,7 @@ public class BossState2 : MonoBehaviour
     {
         willShoot = true;
         SetDirectionAttack();
+        StartCoroutine(StartAnimationShoot());
 
         yield return new WaitForSeconds(timeBeforeShoot);
         willShoot = false;
@@ -306,18 +312,35 @@ public class BossState2 : MonoBehaviour
     IEnumerator Pattern1Shoot()
     {
         BossAttackStrike();
+        animShoot = false;
+        StartCoroutine(StartAnimationShootBtwStrike());
 
         yield return new WaitForSeconds(quickShoot);
         BossAttackStrike();
+        StartCoroutine(StartAnimationShootBtwStrike());
+        animShoot = false;
 
         yield return new WaitForSeconds(quickShoot);
         BossAttackStrike();
+        animShoot = false;
 
         yield return new WaitForSeconds(timeBtwStrike - 0.1f);
         shoot3bullets = false;
 
         yield return new WaitForSeconds(0.1f);
         bossIsShooting = false;
+    }
+
+    IEnumerator StartAnimationShoot()
+    {
+        yield return new WaitForSeconds(timeBeforeShoot - 0.4f);
+        animShoot = true;
+    }
+
+    IEnumerator StartAnimationShootBtwStrike()
+    {
+        yield return new WaitForSeconds(quickShoot - 0.4f);
+        animShoot = true;
     }
     #endregion
 
@@ -337,6 +360,7 @@ public class BossState2 : MonoBehaviour
     {
         willShoot = true;
         SetDirectionAttack();
+        StartCoroutine(StartAnimationShoot());
 
         yield return new WaitForSeconds(timeBeforeShoot);
         willShoot = false;
@@ -345,7 +369,10 @@ public class BossState2 : MonoBehaviour
 
     IEnumerator Pattern2Shoot()
     {
+        animShoot = false;
         BossAttackStrike();
+        StartCoroutine(StartAnimationWall());
+
         yield return new WaitForSeconds(wallspawnTime);
         StartCoroutine(ProtectionWall());
 
@@ -358,11 +385,18 @@ public class BossState2 : MonoBehaviour
 
     IEnumerator ProtectionWall()
     {
+        animWall = false;
         SetWallDirection();
         GameObject wallInstance = Instantiate(protectionWall, wallTransform.position, wallTransform.rotation);
 
         yield return new WaitForSeconds(destroyWallTIme);
         Destroy(wallInstance);
+    }
+
+    IEnumerator StartAnimationWall()
+    {
+        yield return new WaitForSeconds(wallspawnTime - 0.2f);
+        animWall = true;
     }
     #endregion
 
