@@ -6,9 +6,9 @@ public class EnemySpawner : MonoBehaviour
 {
     #region Variables
     [Header("Spawner Configuration")]
-    [SerializeField] private float spawnRadius;
-    [SerializeField] private float timeBtwSpawn;
-    [SerializeField] private float enemySpawnLimit;
+    [SerializeField] private float spawnRadius = 0;
+    [SerializeField] private float timeBtwSpawn = 0;
+    [SerializeField] private float enemySpawnLimit = 0;
 
     private bool spawnInProgress;
 

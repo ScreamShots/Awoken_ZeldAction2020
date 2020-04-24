@@ -111,10 +111,10 @@ public class ClassicProjectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    [ContextMenu("Refresh Tag List")]
+    /*[ContextMenu("Refresh Tag List")]
     void RefreshTagList()
     {
         allTags = UnityEditorInternal.InternalEditorUtility.tags;                               //Function to access the tag's List from unity in the inspector even if you are not in PlayMode
-    }                                                                                           //To do so just right click on the script name and click on the function name in the menu
+    }        */                                                                                   //To do so just right click on the script name and click on the function name in the menu
 
 }

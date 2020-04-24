@@ -24,22 +24,22 @@ public class BossState2 : MonoBehaviour
     private bool bossIsShooting;
     [SerializeField]
     private bool shoot3bullets;
-    private bool willShoot;
+    
     [SerializeField]
-    private Transform shootPoint;
+    private Transform shootPoint = null;
     [SerializeField]
-    private GameObject bossStrike;
+    private GameObject bossStrike = null;
 
     [Header("Stats")]
 
     [SerializeField]
-    private float timeBeforeShoot;
+    private float timeBeforeShoot = 0;
     [SerializeField]
-    private float timeBtwStrike;
+    private float timeBtwStrike = 0;
     [SerializeField]
-    private float strikeSpeed;
+    private float strikeSpeed = 0;
     [SerializeField]
-    private float quickShoot;
+    private float quickShoot = 0;
     private Vector2 direction;
     private float playerDistance;
 
@@ -57,16 +57,16 @@ public class BossState2 : MonoBehaviour
     public Transform leftArena;
     public Transform downArena;
     [SerializeField]
-    private GameObject protectionWall;
+    private GameObject protectionWall = null;
     [SerializeField]
-    private Transform wallTransform;
+    private Transform wallTransform = null;
 
     [Header("Stats")]
 
     [SerializeField]
-    private float wallspawnTime;
+    private float wallspawnTime = 0;
     [SerializeField]
-    private float destroyWallTIme;
+    private float destroyWallTIme = 0;
     [SerializeField]
     private bool shoot1bullets;
 
@@ -300,12 +300,12 @@ public class BossState2 : MonoBehaviour
 
     IEnumerator PrepareForShoot1()
     {
-        willShoot = true;
+
         SetDirectionAttack();
         StartCoroutine(StartAnimationShoot());
 
         yield return new WaitForSeconds(timeBeforeShoot);
-        willShoot = false;
+
         StartCoroutine(Pattern1Shoot());
     }
 
@@ -358,12 +358,12 @@ public class BossState2 : MonoBehaviour
 
     IEnumerator PrepareForShoot2()
     {
-        willShoot = true;
+
         SetDirectionAttack();
         StartCoroutine(StartAnimationShoot());
 
         yield return new WaitForSeconds(timeBeforeShoot);
-        willShoot = false;
+
         StartCoroutine(Pattern2Shoot());
     }
 

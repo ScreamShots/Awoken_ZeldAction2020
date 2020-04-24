@@ -24,7 +24,6 @@ public class ShockWaveComportement : MonoBehaviour
     [Min(0)]
     float staminaLost = 0;
 
-    private bool canTakeDmg = true;
 
     private GameObject player;
 
@@ -93,7 +92,6 @@ public class ShockWaveComportement : MonoBehaviour
     {
         if (other.tag == "HitBox" && other.gameObject.transform.root.tag == "Player")
         {
-            canTakeDmg = false;
             if(player != null)
             {
                 player.GetComponent<BasicHealthSystem>().TakeDmg(dmgShockWave);                                                 //Inflige dmg to Player when shock wave touch the Player
