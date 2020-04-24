@@ -14,11 +14,13 @@ public class BossManager : EnemyHealthSystem
     #region State 1
     BossState1 state1Script;
 
-    [Space] [Header("Boss State 1")]
+    [Space]
+    [Header("Boss State 1")]
     public bool s1_Pattern1;
     public bool s1_Pattern2;
-    
-    [Space] [Header("Stats")]
+
+    [Space]
+    [Header("Stats")]
     public float s1_pattern1_DurationTime;
     public float s1_pattern2_DurationTime;
     [Space]
@@ -33,12 +35,14 @@ public class BossManager : EnemyHealthSystem
     #region State 2
     BossState2 state2Script;
 
-    [Space] [Header("Boss State 2")]
+    [Space]
+    [Header("Boss State 2")]
     public bool s2_Pattern1;
     public bool s2_Pattern2;
     public bool s2_Pattern3;
 
-    [Space] [Header("Stats")]
+    [Space]
+    [Header("Stats")]
     public float s2_pattern1_DurationTime;
     public float s2_pattern2_DurationTime;
     public float s2_pattern3_DurationTime;
@@ -49,10 +53,22 @@ public class BossManager : EnemyHealthSystem
     private bool canPlayState2_pattern1;
     private bool canPlayState2_pattern2;
     private bool canPlayState2_pattern3;
+    #endregion
 
+    #region 3
+    BossState3 state3Script;
+
+    [Space]
+    [Header("Boss State 3")]
+    public bool s3_Pattern1;
+
+    [Space]
+    [Header("Stats")]
+    public float pauseTimeBtwState2_3;
     #endregion
 
     private bool canPlayNextState;
+    private bool canPlayNextState2;
     private bool playCoroutine;
 
     void Awake()
@@ -75,6 +91,7 @@ public class BossManager : EnemyHealthSystem
 
         state1Script = GetComponent<BossState1>();
         state2Script = GetComponent<BossState2>();
+        state3Script = GetComponent<BossState3>();
 
 
         canPlayState1_pattern1 = true;
@@ -84,19 +101,19 @@ public class BossManager : EnemyHealthSystem
     protected override void Update()
     {
         base.Update();
-        
-        if(currentHp <= 650 && currentHp > 500)             //state 1
+
+        if (currentHp <= 650 && currentHp > 500)             //state 1
         {
             State1();
         }
-        else if(currentHp <= 500 && currentHp > 50)         //state 2
+        else if (currentHp <= 500 && currentHp > 50)         //state 2
         {
             StopCoroutine(S1Pattern1()); StopCoroutine(S1Pattern2());                                   //for stopping the previous pattern
 
             s1_Pattern1 = false;
             s1_Pattern2 = false;
 
-            if (!playCoroutine)
+            if (!playCoroutine & !canPlayNextState)
             {
                 playCoroutine = true;
                 StartCoroutine(waitBeforeStartNextState());
@@ -106,13 +123,23 @@ public class BossManager : EnemyHealthSystem
                 State2();
             }
         }
-        else if(currentHp <= 50 && currentHp > 0)           //state 3
+        else if (currentHp <= 50 && currentHp > 0)           //state 3
         {
             StopCoroutine(S2Pattern1()); StopCoroutine(S2Pattern2()); StopCoroutine(S2Pattern3());      //for stopping the previous pattern
 
             s2_Pattern1 = false;
             s2_Pattern2 = false;
             s2_Pattern3 = false;
+
+            if (!playCoroutine)
+            {
+                playCoroutine = true;
+                StartCoroutine(waitBeforeStartNextState2());
+            }
+            if (canPlayNextState2)
+            {
+                State3();
+            }
         }
     }
 
@@ -144,7 +171,7 @@ public class BossManager : EnemyHealthSystem
 
         yield return new WaitForSeconds(s1_pattern1_DurationTime);
 
-        if(s1_pauseTimePattern1_2 > 0)
+        if (s1_pauseTimePattern1_2 > 0)
         {
             s1_Pattern1 = false;
             yield return new WaitForSeconds(s1_pauseTimePattern1_2);
@@ -271,10 +298,26 @@ public class BossManager : EnemyHealthSystem
     }
     #endregion
 
+    #region State3
+    void State3()
+    {
+        s3_Pattern1 = true;
+        canTakeDmg = true;
+    }
+    #endregion
+
     IEnumerator waitBeforeStartNextState()
     {
         canTakeDmg = false;
         yield return new WaitForSeconds(pauseTimeBtwState1_2);
+        playCoroutine = false;
         canPlayNextState = true;
+    }
+
+    IEnumerator waitBeforeStartNextState2()
+    {
+        canTakeDmg = false;
+        yield return new WaitForSeconds(pauseTimeBtwState2_3);
+        canPlayNextState2 = true;
     }
 }
