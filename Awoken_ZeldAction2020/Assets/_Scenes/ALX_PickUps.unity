@@ -741,33 +741,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adbd223cf1666f1439d27db13f5d3ee1, type: 3}
---- !u!1 &1022233092 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1370253242}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1022233093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022233092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494f1040c405435408b66203128ea0ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDropDistance: -0.5
-  maxDropDistance: 0.5
-  dropChanceItem0: 10
-  dropChanceItem1: 15
-  dropChanceItem2: 33
-  DropItemList:
-  - {fileID: 5185985298356316155, guid: ee61c35fc7138624faf6dc91c3370a5b, type: 3}
-  - {fileID: 1266662756116312142, guid: a8984afa3f081fd4b9ce8ca4a7ba9268, type: 3}
-  - {fileID: 7549480610179070698, guid: adbd223cf1666f1439d27db13f5d3ee1, type: 3}
 --- !u!1001 &1164477104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1046,11 +1019,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ReworkedPoulion
-      objectReference: {fileID: 0}
-    - target: {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
