@@ -108,23 +108,20 @@ public class MinototaureAttack : MonoBehaviour
             else if (minototaureDetectScript.isOverlappingPlayer)
             {
                 lauchAttack = false;
-                isStun = true;
                 player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
-                StartCoroutine(Stun());
+                StartCoroutine(NotStunt());
             }
         }
         else if (minototaureDetectScript.isOverlappingPlayer == true && !minototaureDetectScript.isOverlappingShield)
         {
             lauchAttack = false;
-            isStun = true;
             player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
-            StartCoroutine(Stun());
+            StartCoroutine(NotStunt());
         }
         else
         {
             lauchAttack = false;
-            isStun = true;
-            StartCoroutine(Stun());
+            StartCoroutine(NotStunt());
         }
     }
 
@@ -162,6 +159,15 @@ public class MinototaureAttack : MonoBehaviour
         yield return new WaitForSeconds(stunTime + 0.5f);       //wait the stun duration
         minototaureHealthScript.canTakeDmg = false;
         isStun = false;
+        yield return new WaitForSeconds(0.3f);
+        isAttacking = false;                                    //saying that the attack is finished
+        minototaureMoveScript.canMove = true;
+
+        StartCoroutine(WaitBeforeAttack());
+    }
+
+    IEnumerator NotStunt()
+    {
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;                                    //saying that the attack is finished
         minototaureMoveScript.canMove = true;
