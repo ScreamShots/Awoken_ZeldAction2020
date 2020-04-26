@@ -92,7 +92,7 @@ namespace Sisus.HierarchyFolders
 
 					if(preferences.playModeBehaviour != StrippingType.None)
 					{
-						var hierarchyFolderScript = FileUtility.FindScriptFile(typeof(HierarchyFolder));
+						var hierarchyFolderScript = FileUtility.FindScriptAssetForType(typeof(HierarchyFolder));
 						if(MonoImporter.GetExecutionOrder(hierarchyFolderScript) >= 0)
 						{
 							MonoImporter.SetExecutionOrder(hierarchyFolderScript, -1000);

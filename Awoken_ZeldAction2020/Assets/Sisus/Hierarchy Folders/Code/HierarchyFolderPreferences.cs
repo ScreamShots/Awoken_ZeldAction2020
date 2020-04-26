@@ -29,13 +29,16 @@ namespace Sisus.HierarchyFolders
 		public string nameSuffix = " ---";
 		public bool forceNamesUpperCase = false;
 
-		[Header("Stripping")]
+		[Header("Build Stripping")]
 		[Tooltip("If true then all hierarchy folders will be removed from all scenes during build post processing.\n\nAny child GameObjects will be moved upwards the parent chain.")]
 		public bool removeFromBuild = true;
 		public bool warnWhenNotRemovedFromBuild = true;
 
+		[Header("Play Mode Stripping")]
 		[Tooltip("If true then hierarchy folders will be removed from loaded scenes when their Awake method is called.\n\nAny members of the HierarchyGroup will be moved upwards the parent chain.")]
 		public StrippingType playModeBehaviour = StrippingType.None;
+		[Tooltip("Entire Scene Immediate : All Hierarchy Folders are stripped at the very beginning the scene loading process. Hierarchy order is preserved.\n\nIndividuallyDuringAwake: Hierarchy Folders are stripped in the order that Awake is called for them. Hierarchy order is not preserved.\n\nAll Hierarchy Folders are stripped once scene has fully finished loading and all scene scene objects have been initialized. Hierarchy order is preserved.\n\nIf you encounter ArgumentException: The scene is not loaded then switch to using a stripping method other than Entire Scene Immediate.")]
+		public PlayModeStrippingMethod playModeStrippingMethod = PlayModeStrippingMethod.EntireSceneWhenLoaded;
 
 		[Header("Drawer")]
 		[TextArea(2, 8)]
@@ -73,11 +76,11 @@ namespace Sisus.HierarchyFolders
 		{
 			get
 			{
-				#if UNITY_EDITOR
+#if UNITY_EDITOR
 				return EditorApplication.isPlayingOrWillChangePlaymode && Get().playModeBehaviour == StrippingType.FlattenHierarchy;
-				#else
+#else
 				return false;
-				#endif
+#endif
 			}
 		}
 
@@ -103,11 +106,11 @@ namespace Sisus.HierarchyFolders
 		[NotNull]
 		public Icon Icon()
 		{
-			#if UNITY_2019_3_OR_NEWER
+#if UNITY_2019_3_OR_NEWER
 			var icon =  EditorGUIUtility.isProSkin ? modernDark : modernLight;
-			#else
+#else
 			var icon =  EditorGUIUtility.isProSkin ? classicDark : classicLight;
-			#endif
+#endif
 
 			if(icon.closed == null)
 			{

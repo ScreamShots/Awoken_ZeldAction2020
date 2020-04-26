@@ -6,9 +6,9 @@ namespace Sisus.Attributes
 	/// <summary>
 	/// Interface for attributes that can be added to component classes to receive callbacks when components of a certain type are added or modified through the inspector.
 	/// 
-	/// OnComponentAdded is called whenever a new component of type TComponent is added to the GameObject that contains the component with this attribute.
+	/// The OnComponentAdded is called whenever a new component of type TComponent is added to the GameObject that contains the component with this attribute.
 	/// 
-	/// OnComponentModified is called whenever an existing component of type TComponent is modified on the GameObject that contains the component with this attribute.
+	/// The OnComponentModified is called whenever an existing component of type TComponent is modified on the GameObject that contains the component with this attribute.
 	/// </summary>
 	/// <typeparam name="TComponent"> Type of the component </typeparam>
 	public interface IComponentModifiedCallbackReceiver<TComponent> where TComponent : Component

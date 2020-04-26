@@ -4,8 +4,7 @@ using UnityEngine;
 namespace Sisus.Attributes
 {
 	/// <summary>
-	/// When added before a component class causes the transform component to be hidden
-	/// in the inspector view for any GameObject that contains the component with this attribute.
+	/// When added before a component class causes the transform component to be hidden inside the inspector view for all GameObjects that contain the component with this attribute.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 	public sealed class HideTransformInInspectorAttribute : Attribute, IComponentModifiedCallbackReceiver<Transform>

@@ -1,5 +1,5 @@
 ﻿//#define DEBUG_ON_VALIDATE
-//#define DEBUG_HIERARCHY_CHANGED
+#define DEBUG_HIERARCHY_CHANGED
 
 using UnityEngine;
 using Sisus.Attributes;
@@ -7,7 +7,6 @@ using Sisus.Attributes;
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEditor;
 using JetBrains.Annotations;
 #endif
@@ -24,7 +23,6 @@ namespace Sisus.HierarchyFolders
 	public class HierarchyFolder : MonoBehaviour
 	{
 		#if UNITY_EDITOR
-		public static Scene playModeStrippingHandled;
 		private static readonly List<Component> ReusableComponentsList = new List<Component>(2);
 
 		[UsedImplicitly]
@@ -32,7 +30,30 @@ namespace Sisus.HierarchyFolders
 		{
 			if(HasSupernumeraryComponents())
 			{
-				Debug.LogWarning("Can't add HierarchyFolder component to GameObject with existing components.");
+				Debug.LogWarning("Can't convert GameObject with extraneous components into a Hierarchy Folder.");
+				TurnIntoNormalGameObject();
+				return;
+			}
+
+			#if UNITY_2018_3_OR_NEWER
+			if(PrefabUtility.GetPrefabAssetType(gameObject) != PrefabAssetType.NotAPrefab)
+			#else
+			var prefabType = PrefabUtility.GetPrefabType(gameObject);
+			if(prefabType == PrefabType.Prefab)
+			#endif
+			{
+				Debug.LogWarning("Can't convert prefabs into a Hierarchy Folder. Hierarchy Folders can only exist in the scene.");
+				TurnIntoNormalGameObject();
+				return;
+			}
+
+			#if UNITY_2018_3_OR_NEWER
+			if(PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.Connected)
+			#else
+			if(prefabType == PrefabType.PrefabInstance)
+			#endif
+			{
+				Debug.LogWarning("Can't add HierarchyFolder component to a prefab instance. You need to unpack the prefab instance first.");
 				TurnIntoNormalGameObject();
 				return;
 			}
@@ -64,19 +85,7 @@ namespace Sisus.HierarchyFolders
 		[UsedImplicitly]
 		private void Awake()
 		{
-			if(playModeStrippingHandled == gameObject.scene)
-			{
-				return;
-			}
-
-			playModeStrippingHandled = gameObject.scene;
-
-			var preferences = HierarchyFolderPreferences.Get();
-			var playModeStripping = preferences.playModeBehaviour;
-			if(playModeStripping != StrippingType.None)
-			{
-				HierarchyFolderUtility.ApplyStrippingType(gameObject.scene, playModeStripping);
-			}
+			PlayModeStripper.OnSceneObjectAwake(gameObject);
 		}
 
 		private void ResubscribeToHierarchyChanged(HierarchyFolderPreferences preferences)
@@ -148,107 +157,48 @@ namespace Sisus.HierarchyFolders
 		{
 			var transform = this.transform;
 
-			// For prefab instances use a method where children are not unparented temporarily
-			// because this would require the prefab instance to get unpacked.
-			#if UNITY_2018_3_OR_NEWER
-			if(PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.Connected)
-			#else
-			if(PrefabUtility.GetPrefabType(gameObject) == PrefabType.PrefabInstance)
-			#endif
+			// For non-prefab instances we can use a method where children are unparented temporarily.
+			// This has the benefit the the world position of all children remains unchanged throughout the whole process.
+			var parent = transform.parent;
+			int childCount = transform.childCount;
+			var children = new Transform[childCount];
+			for(int n = childCount - 1; n >= 0; n--)
 			{
-				int childCount = transform.childCount;
-				var positions = new Vector3[childCount];
-				var rotations = new Quaternion[childCount];
-				var scales = new Vector3[childCount];
+				children[n] = transform.GetChild(n);
 
-				for(int n = childCount - 1; n >= 0; n--)
-				{
-					var child = transform.GetChild(n);
-					positions[n] = child.position;
-					rotations[n] = child.rotation;
-					scales[n] = child.lossyScale;
-				}
-
-				RectTransform rectTransform;
-				if(alsoConvertToRectTransform)
-				{
-					rectTransform = gameObject.AddComponent<RectTransform>();
-					rectTransform.hideFlags = HideFlags.HideInInspector | HideFlags.NotEditable;
-					transform = rectTransform;
-				}
-				else
-				{
-					rectTransform = transform as RectTransform;
-				}
-
-				if(rectTransform != null)
-				{
-					rectTransform.anchorMin = Vector2.zero;
-					rectTransform.anchorMax = Vector2.one;
-					rectTransform.pivot = new Vector2(0.5f, 0.5f);
-					rectTransform.offsetMin = Vector2.zero;
-					rectTransform.offsetMax = Vector2.zero;
-				}
-
-				transform.localPosition = Vector3.zero;
-				transform.localEulerAngles = Vector3.zero;
-				transform.localScale = Vector3.one;
-
-				for(int n = childCount - 1; n >= 0; n--)
-				{
-					var child = transform.GetChild(n);
-					child.position = positions[n];
-					child.rotation = rotations[n];
-					child.localScale = Vector3.one;
-					var setWorldScale = scales[n];
-					child.localScale = new Vector3(setWorldScale.x / transform.lossyScale.x, setWorldScale.y / transform.lossyScale.y, setWorldScale.z / transform.lossyScale.z);
-				}
+				// NOTE: Using SetParent with worldPositionStays true is very important (even with RectTransforms).
+				children[n].SetParent(parent, true);
 			}
-			// For non-prefab instances use a method where children are unparented temporarily.
-			// This has the benefit the the world position of all children remains stable throughout the whole process.
+
+			RectTransform rectTransform;
+			if(alsoConvertToRectTransform)
+			{
+				rectTransform = gameObject.AddComponent<RectTransform>();
+				rectTransform.hideFlags = HideFlags.HideInInspector | HideFlags.NotEditable;
+				transform = rectTransform;
+			}
 			else
 			{
-				var parent = transform.parent;
-				int childCount = transform.childCount;
-				var children = new Transform[childCount];
-				for(int n = childCount - 1; n >= 0; n--)
-				{
-					children[n] = transform.GetChild(n);
+				rectTransform = transform as RectTransform;
+			}
 
-					// NOTE: Using SetParent with worldPositionStays true is very important (even with RectTransforms).
-					children[n].SetParent(parent, true);
-				}
+			if(rectTransform != null)
+			{
+				rectTransform.anchorMin = Vector2.zero;
+				rectTransform.anchorMax = Vector2.one;
+				rectTransform.pivot = new Vector2(0.5f, 0.5f);
+				rectTransform.offsetMin = Vector2.zero;
+				rectTransform.offsetMax = Vector2.zero;
+			}
 
-				RectTransform rectTransform;
-				if(alsoConvertToRectTransform)
-				{
-					rectTransform = gameObject.AddComponent<RectTransform>();
-					rectTransform.hideFlags = HideFlags.HideInInspector | HideFlags.NotEditable;
-					transform = rectTransform;
-				}
-				else
-				{
-					rectTransform = transform as RectTransform;
-				}
+			transform.localPosition = Vector3.zero;
+			transform.localEulerAngles = Vector3.zero;
+			transform.localScale = Vector3.one;
 
-				if(rectTransform != null)
-				{
-					rectTransform.anchorMin = Vector2.zero;
-					rectTransform.anchorMax = Vector2.one;
-					rectTransform.pivot = new Vector2(0.5f, 0.5f);
-					rectTransform.offsetMin = Vector2.zero;
-					rectTransform.offsetMax = Vector2.zero;
-				}
-
-				transform.localPosition = Vector3.zero;
-				transform.localEulerAngles = Vector3.zero;
-				transform.localScale = Vector3.one;
-
-				for(int n = 0; n < childCount; n++)
-				{
-					children[n].SetParent(transform, true);
-					children[n].SetAsLastSibling();
-				}
+			for(int n = 0; n < childCount; n++)
+			{
+				children[n].SetParent(transform, true);
+				children[n].SetAsLastSibling();
 			}
 
 			EditorUtility.SetDirty(transform);
@@ -265,6 +215,18 @@ namespace Sisus.HierarchyFolders
 			if(this == null)
 			{
 				EditorApplication.hierarchyChanged -= OnHierarchyChangedInEditMode;
+				return;
+			}
+
+			// Make sure that the user hasn't converted a hierarchy folder into a prefab instance.
+			#if UNITY_2018_3_OR_NEWER
+			if(PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.Connected)
+			#else
+			if(PrefabUtility.GetPrefabType(gameObject) == PrefabType.PrefabInstance)
+			#endif
+			{
+				Debug.LogWarning("Prefab instance can't be Hierarchy Folders. Converting into a normal GameObject.", gameObject);
+				TurnIntoNormalGameObject();
 				return;
 			}
 
@@ -328,9 +290,21 @@ namespace Sisus.HierarchyFolders
 
 		private void OnHierarchyChangedShared()
 		{
+			#if DEV_MODE && DEBUG_HIERARCHY_CHANGED
+			Debug.Log(name + ".OnHierarchyChangedShared");
+			#endif
+
 			if(HasSupernumeraryComponents())
 			{
-				Debug.LogWarning("GameObject " + name + " contained the HierarchyFolder component and other components besides transforms.\nThis is not supported since HierarchyFolder GameObjects are stripped from builds. Removing the HierarchyFolder component now.");
+				Debug.LogWarning("Hierarchy Folder \"" + name + "\" contained extraneous components.\nThis is not supported since Hierarchy Folders are stripped from builds. Converting into a normal GameObject now.", gameObject);
+
+				#if DEV_MODE
+				foreach(var component in gameObject.GetComponents<Component>())
+				{
+					Debug.Log(component.GetType().Name);
+				}
+				#endif
+
 				TurnIntoNormalGameObject();
 				return;
 			}
@@ -342,7 +316,9 @@ namespace Sisus.HierarchyFolders
 		{
 			GetComponents(ReusableComponentsList);
 			// A hierarchy folder GameObject should only have Transform (or RectTransform) and HierarchyFolder components.
-			return ReusableComponentsList.Count > 2;
+			bool tooManyComponents = ReusableComponentsList.Count > 2;
+			ReusableComponentsList.Clear();
+			return tooManyComponents;
 		}
 
 		[ContextMenu("Turn Into Normal GameObject")]

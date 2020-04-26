@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using UnityEditor;
-using UnityEngine;
 using JetBrains.Annotations;
 
 namespace Sisus.HierarchyFolders
@@ -10,7 +9,7 @@ namespace Sisus.HierarchyFolders
 	{
 		#if UNITY_EDITOR
 		[CanBeNull]
-		public static MonoScript FindScriptFile([NotNull]Type classType)
+		public static MonoScript FindScriptAssetForType([NotNull]Type classType)
 		{
 			string name = classType.Name;
 
@@ -61,7 +60,7 @@ namespace Sisus.HierarchyFolders
 					}
 					
 					#if DEV_MODE
-					Debug.LogWarning("FindScriptFile(" + classType.FullName + ") ignoring file @ \"" + path + "\" because MonoScript.GetClass() result " + (scriptClassType == null ? "null" : scriptClassType.FullName) + " did not match classType.");
+					UnityEngine.Debug.LogWarning("FindScriptFile(" + classType.FullName + ") ignoring file @ \"" + path + "\" because MonoScript.GetClass() result " + (scriptClassType == null ? "null" : scriptClassType.FullName) + " did not match classType.");
 					#endif
 				}
 			}
@@ -90,7 +89,7 @@ namespace Sisus.HierarchyFolders
 						}
 
 						#if DEV_MODE
-						Debug.LogWarning("FindScriptFile(" + classType.FullName + ") second pass: ignoring file @ \"" + path + "\" because MonoScript.GetClass() result " + (scriptClassType == null ? "null" : scriptClassType.FullName) + " did not match classType.");
+						UnityEngine.Debug.LogWarning("FindScriptFile(" + classType.FullName + ") second pass: ignoring file @ \"" + path + "\" because MonoScript.GetClass() result " + (scriptClassType == null ? "null" : scriptClassType.FullName) + " did not match classType.");
 						#endif
 					}
 				}
@@ -102,16 +101,78 @@ namespace Sisus.HierarchyFolders
 			if(fallback != null)
 			{
 				#if DEV_MODE
-				Debug.LogWarning("FindScriptFile(" + classType.FullName + ") returning fallback result @ \"" + AssetDatabase.GetAssetPath(fallback) + "\".");
+				UnityEngine.Debug.LogWarning("FindScriptFile(" + classType.FullName + ") returning fallback result @ \"" + AssetDatabase.GetAssetPath(fallback) + "\".");
 				#endif
 				return fallback;
 			}
 
 			#if DEV_MODE
-			Debug.LogWarning("FindScriptFile(" + classType.FullName + ") failed to find MonoScript for class. AssetDatabase.FindAssets(\""+name + " t:MonoScript\") returned "+count+" results.");
+			UnityEngine.Debug.LogWarning("FindScriptFile(" + classType.FullName + ") failed to find MonoScript for class. AssetDatabase.FindAssets(\""+name + " t:MonoScript\") returned "+count+" results.");
 			#endif
 
 			return null;
+		}
+		#endif
+
+		#if UNITY_EDITOR
+		/// <summary>
+		/// Returns asset path to script file by exact name if one exists or any empty string if it doesn't exist.
+		/// </summary>
+		/// <param name="byName"></param>
+		/// <returns></returns>
+		[NotNull]
+		public static string FindScriptAssetByName([NotNull]string byName)
+		{
+			var guids = AssetDatabase.FindAssets(byName + " t:MonoScript");
+
+			int count = guids.Length;
+			if(count == 0)
+			{
+				return null;
+			}
+
+			for(int n = count - 1; n >= 0; n--)
+			{
+				var guid = guids[n];
+				var path = AssetDatabase.GUIDToAssetPath(guid);
+				if(string.Equals(Path.GetFileNameWithoutExtension(path), byName, StringComparison.OrdinalIgnoreCase))
+				{
+					return path;
+				}
+			}
+
+			return "";
+		}
+		#endif
+
+		#if UNITY_EDITOR
+		/// <summary>
+		/// Returns asset path to asset by exact name and extension if one exists or any empty string if it doesn't exist.
+		/// </summary>
+		/// <param name="byName"></param>
+		/// <returns></returns>
+		[NotNull]
+		public static string FindAssetByNameAndExtension([NotNull]string byName, [NotNull]string byExtension)
+		{
+			var guids = AssetDatabase.FindAssets(byName);
+
+			int count = guids.Length;
+			if(count == 0)
+			{
+				return null;
+			}
+
+			for(int n = count - 1; n >= 0; n--)
+			{
+				var guid = guids[n];
+				var path = AssetDatabase.GUIDToAssetPath(guid);
+				if(string.Equals(Path.GetFileNameWithoutExtension(path), byName, StringComparison.OrdinalIgnoreCase) && string.Equals(Path.GetExtension(path), byExtension, StringComparison.OrdinalIgnoreCase))
+				{
+					return path;
+				}
+			}
+
+			return "";
 		}
 		#endif
 	}

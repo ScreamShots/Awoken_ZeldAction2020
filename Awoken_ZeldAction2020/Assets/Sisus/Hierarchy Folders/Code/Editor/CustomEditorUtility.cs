@@ -1,4 +1,6 @@
 ﻿//#define DEBUG_CUSTOM_EDITORS
+//#define DEBUG_PROPERTY_DRAWERS
+//#define DEBUG_SET_EDITING_TEXT_FIELD
 
 #if UNITY_EDITOR
 using System;

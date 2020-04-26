@@ -4,6 +4,7 @@
 #endregion
 
 using System;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
@@ -220,46 +221,53 @@ namespace Sisus.HierarchyFolders
 			var transforms = new Transform[selectedCount];
 			Array.Copy(selectedTransforms, 0, transforms, 0, selectedCount);
 			Array.Sort(transforms, SortByHierarchyOrder);
-			for(int n = transforms.Length - 1; n >= 0; n--)
+
+			for(int n = selectedCount - 1; n >= 0; n--)
 			{
 				var transform = transforms[n];
 				var gameObject = transform.gameObject;
-				
-				// Skip GameObjects that already are hierarchy folders
-				if(gameObject.IsHierarchyFolder())
-				{
-					continue;
-				}
-
-
-				Undo.RegisterFullObjectHierarchyUndo(gameObject, "Convert To Hierarchy Folder");
 
 				var components = gameObject.GetComponents<Component>();
-				
-				// if target has no components besides the Transform component, then converting them is
-				// as simple as adding the HierarchyFolder component to them - the component will handle the rest.
-				if(components.Length == 1)
+
+				// Handle GameObjects that have extraneous components besides the Transform or RectTransform component.
+				if(components.Length > 1)
 				{
-					Undo.AddComponent<HierarchyFolder>(gameObject);
-				}
-				// If the target has supernumerary components, then we can't convert it into a hierarchy folder directly.
-				// Instead we will create a new hierarchy folder parent for it, and move all the children of the target
-				// underneath the folder.
-				else
-				{
+					if(gameObject.IsHierarchyFolder())
+					{
+						continue;
+					}
+
 					#if UNITY_2018_3_OR_NEWER
 					if(PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.Connected)
 					#else
 					if(PrefabUtility.GetPrefabType(gameObject) == PrefabType.PrefabInstance)
 					#endif
 					{
-						Debug.LogWarning("Unpacking prefab root so can move children under new hierarchy folder.");
-						#if UNITY_2018_3_OR_NEWER
-						PrefabUtility.UnpackPrefabInstance(gameObject, PrefabUnpackMode.OutermostRoot, InteractionMode.UserAction);
-						#else
-						PrefabUtility.DisconnectPrefabInstance(gameObject);
-						#endif
+						Debug.LogWarning("Won't convert " + gameObject.name + " because it is a prefab instance and has extraneous components.", gameObject);
+						continue;
 					}
+
+					// No benefit in flattening a target with no children.
+					if(transform.childCount == 0)
+					{
+						Debug.LogWarning("Won't convert " + gameObject.name + " because it has extraneous components.", gameObject);
+						continue;
+					}
+
+					// Never should unparent children of the Canvas.
+					if(gameObject.GetComponent<Canvas>() != null)
+					{
+						Debug.LogWarning("Won't convert " + gameObject.name + " because it has the Canvas component.", gameObject);
+						continue;
+					}
+
+					// Can't convert the target, but ask user if should flatten it instead.
+					if(!EditorUtility.DisplayDialog("Flatten Unconvertable Target?", "Selected GameObject \"" + gameObject.name + "\" contains extraneous components ("+ string.Join(", ", components.Where((c) => c != transform).Select((c) => c == null ? "<Missing Script>" : c.GetType().Name).ToArray()) + ") and as such can't directly be converted into a hierarchy folder.\n\nWould you like to create a new hierarchy folder as a parent of the target and move all " + transform.childCount + " children of the target under the new hierarchy folder?\n\nThis would result in a flatter hierarchy potentially improving performance.", "Flatten Target", "Skip"))
+					{
+						continue;
+					}
+
+					Undo.RegisterFullObjectHierarchyUndo(gameObject, "Convert To Hierarchy Folder");
 
 					var folder = CreateHierarchyFolderInternal(transform is RectTransform);
 					folder.name = gameObject.name;
@@ -271,12 +279,6 @@ namespace Sisus.HierarchyFolders
 
 					transform.UndoableSetParent(folderTransform, "Convert To Hierarchy Folder");
 
-					// Don't unparent children of a Canvas
-					if(gameObject.GetComponent<Canvas>() != null)
-					{
-						continue;
-					}
-
 					int childCount = transform.childCount;
 					if(childCount > 0)
 					{
@@ -286,7 +288,36 @@ namespace Sisus.HierarchyFolders
 							child.UndoableSetParent(folderTransform, "Convert To Hierarchy Folder");
 						}
 					}
+					continue;
 				}
+
+				#if UNITY_2018_3_OR_NEWER
+				if(PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.Connected)
+				#else
+				if(PrefabUtility.GetPrefabType(gameObject) == PrefabType.PrefabInstance)
+				#endif
+				{
+					if(EditorUtility.DisplayDialog("Convert Prefab Instance?", "Are you sure you want to convert the selected prefab instance \"" + gameObject.name + "\" into a hierarchy folder?\n\nIf you select \"Yes\" the prefab instance root will be unpacked as part of the conversion.", "Unpack and Convert", "Skip"))
+					{
+						Undo.RegisterFullObjectHierarchyUndo(gameObject, "Convert To Hierarchy Folder");
+
+						#if UNITY_2018_3_OR_NEWER
+						PrefabUtility.UnpackPrefabInstance(gameObject, PrefabUnpackMode.OutermostRoot, InteractionMode.UserAction);
+						#else
+						PrefabUtility.DisconnectPrefabInstance(gameObject);
+						#endif
+					}
+					else
+					{
+						continue;
+					}
+				}
+				else
+				{
+					Undo.RegisterFullObjectHierarchyUndo(gameObject, "Convert To Hierarchy Folder");
+				}
+				
+				Undo.AddComponent<HierarchyFolder>(gameObject);
 			}
 		}
 
@@ -295,8 +326,6 @@ namespace Sisus.HierarchyFolders
 		#endif
 		private static void ConvertAllEmptyRootGameObjectsToHierarchyFolder()
 		{
-			bool askAboutPrefabs = true;
-
 			for(int s = UnityEngine.SceneManagement.SceneManager.sceneCount - 1; s >= 0; s--)
 			{
 				var scene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(s);
@@ -306,90 +335,26 @@ namespace Sisus.HierarchyFolders
 				{
 					var gameObject = root[n];
 				
-					// Skip GameObjects that already are hierarchy folders
-					if(gameObject.IsHierarchyFolder())
+					// Skip GameObjects that have any extraneous components besides the Transform or RectTransform component.
+					var components = gameObject.GetComponents<Component>();
+					if(components.Length > 1)
+					{
+						continue;
+					}
+
+					// Skip prefab instances - it doesn't feel intuitive for a prefab instance
+					// to be a hierarchy folder, and unpacking the prefab instance would be too destructive.
+					#if UNITY_2018_3_OR_NEWER
+					if(PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.Connected)
+					#else
+					if(PrefabUtility.GetPrefabType(gameObject) == PrefabType.PrefabInstance)
+					#endif
 					{
 						continue;
 					}
 
 					Undo.RegisterFullObjectHierarchyUndo(gameObject, "Convert To Hierarchy Folder");
-
-					var components = gameObject.GetComponents<Component>();
-				
-					// if target has no components besides the Transform component, then converting them is
-					// as simple as adding the HierarchyFolder component to them - the component will handle the rest.
-					if(components.Length == 1)
-					{
-						Undo.AddComponent<HierarchyFolder>(gameObject);
-					}
-					// If the target has supernumerary components, then we can't convert it into a hierarchy folder directly.
-					// Instead we will create a new hierarchy folder parent for it, and move all the children of the target
-					// underneath the folder.
-					else
-					{
-						#if UNITY_2018_3_OR_NEWER
-						if(PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.Connected)
-						#else
-						if(PrefabUtility.GetPrefabType(gameObject) == PrefabType.PrefabInstance)
-						#endif
-						{
-							if(askAboutPrefabs)
-							{
-								bool skip;
-								switch(EditorUtility.DisplayDialogComplex("Prefab Instance Detected", "Unpack prefab instance " + gameObject.name + "?\n\nThis is necessary in order to convert it into a hierarchy folder.", "Unpack", "Unpack All In Scene", "Skip"))
-								{
-									case 0:
-										skip = false;
-										break;
-									case 1:
-										skip = false;
-										askAboutPrefabs = false;
-										break;
-									default:
-										skip = true;
-										break;
-								}
-								if(skip)
-								{
-									continue;
-								}
-							}
-
-							Debug.LogWarning("Unpacking prefab root so can move children under new hierarchy folder.");
-							#if UNITY_2018_3_OR_NEWER
-							PrefabUtility.UnpackPrefabInstance(gameObject, PrefabUnpackMode.OutermostRoot, InteractionMode.UserAction);
-							#else
-							PrefabUtility.DisconnectPrefabInstance(gameObject);
-							#endif
-						}
-
-						var folder = CreateHierarchyFolderInternal(gameObject.transform is RectTransform);
-						folder.name = gameObject.name;
-						Undo.RegisterCreatedObjectUndo(folder, "Convert To Hierarchy Folder");
-
-						var folderTransform = folder.transform;
-						var transform = gameObject.transform;
-						folderTransform.UndoableSetParent(transform.parent, "Convert To Hierarchy Folder");
-						folderTransform.SetSiblingIndex(transform.GetSiblingIndex());
-
-						transform.UndoableSetParent(folderTransform, "Convert To Hierarchy Folder");
-
-						// Don't unparent children of a Canvas
-						if(gameObject.GetComponent<Canvas>() != null)
-						{
-							continue;
-						}
-
-						int childCount = transform.childCount;
-						if(childCount > 0)
-						{
-							for(int c = 0; c < childCount; c++)
-							{
-								var child = transform.GetChild(0);
-								child.UndoableSetParent(folderTransform, "Convert To Hierarchy Folder");
-							}
-						}
-					}
+					Undo.AddComponent<HierarchyFolder>(gameObject);
 				}
 			}
 		}
