@@ -31,6 +31,7 @@ public class PegaseAnimator : MonoBehaviour
         pegaseAnim.SetBool("RandomWalk", pegaseMoveScript.isOnRandomMove);
         pegaseAnim.SetBool("PrepareTP", pegaseMoveScript.prepareTeleport);
         pegaseAnim.SetBool("TP", pegaseMoveScript.isTeleport);
+        pegaseAnim.SetBool("Cooldown", pegaseMoveScript.cooldownActive);
     }
 
     void SetAnimDirection()

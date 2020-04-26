@@ -52,6 +52,10 @@ public class PegaseMovement : MonoBehaviour
 
     [HideInInspector]
     public bool isTeleport;
+
+    private int teleportNumber;
+    [HideInInspector]
+    public bool cooldownActive;
     #endregion
 
     #region Inspector Settings
@@ -99,6 +103,13 @@ public class PegaseMovement : MonoBehaviour
     [SerializeField]
     [Min(0)]
     float minRadiusTeleport = 0;
+
+    [Space] [SerializeField]
+    [Min(0)]
+    float numberTpBeforeCooldown = 0;
+    [SerializeField]
+    [Min(0)]
+    float timeCooldown = 0;
     #endregion
 
     #region Tools
@@ -151,6 +162,8 @@ public class PegaseMovement : MonoBehaviour
 
         startPos = transform.position;
         stayTimer = stayDuration;
+
+        teleportNumber = 0;
     }
 
     private void Update()
@@ -166,12 +179,20 @@ public class PegaseMovement : MonoBehaviour
             playerDetected = false;
         }
 
+        if (teleportNumber >= numberTpBeforeCooldown)                   //if Pegase teleportation number is superior to teleport number required for cooldown
+        {
+            if (!cooldownActive)
+            {
+                StartCoroutine(Cooldown());                             //Start the cooldown : Pegase can't move anymore and he's vulnerable
+            }
+        }
+
         SetDirection();                                                                        
     }
 
     private void FixedUpdate()
     {
-        if (canMove)                          
+        if (canMove & !cooldownActive)                          
         {
             if (playerDetected)                                         //Start the teleportation of Pegase                        
             {
@@ -344,6 +365,7 @@ public class PegaseMovement : MonoBehaviour
         prepareTeleport = false;
         yield return new WaitForSeconds(0.4f);
 
+        teleportNumber++;
         isTeleport = true;                                                                                                      //play animation of teleportation
         Vector3 randomPosition = Random.insideUnitCircle * (maxRadiusTeleport - minRadiusTeleport);                             //find random position inside cercle with paramaters of radius fill in inspector
         transform.position = player.transform.position + randomPosition.normalized * minRadiusTeleport + randomPosition;
@@ -353,5 +375,23 @@ public class PegaseMovement : MonoBehaviour
         yield return new WaitForSeconds(0.4f);                                                                                  //wait this time for not walk directly after teleportation (animation is playing) 
         isTeleport = false;
         canMove = true;
+    }
+
+    IEnumerator Cooldown()
+    {
+        cooldownActive = true;
+        pegaseRgb.velocity = Vector2.zero;
+        pegaseHealthScript.canTakeDmg = true;
+
+        GetComponentInChildren<CapsuleCollider2D>().offset = new Vector2(0, -0.16f);
+        GetComponentInChildren<BoxCollider2D>().offset = new Vector2(0, -0.37f);
+
+        yield return new WaitForSeconds(timeCooldown);
+
+        GetComponentInChildren<CapsuleCollider2D>().offset = new Vector2(0, 0);
+        GetComponentInChildren<BoxCollider2D>().offset = new Vector2(0, -0.25f);
+
+        cooldownActive = false;
+        teleportNumber = 0;
     }
 }
