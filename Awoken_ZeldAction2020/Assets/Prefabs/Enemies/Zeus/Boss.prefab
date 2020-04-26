@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102950559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.249, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3877349471966037667}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058051324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.476, y: -0.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3877349471966037667}
@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 3877349471966037664}
   - component: {fileID: 3877349471966037668}
   - component: {fileID: 1686074760679940912}
+  - component: {fileID: 3877349471188818552}
   m_Layer: 9
   m_Name: Boss
   m_TagString: Enemy
@@ -182,7 +183,7 @@ MonoBehaviour:
   s2_pauseTimePattern1_2: 1
   s2_pauseTimePattern3_1: 0
   s3_Pattern1: 0
-  pauseTimeBtwState2_3: 0
+  pauseTimeBtwState2_3: 5
 --- !u!114 &3877349471966037668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +250,29 @@ MonoBehaviour:
     type: 3}
   timeBtwLightning: 1
   animThunder: 0
+--- !u!114 &3877349471188818552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877349471966037671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92211767abfe1c44b2e287459343e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pattern1IsRunning: 0
+  secretRoomArena: {fileID: 0}
+  spawnerPlace: {fileID: 0}
+  spawnerPlace2: {fileID: 0}
+  spawner: {fileID: 8590007252410235635, guid: 27a4be63c96934e4a9dba4efd3ba80e0, type: 3}
+  spawnRadius: 2
+  timeBtwSpawn: 4
+  enemySpawnLimit: 3
+  enemiesToSpawn:
+  - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
+  - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
 --- !u!1 &3877349472079212283
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3877349472426867581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.332, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3877349471966037667}
@@ -462,7 +486,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

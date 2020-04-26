@@ -400,7 +400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845798808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1245391018}
@@ -1025,15 +1025,25 @@ PrefabInstance:
       propertyPath: throneArena
       value: 
       objectReference: {fileID: 845798809}
-    - target: {fileID: 3877349471966037664, guid: fa0537723b32bdb449490066e1f2d73d,
+    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
-      propertyPath: pauseTimeBtwState2_3
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: secretRoomArena
+      value: 
+      objectReference: {fileID: 401431669}
+    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
+      propertyPath: spawnerPlace
+      value: 
+      objectReference: {fileID: 848646785}
+    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
+      propertyPath: spawnerPlace2
+      value: 
+      objectReference: {fileID: 240616347}
     - target: {fileID: 3877349471966037664, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: maxHp
-      value: 650
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3877349471966037667, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
@@ -1107,32 +1117,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa0537723b32bdb449490066e1f2d73d, type: 3}
---- !u!1 &3877349471188818551 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3877349471966037671, guid: fa0537723b32bdb449490066e1f2d73d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3877349471188818550}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3877349471188818552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3877349471188818551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f92211767abfe1c44b2e287459343e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pattern1IsRunning: 0
-  secretRoomArena: {fileID: 401431669}
-  spawnerPlace: {fileID: 848646785}
-  spawnerPlace2: {fileID: 240616347}
-  spawner: {fileID: 8590007252410235635, guid: 27a4be63c96934e4a9dba4efd3ba80e0, type: 3}
-  spawnRadius: 2
-  timeBtwSpawn: 4
-  enemySpawnLimit: 3
-  enemiesToSpawn:
-  - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
-  - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
