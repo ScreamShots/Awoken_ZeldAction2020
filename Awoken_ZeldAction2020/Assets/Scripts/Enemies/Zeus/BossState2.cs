@@ -41,6 +41,7 @@ public class BossState2 : MonoBehaviour
     [SerializeField]
     private float quickShoot = 0;
     private Vector2 direction;
+    private Vector2 directionBullet;
     private float playerDistance;
 
     [HideInInspector] public bool animShoot;                            //anim of shooting
@@ -228,10 +229,11 @@ public class BossState2 : MonoBehaviour
 
     void BossAttackStrike()
     {
-        direction = (player.transform.position - transform.position).normalized;
+        directionBullet = (player.transform.position - shootPoint.transform.position).normalized;
+        float rotationZ = Mathf.Atan2(directionBullet.y, directionBullet.x) * Mathf.Rad2Deg;
 
-        GameObject bulletInstance = Instantiate(bossStrike, shootPoint.position, shootPoint.rotation);
-        bulletInstance.GetComponent<BulletComportement>().aimDirection = direction;
+        GameObject bulletInstance = Instantiate(bossStrike, shootPoint.position, Quaternion.Euler(0, 0, rotationZ + 90f));
+        bulletInstance.GetComponent<BulletComportement>().aimDirection = directionBullet;
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = strikeSpeed;
     }
 
@@ -242,7 +244,7 @@ public class BossState2 : MonoBehaviour
 
         if (randomPosition == 0)
         {
-            if (!throneArena.GetComponent<ZeusTeleportZone>().playerInZone)
+            if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
             {
                 transform.position = throneArena.position;
             }
@@ -254,7 +256,7 @@ public class BossState2 : MonoBehaviour
         }
         else if (randomPosition == 1)
         {
-            if (!leftArena.GetComponent<ZeusTeleportZone>().playerInZone)
+            if (leftArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
             {
                 transform.position = leftArena.position;
             }
@@ -265,7 +267,7 @@ public class BossState2 : MonoBehaviour
         }
         else if (randomPosition == 2)
         {
-            if (!rightArena.GetComponent<ZeusTeleportZone>().playerInZone)
+            if (rightArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
             {
                 transform.position = rightArena.position;
             }
@@ -276,7 +278,7 @@ public class BossState2 : MonoBehaviour
         }
         else if (randomPosition == 3)
         {
-            if (!downArena.GetComponent<ZeusTeleportZone>().playerInZone)
+            if (downArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
             {
                 transform.position = downArena.position;
             }
