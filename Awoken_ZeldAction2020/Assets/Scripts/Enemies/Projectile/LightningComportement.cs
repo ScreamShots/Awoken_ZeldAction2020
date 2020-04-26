@@ -46,7 +46,7 @@ public class LightningComportement : MonoBehaviour
             {
                 for (int i = 0; i < inLightningZone.Count; i++)
                 {
-                    inLightningZone[i].GetComponentInParent<BasicHealthSystem>().TakeDmg(dmgLightning);
+                    inLightningZone[i].GetComponentInParent<PlayerHealthSystem>().TakeDmg(dmgLightning);
                     inLightningZone.Remove(inLightningZone[i].gameObject);
                 }
             }   
@@ -57,13 +57,13 @@ public class LightningComportement : MonoBehaviour
     {
         if (other.CompareTag("HitBox"))
         {
-            if (!inLightningZone.Contains(other.gameObject) && other.gameObject.GetComponentInParent<BasicHealthSystem>())                     //if Game Object contain a Health system
+            if (!inLightningZone.Contains(other.gameObject) && other.gameObject.GetComponentInParent<PlayerHealthSystem>())                     //if Game Object contain a Health system
             {
-                inLightningZone.Add(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject);
+                inLightningZone.Add(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject);
 
                 for (int i = 0; i < inLightningZone.Count; i++)                                                                                //if Game Object have many hitbox
                 {
-                    if (other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject == inLightningZone[i].gameObject.GetComponentInParent<BasicHealthSystem>().gameObject)
+                    if (other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject == inLightningZone[i].gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject)
                     {
                         sameGameObjectList++;
                     }
@@ -71,7 +71,7 @@ public class LightningComportement : MonoBehaviour
 
                 if (sameGameObjectList > 1)                                                                                                     //if Game Object have many hitbox, just take one 
                 {
-                    inLightningZone.Remove(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject);
+                    inLightningZone.Remove(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject);
                 }
 
                 sameGameObjectList = 0;
@@ -83,9 +83,9 @@ public class LightningComportement : MonoBehaviour
     {
         if ((other.CompareTag("HitBox")))
         {
-            if (inLightningZone.Contains(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject))
+            if (inLightningZone.Contains(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject))
             {
-                inLightningZone.Remove(other.gameObject.GetComponentInParent<BasicHealthSystem>().gameObject);
+                inLightningZone.Remove(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject);
 
                 sameGameObjectList = 0;
             }

@@ -16,7 +16,7 @@ public class BulletComportement : MonoBehaviour
     [SerializeField] private float dmg = 0;
 
     public float bulletSpeed;
-
+    
     [SerializeField] private float staminaLoseOnBlock = 0;
     private BlockHandler blockHandle;
     [SerializeField]
@@ -97,7 +97,7 @@ public class BulletComportement : MonoBehaviour
                 }
                 else
                 {
-                    player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                    player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
                     Destroy(gameObject);
                 }
             }

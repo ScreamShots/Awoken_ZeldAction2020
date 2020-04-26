@@ -190,7 +190,7 @@ public class PlayerAttack : MonoBehaviour
             }
             if(enemyIsImune == false)
             {
-                GamePad.SetVibration(playerIndex, vibrateIntensity * Mathf.Pow(attackState, 3), vibrateIntensity * attackState);
+                GamePad.SetVibration(playerIndex, vibrateIntensity * Mathf.Pow(attackState, 3), vibrateIntensity * Mathf.Pow(attackState, 3));
             }            
         }
 

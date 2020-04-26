@@ -12,6 +12,12 @@ public class ProjectileParyBehaviour : MonoBehaviour
     [Header("Requiered Elements")]
     [SerializeField]
     GameObject orientationArrow = null;
+    [SerializeField]
+    GameObject highAngleLimit = null;
+    [SerializeField]
+    GameObject lowAngleLimit = null;
+    [SerializeField]
+    GameObject orientationElements = null;
     [Header("Values")]
     [SerializeField]
     [Range(0, 180)]
@@ -47,7 +53,7 @@ public class ProjectileParyBehaviour : MonoBehaviour
 
     private void Start()
     {
-        orientationArrow.SetActive(false);
+        orientationElements.SetActive(false);
     }
 
     private void Update()
@@ -85,12 +91,12 @@ public class ProjectileParyBehaviour : MonoBehaviour
 
     public void LaunchOrientation(GameObject thisProjectile)                    //this fucntion is called from the gamemanger after all timescale and gamestate modification are done
     {
-        orientationArrow.SetActive(true);       //display the orientation bar
+        orientationElements.SetActive(true);       //display the orientation bar
 
         projectile = thisProjectile;
         projectileBlockHandler = projectile.GetComponent<BlockHandler>();
 
-        orientationArrow.transform.position = projectile.transform.position;        //set the orientation of the bar depending on the projectile position
+        orientationElements.transform.position = projectile.transform.position;        //set the orientation of the bar depending on the projectile position
 
         projectileDirection = -projectileBlockHandler.projectileDirection;
         projectileDirection.Normalize();
@@ -101,6 +107,8 @@ public class ProjectileParyBehaviour : MonoBehaviour
 
         maxAngle = projectileAngle + angleAmplitude/2;                                                                  //setting the max and min rotation for the target rotation - start
         minAngle = projectileAngle -angleAmplitude/2;
+        highAngleLimit.transform.rotation = Quaternion.Euler(0, 0, maxAngle);
+        lowAngleLimit.transform.rotation = Quaternion.Euler(0, 0, minAngle);
         maxRotation = new Vector2(Mathf.Cos(maxAngle * Mathf.Deg2Rad), Mathf.Sin(maxAngle * Mathf.Deg2Rad));
         minRotation = new Vector2(Mathf.Cos(minAngle * Mathf.Deg2Rad), Mathf.Sin(minAngle * Mathf.Deg2Rad));
         maxRotation.Normalize();
@@ -110,13 +118,15 @@ public class ProjectileParyBehaviour : MonoBehaviour
 
     public void StopOrientation()                                       
     {
-        orientationArrow.SetActive(false);                                                                  //hide the orientation bar
+        orientationElements.SetActive(false);                                                                  //hide the orientation bar
         buttonIsPressed = true;                                                                             //set the security test to prevent probleme with block input back as base
         projectileBlockHandler.hasBeenLaunchBack = true;                                                    //tell the projectile he has been paried and launch back (all modification on the projectile are managed on intern)
-        PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().onPary = false;                      //saying that we are not on pary anymore to the script managing shield (for stamina consuming)
+        
 
 
         GameManager.Instance.ProjectileParyStop();                                                          //set gamestate and time scale value to base
+        GetComponentInChildren<PlayerAnimator>().Pary();
+        PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().onPary = false;                      //saying that we are not on pary anymore to the script managing shield (for stamina consuming)
     }
 
     void Rotate()

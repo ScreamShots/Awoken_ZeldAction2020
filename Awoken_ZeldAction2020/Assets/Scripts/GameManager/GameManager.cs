@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public enum GameState {Running, Pause, ProjectilePary, MeleePary}
     public GameState gameState = GameState.Running;
     public static GameManager Instance;
+    [Range(0,1)]
+    public float timeScaleRatio = 1;
+    float l_timeScaleRatio = 1;
+
 
     void Awake()
     {
@@ -25,6 +29,15 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
+    private void Update()
+    {
+        if(l_timeScaleRatio != timeScaleRatio)
+        {
+            Time.timeScale = 1 * timeScaleRatio;
+            l_timeScaleRatio = timeScaleRatio;
+        }
+    }
+
     public void ProjectileParyStart(GameObject target)
     {
         gameState = GameState.ProjectilePary;
@@ -34,6 +47,6 @@ public class GameManager : MonoBehaviour
     public void ProjectileParyStop()
     {
         gameState = GameState.Running;
-        Time.timeScale = 1;
+        Time.timeScale = 1 * timeScaleRatio;
     }
 }

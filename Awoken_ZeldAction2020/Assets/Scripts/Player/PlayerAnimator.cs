@@ -12,7 +12,8 @@ public class PlayerAnimator : MonoBehaviour
     private Animator plyAnimator;
     private PlayerMovement playerMoveScript;
     private PlayerAttack playerAttackScript;
-    private bool alreadyAttacked;
+    private PlayerHealthSystem playerHealthScript;
+    private bool alreadyAttacked = false;
 
     #endregion
 
@@ -21,14 +22,16 @@ public class PlayerAnimator : MonoBehaviour
         plyAnimator = GetComponent<Animator>();                                     //finding requiered component
         playerMoveScript = GetComponentInParent<PlayerMovement>();
         playerAttackScript = GetComponentInParent<PlayerAttack>();
+        playerHealthScript = GetComponentInParent<PlayerHealthSystem>();
     }
 
     private void Update()
     {
-        SetWatchDirection();
-        Running();
-        TempAttack();
-        SetBlock();
+            SetWatchDirection();
+            Running();
+            TempAttack();
+            SetBlock();
+            HitKnockBack();
     }
 
 
@@ -128,4 +131,62 @@ public class PlayerAnimator : MonoBehaviour
             alreadyAttacked = false;                                                //security to avoid animation starting twice for a single attack
         }
     }
+    void HitKnockBack()
+    {
+        if(PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.knockBack)
+        {
+            plyAnimator.SetBool("isKnockBack", PlayerStatusManager.Instance.isKnockBacked);
+        }
+        else
+        {
+            plyAnimator.SetBool("isKnockBack", false);
+        }
+
+        if (PlayerStatusManager.Instance.isKnockBacked)
+        {
+            switch (playerHealthScript.knockBackDir)
+            {
+                case 0:
+                    plyAnimator.SetFloat("XHit", 0);
+                    plyAnimator.SetFloat("YHit", 1);
+                    break;
+                case 1:
+                    plyAnimator.SetFloat("XHit", 0);
+                    plyAnimator.SetFloat("YHit", -1);
+                    break;
+                case 2:
+                    plyAnimator.SetFloat("XHit", 1);
+                    plyAnimator.SetFloat("YHit", 0);
+                    break;
+                case 3:
+                    plyAnimator.SetFloat("XHit", -1);
+                    plyAnimator.SetFloat("YHit", 0);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }
+    public void Pary()
+    {
+        plyAnimator.SetBool("isPary", true);
+        StartCoroutine(StopPary());
+    }
+    IEnumerator StopPary()
+    {
+        AnimationClip[] allAnimatorClips = plyAnimator.runtimeAnimatorController.animationClips;
+        float paryAnimationLength = 0;
+        for (int i =0; i < allAnimatorClips.Length; i++)
+        {
+            if(allAnimatorClips[i].name == "PJ_parry_down")
+            {
+                paryAnimationLength = allAnimatorClips[i].length;
+                break;
+            }
+        }
+        yield return new WaitForSeconds(paryAnimationLength);
+        plyAnimator.SetBool("isPary", false);
+    }
+
 }

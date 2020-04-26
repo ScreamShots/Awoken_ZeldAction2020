@@ -11,7 +11,7 @@ public class HPBar : MonoBehaviour
 {
     #region HideInInspector var Statement
 
-    private BasicHealthSystem playerHpSystem;
+    private PlayerHealthSystem playerHpSystem;
 
     #endregion
 
@@ -27,7 +27,7 @@ public class HPBar : MonoBehaviour
     {
         if(PlayerManager.Instance != null)
         {
-            playerHpSystem = PlayerManager.Instance.gameObject.GetComponent<BasicHealthSystem>();       // getting the player's health managment script
+            playerHpSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>();       // getting the player's health managment script
         }        
     }
 

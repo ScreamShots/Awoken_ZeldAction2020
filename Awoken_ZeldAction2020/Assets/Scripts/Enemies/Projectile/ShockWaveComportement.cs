@@ -94,7 +94,7 @@ public class ShockWaveComportement : MonoBehaviour
         {
             if(player != null)
             {
-                player.GetComponent<BasicHealthSystem>().TakeDmg(dmgShockWave);                                                 //Inflige dmg to Player when shock wave touch the Player
+                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmgShockWave);                                                 //Inflige dmg to Player when shock wave touch the Player
             }
             GetComponent<CircleCollider2D>().enabled = false;
         }

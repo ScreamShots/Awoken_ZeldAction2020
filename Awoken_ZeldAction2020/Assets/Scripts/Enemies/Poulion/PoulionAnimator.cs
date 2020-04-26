@@ -14,7 +14,6 @@ public class PoulionAnimator : MonoBehaviour
     private Animator poulionAnimator;
     private PoulionMovement poulionMoveScript;
     private PoulionAttack poulionAttackScript;
-    private BasicHealthSystem poulionHealthScript;
     private bool alreadyDead;
     #endregion
 
@@ -23,7 +22,6 @@ public class PoulionAnimator : MonoBehaviour
         poulionAnimator = GetComponent<Animator>();
         poulionMoveScript = GetComponentInParent<PoulionMovement>();
         poulionAttackScript = GetComponentInParent<PoulionAttack>();
-        poulionHealthScript = GetComponentInParent<BasicHealthSystem>();
     }
 
     private void Update()
@@ -32,7 +30,6 @@ public class PoulionAnimator : MonoBehaviour
         SetWatchDirectionAttack();
         Running();
         Attack();
-        //Death();
     }
 
     void SetWatchDirection()                                                                        //giving information relative to the watch direction to the animator
@@ -103,12 +100,4 @@ public class PoulionAnimator : MonoBehaviour
         poulionAnimator.SetBool("isStun", poulionAttackScript.isStun);
     }
 
-    /*void Death()
-    {
-        if (poulionHealthScript.isDead && !alreadyDead)
-        {
-            alreadyDead = true;
-            poulionAnimator.SetTrigger("isDead");
-        }
-    }*/
 }

@@ -8,10 +8,9 @@ using UnityEngine;
 ///Feel free to use it as a base to Make children script that inheritate of this.
 /// </summary>
 
-public class BasicHealthSystem : MonoBehaviour
+public abstract class BasicHealthSystem : MonoBehaviour
 {
     #region SerializeField var Statement
-
     [Header("Stats")]
 
     [Min(0)] [Tooltip("max hp value (min:0")]
@@ -20,8 +19,6 @@ public class BasicHealthSystem : MonoBehaviour
     public float currentHp;
     [Space]
     public bool canTakeDmg = true;
-
-
     #endregion
 
     protected virtual void Start()
@@ -35,23 +32,35 @@ public class BasicHealthSystem : MonoBehaviour
         {
             Death();
         }
+
     }
 
     public virtual void TakeDmg(float dmgTaken)         //can be override in children class
     {
         if (canTakeDmg)
         {
-            currentHp -= dmgTaken;                      //use this function to Infligt Dmg
+            currentHp -= dmgTaken;                      //use this function to Infligt Dmg     
+        }
+    }
+
+    public virtual void TakeDmg(float dmgTaken, Vector3 sourcePos)      //same methode as upward but with an upcharge for the player; //can be override in children class
+    {
+        if (canTakeDmg)
+        {
+            currentHp -= dmgTaken;                      //use this function to Infligt Dmg     
         }
     }
 
     public virtual void Heal(float healValue)           //can be override in children class
     {
         currentHp += healValue;                         //use this function to Heal
+        if (currentHp > maxHp) currentHp = maxHp;
     }
 
     public virtual void Death()                         //can be override in children class
     {
         Destroy(gameObject);
     }
+
+  
 }

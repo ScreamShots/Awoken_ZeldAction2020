@@ -14,7 +14,6 @@ public class ArcherAnimator : MonoBehaviour
     private Animator archerAnimator;
     private ArcherMovement archerMoveScript;
     private ArcherAttack archerAttackScript;
-    private BasicHealthSystem archerHealthScript;
     private bool alreadyDead = false;
 
     #endregion
@@ -24,7 +23,6 @@ public class ArcherAnimator : MonoBehaviour
         archerAnimator = GetComponent<Animator>();
         archerMoveScript = GetComponentInParent<ArcherMovement>();
         archerAttackScript = GetComponentInParent<ArcherAttack>();
-        archerHealthScript = GetComponentInParent<BasicHealthSystem>();
     }
 
     private void Update()
@@ -35,7 +33,6 @@ public class ArcherAnimator : MonoBehaviour
             SetWatchDirectionAttack();
             Running();
             Attack();
-            //Death();
         }
       
     }
@@ -105,16 +102,4 @@ public class ArcherAnimator : MonoBehaviour
     {
         archerAnimator.SetBool("isAttacking", archerAttackScript.animationAttack);
     }
-
-    /*void Death()
-    {
-        if (archerHealthScript.isDead && !alreadyDead)
-        {
-            alreadyDead = true;
-            archerAnimator.SetBool("isAttacking", false);
-            archerAnimator.SetBool("isRetrait", false);
-            archerAnimator.SetBool("isRunning", false);
-            archerAnimator.SetTrigger("isDead");
-        }
-    }*/
 }

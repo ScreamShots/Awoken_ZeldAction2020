@@ -109,7 +109,7 @@ public class MinototaureAttack : MonoBehaviour
             {
                 lauchAttack = false;
                 isStun = true;
-                player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
                 StartCoroutine(Stun());
             }
         }
@@ -117,7 +117,7 @@ public class MinototaureAttack : MonoBehaviour
         {
             lauchAttack = false;
             isStun = true;
-            player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
             StartCoroutine(Stun());
         }
         else

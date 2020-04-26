@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < enemiesSpawned.Count; i++)
             {
-                if (enemiesSpawned[i].GetComponent<BasicHealthSystem>().currentHp <= 0)
+                if (enemiesSpawned[i].GetComponent<PlayerHealthSystem>().currentHp <= 0)
                 {
                     enemiesSpawned.Remove(enemiesSpawned[i]);
                 }

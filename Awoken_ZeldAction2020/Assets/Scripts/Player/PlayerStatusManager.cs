@@ -13,10 +13,11 @@ using UnityEngine;
 public class PlayerStatusManager : MonoBehaviour
 {
     public static PlayerStatusManager Instance;
-    private enum State { neutral, block, attack, interract, spin, charge };
+    public enum State { neutral, block, attack, interract, spin, charge, knockBack};
 
     #region Current State Algorithm
-    [SerializeField] private State currentState = State.neutral;
+    [SerializeField] public State currentState = State.neutral;
+    [HideInInspector]
     private State lastState = State.neutral;
 
     #endregion
@@ -28,6 +29,7 @@ public class PlayerStatusManager : MonoBehaviour
     [HideInInspector] public bool isInteracting;
     [HideInInspector] public bool isSpinning;
     [HideInInspector] public bool isCharging;
+    [HideInInspector] public bool isKnockBacked;
 
     [HideInInspector] public bool isLoading;
 
@@ -40,6 +42,7 @@ public class PlayerStatusManager : MonoBehaviour
     [HideInInspector] public bool needToEndInteract;
     [HideInInspector] public bool needToEndSpin;
     [HideInInspector] public bool needToEndCharge;
+    [HideInInspector] public bool needToEndKnockBack;
 
     [HideInInspector] public bool needToEndLoad;
 
@@ -139,6 +142,28 @@ public class PlayerStatusManager : MonoBehaviour
             needToEndCharge = false;
             isCharging = false;
         }
+        else if (needToEndKnockBack == true)
+        {
+            if (isBlocking)
+            {
+                canMove = true;
+                needToEndKnockBack = false;
+                isKnockBacked = false;
+            }
+            else
+            {
+                if (cdOnAttack == false) { canAttack = true; }
+
+                if (cdOnBlock == false) { canBlock = true; }
+
+                if (cdOnSpin == false) { canSpin = true; }
+
+                if (cdOnCharge == false) { canCharge = true; }
+
+                needToEndKnockBack = false;
+                isKnockBacked = false;
+            }           
+        }
         else if (needToEndLoad == true)
         {
             canMove = true;
@@ -176,8 +201,14 @@ public class PlayerStatusManager : MonoBehaviour
 
         else if (isCharging == true) { currentState = State.charge; }
 
-        else
-        { currentState = State.neutral; }
+        else if (isKnockBacked == true) { currentState = State.knockBack; }
+
+        else { currentState = State.neutral; }
+
+        if (isKnockBacked && isBlocking)
+        {
+            canMove = false;
+        }
 
         if (currentState != lastState && isLoading == false)
         {
@@ -233,6 +264,17 @@ public class PlayerStatusManager : MonoBehaviour
                     canChangeDirection = false;
                     break;
 
+                case State.knockBack:
+                    canMove = false;
+                    canBlock = false;
+                    canAttack = false;
+                    canInteract = false;
+                    canSpin = false;
+                    canCharge = false;
+                    canChangeDirection = false;
+                    canAttack = false;
+                    break;
+
                 default:
                     break;
             }
@@ -255,7 +297,7 @@ public class PlayerStatusManager : MonoBehaviour
 
             canMove = true;
             canInteract = true;
-            canChangeDirection = true;
+            canChangeDirection = true;            
         }
     }
 }

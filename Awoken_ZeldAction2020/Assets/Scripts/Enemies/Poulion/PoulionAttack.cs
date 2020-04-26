@@ -111,7 +111,7 @@ public class PoulionAttack : MonoBehaviour
     void Stun()
     {
         chargeOn = false;
-        GetComponent<BasicHealthSystem>().canTakeDmg = true;
+        GetComponent<EnemyHealthSystem>().canTakeDmg = true;
 
         rb.velocity = Vector2.zero;
         StartCoroutine(DeStun());
@@ -122,7 +122,7 @@ public class PoulionAttack : MonoBehaviour
         if (collision.transform.root.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("HitBox"))
         {
             Stun();
-            player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
         }
         if (collision.transform.root.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("ShieldZone"))
         {
@@ -145,7 +145,7 @@ public class PoulionAttack : MonoBehaviour
 
         SetDirectionAttack();
         rb.velocity = Vector2.zero;
-        GetComponent<BasicHealthSystem>().canTakeDmg = false;
+        GetComponent<EnemyHealthSystem>().canTakeDmg = false;
 
         yield return new WaitForSeconds(timeBeforeCharge);
         Attack();
