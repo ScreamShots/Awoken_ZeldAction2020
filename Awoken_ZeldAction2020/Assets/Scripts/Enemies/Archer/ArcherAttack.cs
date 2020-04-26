@@ -90,7 +90,7 @@ public class ArcherAttack : MonoBehaviour
 
     void ArcherShoot()
     {
-        direction = (player.transform.position - shootPoint.transform.position).normalized;            //Calculate direction between archer && player
+        direction = (player.transform.position - transform.position).normalized;            //Calculate direction between archer && player
 
         GameObject bulletInstance = Instantiate(archerBullet, shootPoint.position, shootPoint.rotation);
         bulletInstance.GetComponent<BulletComportement>().aimDirection = direction;
