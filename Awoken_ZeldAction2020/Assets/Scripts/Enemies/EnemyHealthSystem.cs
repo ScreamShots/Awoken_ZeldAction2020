@@ -9,6 +9,8 @@ using UnityEngine;
 public class EnemyHealthSystem : BasicHealthSystem
 {
     [Header("On Hit Flash")]
+    [Header ("Corps")]
+
     [SerializeField]
     Color flashColor = Color.red;
     [SerializeField] [Min(0)]
@@ -17,6 +19,9 @@ public class EnemyHealthSystem : BasicHealthSystem
     float flashFadeTime = 0.5f;
 
     [Header("Death")]
+    [SerializeField]
+    private bool dontHaveCorps;
+
     [SerializeField]
     GameObject corps = null;
 
@@ -45,6 +50,11 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     [Space] public GameObject[] DropItemList;
     #endregion
+
+    public float timeBeforeDestroy;
+
+    [HideInInspector]
+    public bool corouDeathPlay;
 
     /// <summary>
     /// The rest of the Health system behaviour (like maxHp, currentHp or TakeDmg() method are inherited from the basic system class
@@ -88,6 +98,19 @@ public class EnemyHealthSystem : BasicHealthSystem
         Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
         Destroy(gameObject);
         DropItem();                                                   //When enemy PV <= 0, enemy is Destroy so call this function
+        if (!dontHaveCorps)
+        {
+            Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (!corouDeathPlay)
+            {
+                corouDeathPlay = true;
+                StartCoroutine(DestroyTime());
+            }
+        }
     }
 
     void HitFlash()
@@ -149,5 +172,11 @@ public class EnemyHealthSystem : BasicHealthSystem
             GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
             itemDrop.transform.position = new Vector2(transform.position.x + Random.Range(minDropDistance, maxDropDistance), transform.position.y + Random.Range(minDropDistance, maxDropDistance));
         }
+    }
+
+    IEnumerator DestroyTime()
+    {
+        yield return new WaitForSeconds(timeBeforeDestroy);
+        Destroy(gameObject);
     }
 }
