@@ -54,9 +54,6 @@ public class BossState2 : MonoBehaviour
     [Space]
     [Header("Pattern2 - Instantiate wall")]
 
-    public Transform rightArena;
-    public Transform leftArena;
-    public Transform downArena;
     [SerializeField]
     private GameObject protectionWall = null;
     [SerializeField]
@@ -64,6 +61,8 @@ public class BossState2 : MonoBehaviour
 
     [Header("Stats")]
 
+    [SerializeField]
+    private float knockbackIntensity = 0;
     [SerializeField]
     private float wallspawnTime = 0;
     [SerializeField]
@@ -159,6 +158,10 @@ public class BossState2 : MonoBehaviour
         {
             transform.position = throneArena.position;
         }
+        else if (BossManager.Instance.s2_Pattern2)
+        {
+            transform.position = throneArena.position;
+        }
         else if (BossManager.Instance.s2_Pattern3)
         {
             transform.position = throneArena.position;
@@ -195,35 +198,16 @@ public class BossState2 : MonoBehaviour
 
     void SetWallDirection()
     {
-        direction = (player.transform.position - transform.position).normalized;
-
         playerDistance = (transform.position - player.transform.position).magnitude;
 
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        wallTransform.localPosition = new Vector3(0, - playerDistance / 2, 0);
+    }
+
+    void KickPlayerOutZone()
+    {
+        if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone)
         {
-            if (direction.x > 0)
-            {
-                wallTransform.localPosition = new Vector3(playerDistance / 2, 0);
-                wallTransform.localRotation = Quaternion.Euler(0, 0, 90);
-            }
-            else if (direction.x < 0)
-            {
-                wallTransform.localPosition = new Vector3(-playerDistance / 2, 0);
-                wallTransform.localRotation = Quaternion.Euler(0, 0, 90);
-            }
-        }
-        else
-        {
-            if (direction.y > 0)
-            {
-                wallTransform.localPosition = new Vector3(0, playerDistance / 2);
-                wallTransform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if (direction.y < 0)
-            {
-                wallTransform.localPosition = new Vector3(0, -playerDistance / 2);
-                wallTransform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
+            PlayerMovement.playerRgb.AddForce(new Vector2(0, -20) * knockbackIntensity);
         }
     }
 
@@ -235,58 +219,6 @@ public class BossState2 : MonoBehaviour
         GameObject bulletInstance = Instantiate(bossStrike, shootPoint.position, Quaternion.Euler(0, 0, rotationZ + 90f));
         bulletInstance.GetComponent<BulletComportement>().aimDirection = directionBullet;
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = strikeSpeed;
-    }
-
-    void RandomPositionTP()
-    {
-        float randomPosition;
-        randomPosition = Random.Range(0, 3);
-
-        if (randomPosition == 0)
-        {
-            if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
-            {
-                transform.position = throneArena.position;
-            }
-            else
-            {
-                randomPosition = Random.Range(0, 3);
-            }
-            
-        }
-        else if (randomPosition == 1)
-        {
-            if (leftArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
-            {
-                transform.position = leftArena.position;
-            }
-            else
-            {
-                randomPosition = Random.Range(0, 3);
-            }
-        }
-        else if (randomPosition == 2)
-        {
-            if (rightArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
-            {
-                transform.position = rightArena.position;
-            }
-            else
-            {
-                randomPosition = Random.Range(0, 3);
-            }
-        }
-        else if (randomPosition == 3)
-        {
-            if (downArena.GetComponent<ZeusTeleportZone>().playerInZone == false)
-            {
-                transform.position = downArena.position;
-            }
-            else
-            {
-                randomPosition = Random.Range(0, 3);
-            }
-        }
     }
 
     #region Pattern1
@@ -354,13 +286,12 @@ public class BossState2 : MonoBehaviour
             shoot1bullets = true;
             bossIsShooting = true;
             StartCoroutine(PrepareForShoot2());
-            RandomPositionTP();
         }
     }
 
     IEnumerator PrepareForShoot2()
     {
-
+        KickPlayerOutZone();
         SetDirectionAttack();
         StartCoroutine(StartAnimationShoot());
 
