@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        enemyHealthScript = GetComponentInParent<EnemyHealthSystem>();
+        enemyHealthScript = GetComponent<EnemyHealthSystem>();
     }
 
     void Update()
@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int i = 0; i < enemiesSpawned.Count; i++)
                 {
-                    if (enemiesSpawned[i].GetComponent<BasicHealthSystem>().currentHp <= 0)
+                    if (enemiesSpawned[i].gameObject == null)
                     {
                         enemiesSpawned.Remove(enemiesSpawned[i]);
                     }
