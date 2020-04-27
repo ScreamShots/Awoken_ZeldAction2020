@@ -173,7 +173,7 @@ MonoBehaviour:
   s1_pattern1_DurationTime: 6
   s1_pattern2_DurationTime: 8
   s1_pauseTimePattern1_2: 0
-  pauseTimeBtwState1_2: 5
+  pauseTimeBtwState1_2: 0
   s2_Pattern1: 0
   s2_Pattern2: 0
   s2_Pattern3: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
   bossIsShooting: 0
   shoot3bullets: 0
   shootPoint: {fileID: 1058051325}
-  bossStrike: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39,
+  bossStrike: {fileID: 5304666703343253110, guid: 26e85fb8febcc784a895b58ba87e6cfd,
     type: 3}
   timeBeforeShoot: 1
   timeBtwStrike: 2
@@ -234,12 +234,10 @@ MonoBehaviour:
   quickShoot: 0.7
   animShoot: 0
   pattern2IsRunning: 0
-  rightArena: {fileID: 0}
-  leftArena: {fileID: 0}
-  downArena: {fileID: 0}
   protectionWall: {fileID: 8249182235389160825, guid: 25cc648498b132c4eb409401669c1898,
     type: 3}
   wallTransform: {fileID: 1647592546}
+  knockbackIntensity: 400
   wallspawnTime: 0.3
   destroyWallTIme: 1
   shoot1bullets: 0
