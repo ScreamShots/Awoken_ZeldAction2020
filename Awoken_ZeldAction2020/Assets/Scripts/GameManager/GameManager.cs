@@ -5,12 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public enum GameState {Running, Pause, ProjectilePary, MeleePary}
+    public enum GameState {Running, Pause, ProjectilePary, MeleePary, LvlFrameTransition}
     public GameState gameState = GameState.Running;
     public static GameManager Instance;
     [Range(0,1)]
     public float timeScaleRatio = 1;
     float l_timeScaleRatio = 1;
+    public bool inTransition;
 
 
     void Awake()

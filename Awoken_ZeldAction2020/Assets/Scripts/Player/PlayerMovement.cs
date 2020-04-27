@@ -37,39 +37,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()      // usage of the Fixed Update because we are working on physics and rigidBody
     {
-        if (PlayerStatusManager.Instance.canMove)
+        if(GameManager.Instance.gameState == GameManager.GameState.Running)
         {
-            Move();            
+            if (PlayerStatusManager.Instance.canMove)
+            {
+                Move();
+            }          
         }
+
         if (PlayerStatusManager.Instance.canChangeDirection)
         {
             SetDirection();
-        }       
+        }
+        if (playerRgb.velocity.x != 0 || playerRgb.velocity.y != 0) { isRunning = true; }
+        else { isRunning = false; }
     }   
 
     void Move()                     // PlayerBasic Movement
     {
-        if(GameManager.Instance.gameState == GameManager.GameState.Running)
-        {
-            horizontalAxis = Input.GetAxis("HorizontalAxis");           //getting axis values from the inputSystem Files (mapped input)
-            verticalAxis = Input.GetAxis("VerticalAxis");
-        }
+        horizontalAxis = Input.GetAxis("HorizontalAxis");           //getting axis values from the inputSystem Files (mapped input)
+        verticalAxis = Input.GetAxis("VerticalAxis");
+
         move = new Vector2(horizontalAxis, verticalAxis);           // setting a vector that give the player the direction of the movement
         move = move.normalized;                                     // normalizing the direction to prevent the player to move faster on diagonal directions 
 
         playerRgb.velocity = move * speed * Time.fixedDeltaTime;    // actualy do the player move (Time.fixedDeltaTime) is required to prevent lag issue
 
-        if (playerRgb.velocity.x != 0 || playerRgb.velocity.y != 0) { isRunning = true; }
-        else { isRunning = false; }
+
     }                  
 
     void SetDirection()            // this part is used to determined the direction where the player is Watching / Mooving (for Animation && Attack)
     {
         if (playerRgb.velocity.x != 0 || playerRgb.velocity.y != 0)  //we want to change the direction only if the player is currenty mooving
         {
-            if (Mathf.Abs(horizontalAxis) > Mathf.Abs(verticalAxis))    //testing wich one of the two axis is the strongest (value most distant from 0)
+            if (Mathf.Abs(playerRgb.velocity.x) > Mathf.Abs(playerRgb.velocity.y))    //testing wich one of the two axis is the strongest (value most distant from 0)
             {
-                if (horizontalAxis > 0)                                     //if horizontal axis is strongest and positiv the player is facing right
+                if (playerRgb.velocity.x > 0)                                     //if horizontal axis is strongest and positiv the player is facing right
                 {
                     watchDirection = Direction.right;
                 }
@@ -80,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if (verticalAxis > 0)                                       //if vertical axis is strongest and positiv the player is facing up
+                if (playerRgb.velocity.y > 0)                                       //if vertical axis is strongest and positiv the player is facing up
                 {
                     watchDirection = Direction.up;
                 }

@@ -158,32 +158,35 @@ public class PlayerHealthSystem : BasicHealthSystem
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         PlayerMovement.playerRgb.AddForce(-sourceRelativPos.normalized * knockBackIntensity * reductionRatio);
 
-        if (Mathf.Abs(sourceRelativPos.y) > Mathf.Abs(sourceRelativPos.x))
+        if (!PlayerStatusManager.Instance.isBlocking)
         {
-            if(sourceRelativPos.y > 0)
+            if (Mathf.Abs(sourceRelativPos.y) > Mathf.Abs(sourceRelativPos.x))
             {
-                knockBackDir = 0;
-                playerMoveScript.watchDirection = PlayerMovement.Direction.up;                
+                if (sourceRelativPos.y > 0)
+                {
+                    knockBackDir = 0;
+                    playerMoveScript.watchDirection = PlayerMovement.Direction.up;
+                }
+                else
+                {
+                    knockBackDir = 1;
+                    playerMoveScript.watchDirection = PlayerMovement.Direction.down;
+                }
             }
             else
             {
-                knockBackDir = 1;
-                playerMoveScript.watchDirection = PlayerMovement.Direction.down;
+                if (sourceRelativPos.x > 0)
+                {
+                    knockBackDir = 2;
+                    playerMoveScript.watchDirection = PlayerMovement.Direction.right;
+                }
+                else
+                {
+                    knockBackDir = 3;
+                    playerMoveScript.watchDirection = PlayerMovement.Direction.left;
+                }
             }
-        }
-        else
-        {
-            if (sourceRelativPos.x > 0)
-            {
-                knockBackDir = 2;
-                playerMoveScript.watchDirection = PlayerMovement.Direction.right;
-            }
-            else
-            {
-                knockBackDir = 3;
-                playerMoveScript.watchDirection = PlayerMovement.Direction.left;
-            }
-        }
+        }       
 
         yield return new WaitForSeconds(knockBackDuration);
 
