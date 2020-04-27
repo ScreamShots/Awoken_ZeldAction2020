@@ -8,8 +8,18 @@ using UnityEngine;
 /// </summary>
 public class EnemyHealthSystem : BasicHealthSystem
 {
+    [Header ("Corps")]
+
+    [SerializeField]
+    private bool dontHaveCorps;
+
     [SerializeField]
     GameObject corps = null;
+
+    public float timeBeforeDestroy;
+
+    [HideInInspector]
+    public bool corouDeathPlay;
 
     /// <summary>
     /// The rest of the Health system behaviour (like maxHp, currentHp or TakeDmg() method are inherited from the basic system class
@@ -20,7 +30,24 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
-        Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
+        if (!dontHaveCorps)
+        {
+            Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (!corouDeathPlay)
+            {
+                corouDeathPlay = true;
+                StartCoroutine(DestroyTime());
+            }
+        }
+    }
+
+    IEnumerator DestroyTime()
+    {
+        yield return new WaitForSeconds(timeBeforeDestroy);
         Destroy(gameObject);
     }
 }
