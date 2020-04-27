@@ -11,6 +11,9 @@ public class BulletComportement : MonoBehaviour
 {
     #region Variables
 
+    [Header("Requiered Components")]
+    [SerializeField] GameObject bulletRender;
+
     [Header("Bullet Stats")]
     [Min(0)]
     [SerializeField] private float dmg = 0;
@@ -30,6 +33,7 @@ public class BulletComportement : MonoBehaviour
 
     //[HideInInspector]
     public Vector2 aimDirection;
+    private Vector2 l_aimDirection;
     private Vector2 perpendicularAimDirection;  //Needed to deffine postion of the ray for shield security check
 
     private Rigidbody2D bulletRgb;              
@@ -57,6 +61,12 @@ public class BulletComportement : MonoBehaviour
 
     private void Update()
     {
+        if(l_aimDirection != aimDirection)
+        {
+            bulletRender.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg);
+            l_aimDirection = aimDirection;
+        }
+
         if(blockHandle.hasBeenLaunchBack && blockHandle.hasBeenLaunchBack != l_hasBeenLaunchBack)       //when launch back through player pary (execute only once)
         {
             bulletSpeed *= launchBackAccelerationRatio;                         //augment the speed oif the bullet      

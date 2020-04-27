@@ -81,11 +81,11 @@ public class LightningComportement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if ((other.CompareTag("HitBox")))
+        if (other.CompareTag("HitBox") && other.transform.root.CompareTag("Player"))
         {
-            if (inLightningZone.Contains(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject))
+            if (inLightningZone.Contains(PlayerManager.Instance.gameObject))
             {
-                inLightningZone.Remove(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject);
+                inLightningZone.Remove(PlayerManager.Instance.gameObject);
 
                 sameGameObjectList = 0;
             }

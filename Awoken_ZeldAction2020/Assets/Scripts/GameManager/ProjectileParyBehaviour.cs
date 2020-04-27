@@ -60,8 +60,6 @@ public class ProjectileParyBehaviour : MonoBehaviour
     {        
         if(GameManager.Instance.gameState == GameManager.GameState.ProjectilePary)      //if the game is in pary gamestate (pary active)
         {
-            Debug.DrawRay(projectile.transform.localPosition, minRotation, Color.red);          //Temporary feedback drawing the limitation of the target rotation 
-            Debug.DrawRay(projectile.transform.localPosition, maxRotation, Color.red);
 
             Rotate();                   
 
