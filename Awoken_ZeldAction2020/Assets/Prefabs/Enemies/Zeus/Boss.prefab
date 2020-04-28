@@ -167,7 +167,10 @@ MonoBehaviour:
   maxHp: 650
   currentHp: 0
   canTakeDmg: 1
+  dontHaveCorps: 1
   corps: {fileID: 0}
+  timeBeforeDestroy: 0
+  corouDeathPlay: 0
   s1_Pattern1: 0
   s1_Pattern2: 0
   s1_pattern1_DurationTime: 6
@@ -228,7 +231,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1058051325}
   bossStrike: {fileID: 5304666703343253110, guid: 26e85fb8febcc784a895b58ba87e6cfd,
     type: 3}
-  timeBeforeShoot: 1
+  timeBeforeShoot: 1.5
   timeBtwStrike: 2
   strikeSpeed: 400
   quickShoot: 0.7
@@ -242,6 +245,7 @@ MonoBehaviour:
   destroyWallTIme: 1
   shoot1bullets: 0
   animWall: 0
+  isPunching: 0
   pattern3IsRunning: 0
   throneArena: {fileID: 0}
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
@@ -264,8 +268,8 @@ MonoBehaviour:
   secretRoomArena: {fileID: 0}
   spawnerPlace: {fileID: 0}
   spawnerPlace2: {fileID: 0}
-  spawner: {fileID: 8590007252410235635, guid: 27a4be63c96934e4a9dba4efd3ba80e0, type: 3}
-  spawnRadius: 2
+  spawner: {fileID: 1837897167062006993, guid: cd768048e0fb2b64a82a118bd5c40c79, type: 3}
+  spawnRadius: 1
   timeBtwSpawn: 4
   enemySpawnLimit: 3
   enemiesToSpawn:
