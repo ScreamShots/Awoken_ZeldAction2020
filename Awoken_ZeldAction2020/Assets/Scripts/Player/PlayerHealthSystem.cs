@@ -140,58 +140,61 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     IEnumerator KnockBack (Vector3 sourcePos, bool isOnbloc)
     {
-        Vector2 sourceRelativPos = sourcePos - transform.position;
-        float reductionRatio = 0;
-        PlayerStatusManager.Instance.isKnockBacked = true;
-
-        if (isOnbloc)
+        if(GameManager.Instance.gameState == GameManager.GameState.Running)
         {
-            reductionRatio = blockIntensityReductionRatio;
-        }
-        else
-        {
-            reductionRatio = 1;
-        }
+            Vector2 sourceRelativPos = sourcePos - transform.position;
+            float reductionRatio = 0;
+            PlayerStatusManager.Instance.isKnockBacked = true;
 
-        yield return new WaitForFixedUpdate();
-
-        PlayerMovement.playerRgb.velocity = Vector2.zero;
-        PlayerMovement.playerRgb.AddForce(-sourceRelativPos.normalized * knockBackIntensity * reductionRatio);
-
-        if (!PlayerStatusManager.Instance.isBlocking)
-        {
-            if (Mathf.Abs(sourceRelativPos.y) > Mathf.Abs(sourceRelativPos.x))
+            if (isOnbloc)
             {
-                if (sourceRelativPos.y > 0)
-                {
-                    knockBackDir = 0;
-                    playerMoveScript.watchDirection = PlayerMovement.Direction.up;
-                }
-                else
-                {
-                    knockBackDir = 1;
-                    playerMoveScript.watchDirection = PlayerMovement.Direction.down;
-                }
+                reductionRatio = blockIntensityReductionRatio;
             }
             else
             {
-                if (sourceRelativPos.x > 0)
+                reductionRatio = 1;
+            }
+
+            yield return new WaitForFixedUpdate();
+
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
+            PlayerMovement.playerRgb.AddForce(-sourceRelativPos.normalized * knockBackIntensity * reductionRatio);
+
+            if (!PlayerStatusManager.Instance.isBlocking)
+            {
+                if (Mathf.Abs(sourceRelativPos.y) > Mathf.Abs(sourceRelativPos.x))
                 {
-                    knockBackDir = 2;
-                    playerMoveScript.watchDirection = PlayerMovement.Direction.right;
+                    if (sourceRelativPos.y > 0)
+                    {
+                        knockBackDir = 0;
+                        playerMoveScript.watchDirection = PlayerMovement.Direction.up;
+                    }
+                    else
+                    {
+                        knockBackDir = 1;
+                        playerMoveScript.watchDirection = PlayerMovement.Direction.down;
+                    }
                 }
                 else
                 {
-                    knockBackDir = 3;
-                    playerMoveScript.watchDirection = PlayerMovement.Direction.left;
+                    if (sourceRelativPos.x > 0)
+                    {
+                        knockBackDir = 2;
+                        playerMoveScript.watchDirection = PlayerMovement.Direction.right;
+                    }
+                    else
+                    {
+                        knockBackDir = 3;
+                        playerMoveScript.watchDirection = PlayerMovement.Direction.left;
+                    }
                 }
             }
+
+            yield return new WaitForSeconds(knockBackDuration);
+
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
+            PlayerStatusManager.Instance.needToEndKnockBack = true;
         }       
-
-        yield return new WaitForSeconds(knockBackDuration);
-
-        PlayerMovement.playerRgb.velocity = Vector2.zero;
-        PlayerStatusManager.Instance.needToEndKnockBack = true;
     }
 
     IEnumerator Invulerability()

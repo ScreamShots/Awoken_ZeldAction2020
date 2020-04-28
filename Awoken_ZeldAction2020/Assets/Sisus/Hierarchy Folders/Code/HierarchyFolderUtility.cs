@@ -103,7 +103,7 @@ namespace Sisus.HierarchyFolders
 				#endif
 
 				#if DEBUG_REMOVE_HIERARCHY_FOLDER
-				Debug.Log("Destroying HierarchyFolder: "+ transform.name);
+				//Debug.Log("Destroying HierarchyFolder: "+ transform.name);
 				#endif
 
 				switch(strippingType)

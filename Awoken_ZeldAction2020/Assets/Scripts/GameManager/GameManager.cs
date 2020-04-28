@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [Range(0,1)]
     public float timeScaleRatio = 1;
     float l_timeScaleRatio = 1;
-    public bool inTransition;
 
 
     void Awake()

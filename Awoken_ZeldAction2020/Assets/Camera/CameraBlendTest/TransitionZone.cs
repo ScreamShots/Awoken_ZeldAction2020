@@ -5,23 +5,32 @@ using Cinemachine;
 
 public class TransitionZone : MonoBehaviour
 {
-    CinemachineVirtualCamera thisCam;
-    public CinemachineVirtualCamera nextCam;
-    bool isTheStart;
-    bool needToTransit;
+    public AreaManager nextAreaManager;
+    AreaManager linkedAreaManager;
+    PlayerShield playerShieldScript;
+
+    bool isTheStart = false;
+    bool needToTransit = false;
 
     private void Start()
     {
-        thisCam = transform.parent.gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
-    }
 
+        playerShieldScript = PlayerManager.Instance.gameObject.GetComponent<PlayerShield>();
+        linkedAreaManager = GetComponentInParent<AreaManager>();
+    }
 
     private void Update()
     {
-        if(needToTransit && !PlayerStatusManager.Instance.isKnockBacked && !PlayerStatusManager.Instance.isAttacking)
+        if (needToTransit == true)
         {
-            Transition();
-            needToTransit = false;
+            if (GameManager.Instance.gameState == GameManager.GameState.Running)
+            {
+                if (!PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isKnockBacked)
+                {
+                    OutTransition();
+                    needToTransit = false;
+                }
+            }
         }
     }
 
@@ -29,71 +38,51 @@ public class TransitionZone : MonoBehaviour
     {
         if (collision.CompareTag("CollisionDetection"))
         {
-            if (!GameManager.Instance.inTransition && !PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isBlocking && !PlayerStatusManager.Instance.isKnockBacked)
+            if (GameManager.Instance.gameState == GameManager.GameState.Running)
             {
-                GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
-                Debug.Log("test");
-                isTheStart = true;
-                GameManager.Instance.inTransition = true;
-                thisCam.Priority = 0;
-                nextCam.Priority = 1;
-                PlayerMovement.playerRgb.velocity = Vector2.zero;
-                Debug.Log(PlayerMovement.playerRgb.velocity);
-                PlayerMovement.playerRgb.velocity = transform.up * PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>().speed * Time.fixedDeltaTime;
-            }
-            else if (PlayerStatusManager.Instance.isBlocking && !PlayerStatusManager.Instance.isBlocking)
-            {
-                PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().DesactivateBlock();
-                GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
-                Debug.Log("test");
-                isTheStart = true;
-                GameManager.Instance.inTransition = true;
-                thisCam.Priority = 0;
-                nextCam.Priority = 1;
-                PlayerMovement.playerRgb.velocity = Vector2.zero;
-                Debug.Log(PlayerMovement.playerRgb.velocity);
-                PlayerMovement.playerRgb.velocity = transform.up * PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>().speed * Time.fixedDeltaTime;
-            }
-            else if(PlayerStatusManager.Instance.isAttacking || PlayerStatusManager.Instance.isKnockBacked)
-            {
-                if (PlayerStatusManager.Instance.isBlocking)
+                if (!PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isKnockBacked)
                 {
-                    PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().DesactivateBlock();
+                    OutTransition();
                 }
-                needToTransit = true;
+                else if (PlayerStatusManager.Instance.isKnockBacked || PlayerStatusManager.Instance.isAttacking)
+                {
+                    needToTransit = true;
+                }
             }
-
-        }       
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("CollisionDetection"))
         {
-            if (GameManager.Instance.inTransition && !isTheStart)
+            if (GameManager.Instance.gameState == GameManager.GameState.LvlFrameTransition)
             {
-                Debug.Log("test2");
-                GameManager.Instance.gameState = GameManager.GameState.Running;
-                PlayerMovement.playerRgb.velocity = Vector2.zero;
-                GameManager.Instance.inTransition = false;
-            }
-            else if (isTheStart)
-            {
-                isTheStart = false;
+                if (!isTheStart)
+                {
+                    LvlManager.Instance.canEndTransition = true;
+                    PlayerMovement.playerRgb.velocity = Vector2.zero;
+                }
+                else
+                {
+                    isTheStart = false;
+                }
             }
         }
     }
 
-    void Transition()
+    void OutTransition()
     {
+        if (PlayerStatusManager.Instance.isBlocking)
+        {
+            playerShieldScript.DesactivateBlock();
+        }
+
         GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
-        Debug.Log("test");
         isTheStart = true;
-        GameManager.Instance.inTransition = true;
-        thisCam.Priority = 0;
-        nextCam.Priority = 1;
+        linkedAreaManager.DesactivateCam();
+        nextAreaManager.ActivateCam();
         PlayerMovement.playerRgb.velocity = Vector2.zero;
-        Debug.Log(PlayerMovement.playerRgb.velocity);
         PlayerMovement.playerRgb.velocity = transform.up * PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>().speed * Time.fixedDeltaTime;
     }
 }
