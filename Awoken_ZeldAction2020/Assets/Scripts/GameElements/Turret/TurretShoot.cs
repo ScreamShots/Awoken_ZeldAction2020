@@ -7,6 +7,8 @@ public class TurretShoot : MonoBehaviour
     #region Variables
     [Header("Turret Settings")]
 
+    [SerializeField] float timeBtwFirstShot = 1;
+
     [SerializeField] float timeBtwShots = 0;
 
     [SerializeField] bool hasAggroZone;
@@ -41,7 +43,7 @@ public class TurretShoot : MonoBehaviour
         detectionZoneScript = GetComponentInChildren<TurretDetectionZone>();
         turretHealthScript = GetComponent<EnemyHealthSystem>();
         
-        timerPlayerZone = 0;
+        timerPlayerZone = timeBtwFirstShot;
     }
 
     private void Update()
@@ -76,7 +78,7 @@ public class TurretShoot : MonoBehaviour
                 inZoneAnim = true;
 
                 timerPlayerZone += Time.deltaTime;
-                if (timerPlayerZone >= 1f)
+                if (timerPlayerZone >= timeBtwFirstShot)
                 {
                     canShootPlayer = true;
                 }
@@ -97,7 +99,7 @@ public class TurretShoot : MonoBehaviour
 
     void CheckTurretBroken()
     {
-        if (turretHealthScript.currentHp == turretHealthScript.maxHp / 2)
+        if (turretHealthScript.currentHp <= turretHealthScript.maxHp / 2)
         {
             turretIsBroken = true;
         }
