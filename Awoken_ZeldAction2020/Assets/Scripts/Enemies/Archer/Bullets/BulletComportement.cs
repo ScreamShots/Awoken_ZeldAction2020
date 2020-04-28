@@ -12,7 +12,7 @@ public class BulletComportement : MonoBehaviour
     #region Variables
 
     [Header("Requiered Components")]
-    [SerializeField] GameObject bulletRender;
+    [SerializeField] GameObject bulletRender = null;
 
     [Header("Bullet Stats")]
     [Min(0)]

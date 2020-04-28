@@ -368,6 +368,7 @@ public class PlayerShield : MonoBehaviour
     IEnumerator OnBlocked()                                 //Manage the player KnockBack and the vibration feedback
     {
         PlayerStatusManager.Instance.canMove = false;               //Disable Movement during the knockBack
+        PlayerStatusManager.Instance.isKnockBacked = true;
         yield return new WaitForFixedUpdate();                      //Erasing all physics before knockback
         PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
 
@@ -397,7 +398,7 @@ public class PlayerShield : MonoBehaviour
         PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
 
         GamePad.SetVibration(playerIndex, 0, 0);                        //Stopping vibrations
-        
+        PlayerStatusManager.Instance.isKnockBacked = false;
         PlayerStatusManager.Instance.canMove = true;                    //Enable Movement
     }
 
