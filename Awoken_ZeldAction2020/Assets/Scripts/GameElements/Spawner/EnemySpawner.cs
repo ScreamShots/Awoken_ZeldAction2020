@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     #region Variables
     [Header("Spawner Configuration")]
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject spawnCloud;
 
     [Space] [SerializeField] private float spawnRadius = 0;
     [SerializeField] private float timeBtwSpawn = 0;
@@ -57,13 +58,17 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnInProgress = true;
 
-        yield return new WaitForSeconds(timeBtwSpawn - 0.2f);
+        yield return new WaitForSeconds(timeBtwSpawn - 0.3f);
         spawnActivate = true;
-
-        yield return new WaitForSeconds(0.2f);
 
         Vector2 spawnPos = spawnPoint.transform.position;
         spawnPos += Random.insideUnitCircle * spawnRadius;
+
+        yield return new WaitForSeconds(0.2f);
+
+        Instantiate(spawnCloud, spawnPos, Quaternion.identity);
+
+        yield return new WaitForSeconds(0.1f);
 
         GameObject enemyWhoSpawn = Instantiate(enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)], spawnPos, Quaternion.identity);
         enemiesSpawned.Add(enemyWhoSpawn);
