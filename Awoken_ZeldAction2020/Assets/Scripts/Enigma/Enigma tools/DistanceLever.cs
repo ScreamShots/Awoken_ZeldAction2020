@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class DistanceLever : PressurePlateBehavior
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private BoxCollider2D hitbox;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if ((other.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile")))
         {
             isPressed = true;
-            elementsOnPlate.Add(other.transform.root.gameObject);
             Destroy(other.gameObject);
+            hitbox.enabled = false;
         }
     }
 }
