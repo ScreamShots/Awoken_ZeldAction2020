@@ -22,5 +22,6 @@ public class ZeusAnimator : MonoBehaviour
         ZeusAnim.SetBool("ZeusThunder2", ZeusScriptState2.animThunder);
         ZeusAnim.SetBool("ZeusShoot", ZeusScriptState2.animShoot);
         ZeusAnim.SetBool("ZeusWall", ZeusScriptState2.animWall);
+        ZeusAnim.SetBool("isPunching", ZeusScriptState2.isPunching);
     }
 }

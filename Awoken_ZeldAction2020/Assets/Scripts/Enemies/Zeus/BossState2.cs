@@ -71,6 +71,7 @@ public class BossState2 : MonoBehaviour
     private bool shoot1bullets;
 
     [HideInInspector] public bool animWall;                             //anim of instantiate wall
+    [HideInInspector] public bool isPunching;                           //anim of Zeus punching player
     #endregion
 
     #region Pattern 3
@@ -207,7 +208,11 @@ public class BossState2 : MonoBehaviour
     {
         if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone)
         {
-            PlayerMovement.playerRgb.AddForce(new Vector2(0, -20) * knockbackIntensity);
+            if (!isPunching)
+            {
+                isPunching = true;
+                StartCoroutine(KickPlayer());
+            }
         }
     }
 
@@ -330,6 +335,13 @@ public class BossState2 : MonoBehaviour
     {
         yield return new WaitForSeconds(wallspawnTime - 0.2f);
         animWall = true;
+    }
+
+    IEnumerator KickPlayer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        PlayerMovement.playerRgb.AddForce(new Vector2(0, -20) * knockbackIntensity);
+        isPunching = false;
     }
     #endregion
 
