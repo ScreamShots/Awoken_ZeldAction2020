@@ -13,7 +13,7 @@ public class FragmentCounter : MonoBehaviour
     #region SerialiazeFiled var Statement
 
     [Header("Requiered Elements")]
-    [SerializeField] private Text fragmentNumber;
+    [SerializeField] private Text fragmentNumber = null;
 
     #endregion
 
