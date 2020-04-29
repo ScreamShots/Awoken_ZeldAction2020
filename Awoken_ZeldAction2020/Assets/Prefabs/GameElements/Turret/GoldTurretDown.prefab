@@ -1,62 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2429936409240866920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2429936409240866923}
-  - component: {fileID: 8888652536052203849}
-  m_Layer: 0
-  m_Name: HitBox
-  m_TagString: HitBox
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2429936409240866923
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2429936409240866920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2429936409811974989}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &8888652536052203849
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2429936409240866920}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: -0.13}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.9}
-  m_EdgeRadius: 0
 --- !u!1 &2429936409538663840
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2429936409811974989}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &2429936409693607632
 GameObject:
@@ -231,7 +174,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2429936409811974989}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2429936409726128789
 BoxCollider2D:
@@ -269,7 +212,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2429936409811974989}
   - component: {fileID: 2429936409811974988}
-  - component: {fileID: 7393908198389051009}
   m_Layer: 0
   m_Name: GoldTurretDown
   m_TagString: Enemy
@@ -289,7 +231,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2429936409693607635}
-  - {fileID: 2429936409240866923}
   - {fileID: 2429936409726128786}
   - {fileID: 2429936409538663843}
   - {fileID: 8919575975697353221}
@@ -308,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8e59778e7104043be1f2b2fa0e851f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TurretIsIndestructible: 1
   timeBtwFirstShot: 1
   timeBtwShots: 1
   hasAggroZone: 1
@@ -317,25 +259,6 @@ MonoBehaviour:
   turretIsShooting: 0
   inZoneAnim: 0
   turretIsBroken: 0
---- !u!114 &7393908198389051009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2429936409811974987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab012259dfbc844e8ab700046a02489, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 10
-  currentHp: 0
-  canTakeDmg: 0
-  flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
-  flashTime: 0.5
-  flashFadeTime: 0.5
-  corps: {fileID: 0}
 --- !u!1 &3857708204450793041
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +289,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2429936409811974989}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3343460565595695529
 BoxCollider2D:
