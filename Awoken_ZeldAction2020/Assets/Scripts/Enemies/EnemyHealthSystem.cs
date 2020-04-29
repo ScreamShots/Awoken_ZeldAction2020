@@ -25,6 +25,8 @@ public class EnemyHealthSystem : BasicHealthSystem
     [SerializeField]
     GameObject corps = null;
 
+    public float timeBeforeDestroy;
+
     SpriteRenderer enemyRenderer;
 
     float flashTimer = 0;
@@ -50,8 +52,6 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     [Space] public GameObject[] DropItemList;
     #endregion
-
-    public float timeBeforeDestroy;
 
     [HideInInspector]
     public bool corouDeathPlay;
@@ -95,20 +95,19 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
-        Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
-        Destroy(gameObject);
-        DropItem();                                                   //When enemy PV <= 0, enemy is Destroy so call this function
-        if (!dontHaveCorps)
-        {
+        if (!dontHaveCorps)
+        {
             Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
-            Destroy(gameObject);
+            Destroy(gameObject);
+
+            DropItem();
         }
-        else
-        {
-            if (!corouDeathPlay)
-            {
+        else
+        {
+            if (!corouDeathPlay)
+            {
                 corouDeathPlay = true;
-                StartCoroutine(DestroyTime());
+                StartCoroutine(DestroyTime());
             }
         }
     }
@@ -174,9 +173,10 @@ public class EnemyHealthSystem : BasicHealthSystem
         }
     }
 
-    IEnumerator DestroyTime()
-    {
+    IEnumerator DestroyTime()
+    {
         yield return new WaitForSeconds(timeBeforeDestroy);
-        Destroy(gameObject);
+        Destroy(gameObject);
+        DropItem();
     }
 }

@@ -55,7 +55,7 @@ public class BossManager : EnemyHealthSystem
     private bool canPlayState2_pattern3;
     #endregion
 
-    #region 3
+    #region State 3
     BossState3 state3Script;
 
     [Space]

@@ -164,11 +164,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4de292400c181f4bbf0acf08bfde649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 650
+  maxHp: 500
   currentHp: 0
   canTakeDmg: 1
+  flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
+  flashTime: 0.5
+  flashFadeTime: 0.5
   dontHaveCorps: 1
   corps: {fileID: 0}
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
   timeBeforeDestroy: 0
   corouDeathPlay: 0
   s1_Pattern1: 0
