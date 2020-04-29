@@ -108,14 +108,14 @@ public class MinototaureAttack : MonoBehaviour
             else if (minototaureDetectScript.isOverlappingPlayer)
             {
                 lauchAttack = false;
-                player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
                 StartCoroutine(NotStunt());
             }
         }
         else if (minototaureDetectScript.isOverlappingPlayer == true && !minototaureDetectScript.isOverlappingShield)
         {
             lauchAttack = false;
-            player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
             StartCoroutine(NotStunt());
         }
         else

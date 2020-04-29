@@ -6,8 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     #region Variables
     [Header("Spawner Configuration")]
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] private GameObject spawnCloud;
+    [SerializeField] private Transform spawnPoint = null;
+    [SerializeField] private GameObject spawnCloud = null;
 
     [Space] [SerializeField] private float spawnRadius = 0;
     [SerializeField] private float timeBtwSpawn = 0;

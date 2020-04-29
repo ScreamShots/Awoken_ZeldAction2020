@@ -5,7 +5,7 @@ using UnityEngine;
 public class DistanceLever : PressurePlateBehavior
 {
     [SerializeField]
-    private BoxCollider2D hitbox;
+    private BoxCollider2D hitbox = null;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if ((other.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile")))
