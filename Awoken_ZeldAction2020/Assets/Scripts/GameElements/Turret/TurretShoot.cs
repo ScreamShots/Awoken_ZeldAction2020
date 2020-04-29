@@ -35,13 +35,13 @@ public class TurretShoot : MonoBehaviour
     public bool turretIsBroken;                 //for detect mid life of turret --> animator
 
     TurretDetectionZone detectionZoneScript;
-    EnemyHealthSystem turretHealthScript;
+    GameElementsHealthSystem turretHealthScript;
     #endregion
 
     private void Start()
     {
         detectionZoneScript = GetComponentInChildren<TurretDetectionZone>();
-        turretHealthScript = GetComponent<EnemyHealthSystem>();
+        turretHealthScript = GetComponent<GameElementsHealthSystem>();
         
         timerPlayerZone = timeBtwFirstShot;
     }

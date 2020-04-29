@@ -21,37 +21,34 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemiesToSpawn;
     [Space] public List<GameObject> enemiesSpawned;
 
-    EnemyHealthSystem enemyHealthScript;
+    GameElementsHealthSystem enemyHealthScript;
     #endregion
 
     void Start()
     {
-        enemyHealthScript = GetComponent<EnemyHealthSystem>();
+        enemyHealthScript = GetComponent<GameElementsHealthSystem>();
     }
 
     void Update()
     {
-        if (!enemyHealthScript.corouDeathPlay)
+        if (enemiesSpawned.Count > 0)
         {
-            if (enemiesSpawned.Count > 0)
+            for (int i = 0; i < enemiesSpawned.Count; i++)
             {
-                for (int i = 0; i < enemiesSpawned.Count; i++)
+                if (enemiesSpawned[i].gameObject == null)
                 {
-                    if (enemiesSpawned[i].gameObject == null)
-                    {
-                        enemiesSpawned.Remove(enemiesSpawned[i]);
-                    }
+                    enemiesSpawned.Remove(enemiesSpawned[i]);
                 }
             }
+        }
 
-            if (enemiesSpawned.Count < enemySpawnLimit)
+        if (enemiesSpawned.Count < enemySpawnLimit)
+        {
+            if (!spawnInProgress)
             {
-                if (!spawnInProgress)
-                {
-                    StartCoroutine(SpawnEnemy());
-                }
+                StartCoroutine(SpawnEnemy());
             }
-        }     
+        }
     }
 
     IEnumerator SpawnEnemy()

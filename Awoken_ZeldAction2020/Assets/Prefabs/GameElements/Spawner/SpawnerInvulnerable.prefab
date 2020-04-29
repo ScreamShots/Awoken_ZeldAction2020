@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1837897167062006999}
   - component: {fileID: 3356611832219393959}
-  - component: {fileID: 9091169247986341595}
+  - component: {fileID: 4891318302480419437}
   m_Layer: 0
   m_Name: SpawnerInvulnerable
   m_TagString: Enemy
@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
   - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
   enemiesSpawned: []
---- !u!114 &9091169247986341595
+--- !u!114 &4891318302480419437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,16 +115,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1837897167062006993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ab012259dfbc844e8ab700046a02489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 10
   currentHp: 0
   canTakeDmg: 0
-  dontHaveCorps: 0
+  flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
+  flashTime: 0.5
+  flashFadeTime: 0.5
   corps: {fileID: 0}
-  timeBeforeDestroy: 0
-  corouDeathPlay: 0
 --- !u!1 &1837897167143933193
 GameObject:
   m_ObjectHideFlags: 0
