@@ -16,6 +16,7 @@ public class MinototaureAttack : MonoBehaviour
     MinototaureDetectZone minototaureDetectScript;
     EnemyHealthSystem minototaureHealthScript;
     GameObject player;
+    private PlayerMovement playerMoveScript;
 
     //attack information
 
@@ -69,6 +70,7 @@ public class MinototaureAttack : MonoBehaviour
         minototaureDetectScript = attackZone.GetComponent<MinototaureDetectZone>();
         minototaureHealthScript = GetComponent<EnemyHealthSystem>();
         player = PlayerManager.Instance.gameObject;
+        playerMoveScript = player.GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -96,31 +98,61 @@ public class MinototaureAttack : MonoBehaviour
 
     void Attack()
     {
-        if (minototaureDetectScript.isOverlappingShield == true)
+        if (minototaureDetectScript.isOverlappingShield == true)                                        //if collide with shield
         {
-            if (minototaureDetectScript.overlappedShield.GetComponent<ShieldHitZone>().isActivated)
+            if (minototaureDetectScript.overlappedShield.GetComponent<ShieldHitZone>().isActivated)     //if shield is enable      
             {
-                lauchAttack = false;
-                isStun = true;
-                player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                StartCoroutine(Stun());
+                if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.left && playerMoveScript.watchDirection == PlayerMovement.Direction.right)
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+                else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.right && playerMoveScript.watchDirection == PlayerMovement.Direction.left)
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+                else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.up && playerMoveScript.watchDirection == PlayerMovement.Direction.down)
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+                else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.down && playerMoveScript.watchDirection == PlayerMovement.Direction.up)
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+                else
+                {
+                    lauchAttack = false;
+                    player.GetComponent<BasicHealthSystem>().TakeDmg(dmg, transform.position);
+                    StartCoroutine(NotStunt());
+                }
             }
-            else if (minototaureDetectScript.isOverlappingPlayer)
+            else if (minototaureDetectScript.isOverlappingPlayer)                                       //if shield is disabled
             {
                 lauchAttack = false;
-                player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+                player.GetComponent<BasicHealthSystem>().TakeDmg(dmg, transform.position);
                 StartCoroutine(NotStunt());
             }
         }
-        else if (minototaureDetectScript.isOverlappingPlayer == true && !minototaureDetectScript.isOverlappingShield)
+        else if (minototaureDetectScript.isOverlappingPlayer == true && !minototaureDetectScript.isOverlappingShield)           //if collide with player without shield
         {
             lauchAttack = false;
-            player.GetComponent<BasicHealthSystem>().TakeDmg(dmg);
+            player.GetComponent<BasicHealthSystem>().TakeDmg(dmg, transform.position);
             StartCoroutine(NotStunt());
         }
-        else
+        else                                                                                                                    //if no collide
         {
-            lauchAttack = false;
+            lauchAttack = false;    
             StartCoroutine(NotStunt());
         }
     }
