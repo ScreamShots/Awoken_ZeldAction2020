@@ -13,7 +13,7 @@ public class TurretShoot : MonoBehaviour
 
     [SerializeField] float timeBtwShots = 0;
 
-    [SerializeField] bool hasAggroZone;
+    [SerializeField] bool hasAggroZone = false;
 
     [Header("Bullet initiate")]
     public GameObject Bullet;

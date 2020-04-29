@@ -7,7 +7,7 @@ public class TuyauEnter : MonoBehaviour
     public Transform exit;
     public GameObject bullet;
     [SerializeField]
-    private float bulletTimeTravel;
+    private float bulletTimeTravel = 0;
 
 
     void OnTriggerEnter2D(Collider2D other)

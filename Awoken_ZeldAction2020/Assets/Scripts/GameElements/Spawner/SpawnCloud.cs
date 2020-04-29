@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class SpawnCloud : MonoBehaviour
 {
-    [SerializeField] private float timeToDestroy;
+    [SerializeField] private float timeToDestroy = 0;
 
     void Start()
     {

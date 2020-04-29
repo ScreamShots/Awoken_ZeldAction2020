@@ -10,7 +10,7 @@ public class HealthPickUp : MonoBehaviour
     [Space] [Header("Stats")]
 
     [SerializeField]
-    private bool canPickFullLife;
+    private bool canPickFullLife = false;
 
     [Space] [SerializeField]
     [Range(0, 200)]
@@ -20,7 +20,7 @@ public class HealthPickUp : MonoBehaviour
     [Space] [Header("Destroy")]
 
     [SerializeField]
-    private bool destroyAfterTime;
+    private bool destroyAfterTime = false;
 
     [Space] [SerializeField]
     [Min(0)]

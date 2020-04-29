@@ -27,7 +27,7 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     [Header("Death")]
     [SerializeField]
-    private bool dontHaveCorps;
+    private bool dontHaveCorps = false;
 
     [SerializeField]
     GameObject corps = null;
