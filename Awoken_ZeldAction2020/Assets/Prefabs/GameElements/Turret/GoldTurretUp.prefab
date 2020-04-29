@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 622475058482327198}
   - component: {fileID: 622475058482327199}
-  - component: {fileID: 622475058482327193}
+  - component: {fileID: 7036601197102405200}
   m_Layer: 0
   m_Name: GoldTurretUp
   m_TagString: Enemy
@@ -115,7 +115,7 @@ MonoBehaviour:
   turretIsShooting: 0
   inZoneAnim: 0
   turretIsBroken: 0
---- !u!114 &622475058482327193
+--- !u!114 &7036601197102405200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,16 +124,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 622475058482327192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ab012259dfbc844e8ab700046a02489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  maxHp: 10
   currentHp: 0
   canTakeDmg: 0
-  dontHaveCorps: 1
+  flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
+  flashTime: 0.5
+  flashFadeTime: 0.5
   corps: {fileID: 0}
-  timeBeforeDestroy: 0
-  corouDeathPlay: 0
 --- !u!1 &622475058754306163
 GameObject:
   m_ObjectHideFlags: 0

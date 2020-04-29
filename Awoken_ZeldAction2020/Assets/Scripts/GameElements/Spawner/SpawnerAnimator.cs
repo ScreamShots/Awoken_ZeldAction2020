@@ -11,18 +11,15 @@ public class SpawnerAnimator : MonoBehaviour
 {
     Animator spawnerAnim;
     EnemySpawner enemySpawnerScript;
-    EnemyHealthSystem enemyHealthScript;
 
     private void Start()
     {
         spawnerAnim = GetComponent<Animator>();
         enemySpawnerScript = GetComponentInParent<EnemySpawner>();
-        enemyHealthScript = GetComponentInParent<EnemyHealthSystem>();
     }
 
     private void Update()
     {
         spawnerAnim.SetBool("SpawnerActivate", enemySpawnerScript.spawnActivate);
-        spawnerAnim.SetBool("Dead", enemyHealthScript.corouDeathPlay);
     }
 }
