@@ -7,7 +7,9 @@ public class TurretShoot : MonoBehaviour
     #region Variables
     [Header("Turret Settings")]
 
-    [SerializeField] float timeBtwFirstShot = 1;
+    [SerializeField] bool TurretIsIndestructible;
+
+    [Space] [SerializeField] float timeBtwFirstShot = 1;
 
     [SerializeField] float timeBtwShots = 0;
 
@@ -49,7 +51,11 @@ public class TurretShoot : MonoBehaviour
     private void Update()
     {
         AggroZone();
-        CheckTurretBroken();
+
+        if (!TurretIsIndestructible)
+        {
+            CheckTurretBroken();
+        }
 
         if (hasAggroZone)
         {
