@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Made by Antoine
@@ -13,12 +14,12 @@ public class FragmentCounter : MonoBehaviour
     #region SerialiazeFiled var Statement
 
     [Header("Requiered Elements")]
-    [SerializeField] private Text fragmentNumber;
+    [SerializeField] private TextMeshProUGUI fragmentNumber;
 
     #endregion
 
     private void Update()
     {
-        fragmentNumber.text = "Fragment : " + PlayerManager.fragmentNumber;                //Show number of Fragments Player have
+        fragmentNumber.text = "" + PlayerManager.fragmentNumber;                //Show number of Fragments Player have
     }
 }

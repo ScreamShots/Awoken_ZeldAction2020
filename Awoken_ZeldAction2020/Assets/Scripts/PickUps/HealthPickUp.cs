@@ -5,6 +5,8 @@ using UnityEngine;
 public class HealthPickUp : MonoBehaviour
 {
     #region Inspector Settings
+    private PlayerHealthSystem playerHpSystem;
+
     [Space] [Header("Stats")]
 
     [SerializeField]
@@ -13,6 +15,7 @@ public class HealthPickUp : MonoBehaviour
     [Space] [SerializeField]
     [Range(0, 200)]
     float healToRegen = 0;
+    [SerializeField] bool regenFullLife;
 
     [Space] [Header("Destroy")]
 
@@ -35,11 +38,21 @@ public class HealthPickUp : MonoBehaviour
 
     private void Start()
     {
+        if (PlayerManager.Instance != null)
+        {
+            playerHpSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>();       // getting the player's health managment script
+        }
+
         timer = timeBeforeDestroy;
     }
 
     private void Update()
     {
+        if (regenFullLife)
+        {
+            healToRegen = playerHpSystem.maxHp;
+        }
+
         if (destroyAfterTime)                                       //if we set that PickUp can be destroy
         {
             timer -= Time.deltaTime;

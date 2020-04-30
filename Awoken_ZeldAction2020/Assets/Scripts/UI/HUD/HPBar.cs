@@ -4,22 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Made by Rémi Sécher
-/// This script is temporary. Used to display dynamic hp bar relative to the player's life
+/// Made by Antoine 
+/// This script is use to get the life of Player and transform to heart
 /// </summary>
+/// 
 public class HPBar : MonoBehaviour
 {
     #region HideInInspector var Statement
 
     private PlayerHealthSystem playerHpSystem;
 
+    private float maxNumOfHearts;
+    private float currentNumOfHearts;
     #endregion
 
     #region SerialiazeFiled var Statement
 
-    [Header("Requiered Elements")]
-    [SerializeField] private Image fillHpBar = null;
+    [Header("Requiered Sprites")]
 
+    public Sprite fullHeart;
+    public Sprite halfHeart;
+    public Sprite emptyHeart;
+
+    [Header("Requiered Hearts")]
+    
+    public Image[] hearts;
     #endregion
 
 
@@ -28,14 +37,49 @@ public class HPBar : MonoBehaviour
         if(PlayerManager.Instance != null)
         {
             playerHpSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>();       // getting the player's health managment script
-        }        
+        }
     }
 
     private void Update()
     {
-        if(playerHpSystem != null)
+        UpdateHeartBar();
+    }
+
+    private void UpdateHeartBar()                                           //function to refresh the display of heart bar
+    {
+        if (playerHpSystem != null)
         {
-            fillHpBar.fillAmount = playerHpSystem.currentHp / playerHpSystem.maxHp;                     //Filling of the UI immage depends of the hp value of the player compare to his max health
-        }        
+            maxNumOfHearts = playerHpSystem.maxHp / 20;                     //one heart = 20PV, a half heart = 10PV
+            currentNumOfHearts = playerHpSystem.currentHp / 20;
+
+            for (int i = 0; i < hearts.Length; i++)
+            {
+                if (i < maxNumOfHearts)
+                {
+                    hearts[i].enabled = true;                               //check the max PV of Player and convert to heart max 
+                }
+                else
+                {
+                    hearts[i].enabled = false;
+                }
+
+                hearts[i].sprite = emptyHeart;
+
+                for (float c = 0; c < currentNumOfHearts; c += 0.5f)
+                {
+                    int b = Mathf.FloorToInt(c);
+                    int e = (int)c;
+
+                    if (c != (float)b)                                      //if the current heart value is not a decimal
+                    {
+                        hearts[e].sprite = fullHeart;
+                    }
+                    else
+                    {
+                        hearts[e].sprite = halfHeart;                       //if the current heart value is a decimal
+                    }
+                }
+            }
+        }
     }
 }
