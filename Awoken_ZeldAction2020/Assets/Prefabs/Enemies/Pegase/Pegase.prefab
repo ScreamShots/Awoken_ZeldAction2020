@@ -175,6 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetedElement: Enemy
+  ShieldTrail: {fileID: 4968162908980265339, guid: c6fc7da04eda4b741b969ee9fafcfb2d,
+    type: 3}
   detectedElement: []
 --- !u!1 &264327010056913483
 GameObject:
@@ -249,7 +251,21 @@ MonoBehaviour:
   maxHp: 20
   currentHp: 0
   canTakeDmg: 1
+  ProtectByPegase: 0
+  shieldOfEnemy: {fileID: 0}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.5
+  flashFadeTime: 0.5
+  dontHaveCorps: 0
   corps: {fileID: 1469897167288861501, guid: 05fa787a01883f44aab1f74cea0cc17a, type: 3}
+  timeBeforeDestroy: 0
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
+  corouDeathPlay: 0
 --- !u!114 &264327010056913527
 MonoBehaviour:
   m_ObjectHideFlags: 0

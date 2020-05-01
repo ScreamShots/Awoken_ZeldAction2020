@@ -11,11 +11,16 @@ public class PegaseSupport : MonoBehaviour
 {
     #region Variables
     EnemyHealthSystem pegaseHealthScript;
+    
+    private GameObject trailInstance;
+    private bool trailExist;
     #endregion
 
     #region Inspector Settings
     [Header("Target Tag Selection")]
     [SerializeField] private string targetedElement = null;
+
+    public GameObject ShieldTrail;
 
     [Header("Element in Zone")]
     [Space]
@@ -32,11 +37,13 @@ public class PegaseSupport : MonoBehaviour
     {
         if(detectedElement.Count > 0)
         {
+            //TrailShield();
+
             for (int i = 0; i < detectedElement.Count; i++)
             {
                 if (detectedElement[i].gameObject != null && pegaseHealthScript.currentHp >= 0)
                 {
-                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().canTakeDmg = false;                             //if a element is in the liste, he's can't take damage
+                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().ProtectByPegase = true;                             //if a element is in the liste, he's can't take damage
                 }
                 else if (detectedElement[i].gameObject == null)                                                                     //remove a element of the list if he's = null 
                 {
@@ -45,9 +52,24 @@ public class PegaseSupport : MonoBehaviour
                 
                 if(pegaseHealthScript.currentHp <= 0)                                                                               //when Pegase die, the ennemies can take damage again
                 {
-                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().canTakeDmg = true;
+                    detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().ProtectByPegase = false;
                 }
             }
+        }
+        /*else
+        {
+            trailExist = false;
+            Destroy(trailInstance);
+        }*/
+    }
+
+    void TrailShield()
+    {
+        if (!trailExist)
+        {
+            trailExist = true;
+            trailInstance = Instantiate(ShieldTrail, transform.position, ShieldTrail.transform.rotation);
+            trailInstance.transform.parent = gameObject.transform;
         }
     }
 

@@ -8,8 +8,15 @@ using UnityEngine;
 /// </summary>
 public class EnemyHealthSystem : BasicHealthSystem
 {
+    //Settings for instantiation of shield of Pegase
+    public bool ProtectByPegase;
+    public GameObject shieldOfEnemy;
+    
+    private GameObject shieldInstance;
+    private bool shieldExist;
+    private bool pegaseIsDie;
+
     [Header("On Hit Flash")]
-    [Header ("Corps")]
 
     [SerializeField]
     Color flashColor = Color.red;
@@ -72,6 +79,8 @@ public class EnemyHealthSystem : BasicHealthSystem
     protected override void Update()
     {
         base.Update();
+        PegaseProtection();
+
         if (canFlash)
         {
             HitFlash();
@@ -110,6 +119,42 @@ public class EnemyHealthSystem : BasicHealthSystem
                 StartCoroutine(DestroyTime());
             }
         }
+    }
+
+    void PegaseProtection()
+    {
+        if (ProtectByPegase)
+        {
+            canTakeDmg = false;
+            
+            if (!shieldExist)
+            {
+                pegaseIsDie = false;
+                shieldExist = true;
+                PegaseShield();
+            }
+        }
+        else
+        {
+            if (!pegaseIsDie)
+            {
+                pegaseIsDie = true;
+                WhenPegaseDie();
+            }       
+        }
+    }
+
+    void WhenPegaseDie()
+    {
+        canTakeDmg = true;
+        shieldExist = false;
+        Destroy(shieldInstance);
+    }
+
+    void PegaseShield()
+    {
+        shieldInstance = Instantiate(shieldOfEnemy, transform.position, shieldOfEnemy.transform.rotation);
+        shieldInstance.transform.parent = gameObject.transform;
     }
 
     void HitFlash()
