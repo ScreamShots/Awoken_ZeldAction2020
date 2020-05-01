@@ -117,7 +117,6 @@ public class TurretShoot : MonoBehaviour
 
     void Shoot()
     {
-
         direction = shootPoint.rotation * Vector2.right;
 
         GameObject bulletInstance = Instantiate(Bullet, shootPoint.position, shootPoint.rotation);

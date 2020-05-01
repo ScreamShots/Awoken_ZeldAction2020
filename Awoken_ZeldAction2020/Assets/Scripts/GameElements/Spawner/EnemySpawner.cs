@@ -22,11 +22,13 @@ public class EnemySpawner : MonoBehaviour
     [Space] public List<GameObject> enemiesSpawned;
 
     GameElementsHealthSystem enemyHealthScript;
+    TurretDetectionZone detectionZoneScript;
     #endregion
 
     void Start()
     {
         enemyHealthScript = GetComponent<GameElementsHealthSystem>();
+        detectionZoneScript = GetComponentInChildren<TurretDetectionZone>();
     }
 
     void Update()
@@ -42,11 +44,14 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        if (enemiesSpawned.Count < enemySpawnLimit)
+        if (detectionZoneScript.playerInZone)                       //if Player is in detection zone = spawn enemy
         {
-            if (!spawnInProgress)
+            if (enemiesSpawned.Count < enemySpawnLimit)
             {
-                StartCoroutine(SpawnEnemy());
+                if (!spawnInProgress)
+                {
+                    StartCoroutine(SpawnEnemy());
+                }
             }
         }
     }
