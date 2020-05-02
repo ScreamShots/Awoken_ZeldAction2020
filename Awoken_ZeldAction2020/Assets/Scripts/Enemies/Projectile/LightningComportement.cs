@@ -23,8 +23,13 @@ public class LightningComportement : MonoBehaviour
     [Min(0)]
     [SerializeField] private float dmgLightning = 0;
 
-    private int sameGameObjectList;
-    [Space] public List<GameObject> inLightningZone;
+    [Header("Target Tag Selection")]
+    [SerializeField] private string targetedElement = null;
+
+    [Header("Element in Zone")]
+    [Space]
+
+    public List<GameObject> inLightningZone;
     #endregion
 
     private void Start()
@@ -53,41 +58,36 @@ public class LightningComportement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("HitBox"))
-        {
-            if (!inLightningZone.Contains(other.gameObject) && other.gameObject.GetComponentInParent<PlayerHealthSystem>())                     //if Game Object contain a Health system
-            {
-                inLightningZone.Add(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject);
+        GameObject element = collision.gameObject;
 
-                for (int i = 0; i < inLightningZone.Count; i++)                                                                                //if Game Object have many hitbox
+        if (element.transform != element.transform.root)
+        {
+            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)
+            {
+                for (int i = 0; i < inLightningZone.Count; i++)                                                                        //for not add twice same element in the list
                 {
-                    if (other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject == inLightningZone[i].gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject)
+                    if (inLightningZone[i].gameObject.transform.root.name == element.transform.root.name)
                     {
-                        sameGameObjectList++;
+                        inLightningZone.Remove(element.transform.parent.gameObject);
                     }
                 }
 
-                if (sameGameObjectList > 1)                                                                                                     //if Game Object have many hitbox, just take one 
-                {
-                    inLightningZone.Remove(other.gameObject.GetComponentInParent<PlayerHealthSystem>().gameObject);
-                }
-
-                sameGameObjectList = 0;
+                inLightningZone.Add(element.transform.parent.gameObject);
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.CompareTag("HitBox") && other.transform.root.CompareTag("Player"))
-        {
-            if (inLightningZone.Contains(PlayerManager.Instance.gameObject))
-            {
-                inLightningZone.Remove(PlayerManager.Instance.gameObject);
+        GameObject element = collision.gameObject;
 
-                sameGameObjectList = 0;
+        if (element.transform != element.transform.root)
+        {
+            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)
+            {
+                inLightningZone.Remove(element.transform.parent.gameObject);
             }
         }
     }
