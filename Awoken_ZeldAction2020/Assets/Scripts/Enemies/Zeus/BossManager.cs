@@ -48,6 +48,7 @@ public class BossManager : EnemyHealthSystem
     public float s2_pattern3_DurationTime;
     [Space]
     public float s2_pauseTimePattern1_2;
+    public float s2_pauseTimePattern2_3;
     public float s2_pauseTimePattern3_1;
 
     private bool canPlayState2_pattern1;
@@ -265,7 +266,7 @@ public class BossManager : EnemyHealthSystem
         if (s2_pauseTimePattern1_2 > 0)
         {
             s2_Pattern2 = false;
-            yield return new WaitForSeconds(s2_pauseTimePattern1_2);
+            yield return new WaitForSeconds(s2_pauseTimePattern2_3);
             canPlayState2_pattern3 = true;
         }
         else

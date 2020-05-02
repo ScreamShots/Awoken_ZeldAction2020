@@ -120,7 +120,11 @@ public class BulletComportement : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-      
+
+        if(other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Wall"))                            //if we detect a wall = destroy the projectile
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnBlocked()                        //What happen when the projectile is blocked

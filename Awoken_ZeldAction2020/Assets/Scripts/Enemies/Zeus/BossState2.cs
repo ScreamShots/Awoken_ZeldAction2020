@@ -49,6 +49,8 @@ public class BossState2 : MonoBehaviour
 
     #region Pattern 2
 
+    ZeusWallZone zeusWallZoneScript;
+
     [HideInInspector] public bool pattern2IsRunning;
 
     [Space]
@@ -72,6 +74,8 @@ public class BossState2 : MonoBehaviour
 
     [HideInInspector] public bool animWall;                             //anim of instantiate wall
     [HideInInspector] public bool isPunching;                           //anim of Zeus punching player
+    private bool canInstancieWall;
+    private bool canKickPlayer;
     #endregion
 
     #region Pattern 3
@@ -96,6 +100,8 @@ public class BossState2 : MonoBehaviour
         player = PlayerManager.Instance.gameObject;
 
         timeLeft = timeBtwLightning;
+
+        zeusWallZoneScript = GetComponentInChildren<ZeusWallZone>();
     }
 
     void Update()
@@ -103,6 +109,10 @@ public class BossState2 : MonoBehaviour
         AttackState2();
         Move();
         CheckPatternRunning();
+
+        InstancieWall();
+        SetWallDistance();
+        KickPlayerOutZone();
     }
 
     void CheckPatternRunning()
@@ -197,21 +207,45 @@ public class BossState2 : MonoBehaviour
         }
     }
 
-    void SetWallDirection()
+    void SetWallDistance()
     {
         playerDistance = (transform.position - player.transform.position).magnitude;
 
-        wallTransform.localPosition = new Vector3(0, - playerDistance / 2, 0);
+        wallTransform.localPosition = new Vector3(0, (- playerDistance / 2) + 0.7f, 0);
+
+        if (playerDistance <= 3)
+        {
+            wallTransform.localPosition = new Vector3(0, -1, 0);
+        }
+    }
+
+    void InstancieWall()
+    {
+        if (canInstancieWall)
+        {
+            if (zeusWallZoneScript.bulletDetection)
+            {
+                canInstancieWall = false;
+                animWall = true;
+                StartCoroutine(StartAnimationWall());
+                GameObject wallInstance = Instantiate(protectionWall, wallTransform.position, wallTransform.rotation);
+
+                Destroy(wallInstance, destroyWallTIme);
+            }
+        }
     }
 
     void KickPlayerOutZone()
     {
-        if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone)
+        if (canKickPlayer)
         {
-            if (!isPunching)
+            if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone)
             {
-                isPunching = true;
-                StartCoroutine(KickPlayer());
+                if (!isPunching)
+                {
+                    isPunching = true;
+                    StartCoroutine(KickPlayer());
+                }
             }
         }
     }
@@ -296,9 +330,9 @@ public class BossState2 : MonoBehaviour
 
     IEnumerator PrepareForShoot2()
     {
-        KickPlayerOutZone();
         SetDirectionAttack();
         StartCoroutine(StartAnimationShoot());
+        StartCoroutine(TimeToKickPlayer());
 
         yield return new WaitForSeconds(timeBeforeShoot);
 
@@ -308,39 +342,36 @@ public class BossState2 : MonoBehaviour
     IEnumerator Pattern2Shoot()
     {
         animShoot = false;
-        BossAttackStrike();
-        StartCoroutine(StartAnimationWall());
-
-        yield return new WaitForSeconds(wallspawnTime);
-        StartCoroutine(ProtectionWall());
+        BossAttackStrike();       
+        canInstancieWall = true;
 
         yield return new WaitForSeconds(timeBtwStrike -0.1f);
         shoot1bullets = false;
 
         yield return new WaitForSeconds(0.1f);
         bossIsShooting = false;
-    }
-
-    IEnumerator ProtectionWall()
-    {
-        animWall = false;
-        SetWallDirection();
-        GameObject wallInstance = Instantiate(protectionWall, wallTransform.position, wallTransform.rotation);
-
-        yield return new WaitForSeconds(destroyWallTIme);
-        Destroy(wallInstance);
+        canInstancieWall = false;
     }
 
     IEnumerator StartAnimationWall()
     {
-        yield return new WaitForSeconds(wallspawnTime - 0.2f);
-        animWall = true;
+        yield return new WaitForSeconds(0.1f);
+        animWall = false;
+    }
+
+    IEnumerator TimeToKickPlayer()
+    {
+        yield return new WaitForSeconds(timeBeforeShoot - 1f);
+        canKickPlayer = true;
+        yield return new WaitForSeconds(0.1f);
+        canKickPlayer = false;
     }
 
     IEnumerator KickPlayer()
     {
         yield return new WaitForSeconds(0.5f);
         PlayerMovement.playerRgb.AddForce(new Vector2(0, -20) * knockbackIntensity);
+        yield return new WaitForSeconds(0.1f);
         isPunching = false;
     }
     #endregion
