@@ -13,6 +13,9 @@ public class LvlManager : MonoBehaviour
 
     public AreaManager[] LvlStarts;
 
+    [HideInInspector]
+    public AreaManager currentArea = null;
+
     private void Awake()
     {
         #region Make Singleton
@@ -30,7 +33,7 @@ public class LvlManager : MonoBehaviour
     private void Start()
     {
         lvlCamBrain = GetComponentInChildren<CinemachineBrain>();
-        LvlStarts[0].InitializeFirstCam();
+        StartCoroutine(LvlStarts[0].InitializeFirstCam());
     }
     
 
@@ -42,6 +45,7 @@ public class LvlManager : MonoBehaviour
             {
                 canEndTransition = false;
                 GameManager.Instance.gameState = GameManager.GameState.Running;
+                currentArea.LoadArea();
             }
         }
     }

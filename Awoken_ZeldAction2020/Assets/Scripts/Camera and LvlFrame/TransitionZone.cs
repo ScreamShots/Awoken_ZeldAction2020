@@ -12,6 +12,7 @@ public class TransitionZone : MonoBehaviour
     bool isTheStart = false;
     bool needToTransit = false;
 
+
     private void Start()
     {
 
@@ -79,6 +80,8 @@ public class TransitionZone : MonoBehaviour
         }
 
         GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
+        EnemyManager.Instance.DestroyAllProjectile();
+        linkedAreaManager.UnLoadArea();
         isTheStart = true;
         linkedAreaManager.DesactivateCam();
         nextAreaManager.ActivateCam();

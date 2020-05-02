@@ -126,7 +126,10 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
   flashTime: 0.5
   flashFadeTime: 0.5
+  dontHaveCorps: 0
   corps: {fileID: 9194243184529994227, guid: 46fe3d2f0d4af8f44b1e2d2f903338e4, type: 3}
+  timeBeforeDestroy: 0
+  linkedSpawnPlateform: {fileID: 0}
   minDropDistance: -0.5
   maxDropDistance: 0.5
   dropChanceItem0: 10
@@ -136,6 +139,7 @@ MonoBehaviour:
   - {fileID: 5185985298356316155, guid: ee61c35fc7138624faf6dc91c3370a5b, type: 3}
   - {fileID: 1266662756116312142, guid: a8984afa3f081fd4b9ce8ca4a7ba9268, type: 3}
   - {fileID: 7549480610179070698, guid: adbd223cf1666f1439d27db13f5d3ee1, type: 3}
+  corouDeathPlay: 0
 --- !u!1 &506266973565926884
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +316,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 832908782247274725, guid: b4c9c5a9f11f2f5469f52a354c636eae, type: 3}
+  m_Sprite: {fileID: 571694200092142152, guid: 7b065c6c3e109ff489f68f7b565fefab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

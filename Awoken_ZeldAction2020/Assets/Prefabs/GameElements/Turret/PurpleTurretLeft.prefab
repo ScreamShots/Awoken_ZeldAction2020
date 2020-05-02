@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 490597046628601442}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Shoot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 490597046825454867}
   - component: {fileID: 1436166677424257741}
   - component: {fileID: 8074326528890062995}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rendering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490597046860106067}
   - component: {fileID: 490597046860106068}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collision Detection
   m_TagString: CollisionDetection
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 490597046908166284}
   - component: {fileID: 490597046908166285}
   - component: {fileID: 490597046908166283}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PurpleTurretLeft
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8e59778e7104043be1f2b2fa0e851f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBtwFirstShot: 1
   timeBtwShots: 2
   hasAggroZone: 1
   Bullet: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39, type: 3}
@@ -274,9 +275,19 @@ MonoBehaviour:
   maxHp: 50
   currentHp: 0
   canTakeDmg: 1
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.5
+  flashFadeTime: 0.5
   dontHaveCorps: 0
   corps: {fileID: 5571272292274547884, guid: 235757bf50522cf44bdb8334099ceb7d, type: 3}
   timeBeforeDestroy: 0
+  linkedSpawnPlateform: {fileID: 0}
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
   corouDeathPlay: 0
 --- !u!1 &490597047412935593
 GameObject:
@@ -288,7 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490597047412935594}
   - component: {fileID: 6641959816958057096}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HitBox
   m_TagString: HitBox
   m_Icon: {fileID: 0}
@@ -346,7 +357,7 @@ GameObject:
   - component: {fileID: 6682952860083999172}
   - component: {fileID: 653152289194504808}
   - component: {fileID: 2501853038390595376}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Detection Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

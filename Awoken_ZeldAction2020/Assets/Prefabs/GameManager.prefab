@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 144188320564182204}
   - component: {fileID: 144188320564182205}
   - component: {fileID: 9101460006611814369}
+  - component: {fileID: 8505841336542493080}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,3 +59,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd16cc5de4f4364cad0a26d8214fed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8505841336542493080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144188320564182202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58799bd07cf747d4e9b4e89b6725f882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignedEnemy: 2
+  allEnemies:
+  - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
+  - {fileID: 8183913270917537701, guid: 991f1a58e89e43f45add7f802ee41900, type: 3}
+  - {fileID: 264327010056913483, guid: d23510524255c3d44ac8416cce187c4e, type: 3}
+  - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
+  allProjectile: []
+  cloud: {fileID: 316948580318839926, guid: 1d747d565dffcf347a0117af76b7fcfe, type: 3}
