@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3099420041909509125}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 8590007252289771370}
   - component: {fileID: 4793925723113160619}
   - component: {fileID: 2455159271835003938}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rendering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,8 +217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8590007252410235637}
   - component: {fileID: 4621052777677904261}
-  - component: {fileID: 2475870343597164797}
-  m_Layer: 0
+  - component: {fileID: 7873573906568992803}
+  m_Layer: 17
   m_Name: Spawner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -267,7 +267,8 @@ MonoBehaviour:
   - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
   - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
   enemiesSpawned: []
---- !u!114 &2475870343597164797
+  spawnEnable: 1
+--- !u!114 &7873573906568992803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,10 +283,20 @@ MonoBehaviour:
   maxHp: 10
   currentHp: 0
   canTakeDmg: 1
-  flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5
-  corps: {fileID: 4552071387671090876, guid: 89c000dc89a7b16449f848ca91d2288d, type: 3}
+  dontHaveCorps: 1
+  corps: {fileID: 0}
+  timeBeforeDestroy: 0.6
+  linkedSpawnPlateform: {fileID: 0}
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
+  corouDeathPlay: 0
 --- !u!1 &8590007252458541867
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8590007252458541866}
   - component: {fileID: 8590007252458541869}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collision Detection
   m_TagString: CollisionDetection
   m_Icon: {fileID: 0}
@@ -353,7 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8590007254118732243}
   - component: {fileID: 5986675487589293836}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HitBox
   m_TagString: HitBox
   m_Icon: {fileID: 0}

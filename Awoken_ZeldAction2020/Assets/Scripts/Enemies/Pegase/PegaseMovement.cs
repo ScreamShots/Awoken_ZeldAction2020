@@ -158,7 +158,7 @@ public class PegaseMovement : MonoBehaviour
         }
 
         pegaseRgb = GetComponent<Rigidbody2D>();
-        pegaseHealthScript = gameObject.transform.root.GetComponent<EnemyHealthSystem>();
+        pegaseHealthScript = GetComponent<EnemyHealthSystem>();
 
         startPos = transform.position;
         stayTimer = stayDuration;

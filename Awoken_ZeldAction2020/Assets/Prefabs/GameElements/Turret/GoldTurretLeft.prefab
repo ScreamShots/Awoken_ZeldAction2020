@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5163810775751548349}
   - component: {fileID: 5163810775751548348}
-  m_Layer: 0
+  - component: {fileID: 5163810775751548346}
+  m_Layer: 17
   m_Name: GoldTurretLeft
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -57,6 +58,35 @@ MonoBehaviour:
   turretIsShooting: 0
   inZoneAnim: 0
   turretIsBroken: 0
+--- !u!114 &5163810775751548346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163810775751548347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 20
+  currentHp: 0
+  canTakeDmg: 0
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.5
+  flashFadeTime: 0.5
+  dontHaveCorps: 1
+  corps: {fileID: 0}
+  timeBeforeDestroy: 0
+  linkedSpawnPlateform: {fileID: 0}
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
+  corouDeathPlay: 0
 --- !u!1 &5163810775837684835
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5163810775837684834}
   - component: {fileID: 5163810775837684837}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collision Detection
   m_TagString: CollisionDetection
   m_Icon: {fileID: 0}
@@ -123,7 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5163810776036094803}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Shoot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +186,7 @@ GameObject:
   - component: {fileID: 5163810776207814690}
   - component: {fileID: 5947337677370050556}
   - component: {fileID: 3560866067126498722}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rendering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,6 +289,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a32cd67453e30429d6cbd67049c469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5163810776392611480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5163810776392611483}
+  - component: {fileID: 2110924490616891321}
+  m_Layer: 17
+  m_Name: HitBox
+  m_TagString: HitBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5163810776392611483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163810776392611480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5163810775751548349}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2110924490616891321
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163810776392611480}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04, y: -0.17}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.85, y: 0.88}
+  m_EdgeRadius: 0
 --- !u!1 &6023566617697738913
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +357,7 @@ GameObject:
   - component: {fileID: 2151005209783741685}
   - component: {fileID: 5221659247099219801}
   - component: {fileID: 7196514666360648193}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Detection Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

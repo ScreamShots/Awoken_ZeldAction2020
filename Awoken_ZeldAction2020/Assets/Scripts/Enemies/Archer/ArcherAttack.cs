@@ -107,7 +107,10 @@ public class ArcherAttack : MonoBehaviour
     {
         SetDirectionAttack();
         yield return new WaitForSeconds(timeBeforeShoot);
-        ArcherShoot();
+        if(GameManager.Instance.gameState == GameManager.GameState.Running)
+        {
+            ArcherShoot();
+        }
         archerIsAttacking = false;
         animationAttack = false;
         StartCoroutine(CooldownShoot());

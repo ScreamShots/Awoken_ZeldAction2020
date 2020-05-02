@@ -41,7 +41,7 @@ public class PegaseSupport : MonoBehaviour
 
             for (int i = 0; i < detectedElement.Count; i++)
             {
-                if (detectedElement[i].gameObject != null && pegaseHealthScript.currentHp >= 0)
+                if (detectedElement[i].gameObject != null && pegaseHealthScript.currentHp > 0)
                 {
                     detectedElement[i].gameObject.GetComponent<EnemyHealthSystem>().ProtectByPegase = true;                             //if a element is in the liste, he's can't take damage
                 }
@@ -92,5 +92,10 @@ public class PegaseSupport : MonoBehaviour
                 detectedElement.Add(element.transform.parent.gameObject);
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
     }
 }

@@ -44,6 +44,11 @@ public class BulletComportement : MonoBehaviour
     private bool l_hasBeenLaunchBack = false;
     #endregion
 
+    private void Awake()
+    {
+        EnemyManager.Instance.allProjectile.Add(gameObject);
+    }
+
     private void Start()
     {
         bulletRgb = GetComponent<Rigidbody2D>();
