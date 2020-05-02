@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     float l_timeScaleRatio = 1;
 
 
+
     void Awake()
     {
         #region Make Singleton
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("1 GameManager Deleted (can't be more than one GameManager in the scene)");
         }
-        #endregion
+        #endregion        
     }
 
     private void Update()

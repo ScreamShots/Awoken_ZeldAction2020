@@ -113,7 +113,6 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     void HitEffect(Vector3 sourcePos)
     {
-        Debug.Log("HitEffect");
         switch (PlayerStatusManager.Instance.currentState)
         {
             case PlayerStatusManager.State.neutral:

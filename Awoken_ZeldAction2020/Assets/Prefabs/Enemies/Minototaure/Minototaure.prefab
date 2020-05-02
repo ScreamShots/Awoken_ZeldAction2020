@@ -399,7 +399,20 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.25943398, b: 0.25943398, a: 0.64705884}
   flashTime: 0.5
   flashFadeTime: 0.5
+  dontHaveCorps: 0
   corps: {fileID: 6871134627997535689, guid: ef594f67c4ac7d04da9ce63495d69555, type: 3}
+  timeBeforeDestroy: 0
+  linkedSpawnPlateform: {fileID: 0}
+  minDropDistance: -0.5
+  maxDropDistance: 0.5
+  dropChanceItem0: 10
+  dropChanceItem1: 15
+  dropChanceItem2: 33
+  DropItemList:
+  - {fileID: 7549480610179070698, guid: adbd223cf1666f1439d27db13f5d3ee1, type: 3}
+  - {fileID: 1266662756116312142, guid: a8984afa3f081fd4b9ce8ca4a7ba9268, type: 3}
+  - {fileID: 5185985298356316155, guid: ee61c35fc7138624faf6dc91c3370a5b, type: 3}
+  corouDeathPlay: 0
 --- !u!114 &8183913270917537706
 MonoBehaviour:
   m_ObjectHideFlags: 0

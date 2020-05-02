@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public enum Direction { up, down, left, right }
 
     public static Rigidbody2D playerRgb;    
-    [HideInInspector] public Direction watchDirection = Direction.down;
+    public Direction watchDirection = Direction.down;
 
     [HideInInspector] public float horizontalAxis;
     [HideInInspector] public float verticalAxis;
