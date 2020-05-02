@@ -28,6 +28,8 @@ public class EnemyHealthSystem : BasicHealthSystem
     public float timeBeforeDestroy;
 
     SpriteRenderer enemyRenderer;
+    [HideInInspector]
+    public SpawnPlateform linkedSpawnPlateform = null;
 
     float flashTimer = 0;
     float flashFadeTimer = 0;
@@ -95,6 +97,11 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
+        if(linkedSpawnPlateform != null)
+        {
+            linkedSpawnPlateform.enemyIsDead = true;
+            linkedSpawnPlateform.GetComponentInParent<AreaManager>().IncrementEnemyDeathCounter();
+        }
         if (!dontHaveCorps)
         {
             Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object

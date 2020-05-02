@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3014151340473061295}
   - component: {fileID: 8301931289443393165}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HitBox
   m_TagString: HitBox
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 3014151340975481993}
   - component: {fileID: 3014151340975481992}
   - component: {fileID: 3014151340975481998}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GoldTurretRight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -130,9 +130,19 @@ MonoBehaviour:
   maxHp: 20
   currentHp: 0
   canTakeDmg: 0
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.5
+  flashFadeTime: 0.5
   dontHaveCorps: 1
   corps: {fileID: 0}
   timeBeforeDestroy: 0
+  linkedSpawnPlateform: {fileID: 0}
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
   corouDeathPlay: 0
 --- !u!1 &3014151341061606743
 GameObject:
@@ -144,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3014151341061606742}
   - component: {fileID: 3014151341061606737}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collision Detection
   m_TagString: CollisionDetection
   m_Icon: {fileID: 0}
@@ -203,7 +213,7 @@ GameObject:
   - component: {fileID: 3014151341094095126}
   - component: {fileID: 4392364497422876360}
   - component: {fileID: 6852047562011839638}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rendering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3014151341257394791}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Shoot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +357,7 @@ GameObject:
   - component: {fileID: 8332793942566344129}
   - component: {fileID: 2741266437659604589}
   - component: {fileID: 982567380981746485}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Detection Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
