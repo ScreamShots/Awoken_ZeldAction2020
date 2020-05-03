@@ -61,6 +61,15 @@ public class BossState2 : MonoBehaviour
     [SerializeField]
     private Transform wallTransform = null;
 
+    [Space] [SerializeField]
+    private GameObject TuyauLeft = null;
+    [SerializeField]
+    private GameObject TuyauRight = null;
+    [SerializeField]
+    private Transform PlaceTuyauRight = null;
+    [SerializeField]
+    private Transform PlaceTuyauLeft = null;
+
     [Header("Stats")]
 
     [SerializeField]
@@ -94,6 +103,9 @@ public class BossState2 : MonoBehaviour
     private float timeLeft;
     [HideInInspector] public bool animThunder;                         //anim of lightning
     #endregion
+
+    [HideInInspector] public bool ZeusTp;
+    private bool CoroutinePlayOnce;
 
     void Start()
     {
@@ -167,7 +179,11 @@ public class BossState2 : MonoBehaviour
     {
         if (BossManager.Instance.s2_Pattern1)
         {
-            transform.position = throneArena.position;
+            if (!CoroutinePlayOnce && transform.position != throneArena.position)
+            {
+                CoroutinePlayOnce = true;
+                StartCoroutine(ZeusCanTpThrone());
+            }
         }
         else if (BossManager.Instance.s2_Pattern2)
         {
@@ -211,7 +227,7 @@ public class BossState2 : MonoBehaviour
     {
         playerDistance = (transform.position - player.transform.position).magnitude;
 
-        wallTransform.localPosition = new Vector3(0, (- playerDistance / 2) + 0.7f, 0);
+        wallTransform.localPosition = new Vector3(0, (player.transform.position.y + 2), 0);
 
         if (playerDistance <= 3)
         {
@@ -225,12 +241,31 @@ public class BossState2 : MonoBehaviour
         {
             if (zeusWallZoneScript.bulletDetection)
             {
+                //Wall
+                zeusWallZoneScript.bulletDetection = false;
                 canInstancieWall = false;
                 animWall = true;
+
                 StartCoroutine(StartAnimationWall());
                 GameObject wallInstance = Instantiate(protectionWall, wallTransform.position, wallTransform.rotation);
 
                 Destroy(wallInstance, destroyWallTIme);
+
+
+                //Tuyau
+                int randomTuyau;
+                randomTuyau = Random.Range(1, 3);
+
+                if (randomTuyau == 1)
+                {
+                    GameObject TuyauLeftInstance = Instantiate(TuyauLeft, PlaceTuyauLeft.position, PlaceTuyauLeft.rotation);
+                    Destroy(TuyauLeftInstance, destroyWallTIme);
+                }
+                else if (randomTuyau == 2)
+                {
+                    GameObject TuyauRightInstance = Instantiate(TuyauRight, PlaceTuyauRight.position, PlaceTuyauRight.rotation);
+                    Destroy(TuyauRightInstance, destroyWallTIme);
+                }
             }
         }
     }
@@ -314,6 +349,14 @@ public class BossState2 : MonoBehaviour
     {
         yield return new WaitForSeconds(quickShoot - 0.4f);
         animShoot = true;
+    }
+
+    IEnumerator ZeusCanTpThrone()
+    {
+        ZeusTp = true;
+        yield return new WaitForSeconds(0.3f);
+        transform.position = throneArena.position;
+        ZeusTp = false;
     }
     #endregion
 

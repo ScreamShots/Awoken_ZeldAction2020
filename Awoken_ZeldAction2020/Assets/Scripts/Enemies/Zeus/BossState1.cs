@@ -40,6 +40,9 @@ public class BossState1 : MonoBehaviour
     #endregion
 
     private GameObject player;
+    [HideInInspector] public bool ZeusTp;
+    private bool CoroutinePlayOnce;
+    private bool CoroutinePlayOnce2;
 
     private void Start()
     {
@@ -81,11 +84,21 @@ public class BossState1 : MonoBehaviour
     {
         if (BossManager.Instance.s1_Pattern1)
         {
-            transform.position = throneArena.position;
+            if (!CoroutinePlayOnce)
+            {
+                CoroutinePlayOnce = true;
+                CoroutinePlayOnce2 = false;
+                StartCoroutine(ZeusCanTpThrone());
+            }
         }
         else if (BossManager.Instance.s1_Pattern2)
         {
-            transform.position = middleArena.position;
+            if(!CoroutinePlayOnce2)
+            {
+                CoroutinePlayOnce = false;
+                CoroutinePlayOnce2 = true;
+                StartCoroutine(ZeusCanTpMidle());
+            }
         }
     }
 
@@ -133,5 +146,21 @@ public class BossState1 : MonoBehaviour
             GameObject shockWaveInstance = Instantiate(ShockWave, shockWaveSpawn.position, ShockWave.transform.rotation);
             newShockWave = shockWaveInstance;
         }
+    }
+
+    IEnumerator ZeusCanTpThrone()
+    {
+        ZeusTp = true;
+        yield return new WaitForSeconds(0.3f);
+        transform.position = throneArena.position;
+        ZeusTp = false;
+    }
+
+    IEnumerator ZeusCanTpMidle()
+    {
+        ZeusTp = true;
+        yield return new WaitForSeconds(0.3f);
+        transform.position = middleArena.position;
+        ZeusTp = false;
     }
 }

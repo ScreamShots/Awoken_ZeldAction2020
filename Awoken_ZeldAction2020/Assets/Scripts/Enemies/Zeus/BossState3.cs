@@ -11,6 +11,8 @@ public class BossState3 : MonoBehaviour
     public Transform spawnerPlace;
     public Transform spawnerPlace2;
     public GameObject spawner;
+    public float timeBeforePlaceSpawner;
+    private float time;
 
     [Space]
     [Header("Stats")]
@@ -23,6 +25,15 @@ public class BossState3 : MonoBehaviour
     private bool spawnerExist;
     #endregion
 
+    [HideInInspector] public bool ZeusTp;
+    [HideInInspector] public bool ZeusIsTirred;
+    private bool CoroutinePlayOnce;
+
+    void Start()
+    {
+        time = timeBeforePlaceSpawner;
+    }
+
     private void Update()
     {
         AttackState3();
@@ -33,7 +44,11 @@ public class BossState3 : MonoBehaviour
     {
         if (BossManager.Instance.s3_Pattern1)
         {
-            transform.position = secretRoomArena.position;
+            if (!CoroutinePlayOnce)
+            {
+                CoroutinePlayOnce = true;
+                StartCoroutine(ZeusCanTpSecretRoom());
+            }
         }
     }
 
@@ -41,10 +56,15 @@ public class BossState3 : MonoBehaviour
     {
         if (BossManager.Instance.s3_Pattern1)
         {
-            if (!spawnerExist)
+            time -= Time.deltaTime;
+
+            if (time <= 0)
             {
-                spawnerExist = true;
-                Pattern1();                                 //Instantiate a spawner to a position
+                if (!spawnerExist)
+                {
+                    spawnerExist = true;
+                    Pattern1();                                 //Instantiate a spawner to a position
+                }
             }
         }
     }
@@ -53,5 +73,15 @@ public class BossState3 : MonoBehaviour
     {
         Instantiate(spawner, spawnerPlace.position, spawner.transform.rotation);
         Instantiate(spawner, spawnerPlace2.position, spawner.transform.rotation);
+    }
+
+    IEnumerator ZeusCanTpSecretRoom()
+    {
+        ZeusTp = true;
+        yield return new WaitForSeconds(0.3f);
+        transform.position = secretRoomArena.position;
+        ZeusTp = false;
+        yield return new WaitForSeconds(0.5f);
+        ZeusIsTirred = true;
     }
 }
