@@ -72,10 +72,7 @@ public class ArcherSound : MonoBehaviour
     }
 
     void Attack()
-    { 
-
-            archerManager.Play("ArcherAttack");
-
-        
+    {
+        archerManager.Play("ArcherAttack");       
     }
 }

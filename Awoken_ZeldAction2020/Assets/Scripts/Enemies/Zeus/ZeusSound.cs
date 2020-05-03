@@ -76,7 +76,7 @@ public class ZeusSound : MonoBehaviour
             l_animWall = bossState2.animWall;
         }
 
-        /*if (l_canFlash != bossHealth.canFlash)
+        /*if (l_canFlash != bossHealth.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
         {
             if (bossHealth.canFlash == true)
             {

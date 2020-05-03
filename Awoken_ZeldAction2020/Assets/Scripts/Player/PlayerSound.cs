@@ -102,7 +102,7 @@ public class PlayerSound : MonoBehaviour
     {
         if (PlayerStatusManager.Instance.isAttacking == true)
         {
-            /*if(playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0)
+            /*if(playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0) //Nécessite de rendre la variable PlayerAttack.inRangeElement public pour fonctionner
             {
                 SoundManager.Instance.Play("Attack1");
             }
