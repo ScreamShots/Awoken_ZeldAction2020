@@ -17,6 +17,8 @@ public class AreaManager : MonoBehaviour
     [SerializeField]
     bool mustKillAllEnemies;
     int enemyDeathCounter = 0;
+    [SerializeField]
+    bool dungeonRoom = false;
 
 
     [HideInInspector]
@@ -27,8 +29,12 @@ public class AreaManager : MonoBehaviour
     private void Awake()
     {
         thisAreaCam = GetComponentInChildren<CinemachineVirtualCamera>();
-        thisAreaCam.gameObject.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GetComponent<PolygonCollider2D>();
-        thisAreaCam.Follow = PlayerManager.Instance.gameObject.transform;
+        if (!dungeonRoom)
+        {
+            thisAreaCam.gameObject.GetComponent<CinemachineConfiner>().m_BoundingShape2D = GetComponent<Collider2D>();
+            thisAreaCam.gameObject.GetComponent<CinemachineConfiner>().InvalidatePathCache();
+            thisAreaCam.Follow = PlayerManager.Instance.gameObject.transform;
+        }
         thisAreaCam.Priority = 0;
         thisAreaCam.gameObject.SetActive(false);
 
@@ -72,7 +78,6 @@ public class AreaManager : MonoBehaviour
 
         foreach(SpawnPlateform spawnPlateform in allSpawnPlateforms)
         {
-            Debug.Log(spawnPlateform.assignedEnemy);
             spawnPlateform.SpawnEnemy();
         }
         foreach(EnemySpawner spawner in allEnemySpawners)
