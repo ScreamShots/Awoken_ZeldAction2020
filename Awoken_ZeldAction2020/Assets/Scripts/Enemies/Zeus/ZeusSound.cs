@@ -12,17 +12,20 @@ public class ZeusSound : MonoBehaviour
 {
     private BossState1 bossState1;
     private BossState2 bossState2;
+    private BossManager bossHealth;
 
     private bool l_animThunder;
     private bool l_animShockwave;
     private bool l_isPunching;
     private bool l_animShoot;
     private bool l_animWall;
+    private bool l_canFlash;
     // Start is called before the first frame update
     void Start()
     {
         bossState1 = GetComponentInParent<BossState1>();
         bossState2 = GetComponentInParent<BossState2>();
+        bossHealth = GetComponentInParent<BossManager>();
     }
 
     // Update is called once per frame
@@ -63,6 +66,24 @@ public class ZeusSound : MonoBehaviour
             }
             l_animShoot = bossState2.animShoot;
         }
+
+        if (l_animWall != bossState2.animWall)
+        {
+            if (bossState2.animWall == true)
+            {
+                ShootBolt();
+            }
+            l_animWall = bossState2.animWall;
+        }
+
+        /*if (l_canFlash != bossHealth.canFlash)
+        {
+            if (bossHealth.canFlash == true)
+            {
+                ZeusDamaged();
+            }
+            l_canFlash = bossHealth.canFlash;
+        }*/
     }
 
     void ZeusDamaged()
@@ -89,5 +110,10 @@ public class ZeusSound : MonoBehaviour
     void ZeusPunch()
     {
         SoundManager.Instance.Play("ZeusPunch");
+    }
+
+    void ZeusWall()
+    {
+        SoundManager.Instance.Play("SummonWall");
     }
 }
