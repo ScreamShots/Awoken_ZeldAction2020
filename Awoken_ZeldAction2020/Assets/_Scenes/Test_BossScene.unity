@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -665,10 +665,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1247856060, guid: fa0537723b32bdb449490066e1f2d73d, type: 3}
-      propertyPath: m_Offset.y
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 1686074760679940912, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: PlaceTuyauRight
@@ -684,11 +680,6 @@ PrefabInstance:
       propertyPath: throneArena
       value: 
       objectReference: {fileID: 845798809}
-    - target: {fileID: 1686074760679940912, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: destroyWallTIme
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: secretRoomArena
@@ -704,11 +695,6 @@ PrefabInstance:
       propertyPath: spawnerPlace2
       value: 
       objectReference: {fileID: 240616347}
-    - target: {fileID: 3877349471966037664, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: maxHp
-      value: 650
-      objectReference: {fileID: 0}
     - target: {fileID: 3877349471966037667, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: m_LocalPosition.x
