@@ -4,14 +4,12 @@ using UnityEngine;
 
 public abstract class  EnigmaTool : MonoBehaviour
 {
-    [SerializeField]
     protected DoorBehavior door;
-    [SerializeField]
     protected InstantPressurePlate instantPlate;
-    [SerializeField]
     protected StayPressurePlate stayPlate;
-    [SerializeField]
     protected ActionLever actionLever;
+    [SerializeField]
+    protected bool isEnigmaDone;
 
 
 
