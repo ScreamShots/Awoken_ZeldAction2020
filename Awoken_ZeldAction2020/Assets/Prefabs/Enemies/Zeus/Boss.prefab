@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1058051325}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BossShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 1647592546}
   - component: {fileID: 5678589965082976986}
   - component: {fileID: 1247856060}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WallTransform
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2}
+  m_Offset: {x: 0, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4de292400c181f4bbf0acf08bfde649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
+  maxHp: 500
   currentHp: 0
   canTakeDmg: 1
   ProtectByPegase: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   dontHaveCorps: 1
   corps: {fileID: 0}
   timeBeforeDestroy: 0
+  linkedSpawnPlateform: {fileID: 0}
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0
@@ -303,7 +304,7 @@ MonoBehaviour:
   PlaceTuyauLeft: {fileID: 0}
   knockbackIntensity: 400
   wallspawnTime: 0.35
-  destroyWallTIme: 1
+  destroyWallTIme: 2
   shoot1bullets: 0
   animWall: 0
   isPunching: 0
