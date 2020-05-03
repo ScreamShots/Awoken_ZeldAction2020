@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
     #endregion
     private void Awake()
     {
-        if(GetComponentInParent<AreaManager>() != null)
+        if (GetComponentInParent<AreaManager>() != null)
         {
             GetComponentInParent<AreaManager>().allEnemySpawners.Add(this);
             spawnEnable = false;
@@ -47,22 +47,22 @@ public class EnemySpawner : MonoBehaviour
     {
         if (!enemyHealthScript.corouDeathPlay && spawnEnable)
         {
-            if(spawnEnable != l_spawnEnable)
+            if (spawnEnable != l_spawnEnable)
             {
                 l_spawnEnable = spawnEnable;
             }
 
             if (enemiesSpawned.Count > 0)
             {
-                if (enemiesSpawned[i].gameObject == null)
+                for (int i = 0; i < enemiesSpawned.Count; i++)
                 {
-                    enemiesSpawned.Remove(enemiesSpawned[i]);
+                    if (enemiesSpawned[i].gameObject == null)
+                    {
+                        enemiesSpawned.Remove(enemiesSpawned[i]);
+                    }
                 }
             }
-        }
 
-        if (detectionZoneScript.playerInZone)                       //if Player is in detection zone = spawn enemy
-        {
             if (enemiesSpawned.Count < enemySpawnLimit)
             {
                 if (!spawnInProgress)
@@ -71,11 +71,11 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-        else if(!spawnEnable && spawnEnable != l_spawnEnable)
+        else if (!spawnEnable && spawnEnable != l_spawnEnable)
         {
             l_spawnEnable = spawnEnable;
 
-            for (int i =0; i < enemiesSpawned.Count; i++)
+            for (int i = 0; i < enemiesSpawned.Count; i++)
             {
                 Instantiate(EnemyManager.Instance.cloud, enemiesSpawned[i].transform.position, Quaternion.identity);
                 Destroy(enemiesSpawned[i]);
@@ -100,7 +100,7 @@ public class EnemySpawner : MonoBehaviour
         if (spawnEnable)
         {
             Instantiate(spawnCloud, spawnPos, Quaternion.identity);
-        }       
+        }
 
         yield return new WaitForSeconds(0.1f);
 
@@ -108,7 +108,7 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject enemyWhoSpawn = Instantiate(enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)], spawnPos, Quaternion.identity);
             enemiesSpawned.Add(enemyWhoSpawn);
-        }      
+        }
 
         spawnInProgress = false;
         spawnActivate = false;
