@@ -16,6 +16,8 @@ public class AreaManager : MonoBehaviour
 
     [SerializeField]
     bool mustKillAllEnemies;
+    [HideInInspector]
+    public bool allEnemyAreDead;
     int enemyDeathCounter = 0;
     [SerializeField]
     bool dungeonRoom = false;
@@ -64,7 +66,7 @@ public class AreaManager : MonoBehaviour
 
     public void LoadArea()
     {
-        if (mustKillAllEnemies)
+        if (mustKillAllEnemies && !allEnemyAreDead)
         {
             foreach(GameObject blocker in allLinkedBlockers)
             {
@@ -100,7 +102,7 @@ public class AreaManager : MonoBehaviour
 
     public void IncrementEnemyDeathCounter()
     {
-        if (mustKillAllEnemies)
+        if (mustKillAllEnemies && !allEnemyAreDead)
         {
             enemyDeathCounter++;
             if (enemyDeathCounter >= allSpawnPlateforms.Count)
@@ -113,7 +115,7 @@ public class AreaManager : MonoBehaviour
                 {
                     transZone.SetActive(true);
                 }
-                mustKillAllEnemies = false;
+                allEnemyAreDead = true;
             }
         }
     }
