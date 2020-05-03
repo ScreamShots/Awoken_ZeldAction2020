@@ -125,6 +125,11 @@ public class BulletComportement : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        {
+            Destroy(gameObject);
+        }
       
     }
 

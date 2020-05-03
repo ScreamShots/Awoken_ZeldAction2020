@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -991,6 +991,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor3_Sortie
       objectReference: {fileID: 0}
+    - target: {fileID: 7935950050348247820, guid: 5cf083e9df822c844af58c59259952a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cf083e9df822c844af58c59259952a7, type: 3}
 --- !u!4 &128634365 stripped
@@ -1599,6 +1604,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor3_Chemin2
       objectReference: {fileID: 0}
+    - target: {fileID: 7935950050348247820, guid: 5cf083e9df822c844af58c59259952a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cf083e9df822c844af58c59259952a7, type: 3}
 --- !u!4 &282790091 stripped
@@ -1891,7 +1901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &341873283
 MonoBehaviour:
   m_ObjectHideFlags: 10
@@ -2143,7 +2153,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2167,7 +2177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388525282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 15.06, y: 22.21, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1226299694}
@@ -5110,7 +5120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &770285861
 Transform:
   m_ObjectHideFlags: 0
@@ -5476,6 +5486,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor3_Cle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935950050348247820, guid: 5cf083e9df822c844af58c59259952a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cf083e9df822c844af58c59259952a7, type: 3}
@@ -7475,6 +7490,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor3_Cle2
       objectReference: {fileID: 0}
+    - target: {fileID: 7935950050348247820, guid: 5cf083e9df822c844af58c59259952a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cf083e9df822c844af58c59259952a7, type: 3}
 --- !u!4 &1304991518 stripped
@@ -7775,6 +7795,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor3_Chemin1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935950050348247820, guid: 5cf083e9df822c844af58c59259952a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cf083e9df822c844af58c59259952a7, type: 3}
