@@ -168,25 +168,50 @@ public class PlayerAttack : MonoBehaviour
             bool enemyIsImune = true;
             for (int i = 0; i < inRangeElement.Count; i++)
             {
-                switch (attackState)
-                {
-                    case 1:
-                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(firstAttackdmg);
-                        break;
-                    case 2:
-                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(secondAttackdmg);
-                        break;
-                    case 3:
-                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(thirdAttackdmg);
-                        break;
-                    default:
-                        inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(firstAttackdmg);
-                        break;
+                if (inRangeElement[i].GetComponent<EnemyHealthSystem>() != null) {
+                    switch (attackState)
+                    {
+                        case 1:
+                            inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(firstAttackdmg);
+                            break;
+                        case 2:
+                            inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(secondAttackdmg);
+                            break;
+                        case 3:
+                            inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(thirdAttackdmg);
+                            break;
+                        default:
+                            inRangeElement[i].GetComponent<EnemyHealthSystem>().TakeDmg(firstAttackdmg);
+                            break;
+                    }
+                    if (inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg)
+                    {
+                        enemyIsImune = false;
+                    }
                 }
-                if (inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg)
+                else
                 {
-                    enemyIsImune = false;
+                    switch (attackState)
+                    {
+                        case 1:
+                            inRangeElement[i].GetComponent<GameElementsHealthSystem>().TakeDmg(firstAttackdmg);
+                            break;
+                        case 2:
+                            inRangeElement[i].GetComponent<GameElementsHealthSystem>().TakeDmg(secondAttackdmg);
+                            break;
+                        case 3:
+                            inRangeElement[i].GetComponent<GameElementsHealthSystem>().TakeDmg(thirdAttackdmg);
+                            break;
+                        default:
+                            inRangeElement[i].GetComponent<GameElementsHealthSystem>().TakeDmg(firstAttackdmg);
+                            break;
+                    }
+                    if (inRangeElement[i].GetComponent<GameElementsHealthSystem>().canTakeDmg)
+                    {
+                        enemyIsImune = false;
+                    }
                 }
+               
             }
             if(enemyIsImune == false)
             {

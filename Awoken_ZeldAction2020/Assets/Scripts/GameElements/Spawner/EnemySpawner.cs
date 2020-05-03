@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemiesToSpawn;
     [Space] public List<GameObject> enemiesSpawned;
 
-    EnemyHealthSystem enemyHealthScript;
+    GameElementsHealthSystem spawnerHealthSystem;
 
     [HideInInspector]
     public bool spawnEnable = true;
@@ -39,13 +39,13 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        enemyHealthScript = GetComponent<EnemyHealthSystem>();
+        spawnerHealthSystem = GetComponent<GameElementsHealthSystem>();
 
     }
 
     void Update()
     {
-        if (!enemyHealthScript.corouDeathPlay && spawnEnable)
+        if (spawnEnable)
         {
             if (spawnEnable != l_spawnEnable)
             {
