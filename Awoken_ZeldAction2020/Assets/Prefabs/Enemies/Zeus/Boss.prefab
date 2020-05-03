@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4de292400c181f4bbf0acf08bfde649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 500
+  maxHp: 50
   currentHp: 0
   canTakeDmg: 1
   ProtectByPegase: 0
@@ -229,16 +229,16 @@ MonoBehaviour:
   s1_pattern1_DurationTime: 6
   s1_pattern2_DurationTime: 8
   s1_pauseTimePattern1_2: 0
-  pauseTimeBtwState1_2: 0
+  pauseTimeBtwState1_2: 1
   s2_Pattern1: 0
   s2_Pattern2: 0
   s2_Pattern3: 0
   s2_pattern1_DurationTime: 6
-  s2_pattern2_DurationTime: 8
+  s2_pattern2_DurationTime: 10
   s2_pattern3_DurationTime: 3
   s2_pauseTimePattern1_2: 1
-  s2_pauseTimePattern2_3: 1
-  s2_pauseTimePattern3_1: 0
+  s2_pauseTimePattern2_3: 2
+  s2_pauseTimePattern3_1: 1
   s3_Pattern1: 0
   pauseTimeBtwState2_3: 0
 --- !u!114 &3877349471966037668
@@ -266,6 +266,7 @@ MonoBehaviour:
   animShockWave: 0
   ShockWave: {fileID: 6172370753812073735, guid: 3c1644414c6a8c24e8971c7873a1366e,
     type: 3}
+  ZeusTp: 0
 --- !u!114 &1686074760679940912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +295,12 @@ MonoBehaviour:
   protectionWall: {fileID: 8249182235389160825, guid: 25cc648498b132c4eb409401669c1898,
     type: 3}
   wallTransform: {fileID: 1647592546}
+  TuyauLeft: {fileID: 1300995098264559811, guid: 7442c5dafe7580544b55d940260a8a1a,
+    type: 3}
+  TuyauRight: {fileID: 7182635702687715366, guid: a2705636d257eb643ade353f70c73c56,
+    type: 3}
+  PlaceTuyauRight: {fileID: 0}
+  PlaceTuyauLeft: {fileID: 0}
   knockbackIntensity: 400
   wallspawnTime: 0.35
   destroyWallTIme: 1
@@ -306,6 +313,7 @@ MonoBehaviour:
     type: 3}
   timeBtwLightning: 1
   animThunder: 0
+  ZeusTp: 0
 --- !u!114 &3877349471188818552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,12 +331,15 @@ MonoBehaviour:
   spawnerPlace: {fileID: 0}
   spawnerPlace2: {fileID: 0}
   spawner: {fileID: 1837897167062006993, guid: cd768048e0fb2b64a82a118bd5c40c79, type: 3}
+  timeBeforePlaceSpawner: 1
   spawnRadius: 1
   timeBtwSpawn: 4
   enemySpawnLimit: 3
   enemiesToSpawn:
   - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
   - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
+  ZeusTp: 0
+  ZeusIsTirred: 0
 --- !u!1 &3877349472079212283
 GameObject:
   m_ObjectHideFlags: 0
