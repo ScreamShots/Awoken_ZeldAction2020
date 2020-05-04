@@ -228,6 +228,7 @@ MonoBehaviour:
   corouDeathPlay: 0
   s1_Pattern1: 0
   s1_Pattern2: 0
+  pauseTimeBeforeState1: 2
   s1_pattern1_DurationTime: 6
   s1_pattern2_DurationTime: 8
   s1_pauseTimePattern1_2: 0
@@ -242,7 +243,8 @@ MonoBehaviour:
   s2_pauseTimePattern2_3: 2
   s2_pauseTimePattern3_1: 1
   s3_Pattern1: 0
-  pauseTimeBtwState2_3: 0
+  pauseTimeBtwState2_3: 1
+  canStartBossFight: 0
 --- !u!114 &3877349471966037668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,13 +332,17 @@ MonoBehaviour:
   spawnerPlace: {fileID: 0}
   spawnerPlace2: {fileID: 0}
   spawner: {fileID: 1837897167062006993, guid: cd768048e0fb2b64a82a118bd5c40c79, type: 3}
+  spawnerA: {fileID: 0}
+  spawnerB: {fileID: 0}
   timeBeforePlaceSpawner: 1
+  ennemisToKillToOpenGate: 6
   spawnRadius: 1
   timeBtwSpawn: 4
   enemySpawnLimit: 3
   enemiesToSpawn:
   - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
   - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
+  spawnerExist: 0
   ZeusTp: 0
   ZeusIsTirred: 0
 --- !u!1 &3877349472079212283
