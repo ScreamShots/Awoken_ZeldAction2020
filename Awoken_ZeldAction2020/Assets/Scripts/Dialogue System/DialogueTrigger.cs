@@ -2,17 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DialogueTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Dialogue thisDialogue;
+
+    public bool triggerByZone;
+
+    [ConditionalHide("triggerByZone", true)]
+    public Collider2D triggerZone;
+
+    bool dialogueStarted;
+
+
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space) && !dialogueStarted)
+        {
+            DialogueManager.Instance.StartDialogue(thisDialogue);
+            dialogueStarted = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && dialogueStarted)
+        {
+            DialogueManager.Instance.NextDialoguePhase();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
