@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058051324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.6, z: 0}
+  m_LocalPosition: {x: 0, y: -0.361, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3877349471966037667}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4de292400c181f4bbf0acf08bfde649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 500
+  maxHp: 380
   currentHp: 0
   canTakeDmg: 1
   ProtectByPegase: 0
@@ -283,8 +283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pattern1IsRunning: 0
   watchDirection: 0
-  bossIsShooting: 0
-  shoot3bullets: 0
   shootPoint: {fileID: 1058051325}
   bossStrike: {fileID: 5304666703343253110, guid: 26e85fb8febcc784a895b58ba87e6cfd,
     type: 3}
@@ -306,7 +304,6 @@ MonoBehaviour:
   knockbackIntensity: 400
   wallspawnTime: 0.35
   destroyWallTIme: 2
-  shoot1bullets: 0
   animWall: 0
   isPunching: 0
   pattern3IsRunning: 0

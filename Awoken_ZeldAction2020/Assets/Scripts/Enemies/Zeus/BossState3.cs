@@ -32,6 +32,10 @@ public class BossState3 : MonoBehaviour
     void Start()
     {
         time = timeBeforePlaceSpawner;
+        
+        spawner.GetComponent<EnemySpawner>().spawnRadius = spawnRadius;
+        spawner.GetComponent<EnemySpawner>().timeBtwSpawn = timeBtwSpawn;
+        spawner.GetComponent<EnemySpawner>().enemySpawnLimit = enemySpawnLimit;
     }
 
     private void Update()
