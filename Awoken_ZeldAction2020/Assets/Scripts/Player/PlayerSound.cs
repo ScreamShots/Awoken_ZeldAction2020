@@ -20,11 +20,12 @@ public class PlayerSound : MonoBehaviour
     private bool l_isAttacking;
     private bool l_currentStamina;
     private bool l_isBlocked;
+    private float l_fragmentNumber;
     #endregion
 
     void Start()
     {
-        
+        l_fragmentNumber = PlayerManager.fragmentNumber;
         playerMoveScript = GetComponentInParent<PlayerMovement>();
         playerAttackScript = GetComponentInParent<PlayerAttack>();
         healthSystem = GetComponentInParent<BasicHealthSystem>();
@@ -65,6 +66,12 @@ public class PlayerSound : MonoBehaviour
             }
 
             l_isBlocked = blocked.isBlocked;
+        }
+
+        if (l_fragmentNumber != PlayerManager.fragmentNumber)
+        {
+            NewFragment();
+            l_fragmentNumber = PlayerManager.fragmentNumber;
         }
     }
 
@@ -156,11 +163,13 @@ public class PlayerSound : MonoBehaviour
 
     void OnBlock()
     {
-            SoundManager.Instance.Play("BlockedAttack");
-
-
+        Debug.Log("Blocked");
+        SoundManager.Instance.Play("BlockedAttack");
     }
 
-
+    void NewFragment()
+    {
+        SoundManager.Instance.Play("NewFragment");
+    }
 
 }
