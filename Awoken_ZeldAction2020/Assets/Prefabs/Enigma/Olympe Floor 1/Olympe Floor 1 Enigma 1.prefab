@@ -1,0 +1,313 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7766719703452735864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7766719703452735867}
+  - component: {fileID: 7766719703452735866}
+  m_Layer: 0
+  m_Name: Olympe Floor 1 Enigma 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7766719703452735867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766719703452735864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.3240724, y: 4.0547915, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2708479878057604511}
+  - {fileID: 9195750233252843790}
+  - {fileID: 9195750233889071952}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7766719703452735866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7766719703452735864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566d45b621546ae4ba558bbce4daf88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnigmaDone: 0
+  instantPlate1: {fileID: 9195750233889071958}
+  instantPlate2: {fileID: 9195750233252843784}
+  door1: {fileID: 2708479878057604509}
+--- !u!1001 &7766719703477709791
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7766719703452735867}
+    m_Modifications:
+    - target: {fileID: 1465130539122722952, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_Name
+      value: Instant Pressure Plate Dungeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.705928
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.5447915
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49486104cc2d4bf41a3465b18cc315fe, type: 3}
+--- !u!4 &9195750233889071952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 7766719703477709791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9195750233889071958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1465130539122722953, guid: 49486104cc2d4bf41a3465b18cc315fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 7766719703477709791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f4db03b5b6e2c40b432dc8a798497f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7766719704046819713
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7766719703452735867}
+    m_Modifications:
+    - target: {fileID: 1465130539122722952, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_Name
+      value: Instant Pressure Plate Dungeon (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.344072
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.3847914
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49486104cc2d4bf41a3465b18cc315fe, type: 3}
+--- !u!4 &9195750233252843790 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1465130539122722959, guid: 49486104cc2d4bf41a3465b18cc315fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 7766719704046819713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9195750233252843784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1465130539122722953, guid: 49486104cc2d4bf41a3465b18cc315fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 7766719704046819713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f4db03b5b6e2c40b432dc8a798497f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7766719704302609910
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7766719703452735867}
+    m_Modifications:
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.7340724
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7247915
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5647120799334748266, guid: 14241edd25d05864f99875c10fc9ad5d,
+        type: 3}
+      propertyPath: m_Name
+      value: Door Dungeon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14241edd25d05864f99875c10fc9ad5d, type: 3}
+--- !u!4 &2708479878057604511 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5647120799334748265, guid: 14241edd25d05864f99875c10fc9ad5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7766719704302609910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2708479878057604509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5647120799334748267, guid: 14241edd25d05864f99875c10fc9ad5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7766719704302609910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7354a05b49d78de42b903ae076a40ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
