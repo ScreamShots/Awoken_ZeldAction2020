@@ -1,0 +1,352 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &139256089999525261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139256089999525262}
+  - component: {fileID: 139256089999525263}
+  - component: {fileID: 139256089999525248}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &139256089999525262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139256089999525261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03819585, y: 0.47331798, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &139256089999525263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139256089999525261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699dd1c346886564ba8a4cd97a29cc88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PlayerDeath
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: FootstepsNoShield
+    clip: {fileID: 0}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: FootstepsShield
+    clip: {fileID: 0}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: PlayerDeath
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Attack1
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Attack2
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Attack3
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: AttackHitEnnemy1
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: AttackHitEnnemy2
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: AttackHitEnnemy3
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: DamagePlayer
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: ShieldTakeOut
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: StaminaOut
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: BlockedAttack
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: BossTakeHit
+    clip: {fileID: 8300000, guid: d796e60d239f2bf43b6de8bbc9211cd0, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: SummonLightning
+    clip: {fileID: 8300000, guid: 003ce86213aa68a45915db058d9dd8ef, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: SummonShockwave
+    clip: {fileID: 8300000, guid: e27a15ac74a870045a5828a414e7d500, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: SummonBolt
+    clip: {fileID: 8300000, guid: 003ce86213aa68a45915db058d9dd8ef, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: ZeusPunch
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: SummonWall
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: ActivatePlate
+    clip: {fileID: 8300000, guid: 53ecf4ef4b145104faf5e7559dd0a338, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: LeverClick
+    clip: {fileID: 8300000, guid: 77d7096210d234a4ebfed9e811683315, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: PushedCube
+    clip: {fileID: 8300000, guid: a195c3c462b21f44a901e42088c9d979, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: NewFragment
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: PlayerParry
+    clip: {fileID: 0}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: TuyauEntrer
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: OpenDoor
+    clip: {fileID: 8300000, guid: 77742c47285571c49af234f3551c8844, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+--- !u!114 &139256089999525248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139256089999525261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa5e274467e1ad4a9b55d95b7526fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music:
+  - name: Region1
+    clip: {fileID: 8300000, guid: a4837a7497423c540b7951d85a6748f2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Region2
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Region3
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Olympe
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Auberge
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Caverne
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Temple
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  ambiance:
+  - name: Birds
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: WaterDrop
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: TalkingPeople
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Couverts
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 1
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: FlowingRiver
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  audioSource: []
+  currentMusic:
+    name: 
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  MusicVolume: 1
+  sceneName: 
