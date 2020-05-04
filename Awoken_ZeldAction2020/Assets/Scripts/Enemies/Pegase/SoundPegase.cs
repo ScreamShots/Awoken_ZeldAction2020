@@ -12,16 +12,16 @@ public class SoundPegase : MonoBehaviour
     private EnemyHealthSystem healthSystem;
     private PrefabSoundManager pegaseManager;
     private PegaseMovement pegaseMovement;
-    private PegaseSupport pegaseSupport;
 
     private bool l_playerDetected;
+    private bool l_isTeleport;
+    private bool l_cooldownActive;
     // Start is called before the first frame update
     void Start()
     {
         healthSystem = GetComponentInParent<EnemyHealthSystem>();
         pegaseManager = GetComponent<PrefabSoundManager>();
         pegaseMovement = GetComponentInParent<PegaseMovement>();
-        pegaseSupport = GetComponentInParent<PegaseSupport>();
     }
 
     // Update is called once per frame
@@ -38,6 +38,14 @@ public class SoundPegase : MonoBehaviour
             l_playerDetected = pegaseMovement.playerDetected;
         }
 
+        if(l_isTeleport != pegaseMovement.isTeleport)
+        {
+            if(pegaseMovement.isTeleport == true)
+            {
+                Teleportation();
+            }
+            l_isTeleport = pegaseMovement.isTeleport;
+        }
 
     }
 
@@ -52,5 +60,15 @@ public class SoundPegase : MonoBehaviour
     void Spotted()
     {
         pegaseManager.Play("PegaseSpotted");
+    }
+
+    void Teleportation()
+    {
+        pegaseManager.Play("PegaseTp");
+    }
+
+    void StaminaOut()
+    {
+        pegaseManager.Play("PegasePanic");
     }
 }

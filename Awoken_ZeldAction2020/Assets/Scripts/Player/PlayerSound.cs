@@ -14,13 +14,13 @@ public class PlayerSound : MonoBehaviour
     private PlayerAttack playerAttackScript;
     private BasicHealthSystem healthSystem;
     private PlayerShield playerShield;
-    private BlockHandler blocked;
 
     private bool l_isBlocking;
     private bool l_isAttacking;
     private bool l_currentStamina;
-    private bool l_isBlocked;
     private float l_fragmentNumber;
+    private bool l_onParry;
+    private bool l_blocked;
     #endregion
 
     void Start()
@@ -30,7 +30,6 @@ public class PlayerSound : MonoBehaviour
         playerAttackScript = GetComponentInParent<PlayerAttack>();
         healthSystem = GetComponentInParent<BasicHealthSystem>();
         playerShield = GetComponentInParent<PlayerShield>();
-        blocked = GetComponent<BlockHandler>();
     }
 
     void Update()
@@ -58,20 +57,31 @@ public class PlayerSound : MonoBehaviour
             l_isBlocking = PlayerStatusManager.Instance.isBlocking;
         }
 
-        if (l_isBlocked != blocked.isBlocked)
+        //Nécessite l'ajout d'un bool blocked dans le script PlayerShield, le bool doit passer en "true" avant le démarrage de la couroutine OnBlocked.
+        // Cette variable doit passer à "false" à la fin de la couroutine
+        /*if (l_blocked != playerShield.blocked)  
         {
-            if (blocked.isBlocked == true)
+            if (playerShield.blocked == true)
             {
                 OnBlock();
             }
 
-            l_isBlocked = blocked.isBlocked;
-        }
+            l_blocked = playerShield.blocked;
+        }*/
 
         if (l_fragmentNumber != PlayerManager.fragmentNumber)
         {
             NewFragment();
             l_fragmentNumber = PlayerManager.fragmentNumber;
+        }
+
+        if(l_onParry != playerShield.onPary)
+        {
+            if(playerShield.onPary == true)
+            {
+                Parry();
+            }
+            l_onParry = playerShield.onPary;
         }
     }
 
@@ -106,34 +116,41 @@ public class PlayerSound : MonoBehaviour
 
     void Attack()
     {
-        if (PlayerStatusManager.Instance.isAttacking == true)
-        {
-            /*if(playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0) //Nécessite de rendre la variable PlayerAttack.inRangeElement public pour fonctionner
-            {
-                SoundManager.Instance.Play("Attack1");
-            }
-            else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count <= 0)
-            {
-                SoundManager.Instance.Play("Attack2");
-            }
-            else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count <= 0)
-            {
-                SoundManager.Instance.Play("Attack3");
-            }
-            else if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count > 0)
-            {
-                SoundManager.Instance.Play("AttackHitEnnemy1");
-            }
-            else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count > 0)
-            {
-                SoundManager.Instance.Play("AttackHitEnnemy2");
-            }
-            else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count > 0)
-            {
-                SoundManager.Instance.Play("AttackHitEnnemy3");
-            }*/
+          /* if (PlayerStatusManager.Instance.isAttacking == true)
+           {
+               for (int i = 0; i < playerAttackScript.inRangeElement.Count; i++)   //Nécessite de rendre la variable PlayerAttack.inRangeElement public pour fonctionner
+               {
+                   if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true) 
+                   {
+                       SoundManager.Instance.Play("Attack1");
+                   }
+                   else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                   {
+                       SoundManager.Instance.Play("Attack2");
+                   }
+                   else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                   {
+                       SoundManager.Instance.Play("Attack3");
+                   }
+                   else if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                   {
+                       SoundManager.Instance.Play("AttackHitEnnemy1");
+                   }
+                   else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                   {
+                       SoundManager.Instance.Play("AttackHitEnnemy2");
+                   }
+                   else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                   {
+                       SoundManager.Instance.Play("AttackHitEnnemy3");
+                   }
+                   else if (playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == false && playerAttackScript.inRangeElement.Count > 0)
+                   {
+                       SoundManager.Instance.Play("NoDamage");
+                   }
+                }
 
-        }
+            }*/
     }
 
     void PlayerTakeDamage()
@@ -171,5 +188,11 @@ public class PlayerSound : MonoBehaviour
     {
         SoundManager.Instance.Play("NewFragment");
     }
+
+    void Parry()
+    {
+        SoundManager.Instance.Play("PlayerParry");
+    }
+
 
 }
