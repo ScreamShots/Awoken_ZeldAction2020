@@ -28,12 +28,21 @@ public class SoundCubePushed : MonoBehaviour
             {
                 CubePushed();
             }
+            else
+            {
+                CubeStop();
+            }
             l_playerPushing = scriptCube.playerPushing;
         }
     }
 
     void CubePushed()
     {
-        SoundManager.Instance.Play("PushedCube");
+        SoundManager.Instance.PlayOnlyOnce("PushedCube");
+    }
+
+    void CubeStop()
+    {
+        SoundManager.Instance.Stop("PushedCube");
     }
 }
