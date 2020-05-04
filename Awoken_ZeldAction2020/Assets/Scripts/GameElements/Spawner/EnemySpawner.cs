@@ -19,7 +19,9 @@ public class EnemySpawner : MonoBehaviour
 
     [Space]
     public GameObject[] enemiesToSpawn;
-    [Space] public List<GameObject> enemiesSpawned;
+    
+    [Space] public int enemiesDead; 
+    public List<GameObject> enemiesSpawned;
 
     GameElementsHealthSystem spawnerHealthSystem;
 
@@ -59,6 +61,7 @@ public class EnemySpawner : MonoBehaviour
                     if (enemiesSpawned[i].gameObject == null)
                     {
                         enemiesSpawned.Remove(enemiesSpawned[i]);
+                        enemiesDead++;
                     }
                 }
             }
@@ -82,6 +85,17 @@ public class EnemySpawner : MonoBehaviour
             }
 
             enemiesSpawned = new List<GameObject>();
+        }
+    }
+
+    public void KillAllEnnemies()
+    {
+        if (enemiesSpawned.Count > 0)
+        {
+            for (int i = 0; i < enemiesSpawned.Count; i++)
+            {
+                enemiesSpawned[i].gameObject.GetComponent<EnemyHealthSystem>().currentHp = 0;
+            }
         }
     }
 

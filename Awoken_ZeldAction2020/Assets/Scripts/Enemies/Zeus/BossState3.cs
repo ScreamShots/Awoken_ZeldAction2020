@@ -11,18 +11,22 @@ public class BossState3 : MonoBehaviour
     public Transform spawnerPlace;
     public Transform spawnerPlace2;
     public GameObject spawner;
+    [HideInInspector] public GameObject spawnerA;
+    [HideInInspector] public GameObject spawnerB;
     public float timeBeforePlaceSpawner;
     private float time;
 
     [Space]
     [Header("Stats")]
-    [SerializeField] private float spawnRadius;
+    public int ennemisToKillToOpenGate;
+
+    [Space] [SerializeField] private float spawnRadius;
     [SerializeField] private float timeBtwSpawn;
     [SerializeField] private float enemySpawnLimit;
 
     [Space] public GameObject[] enemiesToSpawn;
 
-    private bool spawnerExist;
+    [HideInInspector] public bool spawnerExist;
     #endregion
 
     [HideInInspector] public bool ZeusTp;
@@ -75,8 +79,8 @@ public class BossState3 : MonoBehaviour
 
     void Pattern1()
     {
-        Instantiate(spawner, spawnerPlace.position, spawner.transform.rotation);
-        Instantiate(spawner, spawnerPlace2.position, spawner.transform.rotation);
+        spawnerA = Instantiate(spawner, spawnerPlace.position, spawner.transform.rotation);
+        spawnerB = Instantiate(spawner, spawnerPlace2.position, spawner.transform.rotation);
     }
 
     IEnumerator ZeusCanTpSecretRoom()
