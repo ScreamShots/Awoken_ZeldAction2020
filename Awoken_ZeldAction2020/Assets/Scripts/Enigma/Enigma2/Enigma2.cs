@@ -4,36 +4,38 @@ using UnityEngine;
 
 public class Enigma2 : EnigmaTool
 {
-    #region Statements
-    [SerializeField]
-    private GameObject chest;
+    #region Statements Brazero
     [SerializeField]
     private InstantPressurePlate instantPlate1;
     [SerializeField]
-    private InstantPressurePlate instantPlate2;
+    private ActionLever actionLever1;
     [SerializeField]
     private DoorBehavior door1;
     [SerializeField]
+    private GameObject brazero1;
+    [SerializeField]
+    private GameObject brazero2;
+    #endregion
+
+    #region Battle Statement
+    [SerializeField]
+    private AreaManager autel;
+    //[SerializeField]
+    //private GameObject chest;
+    #endregion
+
+    #region Last Part Statement
+    [SerializeField]
+    private DistanceLever distanceLever1;
+    [SerializeField]
     private DoorBehavior door2;
-    [SerializeField]
-    private ActionLever actionLever1;
-    [SerializeField]
-    private GameObject[] pressurePlates = new GameObject[3];
-    [SerializeField]
-    private BoxCollider2D activationZone;
     #endregion
 
     void Awake()
     {
-        instantPlate1.isPressed = true;
-        instantPlate2.isPressed = true;
-        actionLever1.isPressed = true;
-
-        isEnigmaDone = false;
-        for (int i = 0; i < pressurePlates.Length; i++)
-        {
-            pressurePlates[i].SetActive(false);
-        }
+        brazero1.SetActive(false);
+        brazero2.SetActive(false);
+        //chest.SetActive(false);
     }
 
     protected override void Start()
@@ -44,37 +46,49 @@ public class Enigma2 : EnigmaTool
     void Update()
     {
         OpenDoorDoublePlate();
+        OpenTheDoorAgain();
+        LightBrazero();
     }
 
     public void OpenDoorDoublePlate()
     {
-        if (instantPlate1.isPressed == true && instantPlate2.isPressed == true && actionLever1.isPressed == true && isEnigmaDone == false)
+        if (instantPlate1.isPressed == true && actionLever1.isPressed == true)
         {
             door1.isDoorOpen = true;
-            door2.isDoorOpen = true;
-            isEnigmaDone = true;
         }
-        else if (instantPlate1.isPressed == false && isEnigmaDone == false || instantPlate2.isPressed == false && isEnigmaDone == false)
+        else if (instantPlate1.isPressed == false || actionLever1.isPressed == false)
         {
             door1.isDoorOpen = false;
-            door2.isDoorOpen = false;
-            isEnigmaDone = false;
         }
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D other)
+    void LightBrazero()
     {
-        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+        if (instantPlate1.isPressed == true)
         {
-            instantPlate1.isPressed = false;
-            instantPlate2.isPressed = false;
-            actionLever1.isPressed = false;
-            isEnigmaDone = false;
-            for (int i = 0; i < pressurePlates.Length; i++)
-            {
-                pressurePlates[i].SetActive(true);
-            }
-            activationZone.enabled = false;
+            brazero1.SetActive(true);
+        }
+
+        if (actionLever1.isPressed == true)
+        {
+            brazero2.SetActive(true);
         }
     }
+
+    //void UnlockPary()
+    //{
+    //    if (autel.allEnemyAreDead == true)
+    //    {
+    //        chest.SetActive(true);
+    //    }
+    //}
+
+    void OpenTheDoorAgain()
+    {
+        if (distanceLever1.isPressed == true)
+        {
+            door2.isDoorOpen = true;
+        }
+    }
+
 }
