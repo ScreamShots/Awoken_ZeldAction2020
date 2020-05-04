@@ -12,10 +12,10 @@ using UnityEngine;
 public class PoulionSound : MonoBehaviour
 {
     #region HideInInspector var Statement
-    private EnemyHealthSystem healthSystem;
     private PrefabSoundManager poulionManager;
     private PoulionMovementReworked poulionMove;
     private PoulionAttackReworked poulionAttack;
+    private EnemyHealthSystem poulionHealth;
 
     private bool l_playerDetected;
     private bool l_isCharging;
@@ -25,16 +25,16 @@ public class PoulionSound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthSystem = GetComponentInParent<EnemyHealthSystem>();
         poulionManager = GetComponent<PrefabSoundManager>();
         poulionMove = GetComponentInParent<PoulionMovementReworked>();
         poulionAttack = GetComponentInParent<PoulionAttackReworked>();
+        poulionHealth = GetComponentInParent<EnemyHealthSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        DeathSound();
+        Death();
 
         if (l_playerDetected != poulionMove.playerDetected)
         {
@@ -57,11 +57,11 @@ public class PoulionSound : MonoBehaviour
         }
     }
 
-    void DeathSound()
+    void Death()
     {
-        if (healthSystem.currentHp <= 0)
+        if(poulionHealth.currentHp <= 0)
         {
-            poulionManager.PlayOnlyOnce("PoulionDeath");
+            SoundManager.Instance.Play("PoulionDeath");
         }
     }
 

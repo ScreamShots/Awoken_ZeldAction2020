@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2801178345453531930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1683254328794408205}
+  - component: {fileID: 1633756895513307665}
+  - component: {fileID: 8770459035369617840}
+  m_Layer: 0
+  m_Name: TurretSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1683254328794408205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2801178345453531930}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.591563, y: 2.927891, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5487707741076547448}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1633756895513307665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2801178345453531930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66398056ebbe174c8a19d727e606c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8770459035369617840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2801178345453531930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: TurretShoot
+    clip: {fileID: 8300000, guid: 9403baa5ee2fa32418769e5c68511e35, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
 --- !u!1 &5487707741076547454
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +98,7 @@ Transform:
   - {fileID: 5487707741162409639}
   - {fileID: 5487707741360294294}
   - {fileID: 1610085521603335728}
+  - {fileID: 1683254328794408205}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8e59778e7104043be1f2b2fa0e851f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBtwFirstShot: 1
   timeBtwShots: 2
   hasAggroZone: 1
   Bullet: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39, type: 3}
@@ -72,9 +138,18 @@ MonoBehaviour:
   maxHp: 20
   currentHp: 0
   canTakeDmg: 1
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.5
+  flashFadeTime: 0.5
   dontHaveCorps: 0
   corps: {fileID: 3275925729707841170, guid: fa555116ac6e6b54a87f372e8ba7c4c8, type: 3}
   timeBeforeDestroy: 0
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
   corouDeathPlay: 0
 --- !u!1 &5487707741162409638
 GameObject:

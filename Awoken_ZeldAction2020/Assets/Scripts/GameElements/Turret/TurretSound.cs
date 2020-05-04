@@ -10,10 +10,10 @@ using UnityEngine;
 public class TurretSound : MonoBehaviour
 {
     private PrefabSoundManager turretManager;
+    private EnemyHealthSystem turretHealth;
     private TurretShoot shoot;
 
     private bool l_turretIsShooting;
-    private bool l_turretIsBroken;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +25,6 @@ public class TurretSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (l_turretIsBroken != shoot.turretIsBroken)
-        {
-            if (shoot.turretIsBroken == true)
-            {
-                Shoot();
-            }
-            l_turretIsBroken = shoot.turretIsBroken;
-        }
 
         if (l_turretIsShooting != shoot.turretIsShooting)
         {
@@ -42,11 +34,6 @@ public class TurretSound : MonoBehaviour
             }
             l_turretIsShooting = shoot.turretIsShooting;
         }
-    }
-
-    void Death()
-    {
-        turretManager.Play("TurretDeath");
     }
 
     void Shoot()
