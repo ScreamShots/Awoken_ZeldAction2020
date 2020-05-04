@@ -20,9 +20,7 @@ public class BossState2 : MonoBehaviour
     [Space]
     [Header("Pattern1 - Shoot 3 bullets")]
 
-    [SerializeField]
     private bool bossIsShooting;
-    [SerializeField]
     private bool shoot3bullets;
     
     [SerializeField]
@@ -78,7 +76,6 @@ public class BossState2 : MonoBehaviour
     private float wallspawnTime = 0;
     [SerializeField]
     private float destroyWallTIme = 0;
-    [SerializeField]
     private bool shoot1bullets;
 
     [HideInInspector] public bool animWall;                             //anim of instantiate wall
@@ -124,7 +121,7 @@ public class BossState2 : MonoBehaviour
 
         InstancieWall();
         SetWallDistance();
-        KickPlayerOutZone();
+        //KickPlayerOutZone();
     }
 
     void CheckPatternRunning()
@@ -227,7 +224,7 @@ public class BossState2 : MonoBehaviour
     {
         playerDistance = (transform.position - player.transform.position).magnitude;
 
-        wallTransform.localPosition = new Vector3(0, (player.transform.position.y + 2), 0);
+        wallTransform.localPosition = new Vector3(0, (-playerDistance / 2), 0);
 
         if (playerDistance <= 3)
         {
@@ -241,7 +238,7 @@ public class BossState2 : MonoBehaviour
         {
             if (zeusWallZoneScript.bulletDetection)
             {
-                //Wall
+                //Wall                                                                                          //For spawning wall between player and Boss
                 zeusWallZoneScript.bulletDetection = false;
                 canInstancieWall = false;
                 animWall = true;
@@ -252,7 +249,8 @@ public class BossState2 : MonoBehaviour
                 Destroy(wallInstance, destroyWallTIme);
 
 
-                //Tuyau
+                //Tuyau                                                                                         //For Spawning random pipe on Boss arena 
+                /*
                 int randomTuyau;
                 randomTuyau = Random.Range(1, 3);
 
@@ -265,7 +263,7 @@ public class BossState2 : MonoBehaviour
                 {
                     GameObject TuyauRightInstance = Instantiate(TuyauRight, PlaceTuyauRight.position, PlaceTuyauRight.rotation);
                     Destroy(TuyauRightInstance, destroyWallTIme);
-                }
+                }*/
             }
         }
     }
@@ -375,7 +373,7 @@ public class BossState2 : MonoBehaviour
     {
         SetDirectionAttack();
         StartCoroutine(StartAnimationShoot());
-        StartCoroutine(TimeToKickPlayer());
+        //StartCoroutine(TimeToKickPlayer());
 
         yield return new WaitForSeconds(timeBeforeShoot);
 

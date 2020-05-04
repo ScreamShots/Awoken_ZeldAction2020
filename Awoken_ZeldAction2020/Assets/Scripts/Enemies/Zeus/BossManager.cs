@@ -103,11 +103,11 @@ public class BossManager : EnemyHealthSystem
     {
         base.Update();
 
-        if (currentHp <= 650 && currentHp > 500)             //state 1
+        if (currentHp <= 380 && currentHp > 230)             //state 1
         {
             State1();
         }
-        else if (currentHp <= 500 && currentHp > 50)         //state 2
+        else if (currentHp <= 230 && currentHp > 50)         //state 2
         {
             StopCoroutine(S1Pattern1()); StopCoroutine(S1Pattern2());                                   //for stopping the previous pattern
 

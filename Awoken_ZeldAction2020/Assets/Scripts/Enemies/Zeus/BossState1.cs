@@ -84,7 +84,7 @@ public class BossState1 : MonoBehaviour
     {
         if (BossManager.Instance.s1_Pattern1)
         {
-            if (!CoroutinePlayOnce)
+            if (!CoroutinePlayOnce && transform.position != throneArena.position)
             {
                 CoroutinePlayOnce = true;
                 CoroutinePlayOnce2 = false;

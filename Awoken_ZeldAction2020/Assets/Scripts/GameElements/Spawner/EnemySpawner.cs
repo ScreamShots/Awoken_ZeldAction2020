@@ -9,9 +9,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform spawnPoint = null;
     [SerializeField] private GameObject spawnCloud = null;
 
-    [Space] [SerializeField] private float spawnRadius = 0;
-    [SerializeField] private float timeBtwSpawn = 0;
-    [SerializeField] private float enemySpawnLimit = 0;
+    [Space] public float spawnRadius = 0;
+    public float timeBtwSpawn = 0;
+    public float enemySpawnLimit = 0;
 
     private bool spawnInProgress;
 
