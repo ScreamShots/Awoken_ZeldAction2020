@@ -8,6 +8,7 @@ public abstract class  EnigmaTool : MonoBehaviour
     protected InstantPressurePlate instantPlate;
     protected StayPressurePlate stayPlate;
     protected ActionLever actionLever;
+    protected DistanceLever distanceLever;
     [SerializeField]
     protected bool isEnigmaDone;
 
@@ -21,10 +22,7 @@ public abstract class  EnigmaTool : MonoBehaviour
         instantPlate = GetComponentInChildren<InstantPressurePlate>();
         stayPlate = GetComponentInChildren<StayPressurePlate>();
         actionLever = GetComponentInChildren<ActionLever>();
-    }
-    void Update()
-    {
-
+        distanceLever = GetComponentInChildren<DistanceLever>();
     }
 
     public void opendoorInstantPlate()
@@ -58,6 +56,18 @@ public abstract class  EnigmaTool : MonoBehaviour
             door.isDoorOpen = true;
         }
         else if (actionLever.isPressed == false)
+        {
+            door.isDoorOpen = false;
+        }
+    }
+
+    public void OpenDoorDistanceLever()
+    {
+        if (distanceLever.isPressed == true)
+        {
+            door.isDoorOpen = true;
+        }
+        else if (distanceLever.isPressed == false)
         {
             door.isDoorOpen = false;
         }
