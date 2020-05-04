@@ -34,7 +34,6 @@ public class SoundCubePushed : MonoBehaviour
 
     void CubePushed()
     {
-        Debug.Log("Push me");
         SoundManager.Instance.Play("PushedCube");
     }
 }
