@@ -121,7 +121,15 @@ public class BulletComportement : MonoBehaviour
         {
             if(other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Enemy"))
             {
-                other.gameObject.transform.root.GetComponent<EnemyHealthSystem>().TakeDmg(dmg);
+                if(other.gameObject.transform.root.GetComponent<EnemyHealthSystem>() != null)
+                {
+                    other.gameObject.transform.root.GetComponent<EnemyHealthSystem>().TakeDmg(dmg);
+                }
+                else
+                {
+                    other.gameObject.transform.root.GetComponent<GameElementsHealthSystem>().TakeDmg(dmg);
+                }
+               
                 Destroy(gameObject);
             }
         }

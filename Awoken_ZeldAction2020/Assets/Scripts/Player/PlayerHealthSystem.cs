@@ -70,6 +70,12 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     }
 
+    public override void Death()
+    {
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
+        base.Death();        
+    }
+
     void HitFlash()
     {
         if(flashTimer > 0)
@@ -205,7 +211,8 @@ public class PlayerHealthSystem : BasicHealthSystem
     }
 
     IEnumerator Vibration()
-    {        GamePad.SetVibration(PlayerIndex.One, vibrationIntensity, vibrationIntensity);
+    {       
+        GamePad.SetVibration(PlayerIndex.One, vibrationIntensity, vibrationIntensity);
         yield return new WaitForSeconds(0.2f);
         GamePad.SetVibration(PlayerIndex.One, 0, 0);
     }

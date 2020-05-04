@@ -66,7 +66,7 @@ public class AreaManager : MonoBehaviour
 
     public void LoadArea()
     {
-        if (mustKillAllEnemies && !allEnemyAreDead)
+        if (mustKillAllEnemies && !allEnemyAreDead && allSpawnPlateforms.Count > 0)
         {
             foreach(GameObject blocker in allLinkedBlockers)
             {
@@ -102,18 +102,21 @@ public class AreaManager : MonoBehaviour
 
     public void IncrementEnemyDeathCounter()
     {
-        if (mustKillAllEnemies && !allEnemyAreDead)
+        if (!allEnemyAreDead)
         {
             enemyDeathCounter++;
             if (enemyDeathCounter >= allSpawnPlateforms.Count)
             {
-                foreach (GameObject blocker in allLinkedBlockers)
+                if (mustKillAllEnemies)
                 {
-                    blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
-                }
-                foreach (GameObject transZone in allTransitionZone)
-                {
-                    transZone.SetActive(true);
+                    foreach (GameObject blocker in allLinkedBlockers)
+                    {
+                        blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
+                    }
+                    foreach (GameObject transZone in allTransitionZone)
+                    {
+                        transZone.SetActive(true);
+                    }
                 }
                 allEnemyAreDead = true;
             }
