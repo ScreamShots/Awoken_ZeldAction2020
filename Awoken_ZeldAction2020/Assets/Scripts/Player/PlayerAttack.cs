@@ -14,7 +14,8 @@ public class PlayerAttack : MonoBehaviour
 
     private AttackZone attackZoneBehaviour;
     private PlayerMovement playerMoveScript;
-    private List<GameObject> inRangeElement;
+    [HideInInspector]
+    public List<GameObject> inRangeElement;
     PlayerIndex playerIndex = PlayerIndex.One;                        //requiered for gamepad vibrations
     public float attackState = 0;
 

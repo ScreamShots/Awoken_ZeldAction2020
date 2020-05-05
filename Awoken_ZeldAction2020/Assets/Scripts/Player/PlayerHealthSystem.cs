@@ -42,7 +42,8 @@ public class PlayerHealthSystem : BasicHealthSystem
     private float flashTimer = 0;
     private float colorSwapTimer = 0;
     private int colorPhase = 0;
-    private bool canFlash = false;
+    [HideInInspector]
+    public bool canFlash = false;
 
     #endregion
 

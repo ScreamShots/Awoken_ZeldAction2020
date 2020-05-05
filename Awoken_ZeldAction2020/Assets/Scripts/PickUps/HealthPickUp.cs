@@ -31,6 +31,8 @@ public class HealthPickUp : MonoBehaviour
 
     private float timer;
     private bool isDestroying;
+    [HideInInspector]
+    public bool isPicked;
     #endregion
 
     private void Start()
@@ -70,6 +72,7 @@ public class HealthPickUp : MonoBehaviour
             if (canPickFullLife)
             {
                 detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().Heal(healToRegen);
+                isPicked = true;
                 Destroy(gameObject);
             }
             else
@@ -77,6 +80,7 @@ public class HealthPickUp : MonoBehaviour
                 if (detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().currentHp < detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().maxHp)
                 {
                     detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().Heal(healToRegen);
+                    isPicked = true;
                     Destroy(gameObject);
                 }
             }

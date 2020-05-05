@@ -31,8 +31,10 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     float flashTimer = 0;
     float flashFadeTimer = 0;
-    bool canFlash = false;
-    bool canFadeFlash = false;
+    [HideInInspector]
+    public bool canFlash = false;
+    [HideInInspector]
+    public bool canFadeFlash = false;
 
     #region Variables
     private int itemNum;
@@ -55,6 +57,8 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     [HideInInspector]
     public bool corouDeathPlay;
+    
+
 
     /// <summary>
     /// The rest of the Health system behaviour (like maxHp, currentHp or TakeDmg() method are inherited from the basic system class
