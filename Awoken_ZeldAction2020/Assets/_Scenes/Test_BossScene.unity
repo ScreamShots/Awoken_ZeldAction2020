@@ -455,11 +455,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3731747665555330880, guid: a67fab304ea4c16429066c80235b2135,
-        type: 3}
-      propertyPath: canTakeDmg
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6371173129741758240, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_Name
@@ -468,7 +463,7 @@ PrefabInstance:
     - target: {fileID: 6371173129741758255, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.77
       objectReference: {fileID: 0}
     - target: {fileID: 6371173129741758255, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
@@ -665,50 +660,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1686074760679940912, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: PlaceTuyauRight
-      value: 
-      objectReference: {fileID: 998268449}
-    - target: {fileID: 1686074760679940912, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: PlaceTuyauLeft
-      value: 
-      objectReference: {fileID: 978484596}
-    - target: {fileID: 1686074760679940912, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: throneArena
-      value: 
-      objectReference: {fileID: 845798809}
-    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: secretRoomArena
-      value: 
-      objectReference: {fileID: 401431669}
-    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: spawnerPlace
-      value: 
-      objectReference: {fileID: 848646785}
-    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: spawnerPlace2
-      value: 
-      objectReference: {fileID: 240616347}
-    - target: {fileID: 3877349471966037664, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: maxHp
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 3877349471966037667, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5
+      value: -5.95
       objectReference: {fileID: 0}
     - target: {fileID: 3877349471966037667, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.63
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3877349471966037667, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
@@ -755,20 +715,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3877349471966037668, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: throneArena
-      value: 
-      objectReference: {fileID: 845798809}
-    - target: {fileID: 3877349471966037668, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: middleArena
-      value: 
-      objectReference: {fileID: 1470540191}
     - target: {fileID: 3877349471966037671, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877349471966037671, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa0537723b32bdb449490066e1f2d73d, type: 3}

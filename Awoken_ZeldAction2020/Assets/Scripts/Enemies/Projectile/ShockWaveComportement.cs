@@ -30,7 +30,7 @@ public class ShockWaveComportement : MonoBehaviour
     private PlayerMovement playerMoveScript;
 
     private Vector2 direction;
-    public enum Direction { up, down, left, right }
+    public enum Direction { up, down, left, right, diagonalUpRight, diagonalUpLeft, diagonalDownRight, diagonalDownLeft }
     [HideInInspector] public Direction watchDirection;
 
     #endregion
@@ -54,38 +54,49 @@ public class ShockWaveComportement : MonoBehaviour
             Destroy(gameObject);
         }
 
-        SetDirection();
+        SetDirectionWithDiagonal();
     }
 
-    void SetDirection()                                                                                                         
+    void SetDirectionWithDiagonal()                                                                                                         
     {
         if(player != null)
         {
             direction = (player.transform.position - transform.position).normalized;                                                //Calculate direction between shock wave && player  
         }                                           
 
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        if (direction.x <= 0.20f && direction.x >= -0.20f && direction.y > 0)
         {
-            if (direction.x > 0)
-            {
-                watchDirection = Direction.right;
-            }
-            else
-            {
-                watchDirection = Direction.left;
-            }
+            watchDirection = Direction.up;
         }
-        else
+        else if (direction.x <= 0.20f && direction.x >= -0.20f && direction.y < 0)
         {
-            if (direction.y > 0)
-            {
-                watchDirection = Direction.up;
-            }
-            else
-            {
-                watchDirection = Direction.down;
-            }
+            watchDirection = Direction.down;
         }
+        else if (direction.y <= 0.20f && direction.y >= -0.20f && direction.x < 0)
+        {
+            watchDirection = Direction.left;
+        }
+        else if (direction.y <= 0.20f && direction.y >= -0.20f && direction.x > 0)
+        {
+            watchDirection = Direction.right;
+        }
+
+        else if (direction.x >= 0.20f && direction.y >= 0.40f)
+        {
+            watchDirection = Direction.diagonalUpRight;
+        }
+        else if (direction.x <= 0.20f && direction.y >= 0.40f)
+        {
+            watchDirection = Direction.diagonalUpLeft;
+        }
+        else if (direction.x >= 0.20f && direction.y <= -0.40f)
+        {
+            watchDirection = Direction.diagonalDownRight;
+        }
+        else if (direction.x <= 0.20f && direction.y <= -0.40f)
+        {
+            watchDirection = Direction.diagonalDownLeft;
+        }     
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -117,6 +128,29 @@ public class ShockWaveComportement : MonoBehaviour
                 GetComponent<CircleCollider2D>().enabled = false;
             }
             else if (watchDirection == Direction.down && playerMoveScript.watchDirection == PlayerMovement.Direction.up && PlayerStatusManager.Instance.isBlocking)
+            {
+                player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                GetComponent<CircleCollider2D>().enabled = false;
+            }
+
+                                                                                                                            //cases when Player is on diagonal of ShockWave
+
+            else if (watchDirection == Direction.diagonalUpLeft && (playerMoveScript.watchDirection == PlayerMovement.Direction.right || playerMoveScript.watchDirection == PlayerMovement.Direction.down) && PlayerStatusManager.Instance.isBlocking)
+            {
+                player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                GetComponent<CircleCollider2D>().enabled = false;
+            }
+            else if (watchDirection == Direction.diagonalDownLeft && (playerMoveScript.watchDirection == PlayerMovement.Direction.right || playerMoveScript.watchDirection == PlayerMovement.Direction.up) && PlayerStatusManager.Instance.isBlocking)
+            {
+                player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                GetComponent<CircleCollider2D>().enabled = false;
+            }
+            else if (watchDirection == Direction.diagonalUpRight && (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.down) && PlayerStatusManager.Instance.isBlocking)
+            {
+                player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                GetComponent<CircleCollider2D>().enabled = false;
+            }
+            else if (watchDirection == Direction.diagonalDownRight && (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.up) && PlayerStatusManager.Instance.isBlocking)
             {
                 player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
                 GetComponent<CircleCollider2D>().enabled = false;
