@@ -64,7 +64,7 @@ public class LightningComportement : MonoBehaviour
 
         if (element.transform != element.transform.root)
         {
-            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)
+            if (element.transform.parent.tag == targetedElement && element.tag == "CollisionDetection" && element != null)
             {
                 for (int i = 0; i < inLightningZone.Count; i++)                                                                        //for not add twice same element in the list
                 {
@@ -85,7 +85,7 @@ public class LightningComportement : MonoBehaviour
 
         if (element.transform != element.transform.root)
         {
-            if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)
+            if (element.transform.parent.tag == targetedElement && element.tag == "CollisionDetection" && element != null)
             {
                 inLightningZone.Remove(element.transform.parent.gameObject);
             }
