@@ -11,6 +11,7 @@ public class TurretShoot : MonoBehaviour
 
     [Space] [SerializeField] float timeBtwFirstShot = 1;
 
+    [Min(0.8f)]
     [SerializeField] float timeBtwShots = 0;
 
     [SerializeField] bool hasAggroZone = false;
@@ -27,6 +28,9 @@ public class TurretShoot : MonoBehaviour
 
     [HideInInspector]
     public bool turretIsShooting;
+
+    [HideInInspector]
+    public bool turretFire;                     //for detect when the turret shoot for animation
 
     [HideInInspector]
     public bool inZoneAnim;
@@ -61,7 +65,8 @@ public class TurretShoot : MonoBehaviour
         {
             if (!turretIsShooting && canShootPlayer)                                                   //if turret isn't shooting
             {
-                Shoot();
+                StartCoroutine(TimeBeforeShoot());
+                StartCoroutine(ShootAnimation());
                 StartCoroutine(CooldownShoot());
             }
         }
@@ -69,7 +74,8 @@ public class TurretShoot : MonoBehaviour
         {
             if (!turretIsShooting)                                                                      //if turret isn't shooting
             {
-                Shoot();
+                StartCoroutine(TimeBeforeShoot());
+                StartCoroutine(ShootAnimation());
                 StartCoroutine(CooldownShoot());
             }
         }
@@ -124,10 +130,23 @@ public class TurretShoot : MonoBehaviour
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = bulletSpeed;
     }
 
+    IEnumerator TimeBeforeShoot()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Shoot();
+    }
+
     IEnumerator CooldownShoot()                                                                         //Time between shoots
     {
         turretIsShooting = true;
         yield return new WaitForSeconds(timeBtwShots);
         turretIsShooting = false;
+    }
+
+    IEnumerator ShootAnimation()                                                                         //Lauch shoot animation
+    {
+        turretFire = true;
+        yield return new WaitForSeconds(0.6f);
+        turretFire = false;
     }
 }

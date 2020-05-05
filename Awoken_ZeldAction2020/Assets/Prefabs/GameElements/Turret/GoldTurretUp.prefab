@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 622475058482327198}
   - component: {fileID: 622475058482327199}
-  - component: {fileID: 622475058482327193}
+  - component: {fileID: 5196660234533332233}
   m_Layer: 17
   m_Name: GoldTurretUp
   m_TagString: Enemy
@@ -90,6 +90,7 @@ Transform:
   - {fileID: 622475058430068545}
   - {fileID: 622475058754306160}
   - {fileID: 5968136580056801238}
+  - {fileID: 622475059991627192}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,16 +107,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurretIsIndestructible: 1
-  timeBtwFirstShot: 1
-  timeBtwShots: 1
-  hasAggroZone: 1
+  timeBtwFirstShot: 0
+  timeBtwShots: 2
+  hasAggroZone: 0
   Bullet: {fileID: 1410191475135872853, guid: 827bda52e2bc54840956ce5295b5a947, type: 3}
   bulletSpeed: 500
   shootPoint: {fileID: 622475058754306160}
   turretIsShooting: 0
+  turretFire: 0
   inZoneAnim: 0
   turretIsBroken: 0
---- !u!114 &622475058482327193
+--- !u!114 &5196660234533332233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 622475058482327192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ab012259dfbc844e8ab700046a02489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 20
@@ -133,17 +135,7 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5
-  dontHaveCorps: 1
-  corps: {fileID: 0}
-  timeBeforeDestroy: 0
-  linkedSpawnPlateform: {fileID: 0}
-  minDropDistance: 0
-  maxDropDistance: 0
-  dropChanceItem0: 0
-  dropChanceItem1: 0
-  dropChanceItem2: 0
-  DropItemList: []
-  corouDeathPlay: 0
+  corps: {fileID: 3275925729707841170, guid: fa555116ac6e6b54a87f372e8ba7c4c8, type: 3}
 --- !u!1 &622475058754306163
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 622475058482327198}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5927143851553985690
 BoxCollider2D:

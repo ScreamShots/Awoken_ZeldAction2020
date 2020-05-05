@@ -212,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490597046908166284}
   - component: {fileID: 490597046908166285}
-  - component: {fileID: 490597046908166283}
+  - component: {fileID: 2387236831257075654}
   m_Layer: 17
   m_Name: PurpleTurretLeft
   m_TagString: Enemy
@@ -251,13 +251,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8e59778e7104043be1f2b2fa0e851f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBtwFirstShot: 1
-  timeBtwShots: 2
-  hasAggroZone: 1
+  TurretIsIndestructible: 0
+  timeBtwFirstShot: 0
+  timeBtwShots: 1
+  hasAggroZone: 0
   Bullet: {fileID: 1410191475135872853, guid: 827bda52e2bc54840956ce5295b5a947, type: 3}
   bulletSpeed: 500
   shootPoint: {fileID: 490597046628601442}
   turretIsShooting: 0
+  turretFire: 0
   inZoneAnim: 0
   turretIsBroken: 0
 --- !u!114 &2387236831257075654
@@ -278,17 +280,7 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5
-  dontHaveCorps: 0
   corps: {fileID: 5571272292274547884, guid: 235757bf50522cf44bdb8334099ceb7d, type: 3}
-  timeBeforeDestroy: 0
-  linkedSpawnPlateform: {fileID: 0}
-  minDropDistance: 0
-  maxDropDistance: 0
-  dropChanceItem0: 0
-  dropChanceItem1: 0
-  dropChanceItem2: 0
-  DropItemList: []
-  corouDeathPlay: 0
 --- !u!1 &490597047412935593
 GameObject:
   m_ObjectHideFlags: 0

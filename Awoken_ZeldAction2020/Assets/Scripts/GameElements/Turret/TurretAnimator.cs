@@ -20,7 +20,7 @@ public class TurretAnimator : MonoBehaviour
 
     private void Update()
     {
-        turretAnim.SetBool("Shoot", turretShootScript.turretIsShooting);
+        turretAnim.SetBool("Shoot", turretShootScript.turretFire);
         turretAnim.SetBool("inZone", turretShootScript.inZoneAnim);
         turretAnim.SetBool("Broken", turretShootScript.turretIsBroken);
     }

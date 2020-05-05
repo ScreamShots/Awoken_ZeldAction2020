@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2429936409811974989}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8888652536052203849
 BoxCollider2D:
@@ -269,7 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2429936409811974989}
   - component: {fileID: 2429936409811974988}
-  - component: {fileID: 2429936409811974986}
+  - component: {fileID: 1186383059483269280}
   m_Layer: 17
   m_Name: GoldTurretDown
   m_TagString: Enemy
@@ -292,6 +292,7 @@ Transform:
   - {fileID: 2429936409726128786}
   - {fileID: 2429936409538663843}
   - {fileID: 8919575975697353221}
+  - {fileID: 2429936409240866923}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,16 +309,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurretIsIndestructible: 1
-  timeBtwFirstShot: 1
+  timeBtwFirstShot: 0
   timeBtwShots: 2
-  hasAggroZone: 1
+  hasAggroZone: 0
   Bullet: {fileID: 1410191475135872853, guid: 827bda52e2bc54840956ce5295b5a947, type: 3}
   bulletSpeed: 500
   shootPoint: {fileID: 2429936409538663843}
   turretIsShooting: 0
+  turretFire: 0
   inZoneAnim: 0
   turretIsBroken: 0
---- !u!114 &2429936409811974986
+--- !u!114 &1186383059483269280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,7 +328,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2429936409811974987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ab012259dfbc844e8ab700046a02489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 20
@@ -335,17 +337,7 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5
-  dontHaveCorps: 1
-  corps: {fileID: 0}
-  timeBeforeDestroy: 0
-  linkedSpawnPlateform: {fileID: 0}
-  minDropDistance: 0
-  maxDropDistance: 0
-  dropChanceItem0: 0
-  dropChanceItem1: 0
-  dropChanceItem2: 0
-  DropItemList: []
-  corouDeathPlay: 0
+  corps: {fileID: 3275925729707841170, guid: fa555116ac6e6b54a87f372e8ba7c4c8, type: 3}
 --- !u!1 &3857708204450793041
 GameObject:
   m_ObjectHideFlags: 0
