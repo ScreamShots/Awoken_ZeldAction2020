@@ -13,24 +13,24 @@ public class SoundHealthPickUp : MonoBehaviour
         healthPickUp = GetComponentInParent<HealthPickUp>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        /*if(l_heartIsPicked != healthPickUp.heartIsPicked)  //Ajout d'une variable bool heartIsPicked à mettre avant le Destroy(gameObject)
+        /*if(l_heartIsPicked != healthPickUp.isPicked)  //Ajout d'une variable bool heartIsPicked à mettre avant le Destroy(gameObject)
         {
-            if(healthPickUp.heartIsPicked == true) 
-            {
-                if (healthPickUp.healToRegen == 100)         //nécessite le passage de healToRegen à public
-                {
-                    AmbroisiePickUp();
-                }
-                else
-                {
-                    HealthPickUp();
-                }
-                l_heartIsPicked = healthPickUp.heartIsPicked;
-            }
-        }*/
+             if(healthPickUp.isPicked == true) 
+             {
+                 if (healthPickUp.healToRegen == 100)         //nécessite le passage de healToRegen à public
+                 {
+                     AmbroisiePickUp();
+                 }
+                 else
+                 {
+                     HealthPickUp();
+                 }
+                 l_heartIsPicked = healthPickUp.isPicked;
+             }
+         }*/
+
     }
 
     void AmbroisiePickUp()
