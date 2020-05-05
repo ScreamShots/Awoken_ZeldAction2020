@@ -127,37 +127,57 @@ public class PlayerSound : MonoBehaviour
     {
            if (PlayerStatusManager.Instance.isAttacking == true)
            {
-               for (int i = 0; i < playerAttackScript.inRangeElement.Count; i++)
-               {
-                   if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true) 
-                   {
-                       SoundManager.Instance.Play("Attack1");
-                   }
-                   else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
-                   {
-                       SoundManager.Instance.Play("Attack2");
-                   }
-                   else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
-                   {
-                       SoundManager.Instance.Play("Attack3");
-                   }
-                   else if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
-                   {
-                       SoundManager.Instance.Play("AttackHitEnnemy1");
-                   }
-                   else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
-                   {
-                       SoundManager.Instance.Play("AttackHitEnnemy2");
-                   }
-                   else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
-                   {
-                       SoundManager.Instance.Play("AttackHitEnnemy3");
-                   }
-                   else if (playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == false && playerAttackScript.inRangeElement.Count > 0)
-                   {
-                       SoundManager.Instance.Play("NoDamage");
-                   }
-               }
+                if(playerAttackScript.inRangeElement.Count != 0)
+                {
+                    for (int i = 0; i < playerAttackScript.inRangeElement.Count; i++)
+                    {
+                        if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                        {
+                            SoundManager.Instance.Play("Attack1");
+                        }
+                        else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                        {
+                            SoundManager.Instance.Play("Attack2");
+                        }
+                        else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                        {
+                            SoundManager.Instance.Play("Attack3");
+                        }
+                        else if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                        {
+                            SoundManager.Instance.Play("AttackHitEnnemy1");
+                        }
+                        else if (playerAttackScript.attackState == 2 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                        {
+                            SoundManager.Instance.Play("AttackHitEnnemy2");
+                        }
+                        else if (playerAttackScript.attackState == 3 && playerAttackScript.inRangeElement.Count > 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
+                        {
+                            SoundManager.Instance.Play("AttackHitEnnemy3");
+                        }
+                        else if (playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == false && playerAttackScript.inRangeElement.Count > 0)
+                        {
+                            SoundManager.Instance.Play("NoDamage");
+                        }
+                    }
+                }
+                else
+                {
+                    if (playerAttackScript.attackState == 1)
+                    {
+
+                        SoundManager.Instance.Play("Attack1");
+                    }
+                    else if (playerAttackScript.attackState == 2)
+                    {
+                        SoundManager.Instance.Play("Attack2");
+                    }
+                    else if (playerAttackScript.attackState == 3)
+                    {
+                        SoundManager.Instance.Play("Attack3");
+                    }
+                }
+               
 
            }
     }
@@ -189,7 +209,6 @@ public class PlayerSound : MonoBehaviour
 
     void OnBlock()
     {
-        Debug.Log("Blocked");
         SoundManager.Instance.Play("BlockedAttack");
     }
 

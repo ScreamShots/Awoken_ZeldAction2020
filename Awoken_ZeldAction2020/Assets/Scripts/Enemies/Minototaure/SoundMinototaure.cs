@@ -60,14 +60,14 @@ public class SoundMinototaure : MonoBehaviour
             l_lauchAttack = minototaureAttack.lauchAttack;
         }
 
-        /*if (l_canFlash != minototaureHealth.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+        if (l_canFlash != minototaureHealth.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
        {
            if (minototaureHealth.canFlash == true)
            {
                MinototaureDamaged();
            }
            l_canFlash = minototaureHealth.canFlash;
-       }*/
+       }
     }
 
     void Spotted()
