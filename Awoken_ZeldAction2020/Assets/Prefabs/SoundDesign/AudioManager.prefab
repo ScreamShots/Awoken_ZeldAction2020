@@ -46,105 +46,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: PlayerDeath
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: d0d071cdb7dd9aa4b97b4752cac40260, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: FootstepsNoShield
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: e956ff48d6d92d041b95943c1fa57503, type: 3}
     volume: 0.1
     pitch: 1
     loop: 1
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: FootstepsShield
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 6b88d81540d598740a4061cfa15652af, type: 3}
     volume: 0.1
     pitch: 1
     loop: 1
     isAlreadyPlayed: 0
     source: {fileID: 0}
-  - name: PlayerDeath
-    clip: {fileID: 0}
+  - name: NewFragment
+    clip: {fileID: 8300000, guid: ef9dbed1fee30cc4c9ce5c3a483273f7, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: Attack1
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: d2a69be13fdc52145afd8093ae8de31c, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: Attack2
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 6359c58641db8c14db03a044d3503840, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: Attack3
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: ce9f0cf594f91f7428ea0b1c048e9591, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: AttackHitEnnemy1
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: ae8f8fa3d03a36a4699003da48e9441d, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: AttackHitEnnemy2
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 6e0e9e9389f1a69468724f9329bd03b4, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: AttackHitEnnemy3
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 411a4c10cae4ae64fbb219807381585d, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: DamagePlayer
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 6166e8c145e4bc54594570a82a310f0d, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: ShieldTakeOut
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 538624bb02e1eb84fa9585bedd279789, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: StaminaOut
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 83cd126e8a913704da5ef682de31ce4f, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: BlockedAttack
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 256a4f1f111e49548921d1e29829cb85, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: BossTakeHit
-    clip: {fileID: 8300000, guid: d796e60d239f2bf43b6de8bbc9211cd0, type: 3}
+    clip: {fileID: 8300000, guid: 497b1c167a0586b4ea5cfbe68c031b4c, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
@@ -172,15 +172,15 @@ MonoBehaviour:
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: ZeusPunch
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9632d6170bcfbb245805b9f0137c650d, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: SummonWall
-    clip: {fileID: 0}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: ef2bccd125b446c4eb17d2ab1d08b8d3, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
@@ -265,6 +265,13 @@ MonoBehaviour:
   - name: PegaseDeath
     clip: {fileID: 8300000, guid: 9c6092ac6f9fb3149ab17247ccb5dfd4, type: 3}
     volume: 0.4
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: PlayerParry
+    clip: {fileID: 8300000, guid: 18578c39ef3585946b3bd86dc5f03ff1, type: 3}
+    volume: 0.3
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0

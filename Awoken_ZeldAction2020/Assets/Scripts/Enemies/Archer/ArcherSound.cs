@@ -17,7 +17,7 @@ public class ArcherSound : MonoBehaviour
     private GameObject player;
 
     private bool l_archerAnimationAttack;
-
+    private bool l_canFlash;
     #endregion
 
     void Start()
@@ -27,6 +27,7 @@ public class ArcherSound : MonoBehaviour
         archerMove = GetComponentInParent<ArcherMovement>();
         archerAttack = GetComponentInParent<ArcherAttack>();
         player = PlayerManager.Instance.gameObject;
+
     }
 
     void Update()
@@ -42,9 +43,15 @@ public class ArcherSound : MonoBehaviour
             }
             l_archerAnimationAttack = archerAttack.animationAttack;
         }
-            
-        
 
+        /*if (l_canFlash != healthSystem.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+       {
+           if (healthSystem.canFlash == true)
+           {
+               ArcherDamaged();
+           }
+           l_canFlash = healthSystem.canFlash;
+       }*/
     }
 
     void Death()
@@ -73,5 +80,10 @@ public class ArcherSound : MonoBehaviour
     void Attack()
     {
         archerManager.Play("ArcherAttack");       
+    }
+
+    void ArcherDamaged()
+    {
+        archerManager.Play("ArcherDamaged");
     }
 }

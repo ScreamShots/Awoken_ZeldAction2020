@@ -12,7 +12,7 @@ public class PlayerSound : MonoBehaviour
 
     private PlayerMovement playerMoveScript;
     private PlayerAttack playerAttackScript;
-    private BasicHealthSystem healthSystem;
+    private PlayerHealthSystem healthSystem;
     private PlayerShield playerShield;
 
     private bool l_isBlocking;
@@ -21,6 +21,7 @@ public class PlayerSound : MonoBehaviour
     private float l_fragmentNumber;
     private bool l_onParry;
     private bool l_blocked;
+    private bool l_canFlash;
     #endregion
 
     void Start()
@@ -28,7 +29,7 @@ public class PlayerSound : MonoBehaviour
         l_fragmentNumber = PlayerManager.fragmentNumber;
         playerMoveScript = GetComponentInParent<PlayerMovement>();
         playerAttackScript = GetComponentInParent<PlayerAttack>();
-        healthSystem = GetComponentInParent<BasicHealthSystem>();
+        healthSystem = GetComponentInParent<PlayerHealthSystem>();
         playerShield = GetComponentInParent<PlayerShield>();
     }
 
@@ -69,6 +70,15 @@ public class PlayerSound : MonoBehaviour
             l_blocked = playerShield.blocked;
         }*/
 
+        /*if (l_canFlash != healthSystem.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+       {
+           if (healthSystem.canFlash == true)
+           {
+               PlayerTakeDamage();
+           }
+           l_canFlash = healthSystem.canFlash;
+       }*/
+
         if (l_fragmentNumber != PlayerManager.fragmentNumber)
         {
             NewFragment();
@@ -89,7 +99,7 @@ public class PlayerSound : MonoBehaviour
     {
         if (healthSystem.currentHp <= 0)
         {
-            SoundManager.Instance.PlayOnlyOnce("PlayerDeath");
+            SoundManager.Instance.Play("PlayerDeath");
         }
        
     }

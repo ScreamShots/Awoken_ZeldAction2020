@@ -128,6 +128,7 @@ Transform:
   - {fileID: 102950560}
   - {fileID: 1058051325}
   - {fileID: 1647592546}
+  - {fileID: 7205488979744298757}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,13 +173,13 @@ MonoBehaviour:
   flashFadeTime: 0.5
   dontHaveCorps: 1
   corps: {fileID: 0}
+  timeBeforeDestroy: 0
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0
   dropChanceItem1: 0
   dropChanceItem2: 0
   DropItemList: []
-  timeBeforeDestroy: 0
   corouDeathPlay: 0
   s1_Pattern1: 0
   s1_Pattern2: 0
@@ -503,3 +504,46 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.75, y: 2.6}
   m_Direction: 0
+--- !u!1 &8455596355822255465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7205488979744298757}
+  - component: {fileID: 8882748081146887883}
+  m_Layer: 9
+  m_Name: ZeusSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7205488979744298757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455596355822255465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3877349471966037667}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8882748081146887883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8455596355822255465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa38754c772692469f1d1f797f0e967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
