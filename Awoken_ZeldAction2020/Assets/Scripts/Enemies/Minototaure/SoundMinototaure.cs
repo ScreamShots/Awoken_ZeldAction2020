@@ -15,8 +15,10 @@ public class SoundMinototaure : MonoBehaviour
     private EnemyHealthSystem minototaureHealth;
 
     private bool l_playerDetected;
-    private bool l_launchAttack;
+    private bool l_isPreparingAttack;
     private bool l_corouDeathPlay;
+    private bool l_lauchAttack;
+    private bool l_canFlash;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,14 +42,32 @@ public class SoundMinototaure : MonoBehaviour
             l_playerDetected = minototaureMove.playerDetected;
         }
 
-        if(l_launchAttack != minototaureAttack.lauchAttack)
+        if(l_isPreparingAttack != minototaureAttack.isPreparingAttack)
         {
-            if(minototaureAttack.lauchAttack == true)
+            if(minototaureAttack.isPreparingAttack == true)
             {
                 Attack();
             }
-            l_launchAttack = minototaureAttack.lauchAttack;
+            l_isPreparingAttack = minototaureAttack.isPreparingAttack;
         }
+
+        if (l_lauchAttack != minototaureAttack.lauchAttack)
+        {
+            if (minototaureAttack.lauchAttack == true)
+            {
+                LaunchAttack();
+            }
+            l_lauchAttack = minototaureAttack.lauchAttack;
+        }
+
+        /*if (l_canFlash != minototaureHealth.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+       {
+           if (minototaureHealth.canFlash == true)
+           {
+               MinototaureDamaged();
+           }
+           l_canFlash = minototaureHealth.canFlash;
+       }*/
     }
 
     void Spotted()
@@ -64,12 +84,18 @@ public class SoundMinototaure : MonoBehaviour
     {
         if(minototaureHealth.currentHp <= 0)
         {
-            minototaureManager.PlayOnlyOnce("MinototaureDeath");
-        }
-        else
-        {
-            minototaureManager.Stop("MinototaureDeath");
+            SoundManager.Instance.Play("MinototaureDeath");
         }
 
+    }
+
+    void MinototaureDamaged()
+    {
+        minototaureManager.Play("MinototaureTakeHit");
+    }
+
+    void LaunchAttack()
+    {
+        minototaureManager.Play("MinototaureLaunchAttack");
     }
 }

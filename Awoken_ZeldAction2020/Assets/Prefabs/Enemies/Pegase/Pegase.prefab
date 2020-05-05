@@ -210,6 +210,7 @@ Transform:
   - {fileID: 264327009655597074}
   - {fileID: 264327009229165778}
   - {fileID: 264327010051723651}
+  - {fileID: 4050122667614820105}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -249,7 +250,19 @@ MonoBehaviour:
   maxHp: 20
   currentHp: 0
   canTakeDmg: 1
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.5
+  flashFadeTime: 0.5
+  dontHaveCorps: 0
   corps: {fileID: 1469897167288861501, guid: 05fa787a01883f44aab1f74cea0cc17a, type: 3}
+  timeBeforeDestroy: 0
+  minDropDistance: 0
+  maxDropDistance: 0
+  dropChanceItem0: 0
+  dropChanceItem1: 0
+  dropChanceItem2: 0
+  DropItemList: []
+  corouDeathPlay: 0
 --- !u!114 &264327010056913527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,3 +409,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7f8361532d63c41affe4cdc46a80eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5175355958607083680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4050122667614820105}
+  - component: {fileID: 7605900195625090028}
+  - component: {fileID: 2797203654159422258}
+  m_Layer: 9
+  m_Name: PegaseSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4050122667614820105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175355958607083680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 264327010056913480}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7605900195625090028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175355958607083680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e203f7b725b6834ca503b2ce78ed584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2797203654159422258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175355958607083680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PegaseSpotted
+    clip: {fileID: 8300000, guid: d3f6808225ac079409b33999865264d5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: PegaseTp
+    clip: {fileID: 8300000, guid: 61aa492dd6e4ed24ea9a00c7562275af, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: PegasePanic
+    clip: {fileID: 8300000, guid: 39514729363834f40ae3b0bed44dc05f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: PegaseDamaged
+    clip: {fileID: 8300000, guid: 7eeb3fed6c026844884c86866752e57c, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}

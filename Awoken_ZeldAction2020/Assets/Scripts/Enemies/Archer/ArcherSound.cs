@@ -51,7 +51,7 @@ public class ArcherSound : MonoBehaviour
     {
         if (healthSystem.currentHp <= 0)
         {
-            archerManager.PlayOnlyOnce("ArcherDeath");
+            SoundManager.Instance.Play("ArcherDeath");
         }
     }
 

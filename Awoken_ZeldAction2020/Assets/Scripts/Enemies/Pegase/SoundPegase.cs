@@ -16,6 +16,7 @@ public class SoundPegase : MonoBehaviour
     private bool l_playerDetected;
     private bool l_isTeleport;
     private bool l_cooldownActive;
+    private bool l_canFlash;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class SoundPegase : MonoBehaviour
 
         if(l_playerDetected != pegaseMovement.playerDetected)
         {
-            if(pegaseMovement.playerDetected == true)
+            if(pegaseMovement.playerDetected == true && pegaseMovement.cooldownActive == false)
             {
                 Spotted();
             }
@@ -47,13 +48,31 @@ public class SoundPegase : MonoBehaviour
             l_isTeleport = pegaseMovement.isTeleport;
         }
 
+        if (l_cooldownActive != pegaseMovement.cooldownActive)
+        {
+            if (pegaseMovement.cooldownActive == true)
+            {
+                StaminaOut();
+            }
+            l_cooldownActive = pegaseMovement.cooldownActive;
+        }
+
+        /*if (l_canFlash != healthSystem.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+       {
+           if (healthSystem.canFlash == true)
+           {
+               PegaseDamaged();
+           }
+           l_canFlash = healthSystem.canFlash;
+       }*/
+
     }
 
     void Death()
     {
         if (healthSystem.currentHp <= 0)
         {
-            pegaseManager.PlayOnlyOnce("PegaseDeath");
+            SoundManager.Instance.Play("PegaseDeath");
         }
     }
 
@@ -70,5 +89,10 @@ public class SoundPegase : MonoBehaviour
     void StaminaOut()
     {
         pegaseManager.Play("PegasePanic");
+    }
+
+    void PegaseDamaged()
+    {
+        pegaseManager.Play("PegaseDamaged");
     }
 }
