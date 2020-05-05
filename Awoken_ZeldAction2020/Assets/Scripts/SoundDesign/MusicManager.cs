@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour
     public AudioSource[] audioSource;
     public static MusicManager instance;
     public SoundProperties currentMusic;
-    private SoundProperties currentAmbiance;
+    public SoundProperties currentAmbiance;
     [Range(0f, 1f)]
     public float MusicVolume;
     private Scene currentScene;
@@ -178,6 +178,24 @@ public class MusicManager : MonoBehaviour
             {
                 StartCoroutine(FadeOut(currentAmbiance.source, 3));
                 currentAmbiance = Array.Find(ambiance, s => s.name == "TalkingPeople");
+                StartCoroutine(FadeIn(currentAmbiance.source, 3, 1));
+            }
+        }
+        if (sceneName == "Region_1" || sceneName == "Region_2")
+        {
+            if (currentAmbiance.name != "Forest")
+            {
+                StartCoroutine(FadeOut(currentAmbiance.source, 3));
+                currentAmbiance = Array.Find(ambiance, s => s.name == "Forest");
+                StartCoroutine(FadeIn(currentAmbiance.source, 3, 1));
+            }
+        }
+        if (sceneName == "Region_3" || sceneName == "MAH_Caverne")
+        {
+            if (currentAmbiance.name != "Cave")
+            {
+                StartCoroutine(FadeOut(currentAmbiance.source, 3));
+                currentAmbiance = Array.Find(ambiance, s => s.name == "Cave");
                 StartCoroutine(FadeIn(currentAmbiance.source, 3, 1));
             }
         }

@@ -1,5 +1,69 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2620596517944662339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4412139000180858451}
+  - component: {fileID: 1780001928159504774}
+  - component: {fileID: 5090131540593837803}
+  m_Layer: 0
+  m_Name: TurretSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4412139000180858451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2620596517944662339}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.1615632, y: -0.012109041, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5873001992362703251}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1780001928159504774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2620596517944662339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66398056ebbe174c8a19d727e606c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5090131540593837803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2620596517944662339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: TurretShoot
+    clip: {fileID: 8300000, guid: 9403baa5ee2fa32418769e5c68511e35, type: 3}
+    volume: 0.001
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
 --- !u!1 &5021675574028371087
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +227,7 @@ Transform:
   - {fileID: 5873001992276824140}
   - {fileID: 5873001992615810941}
   - {fileID: 860598126910458075}
-  - {fileID: 2938749842868188053}
+  - {fileID: 4412139000180858451}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -209,6 +273,8 @@ MonoBehaviour:
   dontHaveCorps: 0
   corps: {fileID: 5571272292274547884, guid: 235757bf50522cf44bdb8334099ceb7d, type: 3}
   timeBeforeDestroy: 0
+  canFlash: 0
+  canFadeFlash: 0
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0
@@ -418,67 +484,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7, y: 0.9}
   m_EdgeRadius: 0
---- !u!1 &6512195947486887354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2938749842868188053}
-  - component: {fileID: 6206831206412002059}
-  - component: {fileID: 4220008625176715168}
-  m_Layer: 0
-  m_Name: TurretSound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2938749842868188053
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512195947486887354}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1615632, y: -0.012109041, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5873001992362703251}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6206831206412002059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512195947486887354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a66398056ebbe174c8a19d727e606c97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4220008625176715168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512195947486887354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: TurretShoot
-    clip: {fileID: 8300000, guid: 9403baa5ee2fa32418769e5c68511e35, type: 3}
-    volume: 0.01
-    pitch: 1
-    loop: 0
-    isAlreadyPlayed: 0
-    source: {fileID: 0}

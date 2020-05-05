@@ -12,7 +12,7 @@ public class HealthPickUp : MonoBehaviour
 
     [Space] [SerializeField]
     [Range(0, 200)]
-    float healToRegen = 0;
+    public float healToRegen = 0;
 
     [Space] [Header("Destroy")]
 

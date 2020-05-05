@@ -44,14 +44,14 @@ public class ArcherSound : MonoBehaviour
             l_archerAnimationAttack = archerAttack.animationAttack;
         }
 
-        /*if (l_canFlash != healthSystem.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+       if (l_canFlash != healthSystem.canFlash)
        {
            if (healthSystem.canFlash == true)
            {
                ArcherDamaged();
            }
            l_canFlash = healthSystem.canFlash;
-       }*/
+       }
     }
 
     void Death()

@@ -59,14 +59,14 @@ MonoBehaviour:
   sounds:
   - name: SpawnerDeath
     clip: {fileID: 8300000, guid: 67f6d31c9804c414aad23cd8ec7af08a, type: 3}
-    volume: 0.1
+    volume: 0.01
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: Spawned
     clip: {fileID: 8300000, guid: d3f6808225ac079409b33999865264d5, type: 3}
-    volume: 0.1
+    volume: 0.01
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
@@ -297,6 +297,8 @@ MonoBehaviour:
   dontHaveCorps: 1
   corps: {fileID: 0}
   timeBeforeDestroy: 0.6
+  canFlash: 0
+  canFadeFlash: 0
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0

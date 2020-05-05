@@ -15,7 +15,7 @@ public class SoundHealthPickUp : MonoBehaviour
 
     private void OnDestroy()
     {
-        /*if(l_heartIsPicked != healthPickUp.isPicked)  //Ajout d'une variable bool heartIsPicked à mettre avant le Destroy(gameObject)
+        if(l_heartIsPicked != healthPickUp.isPicked)  //Ajout d'une variable bool heartIsPicked à mettre avant le Destroy(gameObject)
         {
              if(healthPickUp.isPicked == true) 
              {
@@ -29,7 +29,7 @@ public class SoundHealthPickUp : MonoBehaviour
                  }
                  l_heartIsPicked = healthPickUp.isPicked;
              }
-         }*/
+         }
 
     }
 

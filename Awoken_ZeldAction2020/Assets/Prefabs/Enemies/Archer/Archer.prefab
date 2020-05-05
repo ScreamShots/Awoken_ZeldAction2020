@@ -146,21 +146,21 @@ MonoBehaviour:
   sounds:
   - name: ArcherSpotted
     clip: {fileID: 8300000, guid: a3ccdc559e939db4d9496c381a4484c3, type: 3}
-    volume: 0.01
+    volume: 0.001
     pitch: 2
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: ArcherAttack
     clip: {fileID: 8300000, guid: 1119227a300135d4dac68bbd200ada69, type: 3}
-    volume: 0.2
+    volume: 0.02
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: ArcherDamaged
     clip: {fileID: 8300000, guid: a9824edfdbdceed4a8769fd5eb9214f4, type: 3}
-    volume: 0.1
+    volume: 0.01
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
@@ -451,6 +451,8 @@ MonoBehaviour:
   dontHaveCorps: 0
   corps: {fileID: 4816546048056608632, guid: f21eb596806a2f94d8bec98f6afe60c2, type: 3}
   timeBeforeDestroy: 0
+  canFlash: 0
+  canFadeFlash: 0
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0

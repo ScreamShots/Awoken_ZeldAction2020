@@ -339,6 +339,8 @@ MonoBehaviour:
   dontHaveCorps: 1
   corps: {fileID: 0}
   timeBeforeDestroy: 0
+  canFlash: 0
+  canFadeFlash: 0
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0
@@ -477,7 +479,7 @@ MonoBehaviour:
   sounds:
   - name: TurretShoot
     clip: {fileID: 8300000, guid: 9403baa5ee2fa32418769e5c68511e35, type: 3}
-    volume: 0.01
+    volume: 0.001
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0

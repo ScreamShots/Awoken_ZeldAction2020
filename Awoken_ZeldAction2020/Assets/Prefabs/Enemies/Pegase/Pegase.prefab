@@ -256,6 +256,8 @@ MonoBehaviour:
   dontHaveCorps: 0
   corps: {fileID: 1469897167288861501, guid: 05fa787a01883f44aab1f74cea0cc17a, type: 3}
   timeBeforeDestroy: 0
+  canFlash: 0
+  canFadeFlash: 0
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0
@@ -468,28 +470,28 @@ MonoBehaviour:
   sounds:
   - name: PegaseSpotted
     clip: {fileID: 8300000, guid: d3f6808225ac079409b33999865264d5, type: 3}
-    volume: 0.1
+    volume: 0.01
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: PegaseTp
     clip: {fileID: 8300000, guid: 61aa492dd6e4ed24ea9a00c7562275af, type: 3}
-    volume: 0.2
+    volume: 0.02
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: PegasePanic
     clip: {fileID: 8300000, guid: 39514729363834f40ae3b0bed44dc05f, type: 3}
-    volume: 0.3
+    volume: 0.03
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0
     source: {fileID: 0}
   - name: PegaseDamaged
     clip: {fileID: 8300000, guid: 7eeb3fed6c026844884c86866752e57c, type: 3}
-    volume: 0.2
+    volume: 0.02
     pitch: 1
     loop: 0
     isAlreadyPlayed: 0

@@ -20,7 +20,7 @@ public class PlayerSound : MonoBehaviour
     private bool l_currentStamina;
     private float l_fragmentNumber;
     private bool l_onParry;
-    private bool l_blocked;
+    private bool l_blockingAnElement;
     private bool l_canFlash;
     #endregion
 
@@ -58,26 +58,25 @@ public class PlayerSound : MonoBehaviour
             l_isBlocking = PlayerStatusManager.Instance.isBlocking;
         }
 
-        //Nécessite l'ajout d'un bool blocked dans le script PlayerShield, le bool doit passer en "true" avant le démarrage de la couroutine OnBlocked.
-        // Cette variable doit passer à "false" à la fin de la couroutine
-        /*if (l_blocked != playerShield.blocked)  
+
+        if (l_blockingAnElement != playerShield.blockingAnElement)  
         {
-            if (playerShield.blocked == true)
+            if (playerShield.blockingAnElement == true)
             {
                 OnBlock();
             }
 
-            l_blocked = playerShield.blocked;
-        }*/
+            l_blockingAnElement = playerShield.blockingAnElement;
+        }
 
-        /*if (l_canFlash != healthSystem.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+       if (l_canFlash != healthSystem.canFlash)
        {
            if (healthSystem.canFlash == true)
            {
                PlayerTakeDamage();
            }
            l_canFlash = healthSystem.canFlash;
-       }*/
+       }
 
         if (l_fragmentNumber != PlayerManager.fragmentNumber)
         {
@@ -126,9 +125,9 @@ public class PlayerSound : MonoBehaviour
 
     void Attack()
     {
-          /* if (PlayerStatusManager.Instance.isAttacking == true)
+           if (PlayerStatusManager.Instance.isAttacking == true)
            {
-               for (int i = 0; i < playerAttackScript.inRangeElement.Count; i++)   //Nécessite de rendre la variable PlayerAttack.inRangeElement public pour fonctionner
+               for (int i = 0; i < playerAttackScript.inRangeElement.Count; i++)
                {
                    if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true) 
                    {
@@ -158,9 +157,9 @@ public class PlayerSound : MonoBehaviour
                    {
                        SoundManager.Instance.Play("NoDamage");
                    }
-                }
+               }
 
-            }*/
+           }
     }
 
     void PlayerTakeDamage()
