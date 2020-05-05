@@ -66,13 +66,12 @@ public class PlayerHealthSystem : BasicHealthSystem
     public override void TakeDmg(float dmgTaken, Vector3 sourcePos)
     {
         base.TakeDmg(dmgTaken);
-        if(canTakeDmg) HitEffect(sourcePos);
+        if(canTakeDmg && currentHp > 0) HitEffect(sourcePos);
 
     }
 
     public override void Death()
     {
-        GamePad.SetVibration(PlayerIndex.One, 0, 0);
         base.Death();        
     }
 
