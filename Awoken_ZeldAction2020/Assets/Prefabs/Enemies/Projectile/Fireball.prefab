@@ -31,7 +31,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1625413, y: 0.004967481, z: -294.5836}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2922386438692375831}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,6 +136,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlocked: 0
+  isParied: 0
+  hasBeenLaunchBack: 0
+  projectileDirection: {x: 0, y: 0}
 --- !u!114 &6399499569171346268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +155,7 @@ MonoBehaviour:
   speed: 50
   lifeTime: 5
   dmg: 5
-  staminaLose: 5
+  staminaLoseOnBlock: 0
   targetedElement: Player
   allTags:
   - Untagged
@@ -163,3 +167,74 @@ MonoBehaviour:
   - GameController
   - HitBox
   - Enemy
+--- !u!1 &795541221528538783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2922386438692375831}
+  - component: {fileID: 6906928777410395442}
+  - component: {fileID: 3574212377282199849}
+  m_Layer: 10
+  m_Name: ProjectileSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2922386438692375831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795541221528538783}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.1625413, y: -0.004967481, z: 294.5836}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3780442020072949303}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6906928777410395442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795541221528538783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42caebc7f4b2d84fa437466aa71ba17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3574212377282199849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795541221528538783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BulletDeath
+    clip: {fileID: 0}
+    volume: 0.01
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: LaunchBack
+    clip: {fileID: 8300000, guid: 003ce86213aa68a45915db058d9dd8ef, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
