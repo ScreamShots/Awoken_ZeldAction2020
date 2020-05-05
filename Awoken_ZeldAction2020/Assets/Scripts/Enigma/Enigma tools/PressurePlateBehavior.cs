@@ -10,6 +10,7 @@ public abstract class PressurePlateBehavior : MonoBehaviour
 {
     [SerializeField] public bool isPressed;
     [SerializeField] protected List<GameObject> elementsOnPlate;
+
     protected virtual void OnTriggerEnter2D(Collider2D other) //Looks if the Player enters the pressure plate
     {
         if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
@@ -49,6 +50,8 @@ public abstract class PressurePlateBehavior : MonoBehaviour
         if (other.gameObject.transform.root.CompareTag("Player") && Input.GetButtonDown("Interraction"))
         {
             isPressed = true;
+            
         }
+        Debug.Log("test");
     }
 }
