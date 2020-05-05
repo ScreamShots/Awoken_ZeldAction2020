@@ -15,6 +15,10 @@ public class Enigma2 : EnigmaTool
     private GameObject brazero1;
     [SerializeField]
     private GameObject brazero2;
+    [SerializeField]
+    private bool isBrazeroOn1;
+    [SerializeField]
+    private bool isBrazeroOn2;
     #endregion
 
     #region Battle Statement
@@ -29,6 +33,8 @@ public class Enigma2 : EnigmaTool
     private DistanceLever distanceLever1;
     [SerializeField]
     private DoorBehavior door2;
+    [SerializeField]
+    private GameObject transitionZone;
     #endregion
 
     void Awake()
@@ -40,7 +46,7 @@ public class Enigma2 : EnigmaTool
 
     protected override void Start()
     {
-       
+
     }
 
     void Update()
@@ -48,15 +54,16 @@ public class Enigma2 : EnigmaTool
         OpenDoorDoublePlate();
         OpenTheDoorAgain();
         LightBrazero();
+        ActivateTransition();
     }
 
     public void OpenDoorDoublePlate()
     {
-        if (instantPlate1.isPressed == true && actionLever1.isPressed == true)
+        if (isBrazeroOn1 == true && isBrazeroOn2 == true)
         {
             door1.isDoorOpen = true;
         }
-        else if (instantPlate1.isPressed == false || actionLever1.isPressed == false)
+        else if (isBrazeroOn1 == false || isBrazeroOn2 == false)
         {
             door1.isDoorOpen = false;
         }
@@ -67,11 +74,13 @@ public class Enigma2 : EnigmaTool
         if (instantPlate1.isPressed == true)
         {
             brazero1.SetActive(true);
+            isBrazeroOn1 = true;
         }
 
         if (actionLever1.isPressed == true)
         {
             brazero2.SetActive(true);
+            isBrazeroOn2 = true;
         }
     }
 
@@ -88,7 +97,30 @@ public class Enigma2 : EnigmaTool
         if (distanceLever1.isPressed == true)
         {
             door2.isDoorOpen = true;
+            door1.isDoorOpen = true;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other) //Looks if the Player enters the pressure plate
+    {
+        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+        {
+            door1.isDoorOpen = false;
+            isBrazeroOn1 = false;
+            isBrazeroOn2 = false;
+            instantPlate1.isPressed = false;
+            actionLever1.isPressed = false;
         }
     }
 
+    void ActivateTransition()
+    {
+        if(door2.isDoorOpen == false)
+        {
+            transitionZone.SetActive(false);
+        }
+        else if (door2.isDoorOpen == true)
+        {
+            transitionZone.SetActive(true);
+        }
+    }
 }

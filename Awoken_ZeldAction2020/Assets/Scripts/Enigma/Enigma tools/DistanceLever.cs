@@ -15,4 +15,14 @@ public class DistanceLever : PressurePlateBehavior
             hitbox.enabled = false;
         }
     }
+
+    protected override void OnTriggerStay2D(Collider2D other)
+    {
+
+    }
+
+    protected override void OnTriggerExit2D(Collider2D other)
+    {
+
+    }
 }
