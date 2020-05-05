@@ -50,8 +50,7 @@ public abstract class PressurePlateBehavior : MonoBehaviour
         if (other.gameObject.transform.root.CompareTag("Player") && Input.GetButtonDown("Interraction"))
         {
             isPressed = true;
-            
         }
-        Debug.Log("test");
+
     }
 }
