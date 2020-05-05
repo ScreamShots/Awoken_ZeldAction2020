@@ -23,6 +23,8 @@ public class DialogueManager : MonoBehaviour
 
     public Dialogue currentDialogue;
 
+    public bool processingDialogue;
+
     private void Awake()
     {
         if(Instance == null)

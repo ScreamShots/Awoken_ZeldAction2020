@@ -13,6 +13,7 @@ public class DialogueTrigger : MonoBehaviour
     public Collider2D triggerZone;
 
     bool dialogueStarted;
+    bool dialogueEnded;
 
 
     private void Update()
