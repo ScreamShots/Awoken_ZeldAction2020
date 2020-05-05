@@ -57,14 +57,14 @@ public class SoundPegase : MonoBehaviour
             l_cooldownActive = pegaseMovement.cooldownActive;
         }
 
-        /*if (l_canFlash != healthSystem.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
+       if (l_canFlash != healthSystem.canFlash) //Nécesite de rendre la variable EnemyHealthSystem.canFlash public pour fonctionner
        {
            if (healthSystem.canFlash == true)
            {
                PegaseDamaged();
            }
            l_canFlash = healthSystem.canFlash;
-       }*/
+       }
 
     }
 
