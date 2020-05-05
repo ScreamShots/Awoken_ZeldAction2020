@@ -12,7 +12,7 @@ public class StaminaBar : MonoBehaviour
 {
     #region HideInInspector var Statement
 
-    private PlayerShield playerShieldSystem;
+    public PlayerShield playerShieldSystem;
 
     #endregion
 

@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     [Range(0,1)]
     public float timeScaleRatio = 1;
     float l_timeScaleRatio = 1;
+    public GameObject PauseMenu;
+    public GameObject player;
+    public AreaManager[] allArea;
+    public HPBar hpBar;
+    public StaminaBar staminaBar;
 
 
 
@@ -20,7 +25,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -37,6 +42,25 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1 * timeScaleRatio;
             l_timeScaleRatio = timeScaleRatio;
         }
+
+        if(gameState == GameState.Running)
+        {
+            if (Input.GetButtonDown("Pause"))
+            {
+                PauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                gameState = GameState.Pause;
+            }
+        }
+        else if(gameState == GameState.Pause)
+        {
+            if (Input.GetButtonDown("Pause"))
+            {
+                PauseMenu.SetActive(false);
+                Time.timeScale = 1;
+                gameState = GameState.Running;
+            }
+        }
     }
 
     public void ProjectileParyStart(GameObject target)
@@ -49,5 +73,25 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.Running;
         Time.timeScale = 1 * timeScaleRatio;
+    }
+
+    public void StartCreate(Vector3 startPos)
+    {
+        StartCoroutine(CreatePlayer( startPos));
+    }
+
+   public IEnumerator CreatePlayer(Vector3 startPos)
+    {
+
+        yield return new WaitForSeconds(0.1f);
+        Instantiate(player, startPos, Quaternion.identity);
+        foreach(AreaManager area in allArea)
+        {
+            area.thisAreaCam.Follow = PlayerManager.Instance.gameObject.transform;
+        }
+        hpBar.playerHpSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>();
+        staminaBar.playerShieldSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerShield>();
+        LvlManager.Instance.UnloadCurrentArea();
+        LvlManager.Instance.ResetArea();
     }
 }

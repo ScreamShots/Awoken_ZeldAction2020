@@ -90,6 +90,14 @@ public class AreaManager : MonoBehaviour
 
     public void UnLoadArea()
     {
+        foreach (GameObject blocker in allLinkedBlockers)
+        {
+            blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
+        }
+        foreach (GameObject transZone in allTransitionZone)
+        {
+            transZone.SetActive(true);
+        }
         foreach (SpawnPlateform spawnPlateform in allSpawnPlateforms)
         {
             spawnPlateform.UnSpawnEnemy();

@@ -12,7 +12,7 @@ public class HPBar : MonoBehaviour
 {
     #region HideInInspector var Statement
 
-    private PlayerHealthSystem playerHpSystem;
+    public PlayerHealthSystem playerHpSystem;
 
     private float maxNumOfHearts;
     private float currentNumOfHearts;

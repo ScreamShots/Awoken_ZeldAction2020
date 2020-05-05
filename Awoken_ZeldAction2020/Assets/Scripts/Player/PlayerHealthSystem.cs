@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthSystem : BasicHealthSystem
 {
@@ -72,7 +73,16 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
-        base.Death();        
+        if(SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            GameManager.Instance.StartCreate(PlayerManager.Instance.startPos);
+            Destroy(gameObject);
+        }
+        else
+        {
+            SceneManager.LoadScene(3);
+        }
+
     }
 
     void HitFlash()

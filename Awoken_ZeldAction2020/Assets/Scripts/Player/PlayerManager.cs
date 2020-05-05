@@ -13,6 +13,9 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     public static int fragmentNumber;
+    public GameObject player;
+
+    public Vector3 startPos;
     void Awake()
     {
         #region Make Singleton
@@ -27,6 +30,11 @@ public class PlayerManager : MonoBehaviour
         }
         
         #endregion
+    }
+
+    private void Start()
+    {
+        startPos = transform.position;
     }
 
 }

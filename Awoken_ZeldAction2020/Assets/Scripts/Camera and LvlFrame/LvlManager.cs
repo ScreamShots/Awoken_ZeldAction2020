@@ -34,6 +34,17 @@ public class LvlManager : MonoBehaviour
     {
         lvlCamBrain = GetComponentInChildren<CinemachineBrain>();
         StartCoroutine(LvlStarts[0].InitializeFirstCam());
+        currentArea = LvlStarts[0];
+    }
+
+    public void UnloadCurrentArea()
+    {
+        currentArea.UnLoadArea();
+    }
+
+    public void ResetArea()
+    {
+        LvlStarts[0].ActivateCam();
     }
     
 
