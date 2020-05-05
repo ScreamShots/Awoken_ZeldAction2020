@@ -15,7 +15,7 @@ public class HealthPickUp : MonoBehaviour
     [Space] [SerializeField]
     [Range(0, 200)]
     float healToRegen = 0;
-    [SerializeField] bool regenFullLife;
+    public  bool regenFullLife;
 
     [Space] [Header("Destroy")]
 
@@ -34,6 +34,8 @@ public class HealthPickUp : MonoBehaviour
 
     private float timer;
     private bool isDestroying;
+    [HideInInspector]
+    public bool isPicked;
     #endregion
 
     private void Start()

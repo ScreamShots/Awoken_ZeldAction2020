@@ -22,6 +22,8 @@ public class PlayerShield : MonoBehaviour
     private bool canReload = true;                  //use to know if the stamina can recover or not
     [HideInInspector]
     public bool onPary = false;
+    [HideInInspector]
+    public bool blockingAnElement;
 
     PlayerIndex playerIndex = PlayerIndex.One;                        //requiered for gamepad vibrations
 
@@ -369,6 +371,7 @@ public class PlayerShield : MonoBehaviour
     {
         PlayerStatusManager.Instance.canMove = false;               //Disable Movement during the knockBack
         PlayerStatusManager.Instance.isKnockBacked = true;
+        blockingAnElement = true;
         yield return new WaitForFixedUpdate();                      //Erasing all physics before knockback
         PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
 
@@ -400,6 +403,7 @@ public class PlayerShield : MonoBehaviour
         GamePad.SetVibration(playerIndex, 0, 0);                        //Stopping vibrations
         PlayerStatusManager.Instance.isKnockBacked = false;
         PlayerStatusManager.Instance.canMove = true;                    //Enable Movement
+        blockingAnElement = false;
     }
 
     IEnumerator TimerBeforeReload()                 //Manage Time before recover can restart after stamina value fell behind 0

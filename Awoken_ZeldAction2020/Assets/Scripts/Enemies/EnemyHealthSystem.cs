@@ -40,7 +40,8 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     float flashTimer = 0;
     float flashFadeTimer = 0;
-    bool canFlash = false;
+    [HideInInspector]
+    public bool canFlash = false;
     bool canFadeFlash = false;
 
     #region Variables
