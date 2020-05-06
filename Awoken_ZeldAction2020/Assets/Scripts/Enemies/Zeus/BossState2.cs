@@ -59,21 +59,10 @@ public class BossState2 : MonoBehaviour
     [SerializeField]
     private Transform wallTransform = null;
 
-    [Space] [SerializeField]
-    private GameObject TuyauLeft = null;
-    [SerializeField]
-    private GameObject TuyauRight = null;
-    [SerializeField]
-    private Transform PlaceTuyauRight = null;
-    [SerializeField]
-    private Transform PlaceTuyauLeft = null;
-
     [Header("Stats")]
 
     [SerializeField]
     private float knockbackIntensity = 0;
-    [SerializeField]
-    private float wallspawnTime = 0;
     [SerializeField]
     private float destroyWallTIme = 0;
     private bool shoot1bullets;
@@ -237,8 +226,7 @@ public class BossState2 : MonoBehaviour
         if (canInstancieWall)
         {
             if (zeusWallZoneScript.bulletDetection)
-            {
-                //Wall                                                                                          //For spawning wall between player and Boss
+            {                                                                                                           //For spawning wall between player and Boss
                 zeusWallZoneScript.bulletDetection = false;
                 canInstancieWall = false;
                 animWall = true;
@@ -247,23 +235,6 @@ public class BossState2 : MonoBehaviour
                 GameObject wallInstance = Instantiate(protectionWall, wallTransform.position, wallTransform.rotation);
 
                 Destroy(wallInstance, destroyWallTIme);
-
-
-                //Tuyau                                                                                         //For Spawning random pipe on Boss arena 
-                /*
-                int randomTuyau;
-                randomTuyau = Random.Range(1, 3);
-
-                if (randomTuyau == 1)
-                {
-                    GameObject TuyauLeftInstance = Instantiate(TuyauLeft, PlaceTuyauLeft.position, PlaceTuyauLeft.rotation);
-                    Destroy(TuyauLeftInstance, destroyWallTIme);
-                }
-                else if (randomTuyau == 2)
-                {
-                    GameObject TuyauRightInstance = Instantiate(TuyauRight, PlaceTuyauRight.position, PlaceTuyauRight.rotation);
-                    Destroy(TuyauRightInstance, destroyWallTIme);
-                }*/
             }
         }
     }

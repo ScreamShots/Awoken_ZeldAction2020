@@ -20,9 +20,9 @@ public class BossState3 : MonoBehaviour
     [Header("Stats")]
     public int ennemisToKillToOpenGate;
 
-    [Space] [SerializeField] private float spawnRadius;
-    [SerializeField] private float timeBtwSpawn;
-    [SerializeField] private float enemySpawnLimit;
+    [Space] [SerializeField] private float spawnRadius = 0;
+    [SerializeField] private float timeBtwSpawn = 0;
+    [SerializeField] private float enemySpawnLimit = 0;
 
     [Space] public GameObject[] enemiesToSpawn;
 

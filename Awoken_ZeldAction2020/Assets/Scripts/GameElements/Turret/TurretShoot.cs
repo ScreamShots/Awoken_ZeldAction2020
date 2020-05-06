@@ -7,7 +7,7 @@ public class TurretShoot : MonoBehaviour
     #region Variables
     [Header("Turret Settings")]
 
-    [SerializeField] bool TurretIsIndestructible;
+    [SerializeField] bool TurretIsIndestructible = false;
 
     [Space] [SerializeField] float timeBtwFirstShot = 1;
 
