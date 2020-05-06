@@ -170,10 +170,6 @@ public class MusicManager : MonoBehaviour
                 StartCoroutine(FadeIn(currentMusic.source, 3, 1));
             }
         }
-        else if (currentMusic.name == null)
-        {
-            currentMusic = Array.Find(music, s => s.name == "Olympe");
-        }
     }
 
     void PlayAmbiance()
