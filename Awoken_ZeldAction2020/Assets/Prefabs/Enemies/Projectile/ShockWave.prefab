@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8219916e1b5c864c96020de632f02cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 387c5214dc9e7fa45b24703be090669b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,7 +129,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 9.83
+  m_Radius: 3.75
 --- !u!114 &6172370753812073732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,9 +142,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c766404d7e45eae4490955b383b5d5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScale: {x: 1, y: 1, z: 1}
+  maxScale: {x: 2.5, y: 2.5, z: 2.5}
   speedToIncrease: 1
   durationToIncrease: 3
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 0.23113209, b: 0.23113209, a: 1}
+  speed: 1
   dmgShockWave: 30
   staminaLost: 0
   watchDirection: 0

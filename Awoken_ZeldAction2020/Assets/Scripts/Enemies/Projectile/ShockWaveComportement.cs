@@ -16,6 +16,12 @@ public class ShockWaveComportement : MonoBehaviour
     public float speedToIncrease;
     public float durationToIncrease;
 
+    [Header("Change Color")]
+    public Color startColor;
+    public Color endColor;
+    public float speed = 1f;
+    private float startTime;
+
     [Header("Dammage")]
     [Min(0)]
     [SerializeField] private float dmgShockWave = 0;
@@ -43,6 +49,7 @@ public class ShockWaveComportement : MonoBehaviour
 
         GetComponent<CircleCollider2D>().enabled = true;
 
+        startTime = Time.time;
         minScale = transform.localScale;
         StartCoroutine(IncreaseScale(minScale, maxScale, durationToIncrease));
     }
@@ -52,6 +59,12 @@ public class ShockWaveComportement : MonoBehaviour
         if (transform.localScale == maxScale)                                                                                   //To destroy shock wave when max scale is reached
         {
             Destroy(gameObject);
+        }
+
+        if (transform.localScale.x >= maxScale.x / 2)
+        {
+            float t = (Time.time - startTime) * speed;
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(startColor, endColor, t);
         }
 
         SetDirectionWithDiagonal();
