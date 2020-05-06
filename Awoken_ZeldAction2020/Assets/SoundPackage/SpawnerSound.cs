@@ -11,7 +11,7 @@ public class SpawnerSound : MonoBehaviour
 {
     private PrefabSoundManager spawnerManager;
     private EnemySpawner spawner;
-    private EnemyHealthSystem spawnerHealth;
+    private GameElementsHealthSystem spawnerHealth;
 
     private bool l_spawnActivate;
 
@@ -20,7 +20,7 @@ public class SpawnerSound : MonoBehaviour
     {
         spawnerManager = GetComponent<PrefabSoundManager>();
         spawner = GetComponentInParent<EnemySpawner>();
-        spawnerHealth = GetComponentInParent<EnemyHealthSystem>();
+        spawnerHealth = GetComponentInParent<GameElementsHealthSystem>();
     }
 
     // Update is called once per frame
