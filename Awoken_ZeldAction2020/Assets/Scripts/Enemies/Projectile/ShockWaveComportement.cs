@@ -49,7 +49,8 @@ public class ShockWaveComportement : MonoBehaviour
 
         GetComponent<CircleCollider2D>().enabled = true;
 
-        startTime = Time.time;
+        startTime = 0;
+
         minScale = transform.localScale;
         StartCoroutine(IncreaseScale(minScale, maxScale, durationToIncrease));
     }
@@ -63,8 +64,8 @@ public class ShockWaveComportement : MonoBehaviour
 
         if (transform.localScale.x >= maxScale.x / 2)
         {
-            float t = (Time.time - startTime) * speed;
-            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(startColor, endColor, t);
+            startTime += Time.deltaTime * speed;
+            GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(startColor, endColor, startTime);
         }
 
         SetDirectionWithDiagonal();
