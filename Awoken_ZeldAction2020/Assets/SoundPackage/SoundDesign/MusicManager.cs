@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    #region Variables
     public SoundProperties[] music;
     public SoundProperties[] ambiance;
     public AudioSource[] audioSource;
@@ -17,6 +18,7 @@ public class MusicManager : MonoBehaviour
     public float MusicVolume;
     private Scene currentScene;
     public string sceneName;
+    #endregion
 
     private void Awake()
     {
@@ -168,6 +170,10 @@ public class MusicManager : MonoBehaviour
                 StartCoroutine(FadeIn(currentMusic.source, 3, 1));
             }
         }
+        else if (currentMusic.name == null)
+        {
+            currentMusic = Array.Find(music, s => s.name == "Olympe");
+        }
     }
 
     void PlayAmbiance()
@@ -181,7 +187,7 @@ public class MusicManager : MonoBehaviour
                 StartCoroutine(FadeIn(currentAmbiance.source, 3, 1));
             }
         }
-        if (sceneName == "Region_1" || sceneName == "Region_2")
+        else if (sceneName == "Region_1" || sceneName == "Region_2")
         {
             if (currentAmbiance.name != "Forest")
             {
@@ -190,7 +196,7 @@ public class MusicManager : MonoBehaviour
                 StartCoroutine(FadeIn(currentAmbiance.source, 3, 1));
             }
         }
-        if (sceneName == "Region_3" || sceneName == "MAH_Caverne")
+        else if (sceneName == "Region_3" || sceneName == "MAH_Caverne")
         {
             if (currentAmbiance.name != "Cave")
             {
@@ -200,4 +206,16 @@ public class MusicManager : MonoBehaviour
             }
         }
     }
+
+    public void Play(string name)
+    {
+        if(currentMusic.name != name)
+        {
+            StartCoroutine(FadeOut(currentMusic.source, 3));
+            currentMusic = Array.Find(music, s => s.name == name);
+            StartCoroutine(FadeIn(currentMusic.source, 3, 1));
+        }
+        
+    }
+
 }
