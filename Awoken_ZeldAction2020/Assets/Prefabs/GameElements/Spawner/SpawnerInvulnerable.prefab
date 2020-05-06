@@ -80,6 +80,7 @@ Transform:
   - {fileID: 1837897165550852081}
   - {fileID: 1837897167143933192}
   - {fileID: 8572525012398193973}
+  - {fileID: 2979094996397589358}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,6 +106,7 @@ MonoBehaviour:
   enemiesToSpawn:
   - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
   - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
+  enemiesDead: 0
   enemiesSpawned: []
   spawnEnable: 1
 --- !u!114 &9091169247986341595
@@ -298,6 +300,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46dfd1020ea37014180ada7e91f47dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5305297903309219124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2979094996397589358}
+  - component: {fileID: 5523257205110650575}
+  - component: {fileID: 3928311857782667295}
+  m_Layer: 17
+  m_Name: SpawnerSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2979094996397589358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305297903309219124}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1837897167062006999}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5523257205110650575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305297903309219124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a3f922716cb45916f1c2f63eab4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3928311857782667295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305297903309219124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: SpawnerDeath
+    clip: {fileID: 8300000, guid: 67f6d31c9804c414aad23cd8ec7af08a, type: 3}
+    volume: 0.01
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
+  - name: Spawned
+    clip: {fileID: 8300000, guid: d3f6808225ac079409b33999865264d5, type: 3}
+    volume: 0.01
+    pitch: 1
+    loop: 0
+    isAlreadyPlayed: 0
+    source: {fileID: 0}
 --- !u!1 &6060614958671261637
 GameObject:
   m_ObjectHideFlags: 0

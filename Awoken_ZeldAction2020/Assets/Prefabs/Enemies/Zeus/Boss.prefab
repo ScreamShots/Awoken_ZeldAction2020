@@ -132,6 +132,49 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.3, y: 0.25}
   m_EdgeRadius: 0
+--- !u!1 &1768167416318040549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6152433635789902570}
+  - component: {fileID: 673847616172860491}
+  m_Layer: 9
+  m_Name: ZeusSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6152433635789902570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768167416318040549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3877349471966037667}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &673847616172860491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768167416318040549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa38754c772692469f1d1f797f0e967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3877349471966037671
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +214,7 @@ Transform:
   - {fileID: 1058051325}
   - {fileID: 1647592546}
   - {fileID: 5755821714347063911}
+  - {fileID: 6152433635789902570}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -219,6 +263,7 @@ MonoBehaviour:
   corps: {fileID: 0}
   timeBeforeDestroy: 0
   linkedSpawnPlateform: {fileID: 0}
+  canFlash: 0
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0
@@ -297,14 +342,7 @@ MonoBehaviour:
   protectionWall: {fileID: 8249182235389160825, guid: 25cc648498b132c4eb409401669c1898,
     type: 3}
   wallTransform: {fileID: 1647592546}
-  TuyauLeft: {fileID: 1300995098264559811, guid: 7442c5dafe7580544b55d940260a8a1a,
-    type: 3}
-  TuyauRight: {fileID: 7182635702687715366, guid: a2705636d257eb643ade353f70c73c56,
-    type: 3}
-  PlaceTuyauRight: {fileID: 0}
-  PlaceTuyauLeft: {fileID: 0}
   knockbackIntensity: 400
-  wallspawnTime: 0.35
   destroyWallTIme: 2
   animWall: 0
   isPunching: 0

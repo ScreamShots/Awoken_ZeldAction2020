@@ -106,6 +106,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActivated: 0
   detectedElements: []
+--- !u!1 &471949131426467516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2109168031095777893}
+  - component: {fileID: 3266163926667283498}
+  m_Layer: 8
+  m_Name: PlayerSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2109168031095777893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471949131426467516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6371173129741758255}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3266163926667283498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471949131426467516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f8c2daf9b06e694a9823e3959463883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &971696706994747099
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +943,7 @@ Transform:
   - {fileID: 8028225501258370062}
   - {fileID: 3431024126179927608}
   - {fileID: 5724466032748658159}
+  - {fileID: 2109168031095777893}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -999,6 +1043,7 @@ MonoBehaviour:
   negativFlashColor: {r: 1, g: 0.25, b: 0.25, a: 0.69411767}
   flashFrequency: 0.33
   knockBackDir: 0
+  canFlash: 0
 --- !u!114 &6371173129741758252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,6 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce5cffaf1427a24d9d18d63bebb588d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inRangeElement: []
   attackState: 0
   attackZone: {fileID: 6371173129605335748}
   firstAttackdmg: 10
@@ -1052,6 +1098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onPary: 0
+  blockingAnElement: 0
   allShieldHitZones:
   - {fileID: 3318330977147395281}
   - {fileID: 327994453116283817}
