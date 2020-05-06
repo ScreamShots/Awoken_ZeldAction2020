@@ -52,8 +52,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6677114848982876143}
-  - component: {fileID: 6677114848982876140}
   - component: {fileID: 6677114848982876141}
+  - component: {fileID: 5334862346791979481}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -77,22 +77,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &6677114848982876140
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6677114848982876142}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.3
 --- !u!114 &6677114848982876141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +96,75 @@ MonoBehaviour:
   dmgLightning: 20
   targetedElement: Player
   inLightningZone: []
+--- !u!60 &5334862346791979481
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677114848982876142}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.2494287, y: 0.18659037}
+      - {x: 1.187902, y: 0.37385753}
+      - {x: 1.1249146, y: 0.49950746}
+      - {x: 1.061562, y: 0.5613187}
+      - {x: 0.99887663, y: 0.6247596}
+      - {x: 0.9363695, y: 0.686017}
+      - {x: 0.87451625, y: 0.7498957}
+      - {x: 0.8110761, y: 0.8120184}
+      - {x: 0.68722993, y: 0.87400794}
+      - {x: 0.498637, y: 0.93702334}
+      - {x: 0.24916594, y: 1}
+      - {x: -0.24870647, y: 1.0004187}
+      - {x: -0.49884045, y: 0.9366946}
+      - {x: -0.6874097, y: 0.87501055}
+      - {x: -0.81243443, y: 0.81220114}
+      - {x: -0.8750321, y: 0.7497596}
+      - {x: -0.9355378, y: 0.686516}
+      - {x: -0.99827236, y: 0.62448335}
+      - {x: -1.0629982, y: 0.5612823}
+      - {x: -1.1255974, y: 0.4984141}
+      - {x: -1.1869574, y: 0.37395313}
+      - {x: -1.24974, y: 0.18819198}
+      - {x: -1.2501386, y: -0.18599993}
+      - {x: -1.1882194, y: -0.37348607}
+      - {x: -1.1233042, y: -0.49845755}
+      - {x: -1.0602571, y: -0.56149536}
+      - {x: -0.99718744, y: -0.62450665}
+      - {x: -0.93547046, y: -0.68737584}
+      - {x: -0.87598646, y: -0.7488287}
+      - {x: -0.8131863, y: -0.81210846}
+      - {x: -0.6858653, y: -0.8759611}
+      - {x: -0.4988328, y: -0.93864065}
+      - {x: -0.24826367, y: -1.0005368}
+      - {x: 0.25007424, y: -0.99957263}
+      - {x: 0.4990309, y: -0.9375622}
+      - {x: 0.68654007, y: -0.87335587}
+      - {x: 0.81251836, y: -0.81372666}
+      - {x: 0.8756915, y: -0.74961233}
+      - {x: 0.937423, y: -0.6867062}
+      - {x: 0.9993905, y: -0.624507}
+      - {x: 1.062063, y: -0.5616008}
+      - {x: 1.1255063, y: -0.50075305}
+      - {x: 1.1870178, y: -0.3736804}
+      - {x: 1.2502215, y: -0.18755415}
 --- !u!1 &6677114850306739547
 GameObject:
   m_ObjectHideFlags: 0
