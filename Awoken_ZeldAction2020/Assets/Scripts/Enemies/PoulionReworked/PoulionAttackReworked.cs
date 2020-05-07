@@ -35,6 +35,8 @@ public class PoulionAttackReworked : MonoBehaviour
     public bool isCharging;                 //is the enemy currently charging
     [HideInInspector]
     public bool isStun;                     //is the enemy stun
+    [HideInInspector]
+    public bool stunCooldown;
 
     //Some security test to handle case where the enemy is already into the player collider or shield collider when he start charging
 
@@ -215,10 +217,12 @@ public class PoulionAttackReworked : MonoBehaviour
 
     IEnumerator Stun()                  //Coroutine that handle stun
     {
+        StartCoroutine(StunAnimation());
         poulionRgb.velocity = Vector2.zero;                     //stop the enemy movement
         yield return new WaitForSeconds(stunTime);              //wait the stun duration
         isAttacking = false;                                    //saying that the attack is finished
         poulionMoveScript.canMove = true;                       //giving movement management back to move class
+        stunCooldown = false;
         isStun = false;                                         //bool for animator
     }
 
@@ -232,5 +236,11 @@ public class PoulionAttackReworked : MonoBehaviour
         chargeTimer = chargeDistance / (chargeSpeed * Time.fixedDeltaTime);     //deffine the time duration the charge must be to fit with the distance assigned in the inspector (speed = distance / time <so> time = distance/ speed)
         isCharging = true;                                                      
         poulionHealthScript.canTakeDmg = false;
+    }
+
+    IEnumerator StunAnimation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        stunCooldown = true;
     }
 }
