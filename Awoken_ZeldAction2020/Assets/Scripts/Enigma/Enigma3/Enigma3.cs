@@ -8,6 +8,8 @@ public class Enigma3 : EnigmaTool
     private AreaManager autel;
     [SerializeField]
     private DoorBehavior door1;
+    [SerializeField]
+    Collider2D activationZone;
     protected override void Start()
     {
         door1.isDoorOpen = true;
@@ -40,6 +42,7 @@ public class Enigma3 : EnigmaTool
         if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
         {
             door1.isDoorOpen = false;
+            activationZone.enabled =false;
         }
     }
 }
