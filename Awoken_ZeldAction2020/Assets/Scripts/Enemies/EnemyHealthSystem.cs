@@ -24,6 +24,8 @@ public class EnemyHealthSystem : BasicHealthSystem
     float flashTime = 0.5f;
     [SerializeField] [Min(0)]
     float flashFadeTime = 0.5f;
+    public GameObject bloodParticle;
+    private GameObject bloodParticleInstance;
 
     [Header("Death")]
     [SerializeField]
@@ -102,6 +104,12 @@ public class EnemyHealthSystem : BasicHealthSystem
             canFlash = true;
             canFadeFlash = false;
             flashTimer = flashTime;
+        }
+
+        if (canTakeDmg)
+        {
+            bloodParticleInstance = Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
+            bloodParticleInstance.transform.parent = gameObject.transform;
         }
     }
 

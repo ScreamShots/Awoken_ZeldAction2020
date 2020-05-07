@@ -29,6 +29,8 @@ public class PlayerHealthSystem : BasicHealthSystem
     Color negativFlashColor = Color.white;
     [SerializeField]
     float flashFrequency = 0.1f;
+    public GameObject bloodParticle;
+    private GameObject bloodParticleInstance;
     #endregion
 
     #region HideInInspector var Statement
@@ -69,6 +71,8 @@ public class PlayerHealthSystem : BasicHealthSystem
         base.TakeDmg(dmgTaken);
         if(canTakeDmg && currentHp > 0) HitEffect(sourcePos);
 
+        bloodParticleInstance = Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
+        bloodParticleInstance.transform.parent = gameObject.transform;
     }
 
     public override void Death()
