@@ -29,6 +29,7 @@ public class PoulionReworkedAnimator : MonoBehaviour
         poulionAnim.SetBool("PrepaCharge", poulionAttackScript.isPreparingCharge);
         poulionAnim.SetBool("Charge", poulionAttackScript.isCharging);
         poulionAnim.SetBool("Stun", poulionAttackScript.isStun);
+        poulionAnim.SetBool("StunCooldown", poulionAttackScript.stunCooldown);
     }
 
 
