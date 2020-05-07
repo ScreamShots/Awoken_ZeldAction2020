@@ -14,6 +14,7 @@ public class PlayerSound : MonoBehaviour
     private PlayerAttack playerAttackScript;
     private PlayerHealthSystem healthSystem;
     private PlayerShield playerShield;
+    private BlockHandler projectile;
 
     private bool l_isBlocking;
     private bool l_isAttacking;
@@ -22,6 +23,7 @@ public class PlayerSound : MonoBehaviour
     private bool l_onParry;
     private bool l_blockingAnElement;
     private bool l_canFlash;
+    private bool l_hasBeenLaunchedBack;
     #endregion
 
     void Start()
@@ -31,6 +33,7 @@ public class PlayerSound : MonoBehaviour
         playerAttackScript = GetComponentInParent<PlayerAttack>();
         healthSystem = GetComponentInParent<PlayerHealthSystem>();
         playerShield = GetComponentInParent<PlayerShield>();
+        projectile = GetComponent<BlockHandler>();
     }
 
     void Update()
@@ -91,6 +94,17 @@ public class PlayerSound : MonoBehaviour
                 Parry();
             }
             l_onParry = playerShield.onPary;
+
+        }
+
+        if (l_hasBeenLaunchedBack != projectile.hasBeenLaunchBack)
+        {
+            if (projectile.hasBeenLaunchBack == true)
+            {
+                Debug.Log("stop");
+                SoundManager.Instance.Stop("PlayerParry");
+            }
+            l_hasBeenLaunchedBack = projectile.hasBeenLaunchBack;
         }
     }
 
@@ -219,7 +233,7 @@ public class PlayerSound : MonoBehaviour
 
     void Parry()
     {
-        SoundManager.Instance.Play("PlayerParry");
+        SoundManager.Instance.PlayOnlyOnce("PlayerParry");
     }
 
 

@@ -14,11 +14,11 @@ public class SoundMinototaure : MonoBehaviour
     private MinototaureAttack minototaureAttack;
     private EnemyHealthSystem minototaureHealth;
 
-    private bool l_playerDetected;
     private bool l_isPreparingAttack;
     private bool l_corouDeathPlay;
     private bool l_lauchAttack;
     private bool l_canFlash;
+    private bool l_minototaureCooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +33,13 @@ public class SoundMinototaure : MonoBehaviour
     {
         Death();
 
-        if(l_playerDetected != minototaureMove.playerDetected)
+        if(l_minototaureCooldown != minototaureMove.minototaureCooldown)
         {
-            if(minototaureMove.playerDetected == true)
+            if(minototaureMove.minototaureCooldown == true)
             {
                 Spotted();
             }
-            l_playerDetected = minototaureMove.playerDetected;
+            l_minototaureCooldown = minototaureMove.minototaureCooldown;
         }
 
         if(l_isPreparingAttack != minototaureAttack.isPreparingAttack)
