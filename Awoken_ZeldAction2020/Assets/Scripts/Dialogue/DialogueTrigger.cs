@@ -33,6 +33,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             if(canStartDialogue && Input.GetButtonDown("Interraction") && !dialogueStarted)
             {
+                PlayerMovement.playerRgb.velocity = Vector2.zero;
                 StartDialogue();
             }
         }

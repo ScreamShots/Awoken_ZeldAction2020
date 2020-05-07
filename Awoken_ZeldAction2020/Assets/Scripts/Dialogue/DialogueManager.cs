@@ -73,21 +73,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         GameManager.Instance.gameState = GameManager.GameState.Dialogue;
-        PlayerMovement.playerRgb.velocity = Vector2.zero;
-
-        if(thisDialogue.faceImage == null)
-        {
-            dialogueUINoFace.SetActive(true);
-            targetedTextBox = textBoxNoFace;
-            dialogueWithFace = false;
-        }
-        else
-        {
-            dialogueUI.SetActive(true);
-            targetedTextBox = textBox;
-            faceDisplay.sprite = thisDialogue.faceImage;
-            dialogueWithFace = true;
-        }
 
         currentTrigger = thisTrigger;
         processingDialogue = true;
@@ -124,18 +109,41 @@ public class DialogueManager : MonoBehaviour
 
         if (typingAPhase)
         {
-            targetedTextBox.text = currentDialogue.talkPhases[dialoguePhaseIndex];
+            targetedTextBox.text = currentDialogue.talkPhases[dialoguePhaseIndex].sentence;
             typingAPhase = false;
         }
         else
         {
             dialoguePhaseIndex += 1;
+
             if (dialoguePhaseIndex >= currentDialogue.talkPhases.Length)
             {
                 EndDialogue();
                 return;
             }
-            targetedTextBox.text = "<color=#00000000>" + currentDialogue.talkPhases[dialoguePhaseIndex] + "<color=#00000000>";
+
+            if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage == null)
+            {
+                if (!dialogueUINoFace.activeInHierarchy)
+                {
+                    dialogueUINoFace.SetActive(true);
+                    dialogueUI.SetActive(false);
+                }
+                targetedTextBox = textBoxNoFace;
+                dialogueWithFace = false;
+            }
+            else if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage != null)
+            {
+                if (!dialogueUI.activeInHierarchy)
+                {
+                    dialogueUI.SetActive(true);
+                    dialogueUINoFace.SetActive(false);
+                }
+                targetedTextBox = textBox;
+                faceDisplay.sprite = currentDialogue.talkPhases[dialoguePhaseIndex].faceImage;
+                dialogueWithFace = true;
+            }
+            targetedTextBox.text = "<color=#00000000>" + currentDialogue.talkPhases[dialoguePhaseIndex].sentence + "<color=#00000000>";
             StartCoroutine(TypeDialogePhase());
         }
     }
@@ -145,9 +153,9 @@ public class DialogueManager : MonoBehaviour
         int charIndex = 1;
         typingAPhase = true;
 
-        foreach (char letter in currentDialogue.talkPhases[dialoguePhaseIndex])
+        foreach (char letter in currentDialogue.talkPhases[dialoguePhaseIndex].sentence)
         {
-            targetedTextBox.text = currentDialogue.talkPhases[dialoguePhaseIndex].Substring(0, charIndex) +"<color=#00000000>" + currentDialogue.talkPhases[dialoguePhaseIndex].Substring(0, charIndex) + "<color=#00000000>";
+            targetedTextBox.text = currentDialogue.talkPhases[dialoguePhaseIndex].sentence.Substring(0, charIndex) +"<color=#00000000>" + currentDialogue.talkPhases[dialoguePhaseIndex].sentence.Substring(0, charIndex) + "<color=#00000000>";
             yield return new WaitForSeconds(typeSpeed);
             charIndex += 1;
         }

@@ -6,13 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newDialogue", menuName = "DialogueSystem/New Dialogue ")]
 public class Dialogue : ScriptableObject
 {
-    [Header("Dialogue Face (Optional)")]
-    public Sprite faceImage;
-
-    [Space]
+    [System.Serializable]
+    public struct TalkPhase
+    {
+        public Sprite faceImage;
+        [TextArea]
+        public string sentence;
+    }
 
     [Header("Dialogue Sentences")]
-    [TextArea]
-    public string[] talkPhases;
-
+    public TalkPhase[] talkPhases;
 }

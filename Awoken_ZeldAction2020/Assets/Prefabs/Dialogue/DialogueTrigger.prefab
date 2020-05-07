@@ -45,12 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc11a51630488cd47be7b5dd010fc5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisDialogue: {fileID: 0}
-  buttonDisplay: {fileID: 0}
+  dialogueToPlay: {fileID: 0}
   triggerByZone: 1
   dialogueStarted: 0
   dialogueEnded: 0
-  canStartDialogue: 0
 --- !u!58 &9079988227430933786
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +136,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 8938780859522496967, guid: 8ad47cd31003aa84f936f67a52ed706e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
