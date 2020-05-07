@@ -15,10 +15,9 @@ public class Enigma2 : EnigmaTool
     private GameObject brazero1;
     [SerializeField]
     private GameObject brazero2;
-    [SerializeField]
-    private bool isBrazeroOn1;
-    [SerializeField]
-    private bool isBrazeroOn2;
+
+    public bool isBrazeroOn1;
+    public bool isBrazeroOn2;
     #endregion
 
     #region Battle Statement
@@ -51,7 +50,6 @@ public class Enigma2 : EnigmaTool
 
     void Update()
     {
-        OpenDoorDoublePlate();
         OpenTheDoorAgain();
         LightBrazero();
         ActivateTransition();
@@ -73,14 +71,25 @@ public class Enigma2 : EnigmaTool
     {
         if (instantPlate1.isPressed == true)
         {
-            brazero1.SetActive(true);
             isBrazeroOn1 = true;
         }
 
         if (actionLever1.isPressed == true)
         {
-            brazero2.SetActive(true);
             isBrazeroOn2 = true;
+        }
+    }
+
+    public void EnableLightAfterBlending()
+    {
+        if (instantPlate1.isPressed == true)
+        {
+            brazero1.SetActive(true);
+        }
+
+        if (actionLever1.isPressed == true)
+        {
+            brazero2.SetActive(true);
         }
     }
 
