@@ -134,7 +134,7 @@ public class BulletComportement : MonoBehaviour
             }
         }
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Default") || other.gameObject.layer == LayerMask.NameToLayer("ObjectToMove"))
         {
             Destroy(gameObject);
         }
