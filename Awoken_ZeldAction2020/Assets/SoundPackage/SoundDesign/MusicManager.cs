@@ -75,34 +75,38 @@ public class MusicManager : MonoBehaviour
     public IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
     {
         float startVolume = MusicVolume;
-        while (audioSource.volume > 0)
+        if(audioSource != null)
         {
-            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            while (audioSource.volume > 0)
+            {
+                audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
 
-            yield return null;
+                yield return null;
+            }
+
+            audioSource.Stop();
+            audioSource.volume = startVolume;
         }
-
-        audioSource.Stop();
-        audioSource.volume = startVolume;
-
     }
 
     public IEnumerator FadeIn(AudioSource audioSource, float FadeTime, float FinalVolume)
     {
-        audioSource.volume = 0;
-        audioSource.Play();
-        FinalVolume = MusicVolume;
-
-        while (audioSource.volume < FinalVolume)
+        if(audioSource != null)
         {
-            audioSource.volume += FinalVolume * Time.deltaTime / FadeTime;
+            audioSource.volume = 0;
+            audioSource.Play();
+            FinalVolume = MusicVolume;
 
-            yield return null;
+            while (audioSource.volume < FinalVolume)
+            {
+                audioSource.volume += FinalVolume * Time.deltaTime / FadeTime;
+
+                yield return null;
+            }
+
+
+            audioSource.volume = FinalVolume;
         }
-
-
-        audioSource.volume = FinalVolume;
-
     }
 
     void PlayMusic()

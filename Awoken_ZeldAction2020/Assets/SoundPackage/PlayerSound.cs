@@ -97,7 +97,7 @@ public class PlayerSound : MonoBehaviour
 
         }
 
-        if (l_hasBeenLaunchedBack != projectile.hasBeenLaunchBack)
+        /*if (l_hasBeenLaunchedBack != projectile.hasBeenLaunchBack)
         {
             if (projectile.hasBeenLaunchBack == true)
             {
@@ -105,7 +105,7 @@ public class PlayerSound : MonoBehaviour
                 SoundManager.Instance.Stop("PlayerParry");
             }
             l_hasBeenLaunchedBack = projectile.hasBeenLaunchBack;
-        }
+        }*/
     }
 
     void DeathSound()
