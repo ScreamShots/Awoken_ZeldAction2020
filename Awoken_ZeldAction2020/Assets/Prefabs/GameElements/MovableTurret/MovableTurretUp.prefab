@@ -184,7 +184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5156993678070454365}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0, y: 0.986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7627200569183075035}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 7627200569183075032}
   - component: {fileID: 7361641860588411716}
   m_Layer: 11
-  m_Name: MovableGoldTurretUp
+  m_Name: MovableTurretUp
   m_TagString: ObjectToMove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,13 +366,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurretIsIndestructible: 1
-  timeBtwFirstShot: 1
-  timeBtwShots: 2
+  timeBtwFirstShot: 0
+  timeBtwShots: 1
   hasAggroZone: 0
   Bullet: {fileID: 1410191475135872853, guid: 827bda52e2bc54840956ce5295b5a947, type: 3}
   bulletSpeed: 500
   shootPoint: {fileID: 7921947796355279666}
   turretIsShooting: 0
+  turretFire: 0
   inZoneAnim: 0
   turretIsBroken: 0
 --- !u!1 &7627200569398724767
@@ -385,6 +386,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7627200569398724766}
   - component: {fileID: 7627200569398724765}
+  - component: {fileID: 7157841716497385398}
+  - component: {fileID: 7761881122473873456}
   m_Layer: 10
   m_Name: Sprite Renderer
   m_TagString: Untagged
@@ -445,7 +448,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3c0da79513aa54a40b8c7ee6a5c0e089, type: 3}
+  m_Sprite: {fileID: -4365771438914979035, guid: bcb2e7bcb91401c41883a450a0409e0f,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -456,6 +460,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &7157841716497385398
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627200569398724767}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 941abb0a855240340adf22ae861546c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7761881122473873456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7627200569398724767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a32cd67453e30429d6cbd67049c469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8161295051466957351
 GameObject:
   m_ObjectHideFlags: 0

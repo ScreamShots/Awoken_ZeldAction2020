@@ -132,7 +132,7 @@ public class TurretShoot : MonoBehaviour
 
     IEnumerator TimeBeforeShoot()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         Shoot();
     }
 
