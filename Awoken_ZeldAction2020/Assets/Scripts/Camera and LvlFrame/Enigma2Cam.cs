@@ -67,6 +67,7 @@ public class Enigma2Cam : MonoBehaviour
 
         if (enigma2Script.isBrazeroOn1 && !pressurePlate)                                          //if pressure plate is activate, start the transitation cam to the double door and disable player control
         {
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
             pressurePlate = true;
             GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
 
@@ -74,6 +75,7 @@ public class Enigma2Cam : MonoBehaviour
         }
         else if (enigma2Script.isBrazeroOn2 && !leverIsActivate)                                    //if lever is activate, start the transitation cam to the double door and disable player control
         {
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
             leverIsActivate = true;
             GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
 
