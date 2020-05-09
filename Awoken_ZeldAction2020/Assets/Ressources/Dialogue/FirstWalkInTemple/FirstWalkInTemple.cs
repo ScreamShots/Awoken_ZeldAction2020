@@ -26,6 +26,7 @@ public class FirstWalkInTemple : MonoBehaviour
         }
         if (thisTrigger.dialogueEnded && !dialogueCamDesactivated)
         {
+            ProgressionManager.Instance.firstReachTheTemple = true;
             highLightCam.SetActive(false);
             dialogueCamDesactivated = true;
         }

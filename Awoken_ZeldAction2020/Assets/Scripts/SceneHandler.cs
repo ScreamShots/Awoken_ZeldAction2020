@@ -8,6 +8,7 @@ public class SceneHandler : MonoBehaviour
     public static SceneHandler Instance;
 
     public int zoneToLoad;
+    public float playerHp;
 
     private void Awake()
     {
@@ -23,7 +24,9 @@ public class SceneHandler : MonoBehaviour
 
     public void SceneTransition(string sceneName, int spawnZone)
     {
+        playerHp = PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>().currentHp;
         SceneManager.LoadScene(sceneName);
         zoneToLoad = spawnZone;
+        PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>().currentHp = playerHp;
     }
 }
