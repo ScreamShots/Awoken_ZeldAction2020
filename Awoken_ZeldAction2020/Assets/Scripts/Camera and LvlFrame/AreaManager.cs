@@ -48,7 +48,7 @@ public class AreaManager : MonoBehaviour
     public IEnumerator InitializeFirstCam()
     {
         thisAreaCam.gameObject.SetActive(true);
-        thisAreaCam.Priority = 1;
+        thisAreaCam.Priority = 10;
         PlayerManager.Instance.gameObject.transform.position = SapwnPoint.position;
         yield return new WaitForEndOfFrame();
         LoadArea();

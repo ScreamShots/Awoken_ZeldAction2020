@@ -84,12 +84,16 @@ public class PlayerHealthSystem : BasicHealthSystem
     {
         //base.Death();
         transform.position = LvlManager.Instance.LvlStarts[0].SapwnPoint.position;
-        LvlManager.Instance.currentArea.UnLoadArea();
-        LvlManager.Instance.currentArea.DesactivateCam();
+        if(LvlManager.Instance.currentArea != null)
+        {
+            LvlManager.Instance.currentArea.UnLoadArea();
+            LvlManager.Instance.currentArea.DesactivateCam();
+        }
+        currentHp = maxHp;
+
         LvlManager.Instance.LvlStarts[0].LoadArea();
         LvlManager.Instance.LvlStarts[0].ActivateCam();
-
-        currentHp = maxHp;
+        LvlManager.Instance.LvlStarts[0].thisAreaCam.Priority = 1000;
     }
 
     void HitFlash()

@@ -32,6 +32,10 @@ public class LvlManager : MonoBehaviour
     private void Start()
     {
         lvlCamBrain = GetComponentInChildren<CinemachineBrain>();
+        if (SceneHandler.Instance.alreadyLoadAScene)
+        {
+            currentArea = LvlStarts[SceneHandler.Instance.zoneToLoad];
+                }
         StartCoroutine(LvlStarts[SceneHandler.Instance.zoneToLoad].InitializeFirstCam());
     }
     
