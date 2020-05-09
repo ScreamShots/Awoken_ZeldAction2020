@@ -26,8 +26,13 @@ public class SceneHandler : MonoBehaviour
 
     public void SceneTransition(string sceneName, int spawnZone)
     {
-        alreadyLoadAScene = true;
-        playerHp = PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>().currentHp;
+
+        if(PlayerManager.Instance != null)
+        {
+            alreadyLoadAScene = true;
+            playerHp = PlayerManager.Instance.gameObject.GetComponent<PlayerHealthSystem>().currentHp;
+        }
+
         SceneManager.LoadScene(sceneName);
         zoneToLoad = spawnZone;
     }
