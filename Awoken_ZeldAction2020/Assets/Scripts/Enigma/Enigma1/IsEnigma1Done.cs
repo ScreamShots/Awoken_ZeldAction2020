@@ -16,6 +16,7 @@ public class IsEnigma1Done : EnigmaTool
         if(FoodPickUp.nbrOfFood == 3)
         {
             isEnigmaDone = true;
+
         }
     }
 }

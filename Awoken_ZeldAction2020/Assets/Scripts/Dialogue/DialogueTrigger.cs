@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField]
-    Dialogue dialogueToPlay;
+    public Dialogue dialogueToPlay;
     [SerializeField]
     bool triggerByZone;
 
@@ -39,6 +38,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
+    [ContextMenu("StartDialogue")]
     public void StartDialogue()
     {
         DialogueManager.Instance.StartDialogue(dialogueToPlay, this);

@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
     TextMeshProUGUI targetedTextBox;
     DialogueTrigger currentTrigger;
 
-    int dialoguePhaseIndex;
+    [HideInInspector] public int dialoguePhaseIndex;
     bool dialogueWithFace;
     [HideInInspector]
     public bool typingAPhase;

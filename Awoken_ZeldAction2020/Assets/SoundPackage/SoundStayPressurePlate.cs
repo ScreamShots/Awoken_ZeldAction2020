@@ -35,7 +35,6 @@ public class SoundStayPressurePlate : MonoBehaviour
 
     void PressurePlateActivated()
     {
-        Debug.Log("Press");
         SoundManager.Instance.Play("ActivatePlate");
     }
 }

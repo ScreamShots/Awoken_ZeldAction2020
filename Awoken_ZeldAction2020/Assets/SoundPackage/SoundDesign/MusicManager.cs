@@ -34,8 +34,6 @@ public class MusicManager : MonoBehaviour
         }
         #endregion
 
-        DontDestroyOnLoad(gameObject);
-
         foreach (SoundProperties soundProperties in music)
         {
             soundProperties.source = gameObject.AddComponent<AudioSource>();

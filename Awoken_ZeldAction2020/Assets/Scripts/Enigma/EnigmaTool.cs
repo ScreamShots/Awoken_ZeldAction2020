@@ -10,7 +10,7 @@ public abstract class  EnigmaTool : MonoBehaviour
     protected ActionLever actionLever;
     protected DistanceLever distanceLever;
     [SerializeField]
-    protected bool isEnigmaDone;
+    public bool isEnigmaDone;
 
 
 
