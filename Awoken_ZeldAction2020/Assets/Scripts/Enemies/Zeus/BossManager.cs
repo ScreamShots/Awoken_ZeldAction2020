@@ -71,11 +71,14 @@ public class BossManager : EnemyHealthSystem
     #endregion
 
     private bool canPlayFirstState;
-    private bool canPlayNextState;
-    private bool canPlayNextState2;
+    [HideInInspector] public bool canPlayNextState;
+    [HideInInspector] public bool canPlayNextState2;
     private bool playCoroutine;
 
     [HideInInspector] public bool canStartBossFight;
+    [HideInInspector] public bool canStartDialog = false;
+    [HideInInspector] public bool canStartDialogState2 = false;
+    [HideInInspector] public bool canStartDialogState3 = false;
 
     void Awake()
     {
@@ -121,16 +124,18 @@ public class BossManager : EnemyHealthSystem
         }
         else if (currentHp <= 230 && currentHp > 50)         //state 2
         {
+            canStartDialogState2 = true;
+
             StopCoroutine(S1Pattern1()); StopCoroutine(S1Pattern2());                                   //for stopping the previous pattern
 
             s1_Pattern1 = false;
             s1_Pattern2 = false;
 
-            if (!playCoroutine & !canPlayNextState)
+            /*if (!playCoroutine & !canPlayNextState)
             {
                 playCoroutine = true;
                 StartCoroutine(waitBeforeStartNextState());
-            }
+            }*/
             if (canPlayNextState)
             {
                 State2();
@@ -138,17 +143,19 @@ public class BossManager : EnemyHealthSystem
         }
         else if (currentHp <= 50 && currentHp > 0)           //state 3
         {
+            canStartDialogState3 = true;
+
             StopCoroutine(S2Pattern1()); StopCoroutine(S2Pattern2()); StopCoroutine(S2Pattern3());      //for stopping the previous pattern
 
             s2_Pattern1 = false;
             s2_Pattern2 = false;
             s2_Pattern3 = false;
 
-            if (!playCoroutine)
+            /*if (!playCoroutine)
             {
                 playCoroutine = true;
                 StartCoroutine(waitBeforeStartNextState2());
-            }
+            }*/
             if (canPlayNextState2)
             {
                 State3();
