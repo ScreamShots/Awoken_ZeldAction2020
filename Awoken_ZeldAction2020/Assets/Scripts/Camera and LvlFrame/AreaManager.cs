@@ -21,8 +21,8 @@ public class AreaManager : MonoBehaviour
     int enemyDeathCounter = 0;
     [SerializeField]
     bool dungeonRoom = false;
-    [SerializeField]
-    Transform SapwnPoint;
+    
+    public Transform SapwnPoint;
 
 
     [HideInInspector]

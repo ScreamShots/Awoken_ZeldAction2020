@@ -15,12 +15,18 @@ public class ZeusBigor : MonoBehaviour
     {
         isStatueActivated = false;
         xButton = GetComponentInChildren<InterractionButton>();
+
+        if (ProgressionManager.Instance.transformFirstStatue)
+        {
+            isStatueActivated = true;
+        }
     }
     void Update()
     {
         if(canPlayerActivateStatue && Input.GetButtonDown("Interraction") && areaEnnemies.allEnemyAreDead)
         {
             isStatueActivated = true;
+            ProgressionManager.Instance.transformFirstStatue = true;
         }
 
         if(isStatueActivated)

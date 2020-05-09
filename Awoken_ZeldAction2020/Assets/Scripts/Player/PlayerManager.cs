@@ -47,6 +47,20 @@ public class PlayerManager : MonoBehaviour
         #endregion
     }
 
+    private void Start()
+    {
+        if (ProgressionManager.Instance.undergroudCutSceneDone)
+        {
+            shieldZone.SetActive(true);
+            GetComponent<PlayerShield>().enabled = true;
+        }
+        if (ProgressionManager.Instance.unlockPary)
+        {
+            paryZone.SetActive(true);
+            GetComponent<ProjectileParyBehaviour>().enabled = true;
+        }
+    }
+
     public void StartCutScene()
     {
         classicRender.SetActive(false);

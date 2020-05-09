@@ -13,6 +13,7 @@ public class SealTeleporter : MonoBehaviour
 
     [HideInInspector] public bool canPlayTPAnimation = false;
     private bool cantTP = false;
+    public bool isInOlympe;
 
     #endregion
 
@@ -61,22 +62,30 @@ public class SealTeleporter : MonoBehaviour
 
     private void LoadScene()
     {
-        if (!ProgressionManager.Instance.firstBattleZeus)
+        if (!isInOlympe)
         {
-            SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
+            if (!ProgressionManager.Instance.firstBattleZeus)
+            {
+                SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
+            }
+            else if (!ProgressionManager.Instance.transformFirstStatue)
+            {
+                SceneHandler.Instance.SceneTransition("Olympe_Floor_1", 0);
+            }
+            else if (!ProgressionManager.Instance.transformSecondStatue)
+            {
+                SceneHandler.Instance.SceneTransition("Olympe_Floor_2", 0);
+            }
+            else if (ProgressionManager.Instance.openThirdFloorGate)
+            {
+                SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
+            }
         }
-        else if (!ProgressionManager.Instance.transformFirstStatue)
+        else
         {
-            SceneHandler.Instance.SceneTransition("Olympe_Floor_1", 0);
+            SceneHandler.Instance.SceneTransition("Région_1", 4);
         }
-        else if (!ProgressionManager.Instance.transformSecondStatue)
-        {
-            SceneHandler.Instance.SceneTransition("Olympe_Floor_2", 0);
-        }
-        else if (!ProgressionManager.Instance.transformThirdStatue)
-        {
-            SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
-        }
+
     }
 
     IEnumerator TeleportPlayer()

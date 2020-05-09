@@ -34,18 +34,26 @@ public class StaminaBar : MonoBehaviour
 
     private void Update()
     {
-        if (playerShieldSystem.currentStamina >= playerShieldSystem.maxStamina - playerShieldSystem.maxStamina * 0.01) // the soustraction on the second part of the test creat a margin that smooth the stamina bar display
+        if (ProgressionManager.Instance.undergroudCutSceneDone)
         {
-            fillStaminaBar.transform.parent.gameObject.SetActive(false);                        //if the stamina is at his max value hide the stamina bar
+            if (playerShieldSystem.currentStamina >= playerShieldSystem.maxStamina - playerShieldSystem.maxStamina * 0.01) // the soustraction on the second part of the test creat a margin that smooth the stamina bar display
+            {
+                fillStaminaBar.transform.parent.gameObject.SetActive(false);                        //if the stamina is at his max value hide the stamina bar
+            }
+            else
+            {
+                fillStaminaBar.transform.parent.gameObject.SetActive(true);                        //if the stamina is not at his max vanue display the stamina bar     
+            }
+
+            if (playerShieldSystem != null)
+            {
+                fillStaminaBar.fillAmount = playerShieldSystem.currentStamina / playerShieldSystem.maxStamina;                     //Filling of the UI immage depends of the hp value of the player compare to his max health
+            }
         }
         else
         {
-            fillStaminaBar.transform.parent.gameObject.SetActive(true);                        //if the stamina is not at his max vanue display the stamina bar     
+            fillStaminaBar.transform.parent.gameObject.SetActive(false);
         }
 
-        if (playerShieldSystem != null)
-        {
-            fillStaminaBar.fillAmount = playerShieldSystem.currentStamina / playerShieldSystem.maxStamina;                     //Filling of the UI immage depends of the hp value of the player compare to his max health
-        }
     }
 }

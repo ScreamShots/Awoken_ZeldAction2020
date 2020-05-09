@@ -54,6 +54,11 @@ public class PlayerHealthSystem : BasicHealthSystem
         base.Start();
         playerMoveScript = GetComponent<PlayerMovement>();
         playerRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (SceneHandler.Instance.alreadyLoadAScene)
+        {
+            currentHp = SceneHandler.Instance.playerHp;
+        }
+        
     }
 
     protected override void Update()
@@ -77,7 +82,14 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
-        base.Death();        
+        //base.Death();
+        transform.position = LvlManager.Instance.LvlStarts[0].SapwnPoint.position;
+        LvlManager.Instance.currentArea.UnLoadArea();
+        LvlManager.Instance.currentArea.DesactivateCam();
+        LvlManager.Instance.LvlStarts[0].LoadArea();
+        LvlManager.Instance.LvlStarts[0].ActivateCam();
+
+        currentHp = maxHp;
     }
 
     void HitFlash()
