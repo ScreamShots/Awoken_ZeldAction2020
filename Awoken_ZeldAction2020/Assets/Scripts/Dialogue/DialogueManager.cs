@@ -155,7 +155,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in currentDialogue.talkPhases[dialoguePhaseIndex].sentence)
         {
-            targetedTextBox.text = currentDialogue.talkPhases[dialoguePhaseIndex].sentence.Substring(0, charIndex) +"<color=#00000000>" + currentDialogue.talkPhases[dialoguePhaseIndex].sentence.Substring(0, charIndex) + "<color=#00000000>";
+            targetedTextBox.text = currentDialogue.talkPhases[dialoguePhaseIndex].sentence.Substring(0, charIndex) +"<color=#00000000>" + currentDialogue.talkPhases[dialoguePhaseIndex].sentence.Substring(charIndex) + "<color=#00000000>";
             yield return new WaitForSeconds(typeSpeed);
             charIndex += 1;
         }

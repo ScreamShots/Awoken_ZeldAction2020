@@ -12,6 +12,24 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
+    [SerializeField]
+    GameObject classicRender;
+    [SerializeField]
+    GameObject attackZone;
+    [SerializeField]
+    GameObject collisionDetection;
+    [SerializeField]
+    GameObject hitBox;
+    [SerializeField]
+    GameObject shieldZone;
+    [SerializeField]
+    GameObject paryZone;
+    [SerializeField]
+    GameObject cutsceneRenderer;
+    [SerializeField]
+    GameObject playerSound;
+
+
     public static int fragmentNumber;
     void Awake()
     {
@@ -27,6 +45,30 @@ public class PlayerManager : MonoBehaviour
         }
         
         #endregion
+    }
+
+    public void StartCutScene()
+    {
+        classicRender.SetActive(false);
+        attackZone.SetActive(false);
+        collisionDetection.SetActive(false);
+        hitBox.SetActive(false);
+        shieldZone.SetActive(false);
+        paryZone.SetActive(false);
+        playerSound.SetActive(false);
+        cutsceneRenderer.SetActive(true);
+    }
+
+    public void EndCutScene()
+    {
+        classicRender.SetActive(true);
+        attackZone.SetActive(true);
+        collisionDetection.SetActive(true);
+        hitBox.SetActive(true);
+        shieldZone.SetActive(true);
+        paryZone.SetActive(true);
+        playerSound.SetActive(true);
+        cutsceneRenderer.SetActive(false);
     }
 
 }
