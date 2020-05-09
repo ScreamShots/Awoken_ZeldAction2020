@@ -61,22 +61,22 @@ public class SealTeleporter : MonoBehaviour
 
     private void LoadScene()
     {
-        /*if ()                                                   //put here save bool for tp Player relative to first passage in Temple || if Player is in the last floor until Boss
+        if (!ProgressionManager.Instance.firstBattleZeus)
         {
-            SceneManager.LoadScene("Olympe_Floor_Boss");
+            SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
         }
-        else if ()                                              //put here save bool for tp Player relative to second passage in Temple
+        else if (!ProgressionManager.Instance.transformFirstStatue)
         {
-            SceneManager.LoadScene("Olympe_Floor_1");
+            SceneHandler.Instance.SceneTransition("Olympe_Floor_1", 0);
         }
-        else if ()                                              //put here save bool for tp Player if he's in first floor
+        else if (!ProgressionManager.Instance.transformSecondStatue)
         {
-            SceneManager.LoadScene("Olympe_Floor_2");
+            SceneHandler.Instance.SceneTransition("Olympe_Floor_2", 0);
         }
-        else if ()                                               //put here save bool for tp Player if he's in second floor
+        else if (!ProgressionManager.Instance.transformThirdStatue)
         {
-            SceneManager.LoadScene("Olympe_Floor_3");
-        }*/
+            SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
+        }
     }
 
     IEnumerator TeleportPlayer()

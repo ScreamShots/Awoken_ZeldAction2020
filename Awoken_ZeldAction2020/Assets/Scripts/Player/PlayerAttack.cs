@@ -110,11 +110,11 @@ public class PlayerAttack : MonoBehaviour
             {
                 break;
             }
-            if (PlayerStatusManager.Instance.canMove && PlayerMovement.playerRgb.velocity.x != 0 || PlayerMovement.playerRgb.velocity.y != 0)
+            /*if (PlayerStatusManager.Instance.canMove && PlayerMovement.playerRgb.velocity.x != 0 || PlayerMovement.playerRgb.velocity.y != 0)
             {
                 attackState = 0;
                 break;
-            }
+            }*/
             if (PlayerStatusManager.Instance.isBlocking)
             {
                 attackState = 0;

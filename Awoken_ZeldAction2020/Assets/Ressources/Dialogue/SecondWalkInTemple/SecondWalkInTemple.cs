@@ -20,6 +20,7 @@ public class SecondWalkInTemple : MonoBehaviour
         {
             dialogueCam.SetActive(false);
             camDesactivated = true;
+            ProgressionManager.Instance.secondReachTheTemple = true;
         }
     }
 }

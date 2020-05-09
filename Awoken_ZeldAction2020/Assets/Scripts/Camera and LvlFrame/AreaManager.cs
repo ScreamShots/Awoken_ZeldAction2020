@@ -21,6 +21,8 @@ public class AreaManager : MonoBehaviour
     int enemyDeathCounter = 0;
     [SerializeField]
     bool dungeonRoom = false;
+    [SerializeField]
+    Transform SapwnPoint;
 
 
     [HideInInspector]
@@ -47,6 +49,7 @@ public class AreaManager : MonoBehaviour
     {
         thisAreaCam.gameObject.SetActive(true);
         thisAreaCam.Priority = 1;
+        PlayerManager.Instance.gameObject.transform.position = SapwnPoint.position;
         yield return new WaitForEndOfFrame();
         LoadArea();
     }

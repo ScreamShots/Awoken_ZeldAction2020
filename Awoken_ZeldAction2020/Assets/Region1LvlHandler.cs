@@ -11,6 +11,9 @@ public class Region1LvlHandler : MonoBehaviour
     public GameObject[] legumes;
     public DoorBehavior porteRegion2;
     public DoorBehavior porteRegion3;
+    public GameObject[] templeArbres;
+    public AnimatorOverrideController playerNoShield;
+    public Animator PlayerAnimator;
     void Start()
     {
         if (ProgressionManager.Instance.zeusRevealCutsceneDone)
@@ -29,6 +32,7 @@ public class Region1LvlHandler : MonoBehaviour
         }
         else
         {
+            PlayerAnimator.runtimeAnimatorController = playerNoShield;
             vegetablesManager.SetActive(true);
             Pnj.SetActive(true);
             troncAuberge.SetActive(true);
@@ -38,6 +42,13 @@ public class Region1LvlHandler : MonoBehaviour
             }
         }
 
+        if (ProgressionManager.Instance.undergroudCutSceneDone)
+        {
+            foreach(GameObject arbres in templeArbres)
+            {
+                arbres.SetActive(false);
+            }
+        }
         if (ProgressionManager.Instance.transformFirstStatue)
         {
             porteRegion2.isDoorOpen = true;
