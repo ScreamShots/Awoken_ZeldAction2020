@@ -8,6 +8,8 @@ public class ZeusBigor : MonoBehaviour
     [SerializeField]
     bool canPlayerActivateStatue;
     private InterractionButton xButton;
+    [SerializeField]
+    private AreaManager areaEnnemies;
 
     void Start()
     {
@@ -16,7 +18,7 @@ public class ZeusBigor : MonoBehaviour
     }
     void Update()
     {
-        if(canPlayerActivateStatue && Input.GetButtonDown("Interraction"))
+        if(canPlayerActivateStatue && Input.GetButtonDown("Interraction") && areaEnnemies.allEnemyAreDead)
         {
             isStatueActivated = true;
         }
@@ -43,6 +45,4 @@ public class ZeusBigor : MonoBehaviour
             xButton.HideButton();
         }
     }
-
-
 }
