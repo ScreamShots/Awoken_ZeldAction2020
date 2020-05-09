@@ -87,7 +87,7 @@ public class SealTeleporter : MonoBehaviour
         }
         else
         {
-            SceneHandler.Instance.SceneTransition("Région_1", 4);
+            SceneHandler.Instance.SceneTransition("Region_1", 4);
         }
 
     }
