@@ -15,7 +15,12 @@ public class VegetablesManager : MonoBehaviour
 
     private void Start()
     {
-        startTrigger.StartDialogue();
+        if (!ProgressionManager.Instance.vegetablesFirstDialogueDone)
+        {
+            startTrigger.StartDialogue();
+            ProgressionManager.Instance.vegetablesFirstDialogueDone = true;
+        }
+        
     }
 
     private void Update()
@@ -29,7 +34,8 @@ public class VegetablesManager : MonoBehaviour
 
         if(dialogueChanged && pnjTrigger.dialogueEnded)
         {
-            //LaunchCinematic
+            ProgressionManager.Instance.vegetablesDone = true;
+            SceneHandler.Instance.SceneTransition("MAH_Auberge", 0);
         }
     }
 

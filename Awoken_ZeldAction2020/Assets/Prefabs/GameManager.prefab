@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 144188320564182205}
   - component: {fileID: 9101460006611814369}
   - component: {fileID: 8505841336542493080}
+  - component: {fileID: 3249367004553849377}
+  - component: {fileID: 1174409220757067158}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -80,6 +82,48 @@ MonoBehaviour:
   - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
   allProjectile: []
   cloud: {fileID: 316948580318839926, guid: 1d747d565dffcf347a0117af76b7fcfe, type: 3}
+--- !u!114 &3249367004553849377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144188320564182202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce6f33557b3c684b8bba9369d6d1aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScenePresence: MAH_Auberge
+  vegetablesFirstDialogueDone: 0
+  vegetablesDone: 0
+  zeusRevealCutsceneDone: 0
+  firstReachTheTemple: 0
+  firstBattleZeus: 0
+  undergroudCutSceneDone: 0
+  secondReachTheTemple: 0
+  transformFirstStatue: 0
+  openFirstFloorGate: 0
+  openSecondRegion: 0
+  unlockPary: 0
+  transformSecondStatue: 0
+  openSecondFloorGate: 0
+  openThirdRegion: 0
+  unlockCharge: 0
+  transformThirdStatue: 0
+  openThirdFloorGate: 0
+--- !u!114 &1174409220757067158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144188320564182202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b8e6086b5a4e843a24ac51c8c1d236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7185370078520709445
 PrefabInstance:
   m_ObjectHideFlags: 0

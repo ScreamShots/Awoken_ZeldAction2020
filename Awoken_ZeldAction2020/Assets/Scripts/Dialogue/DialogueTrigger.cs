@@ -14,6 +14,7 @@ public class DialogueTrigger : MonoBehaviour
     [HideInInspector]
     public bool dialogueEnded;
     bool canStartDialogue;
+    public bool doesDialogueEnd = true;
 
     InterractionButton buttonDisplay;
 
@@ -41,7 +42,7 @@ public class DialogueTrigger : MonoBehaviour
     [ContextMenu("StartDialogue")]
     public void StartDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogueToPlay, this);
+        DialogueManager.Instance.StartDialogue(dialogueToPlay, this, doesDialogueEnd);
         dialogueEnded = false;
         dialogueStarted = true;
     }
