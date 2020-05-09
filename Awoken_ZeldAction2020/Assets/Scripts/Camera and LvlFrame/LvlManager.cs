@@ -13,7 +13,6 @@ public class LvlManager : MonoBehaviour
 
     public AreaManager[] LvlStarts;
 
-    [HideInInspector]
     public AreaManager currentArea = null;
 
     private void Awake()

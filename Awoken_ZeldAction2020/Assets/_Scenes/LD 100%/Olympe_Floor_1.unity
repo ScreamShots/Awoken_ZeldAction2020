@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8496,6 +8496,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 480769431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &61035395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61035396}
+  m_Layer: 15
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &61035396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61035395}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2091606598799348868}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &62828884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15861,6 +15891,7 @@ MonoBehaviour:
   mustKillAllEnemies: 1
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!4 &197556036
@@ -18054,6 +18085,7 @@ MonoBehaviour:
   mustKillAllEnemies: 1
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!1 &253914378
@@ -18191,6 +18223,7 @@ MonoBehaviour:
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!1 &281145193 stripped
@@ -26691,6 +26724,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 980861560}
     m_Modifications:
+    - target: {fileID: 4678394679332432560, guid: ec4891361c116a549b7474c89ee0a5a5,
+        type: 3}
+      propertyPath: isInOlympe
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4678394679332432562, guid: ec4891361c116a549b7474c89ee0a5a5,
         type: 3}
       propertyPath: m_Offset.y
@@ -27402,6 +27440,7 @@ MonoBehaviour:
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!1001 &440486079
@@ -30749,6 +30788,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 704084537}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &707827307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 707827309}
+  - component: {fileID: 707827308}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &707827308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707827307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116ec78b70f48fc4b9371e2750529dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisStatue: {fileID: 943567099}
+  dial1: {fileID: 605491971}
+  dial2: {fileID: 1366054143}
+--- !u!4 &707827309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707827307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.922217, y: 23.003933, z: -5.0410156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &719649004
 GameObject:
   m_ObjectHideFlags: 0
@@ -30841,6 +30926,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI - HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453740054351218691, guid: 606867b5c1253bd4e9a9cb8f63fad9b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3453740054351218693, guid: 606867b5c1253bd4e9a9cb8f63fad9b6,
         type: 3}
@@ -32489,6 +32579,7 @@ MonoBehaviour:
   mustKillAllEnemies: 1
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!4 &887988326
@@ -32942,6 +33033,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a986e817300de88499b25c6dd04ca872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &943567099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6217120485032027124, guid: 7dc63bf59fb27ed4c81dbdd4a5d6565d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1077342874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c3d0f86e5ad8a46a281d52da6ebcb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &951437921
 GameObject:
   m_ObjectHideFlags: 0
@@ -33252,6 +33355,7 @@ MonoBehaviour:
   mustKillAllEnemies: 1
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!1 &995813304
@@ -35201,6 +35305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Olympe Floor 1 Enigma 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5363982224141249170, guid: 0f3dfcfaa279d684187dae70d791c023,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6617820253051210003, guid: 0f3dfcfaa279d684187dae70d791c023,
         type: 3}
@@ -40652,6 +40761,7 @@ MonoBehaviour:
   mustKillAllEnemies: 1
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!4 &1737674119
@@ -43762,6 +43872,7 @@ MonoBehaviour:
   mustKillAllEnemies: 1
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 0}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!1001 &2007717960
@@ -45364,6 +45475,7 @@ Transform:
   m_Children:
   - {fileID: 2091606598891913607}
   - {fileID: 48474280}
+  - {fileID: 61035396}
   m_Father: {fileID: 1277598371}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45404,6 +45516,7 @@ MonoBehaviour:
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 1
+  SapwnPoint: {fileID: 61035396}
   allSpawnPlateforms: []
   allEnemySpawners: []
 --- !u!1 &2091606598891913604
