@@ -21,7 +21,7 @@ public class DialogueTrigger : MonoBehaviour
     private void Start()
     {
         buttonDisplay = GetComponentInChildren<InterractionButton>();
-        if (!triggerByZone)
+        if (!triggerByZone && buttonDisplay != null)
         {
             buttonDisplay.gameObject.SetActive(false);
         }
@@ -39,7 +39,6 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    [ContextMenu("test")]
     public void StartDialogue()
     {
         DialogueManager.Instance.StartDialogue(dialogueToPlay, this);
