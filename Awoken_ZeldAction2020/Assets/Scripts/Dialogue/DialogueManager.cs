@@ -38,6 +38,8 @@ public class DialogueManager : MonoBehaviour
     public bool typingAPhase;
     [HideInInspector]
     public bool processingDialogue;
+    [HideInInspector]
+    public bool endDialogue;
 
     private void Awake()
     {
@@ -62,8 +64,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue thisDialogue, DialogueTrigger thisTrigger)
+    public void StartDialogue(Dialogue thisDialogue, DialogueTrigger thisTrigger, bool endThisDialogue)
     {
+        endDialogue = endThisDialogue;
+
         if (processingDialogue)
         {
             Debug.Log("<b>WARNING!</b>");
@@ -100,7 +104,10 @@ public class DialogueManager : MonoBehaviour
             dialogueUINoFace.SetActive(false);
         }
         processingDialogue = false;
-        GameManager.Instance.gameState = GameManager.GameState.Running;
+        if (endDialogue)
+        {
+            GameManager.Instance.gameState = GameManager.GameState.Running;
+        }
     }
 
     public void NextDialoguePhase()

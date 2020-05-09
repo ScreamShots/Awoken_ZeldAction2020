@@ -45,6 +45,7 @@ public class CSManagerZeusReveal : MonoBehaviour
 
     IEnumerator SecurityTime()
     {
+        GameManager.Instance.gameState = GameManager.GameState.Dialogue;
         yield return new WaitForSeconds(0.5f);
         allDialogue[dialogueIndex].StartDialogue();
     }
@@ -60,6 +61,8 @@ public class CSManagerZeusReveal : MonoBehaviour
         lightning.SetActive(false);
         cutSceneUI.SetActive(false);
         PlayerManager.Instance.EndCutScene();
+        ProgressionManager.Instance.zeusRevealCutsceneDone = true;
+        GameManager.Instance.gameState = GameManager.GameState.Running;
     }
 
     void TestDialogue()

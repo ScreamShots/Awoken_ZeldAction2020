@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -339,6 +339,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!95 &132170825 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6920300998927922022, guid: a67fab304ea4c16429066c80235b2135,
@@ -1245,6 +1246,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!4 &414666336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6784015584281500367, guid: a67fab304ea4c16429066c80235b2135,
@@ -1482,6 +1484,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!1 &585811849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1532,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!1 &631163932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,6 +1937,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!1 &889962863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,6 +2523,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0818c78dc3a9c2d45a37c241eb3f5d42, type: 3}
+--- !u!1 &1149163178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3651237669256461218, guid: 0818c78dc3a9c2d45a37c241eb3f5d42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1149163177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1168205815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168205817}
+  - component: {fileID: 1168205816}
+  m_Layer: 0
+  m_Name: LocalLvlHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1168205816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168205815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7542aa547a625b54190e7102d682e072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pnj: {fileID: 1149163178}
+  CutSceneZeus: {fileID: 1948452397}
+--- !u!4 &1168205817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168205815}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4472276, y: -0.82101953, z: -56.17531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1840350970}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1168382359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6266779318178724305, guid: 0818c78dc3a9c2d45a37c241eb3f5d42,
@@ -2962,6 +3019,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!1001 &1450681609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3027,6 +3085,11 @@ PrefabInstance:
     - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092955683292205415, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3193,6 +3256,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!1 &1608373238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,6 +3404,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1840350969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1840350970}
+  - component: {fileID: 1840350972}
+  - component: {fileID: 1840350971}
+  m_Layer: 19
+  m_Name: SceneTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1840350970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840350969}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.41, y: -3.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1168205817}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1840350971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840350969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70efee02df8dcfd4d9b38bc59c8e64af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1840350972
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840350969}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.17872477}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.124507904}
+  m_EdgeRadius: 0
 --- !u!1 &1842751243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4127,6 +4261,7 @@ MonoBehaviour:
   triggerByZone: 0
   dialogueStarted: 0
   dialogueEnded: 0
+  doesDialogueEnd: 0
 --- !u!1 &2010269882
 GameObject:
   m_ObjectHideFlags: 0
