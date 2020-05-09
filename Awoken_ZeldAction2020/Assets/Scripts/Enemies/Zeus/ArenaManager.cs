@@ -45,7 +45,8 @@ public class ArenaManager : MonoBehaviour
     {
         if (transitionArenaScript.playerInZone && !exitGateOpen)                    //To close gate after player when he enter in arena
         {
-            BossManager.Instance.canStartBossFight = true;
+            BossManager.Instance.canStartDialog = true;
+            //BossManager.Instance.canStartBossFight = true;
             gateEnter.SetActive(true);
             gaterExit.SetActive(true);
 
