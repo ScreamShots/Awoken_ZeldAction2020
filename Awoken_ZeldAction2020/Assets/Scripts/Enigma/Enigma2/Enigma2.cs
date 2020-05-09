@@ -20,13 +20,6 @@ public class Enigma2 : EnigmaTool
     public bool isBrazeroOn2;
     #endregion
 
-    #region Battle Statement
-    [SerializeField]
-    private AreaManager autel;
-    //[SerializeField]
-    //private GameObject chest;
-    #endregion
-
     #region Last Part Statement
     [SerializeField]
     private DistanceLever distanceLever1;
@@ -40,7 +33,6 @@ public class Enigma2 : EnigmaTool
     {
         brazero1.SetActive(false);
         brazero2.SetActive(false);
-        //chest.SetActive(false);
     }
 
     protected override void Start()
@@ -92,14 +84,6 @@ public class Enigma2 : EnigmaTool
             brazero2.SetActive(true);
         }
     }
-
-    //void UnlockPary()
-    //{
-    //    if (autel.allEnemyAreDead == true)
-    //    {
-    //        chest.SetActive(true);
-    //    }
-    //}
 
     void OpenTheDoorAgain()
     {

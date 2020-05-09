@@ -20,7 +20,7 @@ public class Autel : MonoBehaviour
 
     void Update()
     {
-        if (canPlayerActivateAutel && Input.GetButtonDown("Interraction") /*&& areaAutel.allEnemyAreDead*/)
+        if (canPlayerActivateAutel && Input.GetButtonDown("Interraction") && areaAutel.allEnemyAreDead)
         {
             isAutelActivated = true;
         }
@@ -34,8 +34,11 @@ public class Autel : MonoBehaviour
     {
         if (collision.CompareTag("CollisionDetection") && collision.transform.root.CompareTag("Player"))
         {
+            if (areaAutel.allEnemyAreDead)
+            {
+                xButton.ShowButton();
+            }
             canPlayerActivateAutel = true;
-            xButton.ShowButton();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
