@@ -26,7 +26,15 @@ public class ZeusBigor : MonoBehaviour
         if(canPlayerActivateStatue && Input.GetButtonDown("Interraction") && areaEnnemies.allEnemyAreDead)
         {
             isStatueActivated = true;
-            ProgressionManager.Instance.transformFirstStatue = true;
+            if (!ProgressionManager.Instance.transformFirstStatue)
+            {
+                ProgressionManager.Instance.transformFirstStatue = true;
+            }
+            else if (!ProgressionManager.Instance.transformSecondStatue)
+            {
+                ProgressionManager.Instance.transformSecondStatue = true;
+            }
+            
         }
 
         if(isStatueActivated)

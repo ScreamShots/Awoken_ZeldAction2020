@@ -78,7 +78,7 @@ public class SealTeleporter : MonoBehaviour
             }
             else if(!ProgressionManager.Instance.unlockCharge && !ProgressionManager.Instance.openThirdFloorGate)
             {
-                SceneHandler.Instance.SceneTransition("Olympe_Floor_3", 0);
+                SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
             }
             else if (ProgressionManager.Instance.openThirdFloorGate)
             {
@@ -87,6 +87,20 @@ public class SealTeleporter : MonoBehaviour
         }
         else
         {
+            if (!ProgressionManager.Instance.transformFirstStatue)
+            {
+                ProgressionManager.Instance.transformFirstStatue = true;
+            }
+            else if (!ProgressionManager.Instance.transformSecondStatue)
+            {
+                ProgressionManager.Instance.transformSecondStatue = true;
+            }
+            else if (ProgressionManager.Instance.openThirdFloorGate)
+            {
+                SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
+                return;
+            }
+
             SceneHandler.Instance.SceneTransition("Region_1", 4);
         }
 

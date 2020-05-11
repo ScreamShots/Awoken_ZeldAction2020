@@ -49,6 +49,7 @@ public class Region1LvlHandler : MonoBehaviour
                 arbres.SetActive(false);
             }
         }
+
         if (ProgressionManager.Instance.transformFirstStatue)
         {
             porteRegion2.isDoorOpen = true;
