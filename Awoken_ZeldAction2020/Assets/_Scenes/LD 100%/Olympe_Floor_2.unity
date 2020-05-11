@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -13613,9 +13613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ad5e1de5ab2bd46b33b3d25ab14e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisStatue: {fileID: 1305954863}
-  dial1: {fileID: 227857237}
-  dial2: {fileID: 579871237}
 --- !u!4 &686087700
 Transform:
   m_ObjectHideFlags: 0
@@ -14132,57 +14129,57 @@ PrefabInstance:
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: vegetablesFirstDialogueDone
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: vegetablesDone
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: zeusRevealCutsceneDone
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: firstReachTheTemple
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: firstBattleZeus
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: undergroudCutSceneDone
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: secondReachTheTemple
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: transformFirstStatue
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: openFirstFloorGate
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: openSecondRegion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3249367004553849377, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: unlockPary
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6092955683292205415, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
@@ -17851,18 +17848,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a986e817300de88499b25c6dd04ca872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1305954863 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6217120485032027124, guid: 7dc63bf59fb27ed4c81dbdd4a5d6565d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1601342427}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2c3d0f86e5ad8a46a281d52da6ebcb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1308775050

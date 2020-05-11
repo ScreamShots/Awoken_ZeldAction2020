@@ -61,11 +61,11 @@ public class Region1LvlHandler : MonoBehaviour
 
         if (ProgressionManager.Instance.transformSecondStatue)
         {
-            porteRegion3.isDoorOpen = true;
+            //porteRegion3.isDoorOpen = true;
         }
         else
         {
-            porteRegion3.isDoorOpen = false;
+            //porteRegion3.isDoorOpen = false;
         }
 
     }

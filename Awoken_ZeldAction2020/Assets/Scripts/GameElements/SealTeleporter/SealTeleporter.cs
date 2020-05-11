@@ -72,7 +72,7 @@ public class SealTeleporter : MonoBehaviour
             {
                 SceneHandler.Instance.SceneTransition("Olympe_Floor_1", 0);
             }
-            else if (!ProgressionManager.Instance.transformSecondStatue)
+            else if (ProgressionManager.Instance.unlockPary)
             {
                 SceneHandler.Instance.SceneTransition("Olympe_Floor_2", 0);
             }
@@ -91,9 +91,10 @@ public class SealTeleporter : MonoBehaviour
             {
                 ProgressionManager.Instance.transformFirstStatue = true;
             }
-            else if (!ProgressionManager.Instance.transformSecondStatue)
+            else if (ProgressionManager.Instance.transformSecondStatue)
             {
-                ProgressionManager.Instance.transformSecondStatue = true;
+                SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
+                return;
             }
             else if (ProgressionManager.Instance.openThirdFloorGate)
             {
