@@ -11,18 +11,43 @@ public class DialogueManager : MonoBehaviour
     public Dialogue currentDialogue = null;
 
     [Space]
+
+    #region Requiered Elements
     [Header("Requiered Elements")]
-    
-    [SerializeField]
-    GameObject dialogueUINoFace = null;
-    [SerializeField]
-    GameObject dialogueUI = null;
-    [SerializeField]
-    Image faceDisplay = null;
-    [SerializeField]
-    TextMeshProUGUI textBoxNoFace = null;
-    [SerializeField]
-    TextMeshProUGUI textBox = null;
+    #pragma warning disable CS0414
+    [SerializeField] bool showRequieredElement = false;
+    #pragma warning restore CS0414
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    GameObject dialogueUINoFaceDown = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    GameObject dialogueUINoFaceUp = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    GameObject dialogueUIDown = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    GameObject dialogueUIUp = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    Image faceDisplayDown = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    Image faceDisplayUp = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    TextMeshProUGUI textBoxNoFaceDown = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    TextMeshProUGUI textBoxNoFaceUp = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    TextMeshProUGUI textBoxDown = null;
+
+    [SerializeField] [ConditionalHide("showRequieredElement", true)]
+    TextMeshProUGUI textBoxUp = null;
+    #endregion
 
     [Space]
     [Header("Caracteristics")]
@@ -39,6 +64,7 @@ public class DialogueManager : MonoBehaviour
     [HideInInspector]
     public bool processingDialogue;
     bool restartGameplay = true;
+    Dialogue.DialogueUIPos currentDialoguePos = Dialogue.DialogueUIPos.Down;
 
     private void Awake()
     {
@@ -75,6 +101,7 @@ public class DialogueManager : MonoBehaviour
 
         GameManager.Instance.gameState = GameManager.GameState.Dialogue;
         PlayerMovement.playerRgb.velocity = Vector2.zero;
+        currentDialoguePos = thisDialogue.displayPos;
 
         currentTrigger = thisTrigger;
         processingDialogue = true;
@@ -92,15 +119,36 @@ public class DialogueManager : MonoBehaviour
         currentTrigger.dialogueEnded = true;
         currentTrigger = null;
         currentDialogue = null;
-
+ 
         if (dialogueWithFace)
-        {                       
-            dialogueUI.SetActive(false);
+        {
+            switch (currentDialoguePos)
+            {
+                case Dialogue.DialogueUIPos.Down:
+                    dialogueUIDown.SetActive(false);
+                    break;
+                case Dialogue.DialogueUIPos.Up:
+                    dialogueUIUp.SetActive(false);
+                    break;
+                default:
+                    break;
+            }                    
         }
         else
         {
-            dialogueUINoFace.SetActive(false);
+            switch (currentDialoguePos)
+            {
+                case Dialogue.DialogueUIPos.Down:
+                    dialogueUINoFaceDown.SetActive(false);
+                    break;
+                case Dialogue.DialogueUIPos.Up:
+                    dialogueUINoFaceUp.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
         }
+
         processingDialogue = false;
         if (!restartGameplay)
         {
@@ -127,27 +175,58 @@ public class DialogueManager : MonoBehaviour
                 return;
             }
 
-            if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage == null)
+            switch (currentDialoguePos)
             {
-                if (!dialogueUINoFace.activeInHierarchy)
-                {
-                    dialogueUINoFace.SetActive(true);
-                    dialogueUI.SetActive(false);
-                }
-                targetedTextBox = textBoxNoFace;
-                dialogueWithFace = false;
+                case Dialogue.DialogueUIPos.Down:
+                    if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage == null)
+                    {
+                        if (!dialogueUINoFaceDown.activeInHierarchy)
+                        {
+                            dialogueUINoFaceDown.SetActive(true);
+                            dialogueUIDown.SetActive(false);
+                        }
+                        targetedTextBox = textBoxNoFaceDown;
+                        dialogueWithFace = false;
+                    }
+                    else if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage != null)
+                    {
+                        if (!dialogueUIDown.activeInHierarchy)
+                        {
+                            dialogueUIDown.SetActive(true);
+                            dialogueUINoFaceDown.SetActive(false);
+                        }
+                        targetedTextBox = textBoxDown;
+                        faceDisplayDown.sprite = currentDialogue.talkPhases[dialoguePhaseIndex].faceImage;
+                        dialogueWithFace = true;
+                    }
+                    break;
+                case Dialogue.DialogueUIPos.Up:
+                    if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage == null)
+                    {
+                        if (!dialogueUINoFaceUp.activeInHierarchy)
+                        {
+                            dialogueUINoFaceUp.SetActive(true);
+                            dialogueUIUp.SetActive(false);
+                        }
+                        targetedTextBox = textBoxNoFaceUp;
+                        dialogueWithFace = false;
+                    }
+                    else if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage != null)
+                    {
+                        if (!dialogueUIUp.activeInHierarchy)
+                        {
+                            dialogueUIUp.SetActive(true);
+                            dialogueUINoFaceUp.SetActive(false);
+                        }
+                        targetedTextBox = textBoxUp;
+                        faceDisplayUp.sprite = currentDialogue.talkPhases[dialoguePhaseIndex].faceImage;
+                        dialogueWithFace = true;
+                    }
+                    break;
+                default:
+                    break;
             }
-            else if (currentDialogue.talkPhases[dialoguePhaseIndex].faceImage != null)
-            {
-                if (!dialogueUI.activeInHierarchy)
-                {
-                    dialogueUI.SetActive(true);
-                    dialogueUINoFace.SetActive(false);
-                }
-                targetedTextBox = textBox;
-                faceDisplay.sprite = currentDialogue.talkPhases[dialoguePhaseIndex].faceImage;
-                dialogueWithFace = true;
-            }
+           
             targetedTextBox.text = "<color=#00000000>" + currentDialogue.talkPhases[dialoguePhaseIndex].sentence + "<color=#00000000>";
             StartCoroutine(TypeDialogePhase());
         }
