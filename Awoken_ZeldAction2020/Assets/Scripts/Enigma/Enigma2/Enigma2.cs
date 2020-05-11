@@ -6,15 +6,15 @@ public class Enigma2 : EnigmaTool
 {
     #region Statements Brazero
     [SerializeField]
-    private InstantPressurePlate instantPlate1;
+    private InstantPressurePlate instantPlate1 = null;
     [SerializeField]
-    private ActionLever actionLever1;
+    private ActionLever actionLever1 = null;
     [SerializeField]
-    private DoorBehavior door1;
+    private DoorBehavior door1 = null;
     [SerializeField]
-    private GameObject brazero1;
+    private GameObject brazero1 = null;
     [SerializeField]
-    private GameObject brazero2;
+    private GameObject brazero2 = null;
 
     public bool isBrazeroOn1;
     public bool isBrazeroOn2;
@@ -29,11 +29,11 @@ public class Enigma2 : EnigmaTool
 
     #region Last Part Statement
     [SerializeField]
-    private DistanceLever distanceLever1;
+    private DistanceLever distanceLever1 = null;
     [SerializeField]
-    private DoorBehavior door2;
+    private DoorBehavior door2 = null;
     [SerializeField]
-    private GameObject transitionZone;
+    private GameObject transitionZone = null;
     #endregion
 
     void Awake()

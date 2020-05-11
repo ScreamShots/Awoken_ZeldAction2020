@@ -8,21 +8,21 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
-    public Dialogue currentDialogue;
+    public Dialogue currentDialogue = null;
 
     [Space]
     [Header("Requiered Elements")]
     
     [SerializeField]
-    GameObject dialogueUINoFace;
+    GameObject dialogueUINoFace = null;
     [SerializeField]
-    GameObject dialogueUI;
+    GameObject dialogueUI = null;
     [SerializeField]
-    Image faceDisplay;
+    Image faceDisplay = null;
     [SerializeField]
-    TextMeshProUGUI textBoxNoFace;
+    TextMeshProUGUI textBoxNoFace = null;
     [SerializeField]
-    TextMeshProUGUI textBox;
+    TextMeshProUGUI textBox = null;
 
     [Space]
     [Header("Caracteristics")]

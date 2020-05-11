@@ -5,11 +5,11 @@ using UnityEngine;
 public class OlympeFloor1Enigma1 : EnigmaTool
 {
     [SerializeField]
-    private InstantPressurePlate instantPlate1;
+    private InstantPressurePlate instantPlate1 = null;
     [SerializeField]
-    private InstantPressurePlate instantPlate2;
+    private InstantPressurePlate instantPlate2 = null;
     [SerializeField]
-    private DoorBehavior door1;
+    private DoorBehavior door1 = null;
 
     protected override void Start()
     {

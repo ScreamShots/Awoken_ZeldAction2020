@@ -15,7 +15,7 @@ public class AreaManager : MonoBehaviour
 
 
     [SerializeField]
-    bool mustKillAllEnemies;
+    bool mustKillAllEnemies = false;
     [HideInInspector]
     public bool allEnemyAreDead;
     int enemyDeathCounter = 0;

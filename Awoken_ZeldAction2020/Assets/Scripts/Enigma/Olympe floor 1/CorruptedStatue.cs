@@ -5,9 +5,9 @@ using UnityEngine;
 public class CorruptedStatue : EnigmaTool
 {
     [SerializeField]
-    private GameObject statue;
+    private GameObject statue = null;
     [SerializeField]
-    private AreaManager area7;
+    private AreaManager area7 = null;
 
     void Awake()
     {

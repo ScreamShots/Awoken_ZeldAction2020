@@ -5,11 +5,11 @@ using UnityEngine;
 public class Enigma3 : EnigmaTool
 {
     [SerializeField]
-    private AreaManager autel;
+    private AreaManager autel = null;
     [SerializeField]
-    private DoorBehavior door1;
+    private DoorBehavior door1 = null;
     [SerializeField]
-    Collider2D activationZone;
+    Collider2D activationZone = null;
     protected override void Start()
     {
         door1.isDoorOpen = true;

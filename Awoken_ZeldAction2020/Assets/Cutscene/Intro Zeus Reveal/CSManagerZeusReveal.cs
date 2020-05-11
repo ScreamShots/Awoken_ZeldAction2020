@@ -6,17 +6,17 @@ using UnityEngine.Playables;
 public class CSManagerZeusReveal : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] allCutScenePart;
+    GameObject[] allCutScenePart = null;
     [SerializeField]
-    DialogueTrigger[] allDialogue;
+    DialogueTrigger[] allDialogue = null;
     [SerializeField]
-    GameObject zeus;
+    GameObject zeus = null;
     [SerializeField]
-    GameObject shield;
+    GameObject shield = null;
     [SerializeField]
-    GameObject lightning;
+    GameObject lightning = null;
     [SerializeField]
-    GameObject cutSceneUI;
+    GameObject cutSceneUI = null;
 
     int dialogueIndex;
     GameObject nextCutScenePart;

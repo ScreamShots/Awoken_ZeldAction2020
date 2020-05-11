@@ -13,21 +13,21 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
 
     [SerializeField]
-    GameObject classicRender;
+    GameObject classicRender = null;
     [SerializeField]
-    GameObject attackZone;
+    GameObject attackZone = null;
     [SerializeField]
-    GameObject collisionDetection;
+    GameObject collisionDetection = null;
     [SerializeField]
-    GameObject hitBox;
+    GameObject hitBox = null;
     [SerializeField]
-    GameObject shieldZone;
+    GameObject shieldZone = null;
     [SerializeField]
-    GameObject paryZone;
+    GameObject paryZone = null;
     [SerializeField]
-    GameObject cutsceneRenderer;
+    GameObject cutsceneRenderer = null;
     [SerializeField]
-    GameObject playerSound;
+    GameObject playerSound = null;
 
 
     public static int fragmentNumber;

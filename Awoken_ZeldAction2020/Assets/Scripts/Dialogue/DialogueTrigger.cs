@@ -6,15 +6,15 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [SerializeField]
-    Dialogue dialogueToPlay;
+    Dialogue dialogueToPlay = null;
     [SerializeField]
-    bool triggerByZone;
+    bool triggerByZone = false;
 
     [HideInInspector]
     public bool dialogueStarted;
     [HideInInspector]
     public bool dialogueEnded;
-    bool canStartDialogue;
+    bool canStartDialogue = false;
 
     InterractionButton buttonDisplay;
 
