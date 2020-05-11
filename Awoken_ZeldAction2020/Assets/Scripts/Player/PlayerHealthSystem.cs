@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthSystem : BasicHealthSystem
 {
@@ -49,6 +50,8 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     #endregion
 
+    public bool playerInArena = false;
+
     protected override void Start()
     {
         base.Start();
@@ -83,17 +86,25 @@ public class PlayerHealthSystem : BasicHealthSystem
     public override void Death()
     {
         //base.Death();
-        transform.position = LvlManager.Instance.LvlStarts[0].SapwnPoint.position;
-        if(LvlManager.Instance.currentArea != null)
+        if (!playerInArena)
         {
-            LvlManager.Instance.currentArea.UnLoadArea();
-            LvlManager.Instance.currentArea.DesactivateCam();
-        }
-        currentHp = maxHp;
+            transform.position = LvlManager.Instance.LvlStarts[0].SapwnPoint.position;
+            if (LvlManager.Instance.currentArea != null)
+            {
+                LvlManager.Instance.currentArea.UnLoadArea();
+                LvlManager.Instance.currentArea.DesactivateCam();
+            }
+            currentHp = maxHp;
 
-        LvlManager.Instance.LvlStarts[0].LoadArea();
-        LvlManager.Instance.LvlStarts[0].ActivateCam();
-        LvlManager.Instance.LvlStarts[0].thisAreaCam.Priority = 1000;
+            LvlManager.Instance.LvlStarts[0].LoadArea();
+            LvlManager.Instance.LvlStarts[0].ActivateCam();
+            LvlManager.Instance.LvlStarts[0].thisAreaCam.Priority = 1000;
+        }
+
+        if (playerInArena)
+        {
+            SceneManager.LoadScene("Olympe_Floor_Boss");
+        }
     }
 
     void HitFlash()

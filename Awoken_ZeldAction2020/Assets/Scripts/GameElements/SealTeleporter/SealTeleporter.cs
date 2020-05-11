@@ -76,7 +76,7 @@ public class SealTeleporter : MonoBehaviour
             {
                 SceneHandler.Instance.SceneTransition("Olympe_Floor_2", 0);
             }
-            else if(!ProgressionManager.Instance.unlockCharge && !ProgressionManager.Instance.openThirdFloorGate)
+            else if (ProgressionManager.Instance.unlockCharge && !ProgressionManager.Instance.openThirdFloorGate)
             {
                 SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
             }
