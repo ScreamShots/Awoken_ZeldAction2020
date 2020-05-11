@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     public bool typingAPhase;
     [HideInInspector]
     public bool processingDialogue;
+    bool restartGameplay = true;
 
     private void Awake()
     {
@@ -62,7 +63,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue thisDialogue, DialogueTrigger thisTrigger)
+    public void StartDialogue(Dialogue thisDialogue, DialogueTrigger thisTrigger, bool RestartGameplay)
     {
         if (processingDialogue)
         {
@@ -73,6 +74,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         GameManager.Instance.gameState = GameManager.GameState.Dialogue;
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
 
         currentTrigger = thisTrigger;
         processingDialogue = true;
@@ -100,7 +102,10 @@ public class DialogueManager : MonoBehaviour
             dialogueUINoFace.SetActive(false);
         }
         processingDialogue = false;
-        GameManager.Instance.gameState = GameManager.GameState.Running;
+        if (!restartGameplay)
+        {
+            GameManager.Instance.gameState = GameManager.GameState.Running;
+        }
     }
 
     public void NextDialoguePhase()

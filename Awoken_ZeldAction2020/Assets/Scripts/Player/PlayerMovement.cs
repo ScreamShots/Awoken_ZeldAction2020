@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public float horizontalAxis;
     [HideInInspector] public float verticalAxis;
     private Vector2 move;
-    [HideInInspector] public bool isRunning;
+    /*[HideInInspector]*/ public bool isRunning;
 
     #endregion
 

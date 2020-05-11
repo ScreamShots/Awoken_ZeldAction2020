@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
         #endregion
     }
 
-    public void StartCutScene()
+    public void PlayerInitializeCutScene()
     {
         classicRender.SetActive(false);
         attackZone.SetActive(false);
@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
         cutsceneRenderer.SetActive(true);
     }
 
-    public void EndCutScene()
+    public void PlayerEndCutScene()
     {
         classicRender.SetActive(true);
         attackZone.SetActive(true);

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -337,6 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: e276c506b415ad743817a476fe9e1876, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!95 &132170825 stripped
@@ -1243,6 +1244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: 742a1542e33e38a42a3bb07cfd7464a6, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!4 &414666336 stripped
@@ -1479,6 +1481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: de53cef28dea77645b6c8bec5145c867, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!1 &585811849
@@ -1526,6 +1529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: 3826fad1f44fbf74cbc7eecaff77db24, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!1 &631163932
@@ -1930,6 +1934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: 98d2f5b28e0b8984a90287bb8840ee63, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!1 &889962863
@@ -2953,6 +2958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: ef297a50f4a33ed43ad3e6573cecb6f2, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!1001 &1450681609
@@ -3020,6 +3026,11 @@ PrefabInstance:
     - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230288079264719069, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3184,6 +3195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: d31a5e7a7487ec5419e60065a4900928, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!1 &1608373238
@@ -4118,6 +4130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueToPlay: {fileID: 11400000, guid: 269f10cb7bfd1ba4f8959308f0fb8325, type: 2}
   triggerByZone: 0
+  restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
 --- !u!1 &2010269882

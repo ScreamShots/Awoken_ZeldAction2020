@@ -9,6 +9,8 @@ public class DialogueTrigger : MonoBehaviour
     Dialogue dialogueToPlay = null;
     [SerializeField]
     bool triggerByZone = false;
+    [SerializeField]
+    bool restartGameplayAtTheEnd = true;
 
     [HideInInspector]
     public bool dialogueStarted;
@@ -41,7 +43,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void StartDialogue()
     {
-        DialogueManager.Instance.StartDialogue(dialogueToPlay, this);
+        DialogueManager.Instance.StartDialogue(dialogueToPlay, this, restartGameplayAtTheEnd);
         dialogueEnded = false;
         dialogueStarted = true;
     }
@@ -52,7 +54,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (triggerByZone)
             {
-                //buttonDisplay.SetActive(true);
                 buttonDisplay.ShowButton();
                 canStartDialogue = true;
             }            
@@ -65,7 +66,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (triggerByZone)
             {
-                //buttonDisplay.SetActive(false);
                 buttonDisplay.HideButton();
                 canStartDialogue = false;
             }
