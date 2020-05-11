@@ -122,7 +122,8 @@ public class EnemyHealthSystem : BasicHealthSystem
         }
         if (!dontHaveCorps)
         {
-            Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
+            Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
+
             Destroy(gameObject);
 
             DropItem();
@@ -131,9 +132,11 @@ public class EnemyHealthSystem : BasicHealthSystem
         {
             if (!corouDeathPlay)
             {
-                corouDeathPlay = true;
+                corouDeathPlay = true;
+
                 StartCoroutine(DestroyTime());
-            }
+            }
+
         }
     }
 
@@ -236,7 +239,8 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     IEnumerator DestroyTime()
     {
-        yield return new WaitForSeconds(timeBeforeDestroy);
+        yield return new WaitForSeconds(timeBeforeDestroy);
+
         Destroy(gameObject);
         DropItem();
     }
