@@ -91,8 +91,9 @@ public class SealTeleporter : MonoBehaviour
             {
                 ProgressionManager.Instance.transformFirstStatue = true;
             }
-            else if (ProgressionManager.Instance.transformSecondStatue)
+            else if (!ProgressionManager.Instance.transformSecondStatue)
             {
+                ProgressionManager.Instance.transformSecondStatue = true;
                 SceneHandler.Instance.SceneTransition("Olympe_Floor_Boss", 0);
                 return;
             }

@@ -16,10 +16,10 @@ public class ZeusBigor : MonoBehaviour
         isStatueActivated = false;
         xButton = GetComponentInChildren<InterractionButton>();
 
-        if (ProgressionManager.Instance.transformFirstStatue)
+        /*if (ProgressionManager.Instance.transformFirstStatue)
         {
             isStatueActivated = true;
-        }
+        }*/
     }
     void Update()
     {
@@ -28,11 +28,11 @@ public class ZeusBigor : MonoBehaviour
             isStatueActivated = true;
             if (!ProgressionManager.Instance.transformFirstStatue)
             {
-                ProgressionManager.Instance.transformFirstStatue = true;
+                //ProgressionManager.Instance.transformFirstStatue = true;
             }
             else if (!ProgressionManager.Instance.transformSecondStatue)
             {
-                ProgressionManager.Instance.transformSecondStatue = true;
+                //ProgressionManager.Instance.transformSecondStatue = true;
             }
             
         }
