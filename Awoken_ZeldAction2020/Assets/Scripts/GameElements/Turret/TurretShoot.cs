@@ -123,9 +123,9 @@ public class TurretShoot : MonoBehaviour
 
     void Shoot()
     {
-        direction = shootPoint.rotation * Vector2.right;
+        direction = shootPoint.transform.right;
 
-        GameObject bulletInstance = Instantiate(Bullet, shootPoint.position, shootPoint.rotation);
+        GameObject bulletInstance = Instantiate(Bullet, shootPoint.position, Quaternion.identity);
         bulletInstance.GetComponent<BulletComportement>().aimDirection = direction;
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = bulletSpeed;
     }
@@ -146,7 +146,7 @@ public class TurretShoot : MonoBehaviour
     IEnumerator ShootAnimation()                                                                         //Lauch shoot animation
     {
         turretFire = true;
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(timeBtwFirstShot);
         turretFire = false;
     }
 }
