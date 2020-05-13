@@ -9,7 +9,7 @@ public class TurretShoot : MonoBehaviour
 
     [SerializeField] bool TurretIsIndestructible = false;
 
-    [Space] [SerializeField] float timeBtwFirstShot = 1;
+    [Space] [SerializeField] float timeBtwFirstShot;
 
     [Min(0.8f)]
     [SerializeField] float timeBtwShots = 0;
@@ -132,7 +132,7 @@ public class TurretShoot : MonoBehaviour
 
     IEnumerator TimeBeforeShoot()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(timeBtwFirstShot);
         Shoot();
     }
 
