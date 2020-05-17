@@ -28,7 +28,7 @@ public abstract class BasicHealthSystem : MonoBehaviour
 
     protected virtual void Update()                    //can be override in children class
     {
-        if (currentHp <= 0)
+        if (currentHp <= 0 )
         {
             Death();
         }

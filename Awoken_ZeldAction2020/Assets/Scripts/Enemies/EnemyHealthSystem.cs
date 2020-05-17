@@ -118,7 +118,6 @@ public class EnemyHealthSystem : BasicHealthSystem
         if(linkedSpawnPlateform != null)
         {
             linkedSpawnPlateform.enemyIsDead = true;
-            linkedSpawnPlateform.GetComponentInParent<AreaManager>().IncrementEnemyDeathCounter();
         }
         if (!dontHaveCorps)
         {

@@ -37,56 +37,113 @@ public class PlayerAnimator : MonoBehaviour
 
     void SetBlock()                                                                  //Launch block animation
     {
-        plyAnimator.SetBool("isBlocking", PlayerStatusManager.Instance.isBlocking);
-
-        if(PlayerStatusManager.Instance.isBlocking == true)
+        if (!PlayerStatusManager.Instance.isCharging)
         {
-            switch (playerMoveScript.watchDirection)
+            plyAnimator.SetBool("isBlocking", PlayerStatusManager.Instance.isBlocking);
+
+            if (PlayerStatusManager.Instance.isBlocking == true)
             {
-                case PlayerMovement.Direction.down:
-                    if(PlayerMovement.playerRgb.velocity.y > 0)
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                    }
-                    else
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                    }
-                    break;
-                case PlayerMovement.Direction.up:
-                    if (PlayerMovement.playerRgb.velocity.y < 0)
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                    }
-                    else
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                    }
-                    break;
-                case PlayerMovement.Direction.left:
-                    if (PlayerMovement.playerRgb.velocity.x > 0)
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                    }
-                    else
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                    }
-                    break;
-                case PlayerMovement.Direction.right:
-                    if (PlayerMovement.playerRgb.velocity.x < 0)
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                    }
-                    else
-                    {
-                        plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                    }
-                    break;
-                default:                                    
-                    break;
-            }
-        }               //change animation speed to -1 when he goes opposite of the looked direction to prevent moonwalk
+                switch (playerMoveScript.watchDirection)
+                {
+                    case PlayerMovement.Direction.down:
+                        if (PlayerMovement.playerRgb.velocity.y > 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    case PlayerMovement.Direction.up:
+                        if (PlayerMovement.playerRgb.velocity.y < 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    case PlayerMovement.Direction.left:
+                        if (PlayerMovement.playerRgb.velocity.x > 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    case PlayerMovement.Direction.right:
+                        if (PlayerMovement.playerRgb.velocity.x < 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }               //change animation speed to -1 when he goes opposite of the looked direction to prevent moonwalk
+        }
+
+        if (PlayerStatusManager.Instance.isCharging)
+        {
+            plyAnimator.SetBool("isBlocking", PlayerStatusManager.Instance.isCharging);
+
+            if (PlayerStatusManager.Instance.isCharging == true)
+            {
+                switch (playerMoveScript.watchDirection)
+                {
+                    case PlayerMovement.Direction.down:
+                        if (PlayerMovement.playerRgb.velocity.y > 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    case PlayerMovement.Direction.up:
+                        if (PlayerMovement.playerRgb.velocity.y < 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    case PlayerMovement.Direction.left:
+                        if (PlayerMovement.playerRgb.velocity.x > 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    case PlayerMovement.Direction.right:
+                        if (PlayerMovement.playerRgb.velocity.x < 0)
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
+                        }
+                        else
+                        {
+                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }               //change animation speed to -1 when he goes opposite of the looked direction to prevent moonwalk
+        }
     }                                                             
     void SetWatchDirection()                                                        //giving information relative to the watch direction to the animator
     {

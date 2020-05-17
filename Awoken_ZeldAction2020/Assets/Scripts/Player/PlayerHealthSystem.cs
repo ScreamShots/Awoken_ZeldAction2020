@@ -35,6 +35,8 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     #region HideInInspector var Statement
 
+
+    PlayerShield playerShieldScript = null;
     [HideInInspector]
     public int knockBackDir;            //0 = Down 1 = Up 2 = Left 3 = Right.
 
@@ -52,6 +54,7 @@ public class PlayerHealthSystem : BasicHealthSystem
     protected override void Start()
     {
         base.Start();
+        playerShieldScript = GetComponent<PlayerShield>();
         playerMoveScript = GetComponent<PlayerMovement>();
         playerRenderer = GetComponentInChildren<SpriteRenderer>();
     }
@@ -77,7 +80,9 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
-        base.Death();        
+        currentHp = maxHp;
+        playerShieldScript.currentStamina = playerShieldScript.maxStamina;
+        LvlManager.Instance.InitializeLvl(LvlManager.Instance.lastLoadedstartZoneIndex);
     }
 
     void HitFlash()

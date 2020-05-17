@@ -259,9 +259,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7408942957006063677}
   - component: {fileID: 7408942957006063678}
+  - component: {fileID: 2931005998743311897}
   - component: {fileID: 7408942957006063676}
   - component: {fileID: 69895412}
-  - component: {fileID: 2931005998743311897}
+  - component: {fileID: 9150383814775559669}
   m_Layer: 9
   m_Name: Archer
   m_TagString: Enemy
@@ -309,49 +310,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7408942957006063676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7408942957006063679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7132708ca9664cf40857f088424f4cdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseSpeed: 75
-  retreatSpeed: 105
-  retreatDistance: 2
-  chaseDistance: 8
-  attackDistance: 4
-  isRunning: 0
-  isRetrait: 0
-  watchDirection: 1
-  showRanges: 0
---- !u!114 &69895412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7408942957006063679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef97053e03c43d4382388853a9ff771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBeforeShoot: 1
-  timeBtwShots: 2
-  archerBullet: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39,
-    type: 3}
-  bulletSpeed: 350
-  shootPoint: {fileID: 7668245286677637594}
-  archerIsAttacking: 0
-  archerCanAttack: 0
-  animationAttack: 0
-  watchDirection: 0
 --- !u!114 &2931005998743311897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +348,90 @@ MonoBehaviour:
   - {fileID: 1266662756116312142, guid: a8984afa3f081fd4b9ce8ca4a7ba9268, type: 3}
   - {fileID: 5185985298356316155, guid: ee61c35fc7138624faf6dc91c3370a5b, type: 3}
   corouDeathPlay: 0
+--- !u!114 &7408942957006063676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408942957006063679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7132708ca9664cf40857f088424f4cdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseSpeed: 75
+  retreatSpeed: 105
+  retreatDistance: 2
+  chaseDistance: 8
+  attackDistance: 4
+  isRunning: 0
+  isRetrait: 0
+  watchDirection: 1
+  knockBack: 0
+  showRanges: 0
+--- !u!114 &69895412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408942957006063679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef97053e03c43d4382388853a9ff771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforeShoot: 1
+  timeBtwShots: 2
+  archerBullet: {fileID: 7739646091318276604, guid: 2b4346c44408b1c428333a28fc91fb39,
+    type: 3}
+  bulletSpeed: 350
+  shootPoint: {fileID: 7668245286677637594}
+  archerIsAttacking: 0
+  archerCanAttack: 0
+  animationAttack: 0
+  watchDirection: 0
+--- !u!114 &9150383814775559669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408942957006063679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0bf0e6c0738df4a92e65b3260367eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackCall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7408942957006063676}
+        m_MethodName: StartKnockBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 69895412}
+        m_MethodName: OnKnockBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  knockBackStrength: 0
+  knockBackDir: {x: 0, y: 0}
+  knockBackTime: 0.2
 --- !u!1 &7650635052179584066
 GameObject:
   m_ObjectHideFlags: 0

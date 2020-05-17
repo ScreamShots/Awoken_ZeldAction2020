@@ -40,6 +40,8 @@ public class ArcherAttack : MonoBehaviour
 
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
+    [HideInInspector]
+    public bool knockBack = false;
     #endregion
 
     private void Start()
@@ -51,7 +53,7 @@ public class ArcherAttack : MonoBehaviour
 
     private void Update()
     {
-        if (archerCanAttack && !archerIsShooting)                                                   //if player is in attack zone and archer isn't shooting
+        if (archerCanAttack && !archerIsShooting && !knockBack)                                                   //if player is in attack zone and archer isn't shooting
         {
             StartCoroutine(PrepareToShoot());
             StartCoroutine(StartAnimation());
@@ -120,5 +122,15 @@ public class ArcherAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeShoot - 0.5f);
         animationAttack = true;
+    }
+
+    public void OnKnockBack()
+    {
+        knockBack = true;
+        StopCoroutine(PrepareToShoot());
+        StopCoroutine(StartAnimation());        
+        archerIsAttacking = false;
+        animationAttack = false;
+        
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public enum GameState {Running, Pause, ProjectilePary, MeleePary, LvlFrameTransition, Dialogue}
+    public enum GameState {Running, Pause, ProjectilePary, LvlFrameTransition, Dialogue}
     public GameState gameState = GameState.Running;
     public static GameManager Instance;
     [Range(0,1)]

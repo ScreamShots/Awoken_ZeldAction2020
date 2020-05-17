@@ -49,7 +49,10 @@ public class MinototaureMovement : MonoBehaviour
 
     bool randomDirSet;                                        
     [HideInInspector]
-    public bool isOnRandomMove;                                
+    public bool isOnRandomMove;
+
+    bool knockBack = false;
+    EnemyKnockBackCaller knockBackCaller;
 
     #endregion
 
@@ -157,6 +160,7 @@ public class MinototaureMovement : MonoBehaviour
         minototaureRgb = GetComponent<Rigidbody2D>();
         minototaureAttackScript = GetComponent<MinototaureAttack>();
         minototaureHealthScript = GetComponent<EnemyHealthSystem>();
+        knockBackCaller = GetComponent<EnemyKnockBackCaller>();
 
         startPos = transform.position;
         stayTimer = stayDuration;
@@ -172,7 +176,10 @@ public class MinototaureMovement : MonoBehaviour
             {
                 if (!playerInAttackRange && canMove)                                            //change the bool saying that the enemy can attack (see attack class) + setting the move value to 0 once(stop previous move)
                 {
-                    minototaureRgb.velocity = Vector2.zero;
+                    if (!knockBack)
+                    {
+                        minototaureRgb.velocity = Vector2.zero;
+                    }                    
                     isOnRandomMove = false;
                 }
                 playerInAttackRange = true;
@@ -211,7 +218,10 @@ public class MinototaureMovement : MonoBehaviour
             {
                 if (playerInAttackRange)
                 {
-                    minototaureRgb.velocity = Vector2.zero;
+                    if (!knockBack)
+                    {
+                        minototaureRgb.velocity = Vector2.zero;
+                    }                    
                 }
                 minototaureCooldown = true;                                                     //change bool saying Minototaure is on cooldown phase
             }
@@ -227,42 +237,45 @@ public class MinototaureMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 playerDirection = player.transform.position - transform.position;               //direction between enemy and player
-
-        if (!playerInAttackRange && canMove)                                
+        if (!knockBack)
         {
-            if (playerDetected)                                                                 //if Player is detected, Minototaure rush on him with speed increase                                   
+            Vector2 playerDirection = player.transform.position - transform.position;               //direction between enemy and player
+
+            if (!playerInAttackRange && canMove)
             {
-                minototaureRgb.velocity = playerDirection.normalized * chaseSpeed * Time.fixedDeltaTime;
-                isOnRandomMove = false;
-            }
-            else                                                                                //else it's the random movement behaviour that apply (the player is to far)
-            {
-                if (stayTimer > 0)                                              
+                if (playerDetected)                                                                 //if Player is detected, Minototaure rush on him with speed increase                                   
                 {
-                    if (minototaureRgb.velocity != Vector2.zero)                                //if we are in this immmobile phase and the velocity is not sero we do so (so the enemy dont move in this phase)
-                    {
-                        minototaureRgb.velocity = Vector2.zero;
-                    }
-                    if (randomDirSet)                                              
-                    {
-                        randomDirSet = false;
-                    }
-                    stayTimer -= Time.deltaTime;
+                    minototaureRgb.velocity = playerDirection.normalized * chaseSpeed * Time.fixedDeltaTime;
                     isOnRandomMove = false;
                 }
-                else                                                            
+                else                                                                                //else it's the random movement behaviour that apply (the player is to far)
                 {
-                    isOnRandomMove = true;
-                    RandomMove();
+                    if (stayTimer > 0)
+                    {
+                        if (minototaureRgb.velocity != Vector2.zero)                                //if we are in this immmobile phase and the velocity is not sero we do so (so the enemy dont move in this phase)
+                        {
+                            minototaureRgb.velocity = Vector2.zero;
+                        }
+                        if (randomDirSet)
+                        {
+                            randomDirSet = false;
+                        }
+                        stayTimer -= Time.deltaTime;
+                        isOnRandomMove = false;
+                    }
+                    else
+                    {
+                        isOnRandomMove = true;
+                        RandomMove();
+                    }
                 }
             }
-        }
 
-        if (minototaureCooldown && !playerInAttackRange)                                        //if Minotoaure is on cooldown phase, follow Player with slow speed
-        {
-            minototaureRgb.velocity = playerDirection.normalized * cooldownSpeed * Time.fixedDeltaTime;
-        }
+            if (minototaureCooldown && !playerInAttackRange)                                        //if Minotoaure is on cooldown phase, follow Player with slow speed
+            {
+                minototaureRgb.velocity = playerDirection.normalized * cooldownSpeed * Time.fixedDeltaTime;
+            }
+        }       
     }
 
     void RandomMove()
@@ -386,6 +399,26 @@ public class MinototaureMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void StartKnockBack()
+    {
+        StartCoroutine(ChargeKnockBack());
+    }
+
+    public IEnumerator ChargeKnockBack()
+    {
+        knockBack = true;
+        minototaureRgb.velocity = Vector2.zero;
+
+        yield return new WaitForFixedUpdate();
+
+        minototaureRgb.velocity = knockBackCaller.knockBackDir * knockBackCaller.knockBackStrength;
+
+        yield return new WaitForSeconds(knockBackCaller.knockBackTime);
+
+        minototaureRgb.velocity = Vector2.zero;
+        knockBack = false;
     }
 
     void DrawRangeCircles()                 

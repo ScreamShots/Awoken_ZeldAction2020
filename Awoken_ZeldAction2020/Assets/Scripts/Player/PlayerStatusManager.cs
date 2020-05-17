@@ -91,6 +91,8 @@ public class PlayerStatusManager : MonoBehaviour
 
             if (cdOnCharge == false) { canCharge = true; }
 
+            if(cdOnBlock == false) { canBlock = true; }
+
             
             needToEndBlock = false;
             isBlocking = false;
@@ -222,6 +224,7 @@ public class PlayerStatusManager : MonoBehaviour
                     canSpin = false;
                     canCharge = false;
                     canChangeDirection = false;
+                    canBlock = false;
                     break;
 
                 case State.attack:

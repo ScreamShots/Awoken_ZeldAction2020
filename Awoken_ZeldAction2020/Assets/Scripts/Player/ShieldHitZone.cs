@@ -47,7 +47,7 @@ public class ShieldHitZone : MonoBehaviour
         }
     }   
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject element = collision.gameObject;          //store temporary the gameobject involve in the collision to easier reference in the function
 

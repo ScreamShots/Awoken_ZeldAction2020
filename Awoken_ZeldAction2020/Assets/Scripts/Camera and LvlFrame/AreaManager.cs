@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.Linq;
 
 public class AreaManager : MonoBehaviour
 {
@@ -13,20 +14,26 @@ public class AreaManager : MonoBehaviour
     [SerializeField]
     private GameObject[] allLinkedBlockers = null;
 
+    [SerializeField]
+    private Transform pointOfRespawn = null;
+
 
     [SerializeField]
     bool mustKillAllEnemies = false;
     [HideInInspector]
     public bool allEnemyAreDead;
-    int enemyDeathCounter = 0;
     [SerializeField]
     bool dungeonRoom = false;
-
 
     [HideInInspector]
     public List<SpawnPlateform> allSpawnPlateforms;
     [HideInInspector]
     public List<EnemySpawner> allEnemySpawners;
+    [HideInInspector]
+    public List<GameObject> allEnemiesToKill;
+
+    bool areaLoaded;
+   
 
     private void Awake()
     {
@@ -43,10 +50,33 @@ public class AreaManager : MonoBehaviour
         allSpawnPlateforms = new List<SpawnPlateform>();
     }
 
+    private void Update()
+    {
+        if(areaLoaded && mustKillAllEnemies && !allEnemyAreDead)
+        {
+            allEnemiesToKill = allEnemiesToKill.Where(item => item != null).ToList();
+
+            if(allEnemiesToKill.Count == 0)
+            {
+                foreach (GameObject blocker in allLinkedBlockers)
+                {
+                    blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
+                }
+                foreach (GameObject transZone in allTransitionZone)
+                {
+                    transZone.SetActive(true);
+                }
+
+                allEnemyAreDead = true;
+            }
+        }
+    }
+
     public IEnumerator InitializeFirstCam()
     {
         thisAreaCam.gameObject.SetActive(true);
         thisAreaCam.Priority = 1;
+        PlayerManager.Instance.transform.position = pointOfRespawn.position;
         yield return new WaitForEndOfFrame();
         LoadArea();
     }
@@ -56,12 +86,6 @@ public class AreaManager : MonoBehaviour
         thisAreaCam.gameObject.SetActive(true);
         thisAreaCam.Priority = 1;
         LvlManager.Instance.currentArea = this;
-    }
-
-    public void DesactivateCam()
-    {
-        thisAreaCam.gameObject.SetActive(false);
-        thisAreaCam.Priority = 0;
     }
 
     public void LoadArea()
@@ -76,6 +100,10 @@ public class AreaManager : MonoBehaviour
             {
                 transZone.SetActive(false);
             }
+            foreach(EnemySpawner spawner in allEnemySpawners)
+            {
+                allEnemiesToKill.Add(spawner.gameObject);
+            }
         }
 
         foreach(SpawnPlateform spawnPlateform in allSpawnPlateforms)
@@ -86,6 +114,8 @@ public class AreaManager : MonoBehaviour
         {
             spawner.spawnEnable = true;
         }
+
+        areaLoaded = true;
     }
 
     public void UnLoadArea()
@@ -98,28 +128,10 @@ public class AreaManager : MonoBehaviour
         {
             spawner.spawnEnable = false;
         }
-    }
 
-    public void IncrementEnemyDeathCounter()
-    {
-        if (!allEnemyAreDead)
-        {
-            enemyDeathCounter++;
-            if (enemyDeathCounter >= allSpawnPlateforms.Count)
-            {
-                if (mustKillAllEnemies)
-                {
-                    foreach (GameObject blocker in allLinkedBlockers)
-                    {
-                        blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
-                    }
-                    foreach (GameObject transZone in allTransitionZone)
-                    {
-                        transZone.SetActive(true);
-                    }
-                }
-                allEnemyAreDead = true;
-            }
-        }
+        areaLoaded = false;
+
+        thisAreaCam.gameObject.SetActive(false);
+        thisAreaCam.Priority = 0;
     }
 }

@@ -90,12 +90,15 @@ public class PlayerShield : MonoBehaviour
     {
         if (GameManager.Instance.gameState == GameManager.GameState.Running)
         {
-            if (Input.GetButtonDown("Block") && PlayerStatusManager.Instance.canBlock)
+            if (Input.GetButtonDown("Block") || Input.GetAxis("Block") != 0)
             {
-                ActivateBlock();
+                if (PlayerStatusManager.Instance.canBlock)
+                {
+                    ActivateBlock();
+                }
             }
 
-            if (Input.GetButtonUp("Block") && PlayerStatusManager.Instance.isBlocking)
+            if (!Input.GetButton("Block") && PlayerStatusManager.Instance.isBlocking && Input.GetAxis("Block") == 0)
             {
                 DesactivateBlock();
             }

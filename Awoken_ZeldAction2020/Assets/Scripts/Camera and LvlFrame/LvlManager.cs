@@ -13,8 +13,13 @@ public class LvlManager : MonoBehaviour
 
     public AreaManager[] LvlStarts;
 
+    [SerializeField]
+    AreaManager[] allAreaManager = null;
+
     [HideInInspector]
     public AreaManager currentArea = null;
+    [HideInInspector]
+    public int lastLoadedstartZoneIndex = 0;
 
     private void Awake()
     {
@@ -33,7 +38,17 @@ public class LvlManager : MonoBehaviour
     private void Start()
     {
         lvlCamBrain = GetComponentInChildren<CinemachineBrain>();
-        StartCoroutine(LvlStarts[0].InitializeFirstCam());
+        InitializeLvl(0);
+    }
+
+    public void InitializeLvl(int startZoneIndex)
+    {
+        lastLoadedstartZoneIndex = startZoneIndex;
+        foreach (AreaManager areaManager in allAreaManager)
+        {
+            areaManager.UnLoadArea();
+        }
+        StartCoroutine(LvlStarts[startZoneIndex].InitializeFirstCam());
     }
     
 
