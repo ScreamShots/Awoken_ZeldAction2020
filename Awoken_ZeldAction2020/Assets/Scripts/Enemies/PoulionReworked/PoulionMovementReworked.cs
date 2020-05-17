@@ -50,8 +50,13 @@ public class PoulionMovementReworked : MonoBehaviour
     [HideInInspector]
     public bool playerInAttackRange;                            //use to know if the player is near enough to start an attack
 
+
+    EnemyKnockBackCaller knockBackCaller;
+    [HideInInspector]
+    public bool knockBack = false;
+
     #endregion
-    
+
     #region Serialize Var Statement
 
     //Phase1 - Random Mouvement
@@ -148,6 +153,7 @@ public class PoulionMovementReworked : MonoBehaviour
         }
 
         poulionRgb = GetComponent<Rigidbody2D>();
+        knockBackCaller = GetComponent<EnemyKnockBackCaller>();
 
         startPos = transform.position;
         stayTimer = stayDuration;
@@ -161,7 +167,10 @@ public class PoulionMovementReworked : MonoBehaviour
         {                                                                                       
             if (!playerInAttackRange && canMove)                                                //change the bool saying that the enemy can attack (see attack class) + setting the move value to 0 once(stop previous move)
             {
-                poulionRgb.velocity = Vector2.zero;
+                if (!knockBack)
+                {
+                    poulionRgb.velocity = Vector2.zero;
+                }
             }
             playerInAttackRange = true;
             playerDetected = false;
@@ -251,8 +260,10 @@ public class PoulionMovementReworked : MonoBehaviour
         Vector2 sinRandomMove = Vector2.Perpendicular(playerDirection) * Mathf.Sin(Time.fixedTime * frequency) * Random.Range(minAmplitude, maxAmplitude);       //set a perpendicular vertor to the first one modify by a sinusoid
         direction = playerDirection + sinRandomMove;                                                                                                             //adding both of them to make the little shaking run of the enemy
         direction.Normalize();
-
-        poulionRgb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;                                                                 
+        if (!knockBack)
+        {
+            poulionRgb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
+        }                                                             
     }
 
     void SetDirection()                                 //method setting the direction for the animator
@@ -342,6 +353,26 @@ public class PoulionMovementReworked : MonoBehaviour
         chaseRangeDisplay.transform.localPosition = new Vector3(0, 0, 0);
 
         allRangesCircles.SetActive(false);
+    }
+
+    public void StartKnockBack()
+    {
+        StartCoroutine(ChargeKnockBack());
+    }
+
+    public IEnumerator ChargeKnockBack()
+    {
+        knockBack = true;
+        poulionRgb.velocity = Vector2.zero;
+
+        yield return new WaitForFixedUpdate();
+
+        poulionRgb.velocity = knockBackCaller.knockBackDir * knockBackCaller.knockBackStrength;
+
+        yield return new WaitForSeconds(knockBackCaller.knockBackTime);
+
+        poulionRgb.velocity = Vector2.zero;
+        knockBack = false;
     }
 
     [ContextMenu("Refresh Range Circles")]

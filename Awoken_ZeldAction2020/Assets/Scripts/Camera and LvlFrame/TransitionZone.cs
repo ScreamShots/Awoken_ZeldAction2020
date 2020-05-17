@@ -83,7 +83,6 @@ public class TransitionZone : MonoBehaviour
         EnemyManager.Instance.DestroyAllProjectile();
         linkedAreaManager.UnLoadArea();
         isTheStart = true;
-        linkedAreaManager.DesactivateCam();
         nextAreaManager.ActivateCam();
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         PlayerMovement.playerRgb.velocity = transform.up * PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>().speed * Time.fixedDeltaTime;

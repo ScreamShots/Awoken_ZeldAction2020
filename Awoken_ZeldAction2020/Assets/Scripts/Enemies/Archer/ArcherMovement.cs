@@ -36,6 +36,9 @@ public class ArcherMovement : MonoBehaviour
 
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection = Direction.down;
+    bool knockBack = false;
+    Vector2 knockBackDir;
+    EnemyKnockBackCaller knockBackCaller = null;
     #endregion
 
     #region Tools
@@ -83,13 +86,15 @@ public class ArcherMovement : MonoBehaviour
 
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        
+        knockBackCaller = GetComponent<EnemyKnockBackCaller>();       
     }
 
     private void FixedUpdate()
     {
-        Move();
-        OnValidate();
+        if (!knockBack)
+        {
+            Move();
+        }
     }
 
     void Move()
@@ -163,6 +168,28 @@ public class ArcherMovement : MonoBehaviour
         }
     }
 
+    public void StartKnockBack()
+    {
+        StartCoroutine(ChargeKnockBack());
+    }
+
+    public IEnumerator ChargeKnockBack()
+    {
+        knockBack = true;
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForFixedUpdate();
+
+        rb.velocity = knockBackCaller.knockBackDir * knockBackCaller.knockBackStrength;
+
+        yield return new WaitForSeconds(knockBackCaller.knockBackTime);
+
+        rb.velocity = Vector2.zero;
+        knockBack = false;
+        GetComponent<ArcherAttack>().knockBack = false;
+    }
+
+    #region RangeCircle
     void DrawRangeCircles()
     {
         DestroyImmediate(allRangesCircles);
@@ -202,4 +229,6 @@ public class ArcherMovement : MonoBehaviour
         DrawRangeCircles();
         showRanges = false;
     }                   //function that refresh the range circles by calling this function from the inspector (right click on the name of the script)
+
+    #endregion
 }

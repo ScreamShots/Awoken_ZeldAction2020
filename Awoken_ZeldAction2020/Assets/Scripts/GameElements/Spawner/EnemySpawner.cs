@@ -28,21 +28,20 @@ public class EnemySpawner : MonoBehaviour
     [HideInInspector]
     public bool spawnEnable = true;
     bool l_spawnEnable = true;
+    AreaManager linkedAreaManager;
     #endregion
-    private void Awake()
-    {
-        if (GetComponentInParent<AreaManager>() != null)
-        {
-            GetComponentInParent<AreaManager>().allEnemySpawners.Add(this);
-            spawnEnable = false;
-            l_spawnEnable = false;
-        }
-    }
 
     void Start()
     {
-        spawnerHealthSystem = GetComponent<GameElementsHealthSystem>();
+        if (GetComponentInParent<AreaManager>() != null)
+        {
+            linkedAreaManager = GetComponentInParent<AreaManager>();
+            linkedAreaManager.allEnemySpawners.Add(this);
+            spawnEnable = false;
+            l_spawnEnable = false;
+        }
 
+        spawnerHealthSystem = GetComponent<GameElementsHealthSystem>();
     }
 
     void Update()
@@ -80,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < enemiesSpawned.Count; i++)
             {
+                linkedAreaManager.allEnemiesToKill.Remove(enemiesSpawned[i]);
                 Instantiate(EnemyManager.Instance.cloud, enemiesSpawned[i].transform.position, Quaternion.identity);
                 Destroy(enemiesSpawned[i]);
             }
@@ -122,6 +122,7 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject enemyWhoSpawn = Instantiate(enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)], spawnPos, Quaternion.identity);
             enemiesSpawned.Add(enemyWhoSpawn);
+            linkedAreaManager.allEnemiesToKill.Add(enemyWhoSpawn);
         }
 
         spawnInProgress = false;

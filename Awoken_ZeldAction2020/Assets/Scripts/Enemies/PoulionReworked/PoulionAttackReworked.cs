@@ -43,7 +43,6 @@ public class PoulionAttackReworked : MonoBehaviour
     bool isOverlappingPlayer;               //if the enemy is already on player hitbox
     bool isOverlappingShield;               //if the enemy is already on player shield
 
-
     #endregion
 
     #region Serialize Var Statement
@@ -211,14 +210,20 @@ public class PoulionAttackReworked : MonoBehaviour
         }
         else
         {
-            poulionRgb.velocity = chargeDirection * chargeSpeed * Time.fixedDeltaTime;      //if the poulion if overlapping nothing we juste charge
+            if (!poulionMoveScript.knockBack)
+            {
+                poulionRgb.velocity = chargeDirection * chargeSpeed * Time.fixedDeltaTime;      //if the poulion if overlapping nothing we juste charge
+            }
         }
     }
 
     IEnumerator Stun()                  //Coroutine that handle stun
     {
         StartCoroutine(StunAnimation());
-        poulionRgb.velocity = Vector2.zero;                     //stop the enemy movement
+        if (!poulionMoveScript.knockBack)
+        {
+            poulionRgb.velocity = Vector2.zero;                     //stop the enemy movement
+        }
         yield return new WaitForSeconds(stunTime);              //wait the stun duration
         isAttacking = false;                                    //saying that the attack is finished
         poulionMoveScript.canMove = true;                       //giving movement management back to move class
@@ -243,4 +248,6 @@ public class PoulionAttackReworked : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         stunCooldown = true;
     }
+
+
 }

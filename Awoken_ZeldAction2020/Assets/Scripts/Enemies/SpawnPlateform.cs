@@ -9,12 +9,14 @@ public class SpawnPlateform : MonoBehaviour
     GameObject instanceEnemyToSpawn;
     
     bool enemyIsSpawned = false;
-    //[HideInInspector]
+    [HideInInspector]
     public bool enemyIsDead = false;
+    AreaManager linkedAreaManager;
 
     private void Start()
     {
-        GetComponentInParent<AreaManager>().allSpawnPlateforms.Add(this);
+        linkedAreaManager = GetComponentInParent<AreaManager>();
+        linkedAreaManager.allSpawnPlateforms.Add(this);
     }
 
     public void SpawnEnemy()
@@ -24,6 +26,7 @@ public class SpawnPlateform : MonoBehaviour
             Instantiate(EnemyManager.Instance.cloud, transform.position, Quaternion.identity);
             instanceEnemyToSpawn = Instantiate(EnemyManager.Instance.enemiesToSpawn[assignedEnemy], transform.position, Quaternion.identity);
             instanceEnemyToSpawn.GetComponent<EnemyHealthSystem>().linkedSpawnPlateform = this;
+            linkedAreaManager.allEnemiesToKill.Add(instanceEnemyToSpawn);
             enemyIsSpawned = true;
         }        
     }
@@ -32,6 +35,7 @@ public class SpawnPlateform : MonoBehaviour
     {
         if(!enemyIsDead && enemyIsSpawned)
         {
+            linkedAreaManager.allEnemiesToKill.Remove(instanceEnemyToSpawn);
             Instantiate(EnemyManager.Instance.cloud, instanceEnemyToSpawn.transform.position, Quaternion.identity);
             Destroy(instanceEnemyToSpawn);
             enemyIsSpawned = false;

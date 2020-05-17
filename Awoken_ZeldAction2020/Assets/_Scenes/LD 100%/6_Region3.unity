@@ -22988,6 +22988,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 527331166}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &528572187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 528572188}
+  m_Layer: 15
+  m_Name: PointOfRespawn
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &528572188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528572187}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.76, y: -1.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4177332607597502158}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &529752487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24059,11 +24089,13 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 934675294}
   - {fileID: 1370174060}
+  pointOfRespawn: {fileID: 0}
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 0
   allSpawnPlateforms: []
   allEnemySpawners: []
+  allEnemiesToKill: []
 --- !u!60 &592580159
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -28961,11 +28993,13 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 1523191009}
   - {fileID: 2021324574}
+  pointOfRespawn: {fileID: 0}
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 0
   allSpawnPlateforms: []
   allEnemySpawners: []
+  allEnemiesToKill: []
 --- !u!60 &797644896
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -29283,11 +29317,13 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 2146339317}
   - {fileID: 1716204638}
+  pointOfRespawn: {fileID: 0}
   mustKillAllEnemies: 1
   allEnemyAreDead: 0
   dungeonRoom: 0
   allSpawnPlateforms: []
   allEnemySpawners: []
+  allEnemiesToKill: []
 --- !u!60 &822895690
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -76542,9 +76578,44 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
         type: 3}
+      propertyPath: allAreaManager.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
       propertyPath: LvlStarts.Array.data[0]
       value: 
       objectReference: {fileID: 4177332607597502157}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: allAreaManager.Array.data[0]
+      value: 
+      objectReference: {fileID: 4177332607597502157}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: allAreaManager.Array.data[1]
+      value: 
+      objectReference: {fileID: 1275214822}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: allAreaManager.Array.data[2]
+      value: 
+      objectReference: {fileID: 797644895}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: allAreaManager.Array.data[3]
+      value: 
+      objectReference: {fileID: 592580158}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: allAreaManager.Array.data[4]
+      value: 
+      objectReference: {fileID: 1971989488}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: allAreaManager.Array.data[5]
+      value: 
+      objectReference: {fileID: 822895689}
     - target: {fileID: 1801118361934519093, guid: bfd8a1b1116eee44a942127d495471f1,
         type: 3}
       propertyPath: m_Name
@@ -82400,11 +82471,13 @@ MonoBehaviour:
   - {fileID: 1502965627}
   - {fileID: 1475720058}
   - {fileID: 1821726908}
+  pointOfRespawn: {fileID: 0}
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 0
   allSpawnPlateforms: []
   allEnemySpawners: []
+  allEnemiesToKill: []
 --- !u!60 &1275214823
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -102541,11 +102614,13 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 654728196}
   - {fileID: 900424162}
+  pointOfRespawn: {fileID: 0}
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 0
   allSpawnPlateforms: []
   allEnemySpawners: []
+  allEnemiesToKill: []
 --- !u!60 &1971989489
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -105505,8 +105580,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 14, y: 10}
       - {x: 14, y: -10}
-      - {x: -16, y: -10}
-      - {x: -16, y: 10}
+      - {x: -18, y: -10}
+      - {x: -18, y: 10}
 --- !u!114 &4177332607597502157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105528,11 +105603,13 @@ MonoBehaviour:
   - {fileID: 548458931}
   - {fileID: 2060955064}
   - {fileID: 990922329}
+  pointOfRespawn: {fileID: 528572188}
   mustKillAllEnemies: 0
   allEnemyAreDead: 0
   dungeonRoom: 0
   allSpawnPlateforms: []
   allEnemySpawners: []
+  allEnemiesToKill: []
 --- !u!4 &4177332607597502158
 Transform:
   m_ObjectHideFlags: 0
@@ -105547,6 +105624,7 @@ Transform:
   - {fileID: 4177332607775525837}
   - {fileID: 751817504}
   - {fileID: 340441264}
+  - {fileID: 528572188}
   m_Father: {fileID: 73364001}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

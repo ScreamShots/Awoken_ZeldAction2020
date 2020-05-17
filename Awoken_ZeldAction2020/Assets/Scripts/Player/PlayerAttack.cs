@@ -17,7 +17,10 @@ public class PlayerAttack : MonoBehaviour
     [HideInInspector]
     public List<GameObject> inRangeElement;
     PlayerIndex playerIndex = PlayerIndex.One;                        //requiered for gamepad vibrations
+    [HideInInspector]
     public float attackState = 0;
+    [HideInInspector]
+    public float currentFury = 0;
 
     #endregion
 
@@ -48,6 +51,15 @@ public class PlayerAttack : MonoBehaviour
 
     [Min(0)]
     [SerializeField] private float vibrateIntensity = 0;
+
+    [Header("Fury")]
+
+    [Min(0)]
+    public float maxFury = 0;
+    [SerializeField] private float furyGainAttackOne = 0;
+    [SerializeField] private float furyGainAttackTwo = 0;
+    [SerializeField] private float furyGainAttackThree = 0;
+
 
     [Header("Dev Tools")]
 
@@ -216,6 +228,39 @@ public class PlayerAttack : MonoBehaviour
             }
             if(enemyIsImune == false)
             {
+                switch (attackState)
+                {
+                    case 1:
+                        currentFury += furyGainAttackOne;
+                        if (currentFury > maxFury)
+                        {
+                            currentFury = maxFury;
+                        }
+                        break;
+
+                    case 2:
+                        currentFury += furyGainAttackTwo;
+                        if (currentFury > maxFury)
+                        {
+                            currentFury = maxFury;
+                        }
+                        break;
+                    case 3:
+                        currentFury += furyGainAttackThree;
+                        if (currentFury > maxFury)
+                        {
+                            currentFury = maxFury;
+                        }
+                        break;
+                    default:
+                        currentFury += furyGainAttackOne;
+                        if (currentFury > maxFury)
+                        {
+                            currentFury = maxFury;
+                        }
+                        break;
+                }
+
                 GamePad.SetVibration(playerIndex, vibrateIntensity * Mathf.Pow(attackState, 3), vibrateIntensity * Mathf.Pow(attackState, 3));
             }            
         }
