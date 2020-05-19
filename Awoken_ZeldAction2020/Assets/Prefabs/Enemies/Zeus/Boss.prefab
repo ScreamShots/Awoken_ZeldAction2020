@@ -259,6 +259,8 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
   flashTime: 0.5
   flashFadeTime: 0.5
+  bloodParticle: {fileID: 8883298912550994381, guid: 9903cd97e4234be49b56926cf774fe36,
+    type: 3}
   dontHaveCorps: 1
   corps: {fileID: 0}
   timeBeforeDestroy: 0
@@ -289,7 +291,9 @@ MonoBehaviour:
   s2_pauseTimePattern3_1: 1
   s3_Pattern1: 0
   pauseTimeBtwState2_3: 1
+  tagToDestroy: EnemyProjectile
   canStartBossFight: 0
+  ZeusIsTirred: 0
 --- !u!114 &3877349471966037668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +386,6 @@ MonoBehaviour:
   - {fileID: 7408942957006063679, guid: 764de0a8eaaf27d439f31e9c9e46e2b3, type: 3}
   spawnerExist: 0
   ZeusTp: 0
-  ZeusIsTirred: 0
 --- !u!1 &3877349472079212283
 GameObject:
   m_ObjectHideFlags: 0

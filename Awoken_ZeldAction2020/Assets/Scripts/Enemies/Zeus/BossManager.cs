@@ -70,12 +70,17 @@ public class BossManager : EnemyHealthSystem
     public float pauseTimeBtwState2_3;
     #endregion
 
+    [SerializeField]
+    private string tagToDestroy;
+
     private bool canPlayFirstState;
     private bool canPlayNextState;
     private bool canPlayNextState2;
     private bool playCoroutine;
 
     [HideInInspector] public bool canStartBossFight;
+    [HideInInspector] public bool dialogueState1Finish = false;
+    [HideInInspector] public bool dialogueState2Finish = false;
     [HideInInspector] public bool ZeusIsTirred;
 
     void Awake()
@@ -127,14 +132,17 @@ public class BossManager : EnemyHealthSystem
             s1_Pattern1 = false;
             s1_Pattern2 = false;
 
-            if (!playCoroutine & !canPlayNextState)
+            if (dialogueState1Finish)
             {
-                playCoroutine = true;
-                StartCoroutine(waitBeforeStartNextState());
-            }
-            if (canPlayNextState)
-            {
-                State2();
+                if (!playCoroutine & !canPlayNextState)
+                {
+                    playCoroutine = true;
+                    StartCoroutine(waitBeforeStartNextState());
+                }
+                if (canPlayNextState)
+                {
+                    State2();
+                }
             }
         }
         else if (currentHp <= 50 && currentHp > 0)           //state 3
@@ -145,15 +153,29 @@ public class BossManager : EnemyHealthSystem
             s2_Pattern2 = false;
             s2_Pattern3 = false;
 
-            if (!playCoroutine)
+            DestroyObjects();
+
+            if (dialogueState2Finish)
             {
-                playCoroutine = true;
-                StartCoroutine(waitBeforeStartNextState2());
+                if (!playCoroutine)
+                {
+                    playCoroutine = true;
+                    StartCoroutine(waitBeforeStartNextState2());
+                }
+                if (canPlayNextState2)
+                {
+                    State3();
+                }
             }
-            if (canPlayNextState2)
-            {
-                State3();
-            }
+        }
+    }
+
+    private void DestroyObjects()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tagToDestroy);
+        foreach (GameObject target in gameObjects)
+        {
+            GameObject.Destroy(target);
         }
     }
 

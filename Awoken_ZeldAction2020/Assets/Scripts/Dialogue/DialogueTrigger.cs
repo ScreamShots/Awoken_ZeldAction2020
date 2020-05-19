@@ -41,6 +41,7 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
+    [ContextMenu("StartDialogue")]
     public void StartDialogue()
     {
         DialogueManager.Instance.StartDialogue(dialogueToPlay, this, restartGameplayAtTheEnd);
