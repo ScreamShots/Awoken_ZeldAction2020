@@ -128,6 +128,14 @@ public class AreaManager : MonoBehaviour
         {
             spawner.spawnEnable = false;
         }
+        foreach (GameObject blocker in allLinkedBlockers)
+        {
+            blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
+        }
+        foreach (GameObject transZone in allTransitionZone)
+        {
+            transZone.SetActive(true);
+        }
 
         areaLoaded = false;
 
