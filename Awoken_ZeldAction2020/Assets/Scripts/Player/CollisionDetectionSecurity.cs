@@ -21,7 +21,7 @@ public class CollisionDetectionSecurity : MonoBehaviour
         {
             if (!collision.isTrigger)
             {
-                playerChargeScript.EndCharge();
+                playerChargeScript.FastEndCharge();
             }
         }
     }

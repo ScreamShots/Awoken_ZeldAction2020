@@ -34,6 +34,10 @@ public class PlayerCharge : MonoBehaviour
     float areaRadius = 0;
     [SerializeField]
     float knockBackStrenght = 0;
+    [SerializeField]
+    ParticleSystem explosion = null;
+    [SerializeField]
+    ParticleSystem trail = null;
 
 
     #endregion
@@ -41,7 +45,8 @@ public class PlayerCharge : MonoBehaviour
     #region HideInInspector Var Statement
     Dictionary<string, ShieldHitZone> allChargeHitZoneScript = new Dictionary<string, ShieldHitZone>();
     PlayerMovement playerMoveScript;
-    bool canCharge;
+    [HideInInspector]
+    public bool canCharge;
     bool canFinishCharge;
     Vector2 chargeDir;
     float traveledDistance;
@@ -57,6 +62,7 @@ public class PlayerCharge : MonoBehaviour
             allChargeHitZoneScript.Add(allChargeHitZones[i].name, allChargeHitZones[i].GetComponent<ShieldHitZone>());
         }
         playerMoveScript = GetComponent<PlayerMovement>();
+        trail.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -102,7 +108,7 @@ public class PlayerCharge : MonoBehaviour
             }
             else
             {
-                EndCharge();
+                StartCoroutine(EndCharge());
             }
         }
     }
@@ -116,6 +122,7 @@ public class PlayerCharge : MonoBehaviour
         lastPos = transform.position;
         collisionDetection.layer = LayerMask.NameToLayer("Enemy");
         collisionDetectionSecurity.SetActive(true);
+        trail.gameObject.SetActive(true);
 
         switch (playerMoveScript.watchDirection)
         {
@@ -149,10 +156,54 @@ public class PlayerCharge : MonoBehaviour
         canCharge = false;
         canFinishCharge = true;
         finishTimer = 0;
+        GetComponentInChildren<PlayerAnimator>().EndCharge();
     }
 
-    public void EndCharge()
+    public void FastEndCharge()
     {
+        canFinishCharge = false;
+        canCharge = false;
+        trail.gameObject.SetActive(false);
+        explosion.Play();
+        GetComponentInChildren<PlayerAnimator>().HardEndCharge();
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, areaRadius);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+
+            if (enemy.CompareTag("HitBox") && enemy.transform.root.CompareTag("Enemy"))
+            {
+                if (enemy.transform.root.gameObject.GetComponent<BasicHealthSystem>() != null)
+                {
+                    enemy.transform.root.gameObject.GetComponent<BasicHealthSystem>().TakeDmg(chargeDamage);
+                }
+
+            }
+        }
+
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
+        PlayerStatusManager.Instance.needToEndCharge = true;
+
+        traveledDistance = 0;
+        collisionDetection.layer = LayerMask.NameToLayer("Player");
+        collisionDetectionSecurity.SetActive(false);
+
+        foreach (GameObject chargeZone in allChargeHitZones)
+        {
+            chargeZone.GetComponent<ShieldHitZone>().isActivated = false;
+            chargeZone.SetActive(false);
+        }
+    }
+    public IEnumerator EndCharge()
+    {
+        canFinishCharge = false;
+        canCharge = false;
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
+        trail.gameObject.SetActive(false);
+        GetComponentInChildren<PlayerAnimator>().Slam();
+        yield return new WaitForSeconds(0.40f);
+        explosion.Play();
+
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, areaRadius);
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -167,10 +218,9 @@ public class PlayerCharge : MonoBehaviour
             }
         }
 
-        PlayerMovement.playerRgb.velocity = Vector2.zero;
+
         PlayerStatusManager.Instance.needToEndCharge = true;
-        canFinishCharge = false;
-        canCharge = false;
+
         traveledDistance = 0;
         collisionDetection.layer = LayerMask.NameToLayer("Player");
         collisionDetectionSecurity.SetActive(false);

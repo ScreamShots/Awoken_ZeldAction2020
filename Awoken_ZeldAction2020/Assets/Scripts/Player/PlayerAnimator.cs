@@ -13,7 +13,9 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerMovement playerMoveScript;
     private PlayerAttack playerAttackScript;
     private PlayerHealthSystem playerHealthScript;
+    private PlayerCharge playerChargeScript;
     private bool alreadyAttacked = false;
+    private bool launchCharge = false;
 
     #endregion
 
@@ -23,15 +25,17 @@ public class PlayerAnimator : MonoBehaviour
         playerMoveScript = GetComponentInParent<PlayerMovement>();
         playerAttackScript = GetComponentInParent<PlayerAttack>();
         playerHealthScript = GetComponentInParent<PlayerHealthSystem>();
+        playerChargeScript = GetComponentInParent<PlayerCharge>();
     }
 
     private void Update()
     {
-            SetWatchDirection();
-            Running();
-            TempAttack();
-            SetBlock();
-            HitKnockBack();
+        SetWatchDirection();
+        Running();
+        TempAttack();
+        SetBlock();
+        HitKnockBack();
+        Charge();
     }
 
 
@@ -42,60 +46,6 @@ public class PlayerAnimator : MonoBehaviour
             plyAnimator.SetBool("isBlocking", PlayerStatusManager.Instance.isBlocking);
 
             if (PlayerStatusManager.Instance.isBlocking == true)
-            {
-                switch (playerMoveScript.watchDirection)
-                {
-                    case PlayerMovement.Direction.down:
-                        if (PlayerMovement.playerRgb.velocity.y > 0)
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                        }
-                        else
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                        }
-                        break;
-                    case PlayerMovement.Direction.up:
-                        if (PlayerMovement.playerRgb.velocity.y < 0)
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                        }
-                        else
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                        }
-                        break;
-                    case PlayerMovement.Direction.left:
-                        if (PlayerMovement.playerRgb.velocity.x > 0)
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                        }
-                        else
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                        }
-                        break;
-                    case PlayerMovement.Direction.right:
-                        if (PlayerMovement.playerRgb.velocity.x < 0)
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", -1);
-                        }
-                        else
-                        {
-                            plyAnimator.SetFloat("ShieldRunSpeed", 1);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }               //change animation speed to -1 when he goes opposite of the looked direction to prevent moonwalk
-        }
-
-        if (PlayerStatusManager.Instance.isCharging)
-        {
-            plyAnimator.SetBool("isBlocking", PlayerStatusManager.Instance.isCharging);
-
-            if (PlayerStatusManager.Instance.isCharging == true)
             {
                 switch (playerMoveScript.watchDirection)
                 {
@@ -229,6 +179,34 @@ public class PlayerAnimator : MonoBehaviour
     {
         plyAnimator.SetBool("isPary", true);
         StartCoroutine(StopPary());
+    }
+    public void Charge()
+    {
+        if (PlayerStatusManager.Instance.isCharging)
+        {
+            if(!launchCharge && playerChargeScript.canCharge)
+            {
+                plyAnimator.SetTrigger("Charge");
+                launchCharge = true;
+            }
+        }
+        else if(!PlayerStatusManager.Instance.isCharging && launchCharge)
+        {
+            launchCharge = false;
+        }
+    }
+
+    public void EndCharge()
+    {
+        plyAnimator.SetTrigger("EndCharge");
+    }
+    public void Slam()
+    {
+        plyAnimator.SetTrigger("Slam");
+    }
+    public void HardEndCharge()
+    {
+        plyAnimator.SetTrigger("HardEndCharge");
     }
     IEnumerator StopPary()
     {

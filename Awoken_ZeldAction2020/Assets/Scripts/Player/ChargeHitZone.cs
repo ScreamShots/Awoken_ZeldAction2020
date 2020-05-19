@@ -18,7 +18,7 @@ public class ChargeHitZone : ShieldHitZone
         {
             if (!collision.isTrigger)
             {
-                playerChargeScript.EndCharge();
+                playerChargeScript.FastEndCharge();
             }            
         }
 
