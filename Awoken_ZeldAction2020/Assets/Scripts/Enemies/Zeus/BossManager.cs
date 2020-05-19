@@ -76,6 +76,7 @@ public class BossManager : EnemyHealthSystem
     private bool playCoroutine;
 
     [HideInInspector] public bool canStartBossFight;
+    [HideInInspector] public bool ZeusIsTirred;
 
     void Awake()
     {
@@ -154,6 +155,12 @@ public class BossManager : EnemyHealthSystem
                 State3();
             }
         }
+    }
+
+    public override void Death()
+    {
+        canTakeDmg = false;
+        ZeusIsTirred = true;
     }
 
     #region State1
