@@ -14,11 +14,18 @@ public class ArenaManager : MonoBehaviour
     BossState3 bossState3Script;
     EnemySpawner enemySpawnerAScript;
     EnemySpawner enemySpawnerBScript;
+    DialogueTrigger dialogueTriggerScript1;
+    DialogueTrigger dialogueTriggerScript2;
 
     private int ennemisToKillToOpenGate;
     private int currentEnnemisKilled;
 
     private bool exitGateOpen;
+
+    private bool dialogue1Running = false;
+    private bool dialogue1Finish = false;
+    private bool dialogue2Running = false;
+    private bool dialogue2Finish = false;
 
     #endregion
 
@@ -27,9 +34,13 @@ public class ArenaManager : MonoBehaviour
     public GameObject arenaZone;
     public GameObject bossUI;
 
-    [Header("gates")]
+    [Header("Gates")]
     public GameObject gateEnter;
     public GameObject gaterExit;
+
+    [Header("Dialogues")]
+    public GameObject dialogueEndState1;
+    public GameObject dialogueEndState2;
 
     #endregion
 
@@ -37,12 +48,16 @@ public class ArenaManager : MonoBehaviour
     {
         transitionArenaScript = arenaZone.GetComponent<TransitionArena>();
         bossState3Script = BossManager.Instance.GetComponent<BossState3>();
+        dialogueTriggerScript1 = dialogueEndState1.GetComponent<DialogueTrigger>();
+        dialogueTriggerScript2 = dialogueEndState2.GetComponent<DialogueTrigger>();
 
         ennemisToKillToOpenGate = bossState3Script.ennemisToKillToOpenGate;
     }
 
     void Update()
     {
+        LauchDialogue();
+
         if (transitionArenaScript.playerInZone && !exitGateOpen)                    //To close gate after player when he enter in arena
         {
             BossManager.Instance.canStartBossFight = true;
@@ -76,6 +91,43 @@ public class ArenaManager : MonoBehaviour
         if (BossManager.Instance == null)
         {
             bossUI.SetActive(false);
+        }
+    }
+
+    void LauchDialogue()
+    {
+        if (BossManager.Instance.currentHp <= 230)
+        {
+            if (!dialogue1Running)
+            {
+                dialogue1Running = true;
+                dialogueTriggerScript1.StartDialogue();
+            }
+            else
+            {
+                if (dialogueTriggerScript1.dialogueEnded && !dialogue1Finish)
+                {
+                    dialogue1Finish = true;
+                    BossManager.Instance.dialogueState1Finish = true;
+                }
+            }
+        }
+        
+        if (BossManager.Instance.currentHp <= 50)
+        {
+            if (!dialogue2Running)
+            {
+                dialogue2Running = true;
+                dialogueTriggerScript2.StartDialogue();
+            }
+            else
+            {
+                if (dialogueTriggerScript2.dialogueEnded && !dialogue2Finish)
+                {
+                    dialogue2Finish = true;
+                    BossManager.Instance.dialogueState2Finish = true;
+                }
+            }
         }
     }
 }
