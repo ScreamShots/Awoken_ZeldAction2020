@@ -30,7 +30,6 @@ public class BossState3 : MonoBehaviour
     #endregion
 
     [HideInInspector] public bool ZeusTp;
-    [HideInInspector] public bool ZeusIsTirred;
     private bool CoroutinePlayOnce;
 
     void Start()
@@ -90,6 +89,5 @@ public class BossState3 : MonoBehaviour
         transform.position = secretRoomArena.position;
         ZeusTp = false;
         yield return new WaitForSeconds(0.5f);
-        ZeusIsTirred = true;
     }
 }
