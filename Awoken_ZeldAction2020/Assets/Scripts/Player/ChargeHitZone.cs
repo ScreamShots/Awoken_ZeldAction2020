@@ -18,8 +18,16 @@ public class ChargeHitZone : ShieldHitZone
         {
             if (!collision.isTrigger)
             {
-                playerChargeScript.FastEndCharge();
-            }            
+                if (collision.CompareTag("Chargable"))
+                {
+                    collision.gameObject.GetComponent<ChargableElement>().ChargeDestroy();
+                    playerChargeScript.needTofastEnd = true;
+                }
+                else
+                {
+                    playerChargeScript.needTofastEnd = true;
+                }
+            }
         }
 
         if(collision.CompareTag("HitBox") && collision.transform.root.CompareTag("Enemy") && collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))

@@ -139,11 +139,13 @@ public class PlayerSound : MonoBehaviour
 
     void Attack()
     {
-           if (PlayerStatusManager.Instance.isAttacking == true)
-           {
-                if(playerAttackScript.inRangeElement.Count != 0)
+        if (PlayerStatusManager.Instance.isAttacking == true)
+        {
+            if (playerAttackScript.inRangeElement.Count != 0)
+            {
+                for (int i = 0; i < playerAttackScript.inRangeElement.Count; i++)
                 {
-                    for (int i = 0; i < playerAttackScript.inRangeElement.Count; i++)
+                    if (playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>() != null)
                     {
                         if (playerAttackScript.attackState == 1 && playerAttackScript.inRangeElement.Count <= 0 && playerAttackScript.inRangeElement[i].GetComponent<EnemyHealthSystem>().canTakeDmg == true)
                         {
@@ -174,26 +176,28 @@ public class PlayerSound : MonoBehaviour
                             SoundManager.Instance.Play("NoDamage");
                         }
                     }
+
                 }
-                else
+            }
+            else
+            {
+                if (playerAttackScript.attackState == 1)
                 {
-                    if (playerAttackScript.attackState == 1)
-                    {
 
-                        SoundManager.Instance.Play("Attack1");
-                    }
-                    else if (playerAttackScript.attackState == 2)
-                    {
-                        SoundManager.Instance.Play("Attack2");
-                    }
-                    else if (playerAttackScript.attackState == 3)
-                    {
-                        SoundManager.Instance.Play("Attack3");
-                    }
+                    SoundManager.Instance.Play("Attack1");
                 }
-               
+                else if (playerAttackScript.attackState == 2)
+                {
+                    SoundManager.Instance.Play("Attack2");
+                }
+                else if (playerAttackScript.attackState == 3)
+                {
+                    SoundManager.Instance.Play("Attack3");
+                }
+            }
 
-           }
+
+        }
     }
 
     void PlayerTakeDamage()

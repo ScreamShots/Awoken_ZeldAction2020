@@ -9,12 +9,8 @@ using UnityEngine;
 public class EnemyHealthSystem : BasicHealthSystem
 {
     //Settings for instantiation of shield of Pegase
-    public bool ProtectByPegase;
-    public GameObject shieldOfEnemy;
-    
+    public GameObject shieldOfEnemy;    
     private GameObject shieldInstance;
-    private bool shieldExist;
-    private bool pegaseIsDie;
 
     [Header("On Hit Flash")]
 
@@ -33,6 +29,8 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     [SerializeField]
     GameObject corps = null;
+    [SerializeField]
+    Transform dropPoint = null;
 
     public float timeBeforeDestroy;
 
@@ -79,12 +77,17 @@ public class EnemyHealthSystem : BasicHealthSystem
     {
         base.Start();
         enemyRenderer = GetComponentInChildren<SpriteRenderer>();
+        if(shieldOfEnemy != null)
+        {
+            shieldInstance = Instantiate(shieldOfEnemy, transform.position, Quaternion.identity);
+            shieldInstance.transform.parent = transform;
+            shieldInstance.SetActive(false);
+        }
     }
 
     protected override void Update()
     {
         base.Update();
-        PegaseProtection();
 
         if (canFlash)
         {
@@ -121,7 +124,7 @@ public class EnemyHealthSystem : BasicHealthSystem
         }
         if (!dontHaveCorps)
         {
-            Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
+            Instantiate(corps, dropPoint.position, Quaternion.identity);        //Instanciate a corps before destroy the object
 
             Destroy(gameObject);
 
@@ -139,40 +142,22 @@ public class EnemyHealthSystem : BasicHealthSystem
         }
     }
 
-    void PegaseProtection()
+    public void ActivatePegaseProtection()
     {
-        if (ProtectByPegase)
+        if (!shieldInstance.activeInHierarchy)
         {
+            shieldInstance.SetActive(true);
             canTakeDmg = false;
-            
-            if (!shieldExist)
-            {
-                pegaseIsDie = false;
-                shieldExist = true;
-                PegaseShield();
-            }
         }
-        else
+    }
+
+    public void DesactivatePegaseProtection()
+    {
+        if (shieldInstance.activeInHierarchy)
         {
-            if (!pegaseIsDie)
-            {
-                pegaseIsDie = true;
-                WhenPegaseDie();
-            }       
+            shieldInstance.SetActive(false);
+            canTakeDmg = true;
         }
-    }
-
-    void WhenPegaseDie()
-    {
-        canTakeDmg = true;
-        shieldExist = false;
-        Destroy(shieldInstance);
-    }
-
-    void PegaseShield()
-    {
-        shieldInstance = Instantiate(shieldOfEnemy, transform.position, shieldOfEnemy.transform.rotation);
-        shieldInstance.transform.parent = gameObject.transform;
     }
 
     void HitFlash()
@@ -216,7 +201,7 @@ public class EnemyHealthSystem : BasicHealthSystem
             alreadyDropItem = true;                                   //can't drop 2 items on same enemy
 
             GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
-            itemDrop.transform.position = new Vector2(transform.position.x + Random.Range(minDropDistance, maxDropDistance), transform.position.y + Random.Range(minDropDistance, maxDropDistance));
+            itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
         }
         if (randomNum1 <= dropChanceItem1 & !alreadyDropItem)
         {
@@ -224,7 +209,7 @@ public class EnemyHealthSystem : BasicHealthSystem
             alreadyDropItem = true;
 
             GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
-            itemDrop.transform.position = new Vector2(transform.position.x + Random.Range(minDropDistance, maxDropDistance), transform.position.y + Random.Range(minDropDistance, maxDropDistance));
+            itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
         }
         if (randomNum2 <= dropChanceItem2 & !alreadyDropItem)
         {
@@ -232,7 +217,7 @@ public class EnemyHealthSystem : BasicHealthSystem
             alreadyDropItem = true;
 
             GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
-            itemDrop.transform.position = new Vector2(transform.position.x + Random.Range(minDropDistance, maxDropDistance), transform.position.y + Random.Range(minDropDistance, maxDropDistance));
+            itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
         }
     }
 

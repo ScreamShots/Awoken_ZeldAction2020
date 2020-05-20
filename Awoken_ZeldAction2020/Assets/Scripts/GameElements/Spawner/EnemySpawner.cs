@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform spawnPoint = null;
     [SerializeField] private GameObject spawnCloud = null;
 
+    public Collider2D spawnZone = null;
+
     [Space] public float spawnRadius = 0;
     public float timeBtwSpawn = 0;
     public float enemySpawnLimit = 0;
@@ -39,6 +41,11 @@ public class EnemySpawner : MonoBehaviour
             linkedAreaManager.allEnemySpawners.Add(this);
             spawnEnable = false;
             l_spawnEnable = false;
+            spawnZone = linkedAreaManager.freeZoneCollider;
+        }
+        else
+        {
+            StartCoroutine(FastEnemySpawn());
         }
 
         spawnerHealthSystem = GetComponent<GameElementsHealthSystem>();
@@ -109,6 +116,12 @@ public class EnemySpawner : MonoBehaviour
         Vector2 spawnPos = spawnPoint.transform.position;
         spawnPos += Random.insideUnitCircle * spawnRadius;
 
+        if(spawnZone != null)
+        {
+            spawnPos = spawnZone.ClosestPoint(spawnPos);
+        }
+        
+
         yield return new WaitForSeconds(0.2f);
 
         if (spawnEnable)
@@ -122,10 +135,55 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject enemyWhoSpawn = Instantiate(enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)], spawnPos, Quaternion.identity);
             enemiesSpawned.Add(enemyWhoSpawn);
-            linkedAreaManager.allEnemiesToKill.Add(enemyWhoSpawn);
+            if(linkedAreaManager != null)
+            {
+                linkedAreaManager.allEnemiesToKill.Add(enemyWhoSpawn);
+            }            
         }
 
         spawnInProgress = false;
         spawnActivate = false;
+    }
+
+    public IEnumerator FastEnemySpawn()
+    {
+        spawnInProgress = true;
+        spawnActivate = true;
+
+        Vector2 spawnPos = spawnPoint.transform.position;
+        spawnPos += Random.insideUnitCircle * spawnRadius;
+
+        if (spawnZone != null)
+        {
+            spawnPos = spawnZone.ClosestPoint(spawnPos);
+        }
+
+
+        yield return new WaitForSeconds(0.2f);
+
+        if (spawnEnable)
+        {
+            Instantiate(spawnCloud, spawnPos, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        if (spawnEnable)
+        {
+            GameObject enemyWhoSpawn = Instantiate(enemiesToSpawn[Random.Range(0, enemiesToSpawn.Length)], spawnPos, Quaternion.identity);
+            enemiesSpawned.Add(enemyWhoSpawn);
+            if (linkedAreaManager != null)
+            {
+                linkedAreaManager.allEnemiesToKill.Add(enemyWhoSpawn);
+            }
+        }
+
+        spawnInProgress = false;
+        spawnActivate = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, spawnRadius);
     }
 }

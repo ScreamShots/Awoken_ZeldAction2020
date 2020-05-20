@@ -21,6 +21,7 @@ public class PegaseMovement : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D pegaseRgb;                             
     private GameObject player;
+    private EnemyKnockBackCaller knockBackCaller = null;
 
     float playerDistance;                                    
 
@@ -83,10 +84,14 @@ public class PegaseMovement : MonoBehaviour
     [Min(0)]
     float stayDuration = 0;
 
-    //Phase2 - Teleportation
+    //Phase2 - Teleportation   
+    [Header("Requiered Element")]
+    [Header("Phase2 - Teleport")]
+
+    public Collider2D tpZone = null;
 
     [Header("Distances")]
-    [Header("Phase2 - Teleport")]
+    
 
     [SerializeField]
     [Min(0)]
@@ -159,6 +164,7 @@ public class PegaseMovement : MonoBehaviour
 
         pegaseRgb = GetComponent<Rigidbody2D>();
         pegaseHealthScript = GetComponent<EnemyHealthSystem>();
+        knockBackCaller = GetComponent<EnemyKnockBackCaller>();
 
         startPos = transform.position;
         stayTimer = stayDuration;
@@ -368,7 +374,16 @@ public class PegaseMovement : MonoBehaviour
         teleportNumber++;
         isTeleport = true;                                                                                                      //play animation of teleportation
         Vector3 randomPosition = Random.insideUnitCircle * (maxRadiusTeleport - minRadiusTeleport);                             //find random position inside cercle with paramaters of radius fill in inspector
-        transform.position = player.transform.position + randomPosition.normalized * minRadiusTeleport + randomPosition;
+        randomPosition = player.transform.position + randomPosition.normalized * minRadiusTeleport + randomPosition;
+        if(tpZone != null)
+        {
+            transform.position = tpZone.ClosestPoint(randomPosition);
+        }
+        else
+        {
+            transform.position = randomPosition;
+        }
+        
         startPos = transform.position;                                                                                          //update the position of Pegase for showing the new random walk cercle
         pegaseHealthScript.canTakeDmg = true;
 
@@ -393,5 +408,23 @@ public class PegaseMovement : MonoBehaviour
 
         cooldownActive = false;
         teleportNumber = 0;
+    }
+
+    public void StartKnockBack()
+    {
+        StartCoroutine(ChargeKnockBack());
+    }
+
+    public IEnumerator ChargeKnockBack()
+    {
+        pegaseRgb.velocity = Vector2.zero;
+
+        yield return new WaitForFixedUpdate();
+
+        pegaseRgb.velocity = knockBackCaller.knockBackDir * knockBackCaller.knockBackStrength;
+
+        yield return new WaitForSeconds(knockBackCaller.knockBackTime);
+
+        pegaseRgb.velocity = Vector2.zero;
     }
 }

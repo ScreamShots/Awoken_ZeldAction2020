@@ -52,6 +52,8 @@ public class PlayerCharge : MonoBehaviour
     float traveledDistance;
     Vector2 lastPos;
     float finishTimer;
+    [HideInInspector]
+    public bool needTofastEnd = false;
 
     #endregion
 
@@ -69,7 +71,7 @@ public class PlayerCharge : MonoBehaviour
     {        
         if(GameManager.Instance.gameState == GameManager.GameState.Running)
         {
-            if (Input.GetButtonDown("Charge") && PlayerStatusManager.Instance.canCharge && GetComponent<PlayerAttack>().currentFury == GetComponent<PlayerAttack>().maxFury)
+            if (Input.GetButtonDown("Charge") && PlayerStatusManager.Instance.canCharge /*&& GetComponent<PlayerAttack>().currentFury == GetComponent<PlayerAttack>().maxFury*/)
             {
                 StartCharge();
             }
@@ -79,6 +81,12 @@ public class PlayerCharge : MonoBehaviour
                 {
                     FinishCharge();
                 }
+            }
+
+            if (needTofastEnd)
+            {
+                FastEndCharge();
+                needTofastEnd = false;
             }
         }
     }
@@ -237,8 +245,8 @@ public class PlayerCharge : MonoBehaviour
         enemy.GetComponent<EnemyKnockBackCaller>().KnockEnemy(knockBackStrenght, chargeDir);
         enemy.GetComponent<BasicHealthSystem>().TakeDmg(chargeDamage / 3);
     }
-
-    private void OnDrawGizmos()
+    
+    private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, areaRadius);
     }

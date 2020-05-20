@@ -26,6 +26,10 @@ public class SpawnPlateform : MonoBehaviour
             Instantiate(EnemyManager.Instance.cloud, transform.position, Quaternion.identity);
             instanceEnemyToSpawn = Instantiate(EnemyManager.Instance.enemiesToSpawn[assignedEnemy], transform.position, Quaternion.identity);
             instanceEnemyToSpawn.GetComponent<EnemyHealthSystem>().linkedSpawnPlateform = this;
+            if(assignedEnemy == EnemyManager.Enemies.Pegase)
+            {
+                instanceEnemyToSpawn.GetComponent<PegaseMovement>().tpZone = linkedAreaManager.freeZoneCollider; 
+            }
             linkedAreaManager.allEnemiesToKill.Add(instanceEnemyToSpawn);
             enemyIsSpawned = true;
         }        

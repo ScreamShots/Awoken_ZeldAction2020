@@ -26,13 +26,13 @@ public class TurretSound : MonoBehaviour
     void Update()
     {
 
-        if (l_turretIsShooting != shoot.turretIsShooting)
+        if (l_turretIsShooting != shoot.isShooting)
         {
-            if (shoot.turretIsShooting == true)
+            if (shoot.isShooting == true)
             {
                 Shoot();
             }
-            l_turretIsShooting = shoot.turretIsShooting;
+            l_turretIsShooting = shoot.isShooting;
         }
     }
 
