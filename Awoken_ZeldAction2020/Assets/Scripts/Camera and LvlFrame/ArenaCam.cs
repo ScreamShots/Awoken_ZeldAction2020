@@ -39,7 +39,7 @@ public class ArenaCam : MonoBehaviour
     {
         if (transitionArenaScript.playerInZone)                                                                         //if Player is in Area
         {
-            if (!switchCamBoss && (!BossManager.Instance.s1_Pattern1 && !BossManager.Instance.s2_Pattern3 && !BossManager.Instance.s3_Pattern1))             //camera Boss fight is active
+            if (!switchCamBoss && (!BossManager.Instance.s1_Pattern1 && !BossManager.Instance.s2_Pattern3 && !BossManager.Instance.s3_Pattern1) && BossManager.Instance.canStartBossFight)             //camera Boss fight is active
             {
                 switchCamPlayer = false;
                 switchCamBoss = true;

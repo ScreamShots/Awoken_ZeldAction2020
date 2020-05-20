@@ -277,7 +277,7 @@ MonoBehaviour:
   corouDeathPlay: 0
   s1_Pattern1: 0
   s1_Pattern2: 0
-  pauseTimeBeforeState1: 2
+  pauseTimeBeforeState1: 0
   s1_pattern1_DurationTime: 6
   s1_pattern2_DurationTime: 8
   s1_pauseTimePattern1_2: 0
@@ -735,7 +735,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.1666667, y: 2.9166667}
+  m_Size: {x: 1.6666666, y: 2.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -776,6 +776,8 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: c5336f35b3e128749a7ca92fc7df4685, type: 2}
     - {fileID: 11400000, guid: ac8e8f568131e054f81561e233cfdbc5, type: 2}
+    - {fileID: 11400000, guid: 835e7900a025b4a42b5caa8da5bddc82, type: 2}
+    - {fileID: 11400000, guid: ef91a624059fe9e429951836f4cac13b, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -801,5 +803,31 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Zeus_StayAngry
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6236418613264157963}
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Zeus_StayAngry
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6236418613264157963}
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Zeus_Idle_Down
             m_BoolArgument: 0
           m_CallState: 2
