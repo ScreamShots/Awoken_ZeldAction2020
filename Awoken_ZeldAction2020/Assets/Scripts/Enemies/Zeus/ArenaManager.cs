@@ -20,6 +20,8 @@ public class ArenaManager : MonoBehaviour
 
     private bool exitGateOpen;
 
+    private bool dialogueStartBattleRunning = false;
+    private bool dialogueStartBattleFinish = false;
     private bool dialogue1Running = false;
     private bool dialogue1Finish = false;
     private bool dialogue2Running = false;
@@ -39,6 +41,7 @@ public class ArenaManager : MonoBehaviour
     [Header("Gates")]
     public CSManagerBossEndState1 bossEndState1Script;
     public CSManagerBossEndState1 bossEndState2Script;
+    public CSManagerBossStartBattle bossStartBattleScript;
 
     #endregion
 
@@ -54,14 +57,14 @@ public class ArenaManager : MonoBehaviour
     {
         LauchDialogue();
 
-        if (transitionArenaScript.playerInZone && !exitGateOpen)                    //To close gate after player when he enter in arena
+        /*if (transitionArenaScript.playerInZone && !exitGateOpen)                    //To close gate after player when he enter in arena
         {
             BossManager.Instance.canStartBossFight = true;
-            gateEnter.SetActive(true);
-            gaterExit.SetActive(true);
+            //gateEnter.SetActive(true);
+            //gaterExit.SetActive(true);
 
-            bossUI.SetActive(true);
-        }
+            //bossUI.SetActive(true);
+        }*/
 
         if (bossState3Script.spawnerExist)                                                   //when pattern 1 of state 3 actived, get the two spawners and count how many ennemis dead
         {
@@ -92,6 +95,23 @@ public class ArenaManager : MonoBehaviour
 
     void LauchDialogue()
     {
+        if (transitionArenaScript.playerInZone)
+        {
+            if (!dialogueStartBattleRunning)
+            {
+                dialogueStartBattleRunning = true;
+                bossStartBattleScript.StartCutScene();
+            }
+        }
+        if (dialogueStartBattleRunning)
+        {
+            if (!bossStartBattleScript.inDialogue && !dialogueStartBattleFinish)
+            {
+                dialogueStartBattleFinish = true;
+                BossManager.Instance.canStartBossFight = true;
+            }
+        }
+
         if (BossManager.Instance.currentHp <= 230)
         {
             if (!dialogue1Running)
