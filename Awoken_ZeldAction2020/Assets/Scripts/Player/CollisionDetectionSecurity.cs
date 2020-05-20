@@ -21,7 +21,15 @@ public class CollisionDetectionSecurity : MonoBehaviour
         {
             if (!collision.isTrigger)
             {
-                playerChargeScript.FastEndCharge();
+                if (collision.CompareTag("Chargable"))
+                {
+                    collision.gameObject.GetComponent<ChargableElement>().ChargeDestroy();
+                    playerChargeScript.needTofastEnd = true;
+                }
+                else
+                {
+                    playerChargeScript.needTofastEnd = true;
+                }                
             }
         }
     }

@@ -16,7 +16,8 @@ public class AreaManager : MonoBehaviour
 
     [SerializeField]
     private Transform pointOfRespawn = null;
-
+    
+    public Collider2D freeZoneCollider;
 
     [SerializeField]
     bool mustKillAllEnemies = false;
@@ -113,6 +114,7 @@ public class AreaManager : MonoBehaviour
         foreach(EnemySpawner spawner in allEnemySpawners)
         {
             spawner.spawnEnable = true;
+            StartCoroutine(spawner.FastEnemySpawn());
         }
 
         areaLoaded = true;

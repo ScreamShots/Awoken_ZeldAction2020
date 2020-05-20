@@ -1,152 +1,106 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TurretShoot : MonoBehaviour
 {
     #region Variables
     [Header("Turret Settings")]
+    [Space] 
+    
+    [SerializeField] 
+    float timeBeforeFirstShot = 0;
 
-    [SerializeField] bool TurretIsIndestructible = false;
-
-    [Space] [SerializeField] float timeBtwFirstShot;
-
-    [Min(0.8f)]
-    [SerializeField] float timeBtwShots = 0;
-
-    [SerializeField] bool hasAggroZone = false;
+    [Min(0.8f)] [SerializeField] 
+    float timeBtwShots = 0;
 
     [Header("Bullet initiate")]
-    public GameObject Bullet;
-    [SerializeField] private float bulletSpeed = 0;
 
-    public Transform shootPoint;
+    [SerializeField]
+    GameObject bullet = null;
 
-    private Vector2 direction;
+    [SerializeField] 
+    float bulletSpeed = 0;
 
-    private float timerPlayerZone;
+    [SerializeField]
+    Transform shootPoint = null;
 
+    public bool isActivated = false;
+
+    [SerializeField]
+    bool isMovable = false;
+
+    #endregion
+
+    #region HideInInspector Var
+
+    Animator turretAnimator;
+    GameElementsHealthSystem hpScript;
+    float timer = 0;
     [HideInInspector]
-    public bool turretIsShooting;
+    public bool isShooting = false;
+    bool broken = false;
 
-    [HideInInspector]
-    public bool turretFire;                     //for detect when the turret shoot for animation
-
-    [HideInInspector]
-    public bool inZoneAnim;
-
-    private bool canShootPlayer;                 //for detect player in zone
-
-    [HideInInspector]
-    public bool turretIsBroken;                 //for detect mid life of turret --> animator
-
-    TurretDetectionZone detectionZoneScript;
-    GameElementsHealthSystem turretHealthScript;
     #endregion
 
     private void Start()
     {
-        detectionZoneScript = GetComponentInChildren<TurretDetectionZone>();
-        turretHealthScript = GetComponent<GameElementsHealthSystem>();
-        
-        timerPlayerZone = timeBtwFirstShot;
+        timer = timeBeforeFirstShot;
+        turretAnimator = GetComponentInChildren<Animator>();
+        hpScript = GetComponent<GameElementsHealthSystem>();
+
+        if (isMovable)
+        {
+            turretAnimator.SetBool("isMovable", true);
+        }
     }
 
     private void Update()
     {
-        AggroZone();
-
-        if (!TurretIsIndestructible)
+        if (isActivated && !isShooting)
         {
-            CheckTurretBroken();
-        }
-
-        if (hasAggroZone)
-        {
-            if (!turretIsShooting && canShootPlayer)                                                   //if turret isn't shooting
+            if(timer <= 0)
             {
-                StartCoroutine(TimeBeforeShoot());
-                StartCoroutine(ShootAnimation());
-                StartCoroutine(CooldownShoot());
-            }
-        }
-        else
-        {
-            if (!turretIsShooting)                                                                      //if turret isn't shooting
-            {
-                StartCoroutine(TimeBeforeShoot());
-                StartCoroutine(ShootAnimation());
-                StartCoroutine(CooldownShoot());
-            }
-        }
-    }
-
-    void AggroZone()
-    {
-        if (hasAggroZone)
-        {
-            if (detectionZoneScript.playerInZone)
-            {
-                inZoneAnim = true;
-
-                timerPlayerZone += Time.deltaTime;
-                if (timerPlayerZone >= timeBtwFirstShot)
-                {
-                    canShootPlayer = true;
-                }
+                StartCoroutine(Shoot());
             }
             else
             {
-                inZoneAnim = false;
-                canShootPlayer = false;
-
-                timerPlayerZone = 0;
+                timer -= Time.deltaTime;
             }
         }
-        else
-        {
-            inZoneAnim = true;
-        }
-    }
 
-    void CheckTurretBroken()
+
+        if (hpScript.canTakeDmg)
+        {
+            if(hpScript.currentHp <= hpScript.maxHp / 2 && !broken)
+            {
+                turretAnimator.SetFloat("Statut", 1);
+                broken = true;
+            }
+            else if (hpScript.currentHp > hpScript.maxHp / 2 && broken)
+            {
+                turretAnimator.SetFloat("Statut", 0);
+                broken = false;
+            }
+        }
+    }    
+
+    IEnumerator Shoot()
     {
-        if (turretHealthScript.currentHp <= turretHealthScript.maxHp / 2)
-        {
-            turretIsBroken = true;
-        }
-        else
-        {
-            turretIsBroken = false;
-        }
-    }
+        turretAnimator.SetTrigger("Shot");
+        isShooting = true;
+        
+        yield return new WaitUntil(() => turretAnimator.GetCurrentAnimatorStateInfo(0).tagHash == Animator.StringToHash("endShot"));
 
-    void Shoot()
-    {
-        direction = shootPoint.transform.right;
-
-        GameObject bulletInstance = Instantiate(Bullet, shootPoint.position, Quaternion.identity);
-        bulletInstance.GetComponent<BulletComportement>().aimDirection = direction;
+        GameObject bulletInstance = Instantiate(bullet, shootPoint.position, Quaternion.identity);
+        bulletInstance.GetComponent<BulletComportement>().aimDirection = shootPoint.transform.right;
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = bulletSpeed;
+
+
+        isShooting = false;
+        timer = timeBtwShots;
     }
 
-    IEnumerator TimeBeforeShoot()
-    {
-        yield return new WaitForSeconds(timeBtwFirstShot);
-        Shoot();
-    }
-
-    IEnumerator CooldownShoot()                                                                         //Time between shoots
-    {
-        turretIsShooting = true;
-        yield return new WaitForSeconds(timeBtwShots);
-        turretIsShooting = false;
-    }
-
-    IEnumerator ShootAnimation()                                                                         //Lauch shoot animation
-    {
-        turretFire = true;
-        yield return new WaitForSeconds(timeBtwFirstShot);
-        turretFire = false;
-    }
+  
 }
