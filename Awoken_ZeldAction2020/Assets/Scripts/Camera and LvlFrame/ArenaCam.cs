@@ -60,7 +60,7 @@ public class ArenaCam : MonoBehaviour
 
                 globalArenaCam.SetActive(true);
             }
-            else if (!switchCamPlayer && BossManager.Instance.s3_Pattern1)                                               //if Boss almost dead : active player cam
+            /*else if (!switchCamPlayer && BossManager.Instance.s3_Pattern1)                                               //if Boss almost dead : active player cam
             {
                 switchCamPlayer = true;
                 switchCamBoss = false;
@@ -71,7 +71,7 @@ public class ArenaCam : MonoBehaviour
                 globalArenaCam.SetActive(false);
 
                 playerCam.SetActive(true);
-            }
+            }*/
         }
         else
         {
