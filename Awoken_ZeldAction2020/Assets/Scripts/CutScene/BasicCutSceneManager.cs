@@ -14,7 +14,7 @@ public class BasicCutSceneManager : MonoBehaviour
 
     GameObject nextCutScenePart = null;
     PlayableDirector currentPlayableDirector = null;
-    bool inDialogue = false;
+    [HideInInspector] public bool inDialogue = false;
     int dialogueIndex;
 
     protected virtual void Update()

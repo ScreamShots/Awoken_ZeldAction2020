@@ -159,17 +159,22 @@ public class BossState2 : MonoBehaviour
             animWall = false;
             Pattern3();
         }
+        else if (BossManager.Instance.currentHp <= 50)
+        {
+            StopAllCoroutines();
+            animShoot = false;
+        }
     }
 
     void Move()
     {
         if (BossManager.Instance.s2_Pattern1)
         {
-            if (!CoroutinePlayOnce && transform.position != throneArena.position)
+            /*if (!CoroutinePlayOnce && transform.position != throneArena.position)
             {
                 CoroutinePlayOnce = true;
                 StartCoroutine(ZeusCanTpThrone());
-            }
+            }*/
         }
         else if (BossManager.Instance.s2_Pattern2)
         {
@@ -357,7 +362,7 @@ public class BossState2 : MonoBehaviour
         BossAttackStrike();       
         canInstancieWall = true;
 
-        yield return new WaitForSeconds(timeBtwStrike -0.1f);
+        yield return new WaitForSeconds(timeBtwStrike -0.1f + 1.5f);
         shoot1bullets = false;
 
         yield return new WaitForSeconds(0.1f);

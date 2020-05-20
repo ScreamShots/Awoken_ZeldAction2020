@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         currentDialoguePos = thisDialogue.displayPos;
 
-        restartGameplay = RestartGameplay;
+        //restartGameplay = RestartGameplay;
         currentTrigger = thisTrigger;
         processingDialogue = true;
         currentDialogue = thisDialogue;

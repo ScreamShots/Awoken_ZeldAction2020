@@ -44,7 +44,7 @@ public class BossState3 : MonoBehaviour
     private void Update()
     {
         AttackState3();
-        Move();
+        //Move();
     }
 
     void Move()

@@ -14,8 +14,6 @@ public class ArenaManager : MonoBehaviour
     BossState3 bossState3Script;
     EnemySpawner enemySpawnerAScript;
     EnemySpawner enemySpawnerBScript;
-    DialogueTrigger dialogueTriggerScript1;
-    DialogueTrigger dialogueTriggerScript2;
 
     private int ennemisToKillToOpenGate;
     private int currentEnnemisKilled;
@@ -38,9 +36,9 @@ public class ArenaManager : MonoBehaviour
     public GameObject gateEnter;
     public GameObject gaterExit;
 
-    [Header("Dialogues")]
-    public GameObject dialogueEndState1;
-    public GameObject dialogueEndState2;
+    [Header("Gates")]
+    public CSManagerBossEndState1 bossEndState1Script;
+    public CSManagerBossEndState1 bossEndState2Script;
 
     #endregion
 
@@ -48,8 +46,6 @@ public class ArenaManager : MonoBehaviour
     {
         transitionArenaScript = arenaZone.GetComponent<TransitionArena>();
         bossState3Script = BossManager.Instance.GetComponent<BossState3>();
-        dialogueTriggerScript1 = dialogueEndState1.GetComponent<DialogueTrigger>();
-        dialogueTriggerScript2 = dialogueEndState2.GetComponent<DialogueTrigger>();
 
         ennemisToKillToOpenGate = bossState3Script.ennemisToKillToOpenGate;
     }
@@ -101,11 +97,11 @@ public class ArenaManager : MonoBehaviour
             if (!dialogue1Running)
             {
                 dialogue1Running = true;
-                dialogueTriggerScript1.StartDialogue();
+                bossEndState1Script.StartCutScene();
             }
             else
             {
-                if (dialogueTriggerScript1.dialogueEnded && !dialogue1Finish)
+                if (!bossEndState1Script.inDialogue && !dialogue1Finish)
                 {
                     dialogue1Finish = true;
                     BossManager.Instance.dialogueState1Finish = true;
@@ -118,11 +114,11 @@ public class ArenaManager : MonoBehaviour
             if (!dialogue2Running)
             {
                 dialogue2Running = true;
-                dialogueTriggerScript2.StartDialogue();
+                bossEndState2Script.StartCutScene();
             }
             else
             {
-                if (dialogueTriggerScript2.dialogueEnded && !dialogue2Finish)
+                if (!bossEndState2Script.inDialogue && !dialogue2Finish)
                 {
                     dialogue2Finish = true;
                     BossManager.Instance.dialogueState2Finish = true;

@@ -14,6 +14,7 @@ public class TransitionArena : MonoBehaviour
     [SerializeField] private string targetedElement = null;
 
     public bool playerInZone;
+    [HideInInspector] public bool cutsceneRunning = false;
     #endregion
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +25,10 @@ public class TransitionArena : MonoBehaviour
         {
             if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)
             {
-                playerInZone = true;
+                if (!cutsceneRunning)
+                {
+                    playerInZone = true;
+                }
             }
         }
     }
@@ -37,7 +41,10 @@ public class TransitionArena : MonoBehaviour
         {
             if (element.transform.parent.tag == targetedElement && element.tag == "HitBox" && element != null)
             {
-                playerInZone = false;
+                if (!cutsceneRunning)
+                {
+                    playerInZone = false;
+                }
             }
         }
     }

@@ -70,9 +70,6 @@ public class BossManager : EnemyHealthSystem
     public float pauseTimeBtwState2_3;
     #endregion
 
-    [SerializeField]
-    private string tagToDestroy;
-
     private bool canPlayFirstState;
     private bool canPlayNextState;
     private bool canPlayNextState2;
@@ -82,6 +79,7 @@ public class BossManager : EnemyHealthSystem
     [HideInInspector] public bool dialogueState1Finish = false;
     [HideInInspector] public bool dialogueState2Finish = false;
     [HideInInspector] public bool ZeusIsTirred;
+    [HideInInspector] public bool zeusIdle;
 
     void Awake()
     {
@@ -144,6 +142,10 @@ public class BossManager : EnemyHealthSystem
                     State2();
                 }
             }
+            else
+            {
+                DestroyObjects("ShockWave");
+            }
         }
         else if (currentHp <= 50 && currentHp > 0)           //state 3
         {
@@ -152,8 +154,6 @@ public class BossManager : EnemyHealthSystem
             s2_Pattern1 = false;
             s2_Pattern2 = false;
             s2_Pattern3 = false;
-
-            DestroyObjects();
 
             if (dialogueState2Finish)
             {
@@ -167,10 +167,14 @@ public class BossManager : EnemyHealthSystem
                     State3();
                 }
             }
+            else
+            {
+                DestroyObjects("EnemyProjectile");
+            }
         }
     }
 
-    private void DestroyObjects()
+    private void DestroyObjects(string tagToDestroy)
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tagToDestroy);
         foreach (GameObject target in gameObjects)
@@ -367,7 +371,9 @@ public class BossManager : EnemyHealthSystem
     IEnumerator waitBeforeStartNextState2()
     {
         canTakeDmg = false;
+        zeusIdle = true;
         yield return new WaitForSeconds(pauseTimeBtwState2_3);
+        zeusIdle = false;
         canPlayNextState2 = true;
     }
 }
