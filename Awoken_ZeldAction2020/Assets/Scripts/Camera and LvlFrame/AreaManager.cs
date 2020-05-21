@@ -32,6 +32,8 @@ public class AreaManager : MonoBehaviour
     public List<EnemySpawner> allEnemySpawners;
     [HideInInspector]
     public List<GameObject> allEnemiesToKill;
+    //[HideInInspector]
+    public List<GameObject> allTurrets;
 
     bool areaLoaded;
    
@@ -101,13 +103,20 @@ public class AreaManager : MonoBehaviour
             {
                 transZone.SetActive(false);
             }
-            foreach(EnemySpawner spawner in allEnemySpawners)
+            foreach (EnemySpawner spawner in allEnemySpawners)
             {
                 allEnemiesToKill.Add(spawner.gameObject);
             }
         }
 
-        foreach(SpawnPlateform spawnPlateform in allSpawnPlateforms)
+        foreach (GameObject turret in allTurrets)
+        {
+            if(turret != null)
+            {
+                turret.GetComponent<TurretShoot>().isActivated = true;
+            }
+        }
+        foreach (SpawnPlateform spawnPlateform in allSpawnPlateforms)
         {
             spawnPlateform.SpawnEnemy();
         }
@@ -137,6 +146,13 @@ public class AreaManager : MonoBehaviour
         foreach (GameObject transZone in allTransitionZone)
         {
             transZone.SetActive(true);
+        }
+        foreach (GameObject turret in allTurrets)
+        {
+            if(turret != null)
+            {
+                turret.GetComponent<TurretShoot>().isActivated = false;
+            }
         }
 
         areaLoaded = false;
