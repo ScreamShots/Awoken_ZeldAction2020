@@ -37,6 +37,7 @@ public class TurretShoot : MonoBehaviour
 
     Animator turretAnimator;
     GameElementsHealthSystem hpScript;
+    AreaManager linkedAreaManager;
     float timer = 0;
     [HideInInspector]
     public bool isShooting = false;
@@ -49,6 +50,16 @@ public class TurretShoot : MonoBehaviour
         timer = timeBeforeFirstShot;
         turretAnimator = GetComponentInChildren<Animator>();
         hpScript = GetComponent<GameElementsHealthSystem>();
+        
+        if(GetComponentInParent<AreaManager>() != null)
+        {
+            linkedAreaManager = GetComponentInParent<AreaManager>();
+            linkedAreaManager.allTurrets.Add(gameObject);
+        }
+        else
+        {
+            isActivated = true;
+        }
 
         if (isMovable)
         {
@@ -106,6 +117,7 @@ public class TurretShoot : MonoBehaviour
         GameObject bulletInstance = Instantiate(bullet, shootPoint.position, Quaternion.identity);
         bulletInstance.GetComponent<BulletComportement>().aimDirection = shootPoint.transform.right;
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = bulletSpeed;
+        EnemyManager.Instance.allProjectile.Add(bulletInstance);
 
 
         isShooting = false;
