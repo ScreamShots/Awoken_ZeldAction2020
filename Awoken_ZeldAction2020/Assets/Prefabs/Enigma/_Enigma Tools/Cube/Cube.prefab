@@ -48,8 +48,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.390329, y: 0.05}
-  - {x: 0.3944491, y: -0.50568676}
+  - {x: 0.38, y: 0.13}
+  - {x: 0.38, y: -0.5}
 --- !u!114 &1318067005465419712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4161826762181388100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.50000006, z: 0}
+  m_LocalPosition: {x: 0, y: 7.7, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 8441249622769810305}
@@ -145,8 +145,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.36, y: 0.05}
-  - {x: 0.390329, y: 0.05}
+  - {x: 0.38, y: 0.05}
+  - {x: -0.38, y: 0.05}
 --- !u!114 &4444163612221689735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 5384909465515891160}
   - component: {fileID: 5384909465515891163}
   - component: {fileID: 5384909465515891161}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Cube
   m_TagString: ObjectToMove
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0058295727, y: -0.2302739}
+  m_Offset: {x: -0.0000269413, y: -0.17823932}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -344,7 +344,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7056322, y: 0.49121654}
+  m_Size: {x: 0.66714656, y: 0.56182}
   m_EdgeRadius: 0
 --- !u!50 &5384909465515891163
 Rigidbody2D:
@@ -431,8 +431,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.36, y: 0.05}
-  - {x: -0.37492728, y: -0.514765}
+  - {x: -0.38, y: 0.13}
+  - {x: -0.38, y: -0.5}
 --- !u!114 &2735432952970420452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,8 +494,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.3944491, y: -0.5056868}
-  - {x: -0.3749273, y: -0.514765}
+  - {x: 0.38, y: -0.5}
+  - {x: -0.38, y: -0.5}
 --- !u!114 &6200636313761001605
 MonoBehaviour:
   m_ObjectHideFlags: 0
