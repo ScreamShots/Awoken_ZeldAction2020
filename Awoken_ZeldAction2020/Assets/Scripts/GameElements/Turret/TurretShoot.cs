@@ -70,28 +70,38 @@ public class TurretShoot : MonoBehaviour
             }
         }
 
-
-        if (hpScript.canTakeDmg)
+        if(hpScript != null)
         {
-            if(hpScript.currentHp <= hpScript.maxHp / 2 && !broken)
+            if (hpScript.canTakeDmg)
             {
-                turretAnimator.SetFloat("Statut", 1);
-                broken = true;
+                if (hpScript.currentHp <= hpScript.maxHp / 2 && !broken)
+                {
+                    turretAnimator.SetFloat("Statut", 1);
+                    broken = true;
+                }
+                else if (hpScript.currentHp > hpScript.maxHp / 2 && broken)
+                {
+                    turretAnimator.SetFloat("Statut", 0);
+                    broken = false;
+                }
             }
-            else if (hpScript.currentHp > hpScript.maxHp / 2 && broken)
-            {
-                turretAnimator.SetFloat("Statut", 0);
-                broken = false;
-            }
-        }
+        }       
     }    
 
     IEnumerator Shoot()
     {
         turretAnimator.SetTrigger("Shot");
         isShooting = true;
-        
-        yield return new WaitUntil(() => turretAnimator.GetCurrentAnimatorStateInfo(0).tagHash == Animator.StringToHash("endShot"));
+
+        if (!isMovable)
+        {
+            yield return new WaitUntil(() => turretAnimator.GetCurrentAnimatorStateInfo(0).tagHash == Animator.StringToHash("endShot"));
+        }
+        else
+        {
+            yield return new WaitUntil(() => turretAnimator.GetCurrentAnimatorStateInfo(0).tagHash == Animator.StringToHash("endShot"));
+        }
+
 
         GameObject bulletInstance = Instantiate(bullet, shootPoint.position, Quaternion.identity);
         bulletInstance.GetComponent<BulletComportement>().aimDirection = shootPoint.transform.right;
