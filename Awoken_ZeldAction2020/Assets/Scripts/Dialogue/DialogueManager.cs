@@ -63,7 +63,7 @@ public class DialogueManager : MonoBehaviour
     public bool typingAPhase;
     [HideInInspector]
     public bool processingDialogue;
-    bool restartGameplay = true;
+    bool restartGameplay = false;
     Dialogue.DialogueUIPos currentDialoguePos = Dialogue.DialogueUIPos.Down;
 
     private void Awake()
@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         currentDialoguePos = thisDialogue.displayPos;
 
-        //restartGameplay = RestartGameplay;
+        restartGameplay = RestartGameplay;
         currentTrigger = thisTrigger;
         processingDialogue = true;
         currentDialogue = thisDialogue;
@@ -151,7 +151,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         processingDialogue = false;
-        if (!restartGameplay)
+        if (restartGameplay)
         {
             GameManager.Instance.gameState = GameManager.GameState.Running;
         }
