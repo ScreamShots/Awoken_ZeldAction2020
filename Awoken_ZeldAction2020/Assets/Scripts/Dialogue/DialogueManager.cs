@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         currentDialoguePos = thisDialogue.displayPos;
 
-        //restartGameplay = RestartGameplay;
+        restartGameplay = RestartGameplay;
         currentTrigger = thisTrigger;
         processingDialogue = true;
         currentDialogue = thisDialogue;
@@ -151,9 +151,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         processingDialogue = false;
-        if (!restartGameplay)
+
+        if (restartGameplay)
         {
-            GameManager.Instance.gameState = GameManager.GameState.Running;
+            Debug.Log("test");
+            StartCoroutine(GameManager.Instance.ChangeGameState(GameManager.GameState.Running));
         }
     }
 

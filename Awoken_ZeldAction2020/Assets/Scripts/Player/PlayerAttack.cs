@@ -122,11 +122,16 @@ public class PlayerAttack : MonoBehaviour
             {
                 break;
             }
-            if (PlayerStatusManager.Instance.canMove && PlayerMovement.playerRgb.velocity.x != 0 || PlayerMovement.playerRgb.velocity.y != 0)
+
+            //this part is removed so the player can combo even if he move. Uncomment it if you it back as previous
+
+            /*if (PlayerStatusManager.Instance.canMove && PlayerMovement.playerRgb.velocity.x != 0 || PlayerMovement.playerRgb.velocity.y != 0)
             {
                 attackState = 0;
                 break;
-            }
+            }*/
+
+
             if (PlayerStatusManager.Instance.isBlocking)
             {
                 attackState = 0;

@@ -222,6 +222,9 @@ public class PlayerShield : MonoBehaviour
                         if (!pariedElement.GetComponent<BlockHandler>().isParied)
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().bulletRgb.velocity = Vector2.zero;
+                           // pariedElement.layer = LayerMask.NameToLayer("PlayerProjectile");       //change the layer of the bullet from enemyProjectile (for player interraction) to playerProjectile (for enemy intrraction).
                             GameManager.Instance.ProjectileParyStart(pariedElement);
                             onPary = true;
                         }                        
@@ -245,6 +248,9 @@ public class PlayerShield : MonoBehaviour
                         if (!pariedElement.GetComponent<BlockHandler>().isParied)
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().bulletRgb.velocity = Vector2.zero;
+                            //pariedElement.layer = LayerMask.NameToLayer("PlayerProjectile");       //change the layer of the bullet from enemyProjectile (for player interraction) to playerProjectile (for enemy intrraction).
                             GameManager.Instance.ProjectileParyStart(pariedElement);
                             onPary = true;
                         }
@@ -267,6 +273,9 @@ public class PlayerShield : MonoBehaviour
                         if (!pariedElement.GetComponent<BlockHandler>().isParied)
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().bulletRgb.velocity = Vector2.zero;
+                            //pariedElement.layer = LayerMask.NameToLayer("PlayerProjectile");       //change the layer of the bullet from enemyProjectile (for player interraction) to playerProjectile (for enemy intrraction).
                             GameManager.Instance.ProjectileParyStart(pariedElement);
                             onPary = true;
                         }
@@ -289,6 +298,9 @@ public class PlayerShield : MonoBehaviour
                         if (!pariedElement.GetComponent<BlockHandler>().isParied)
                         {
                             pariedElement.GetComponent<BlockHandler>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().isParied = true;
+                            pariedElement.GetComponent<BulletComportement>().bulletRgb.velocity = Vector2.zero;
+                            //pariedElement.layer = LayerMask.NameToLayer("PlayerProjectile");       //change the layer of the bullet from enemyProjectile (for player interraction) to playerProjectile (for enemy intrraction).
                             GameManager.Instance.ProjectileParyStart(pariedElement);
                             onPary = true;
                         }

@@ -36,8 +36,11 @@ public class BulletComportement : MonoBehaviour
     private Vector2 l_aimDirection;
     private Vector2 perpendicularAimDirection;  //Needed to deffine postion of the ray for shield security check
 
-    private Rigidbody2D bulletRgb;
+    [HideInInspector]
+    public Rigidbody2D bulletRgb;
     private bool l_hasBeenLaunchBack = false;
+    [HideInInspector]
+    public bool isParied;
     #endregion
 
     private void Awake()
@@ -90,7 +93,10 @@ public class BulletComportement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bulletRgb.velocity = aimDirection * bulletSpeed * Time.fixedDeltaTime;
+        if (!isParied)
+        {
+            bulletRgb.velocity = aimDirection * bulletSpeed * Time.fixedDeltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)             //When collide with player destroy bullet
