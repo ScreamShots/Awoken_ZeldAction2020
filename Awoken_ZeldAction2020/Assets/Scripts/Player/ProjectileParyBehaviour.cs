@@ -12,21 +12,40 @@ public class ProjectileParyBehaviour : MonoBehaviour
 {
     #region Serialized Var Statement
     [Header("Requiered Elements")]
+
+    #pragma warning disable CS0414
     [SerializeField]
-    GameObject orientationArrow = null;
-    [SerializeField]
-    GameObject highAngleLimit = null;
-    [SerializeField]
-    GameObject lowAngleLimit = null;
-    [SerializeField]
-    Image clockCircleDown = null;
-    [SerializeField]
-    Image clockCircleUp = null;
-    [SerializeField]
-    RectTransform clockTransform = null;
+    bool showRequieredElements = false;
+    #pragma warning restore CS0414
 
     [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    GameObject orientationArrow = null;
+    [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    GameObject highAngleLimit = null;
+    [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    GameObject lowAngleLimit = null;
+    [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    Image clockCircleDown = null;
+    [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    Image clockCircleUp = null;
+    [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    RectTransform clockTransform = null;
+    [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    ParticleSystem particlesDuringPary = null;
+    [SerializeField]
+    [ConditionalHide("showRequieredElements", true)]
+    ParticleSystem particleEndPary = null;
+    [ConditionalHide("showRequieredElements", true)]
+    [SerializeField]
     GameObject orientationElements = null;
+
     [Header("Values")]
     [SerializeField]
     [Range(0, 180)]
@@ -87,7 +106,6 @@ public class ProjectileParyBehaviour : MonoBehaviour
             {
                 if (!buttonIsPressed)
                 {
-                    Debug.Log("desactivate cause input");
                     StopOrientation();
                     PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().AfterParyBlockActivation();          //reactivate the shield normaly at the end
                 }
@@ -101,7 +119,6 @@ public class ProjectileParyBehaviour : MonoBehaviour
             }
             else
             {
-                Debug.Log("desactivate cause time");
                 StopOrientation();                
                 PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().AfterParyBlockActivation();      //reactivate the shield normaly at the end
             }
@@ -138,17 +155,19 @@ public class ProjectileParyBehaviour : MonoBehaviour
         maxRotation.Normalize();
         minRotation.Normalize();                                                                                        //setting the max and min rotation for the target rotation - end            
         timer = timeBeforeLaunchBack;
+        particlesDuringPary.Play();
     }
 
     public void StopOrientation()                                       
     {
-        Debug.Log("stopOri");
         if(projectile != null)
         {
             projectile.GetComponent<BulletComportement>().isParied = false;
             projectileBlockHandler.hasBeenLaunchBack = true;                                                    //tell the projectile he has been paried and launch back (all modification on the projectile are managed on intern)
         }
 
+        particlesDuringPary.Stop();
+        particleEndPary.Play();
         orientationElements.SetActive(false);                                                                  //hide the orientation bar
         buttonIsPressed = true;                                                                             //set the security test to prevent probleme with block input back as base
         

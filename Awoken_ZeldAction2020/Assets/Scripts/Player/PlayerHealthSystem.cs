@@ -78,6 +78,7 @@ public class PlayerHealthSystem : BasicHealthSystem
     public override void TakeDmg(float dmgTaken, Vector3 sourcePos)
     {
         base.TakeDmg(dmgTaken);
+
         if(canTakeDmg && currentHp > 0) HitEffect(sourcePos);
 
         bloodParticleInstance = Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
@@ -89,7 +90,7 @@ public class PlayerHealthSystem : BasicHealthSystem
         if (!playerDead)
         {
             playerDead = true;
-            
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
             GameManager.Instance.PlayerDeath();
             LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = 0.75f;
             deathCam.SetActive(true);
@@ -103,6 +104,8 @@ public class PlayerHealthSystem : BasicHealthSystem
         currentHp = maxHp;
         playerShieldScript.currentStamina = playerShieldScript.maxStamina;
         GetComponentInChildren<PlayerAnimator>().Respawn();
+        deathCam.SetActive(false);
+        LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = LvlManager.Instance.defaultblendTime;
         LvlManager.Instance.InitializeLvl(LvlManager.Instance.lastLoadedstartZoneIndex);
         playerDead = false;
     }
