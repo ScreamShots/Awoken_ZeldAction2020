@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
+using Cinemachine;
 
 public class PlayerHealthSystem : BasicHealthSystem
 {
@@ -31,6 +32,11 @@ public class PlayerHealthSystem : BasicHealthSystem
     float flashFrequency = 0.1f;
     public GameObject bloodParticle;
     private GameObject bloodParticleInstance;
+
+    [Header("Death")]
+    [SerializeField]
+    GameObject deathCam = null;
+    bool playerDead = false;
     #endregion
 
     #region HideInInspector var Statement
@@ -80,9 +86,25 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
+        if (!playerDead)
+        {
+            playerDead = true;
+            
+            GameManager.Instance.PlayerDeath();
+            LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = 0.75f;
+            deathCam.SetActive(true);
+            GetComponentInChildren<PlayerAnimator>().Die();
+           
+        }
+    }
+
+    public void Respawn()
+    {
         currentHp = maxHp;
         playerShieldScript.currentStamina = playerShieldScript.maxStamina;
+        GetComponentInChildren<PlayerAnimator>().Respawn();
         LvlManager.Instance.InitializeLvl(LvlManager.Instance.lastLoadedstartZoneIndex);
+        playerDead = false;
     }
 
     void HitFlash()

@@ -7,7 +7,10 @@ public class LvlManager : MonoBehaviour
 {
     public static LvlManager Instance;
 
-    CinemachineBrain lvlCamBrain;
+    [HideInInspector]
+    public CinemachineBrain lvlCamBrain;
+    [HideInInspector]
+    public float defaultblendTime = 0;
 
     public bool canEndTransition;
 
@@ -38,6 +41,7 @@ public class LvlManager : MonoBehaviour
     private void Start()
     {
         lvlCamBrain = GetComponentInChildren<CinemachineBrain>();
+        defaultblendTime = lvlCamBrain.m_DefaultBlend.m_Time;
         InitializeLvl(0);
     }
 

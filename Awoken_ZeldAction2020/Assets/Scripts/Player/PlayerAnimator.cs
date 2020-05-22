@@ -224,4 +224,12 @@ public class PlayerAnimator : MonoBehaviour
         plyAnimator.SetBool("isPary", false);
     }
 
+    public void Die()
+    {
+        plyAnimator.SetTrigger("Death");
+    }
+    public void Respawn()
+    {
+        plyAnimator.SetTrigger("Respawn");
+    }
 }
