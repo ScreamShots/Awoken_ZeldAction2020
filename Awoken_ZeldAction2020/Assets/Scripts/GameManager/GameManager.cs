@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,9 +40,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     float slowTimeLengthDeath = 0;
     [SerializeField]
-    GameObject deathUI = null;
+    GameOverUI deathUI = null;
     [SerializeField]
-    GameObject continueButton = null;
+    Button[] allGameOverButtons = null;
+
 
     [Header("GamePause")]
 
@@ -51,10 +52,10 @@ public class GameManager : MonoBehaviour
     bool gameIsPause = false;
     GameState lastGameState;
 
-    [Header("Global UI")]
+    [Header("BlackMelt")]
 
     [SerializeField]
-    EventSystem eventSystemUI = null;
+    BlackMelt blackMelt = null;
 
 
 
@@ -77,8 +78,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         pauseUI.SetActive(false);
-        deathUI.SetActive(false);
-        eventSystemUI.gameObject.SetActive(false);
+        blackMelt.gameObject.SetActive(false);
         if (onEndSlowTime == null) onEndSlowTime = new UnityEvent();
     }
 
@@ -152,15 +152,20 @@ public class GameManager : MonoBehaviour
     public void PlayerDeath()
     {
         gameState = GameState.Death;
-        onEndSlowTime.AddListener(PoPDeathScreen);
+        onEndSlowTime.AddListener(deathUI.ActiveDeathUI);
         StartCoroutine(SlowTime(slowTimeLengthDeath, slowTimeCurveDeath, true));
     }
 
-    void PoPDeathScreen()
+    public void OutDeathUI()
     {
-        eventSystemUI.firstSelectedGameObject = continueButton;
-        deathUI.SetActive(true);
-        eventSystemUI.gameObject.SetActive(true);
+        foreach(Button button in allGameOverButtons)
+        {
+            button.gameObject.GetComponent<Image>().enabled = false;
+            button.enabled = false;
+        }
+        blackMelt.gameObject.SetActive(true);
+        blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+        blackMelt.MeltIn();
     }
 
     public void PlayerRespawn()
@@ -168,8 +173,20 @@ public class GameManager : MonoBehaviour
         Time.fixedDeltaTime = 0.02f;
         Time.timeScale = 1;
         PlayerManager.Instance.GetComponent<PlayerHealthSystem>().Respawn();
-        deathUI.SetActive(false);
-        eventSystemUI.gameObject.SetActive(false);
+        deathUI.DesactiveDeathUI();
+        StartCoroutine(TransitionTimeBeforeLaunchBack());
+    }
+
+    IEnumerator TransitionTimeBeforeLaunchBack()
+    {
+        yield return new WaitForSeconds(1f);
+        blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
+        blackMelt.MeltOut();
+    }
+
+    public void LaunchGameBack()
+    {
+        blackMelt.gameObject.SetActive(false);
         StartCoroutine(ChangeGameState(GameState.Running));
     }
 
@@ -204,6 +221,7 @@ public class GameManager : MonoBehaviour
         if (sendMessage)
         {
             onEndSlowTime.Invoke();
+            onEndSlowTime.RemoveAllListeners();
         }
     }
 
