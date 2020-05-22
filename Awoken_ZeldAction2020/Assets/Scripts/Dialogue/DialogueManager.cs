@@ -63,7 +63,7 @@ public class DialogueManager : MonoBehaviour
     public bool typingAPhase;
     [HideInInspector]
     public bool processingDialogue;
-    bool restartGameplay = true;
+    bool restartGameplay = false;
     Dialogue.DialogueUIPos currentDialoguePos = Dialogue.DialogueUIPos.Down;
 
     private void Awake()
