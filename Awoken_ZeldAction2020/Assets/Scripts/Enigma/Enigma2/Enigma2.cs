@@ -36,6 +36,10 @@ public class Enigma2 : EnigmaTool
     private GameObject transitionZone = null;
     #endregion
 
+    public CSTriggerManager csTriggerScriptDoorRight;
+    public CSTriggerManager csTriggerScriptLever;
+    public CSTriggerManager csTriggerScriptPlate;
+
     void Awake()
     {
         brazero1.SetActive(false);
@@ -45,14 +49,15 @@ public class Enigma2 : EnigmaTool
 
     protected override void Start()
     {
-
     }
 
     void Update()
     {
         OpenTheDoorAgain();
-        LightBrazero();
+        //LightBrazero();
         ActivateTransition();
+        EnableLightAfterBlending();
+        OpenDoorDoublePlate();
     }
 
     public void OpenDoorDoublePlate()
@@ -67,7 +72,7 @@ public class Enigma2 : EnigmaTool
         }
     }
 
-    void LightBrazero()
+    /*void LightBrazero()
     {
         if (instantPlate1.isPressed == true)
         {
@@ -78,18 +83,26 @@ public class Enigma2 : EnigmaTool
         {
             isBrazeroOn2 = true;
         }
-    }
+    }*/
 
     public void EnableLightAfterBlending()
     {
         if (instantPlate1.isPressed == true)
         {
-            brazero1.SetActive(true);
+            if (csTriggerScriptPlate.transitionCamFinish)
+            {
+                brazero1.SetActive(true);
+                isBrazeroOn1 = true;
+            }
         }
 
         if (actionLever1.isPressed == true)
         {
-            brazero2.SetActive(true);
+            if (csTriggerScriptLever.transitionCamFinish)
+            {
+                brazero2.SetActive(true);
+                isBrazeroOn2 = true;
+            }
         }
     }
 
@@ -105,8 +118,11 @@ public class Enigma2 : EnigmaTool
     {
         if (distanceLever1.isPressed == true)
         {
-            door2.isDoorOpen = true;
-            door1.isDoorOpen = true;
+            if (csTriggerScriptDoorRight.transitionCamFinish)
+            {
+                door2.isDoorOpen = true;
+                door1.isDoorOpen = true;
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other) //Looks if the Player enters the pressure plate
