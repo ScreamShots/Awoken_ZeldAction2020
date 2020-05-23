@@ -18,7 +18,7 @@ public class CubeEdge : MonoBehaviour
 
     private void Start()
     {
-        cubeScript = transform.root.GetComponent<CubeToPush>();
+        cubeScript = transform.GetComponentInParent<CubeToPush>();
         playerMoveScript = PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>();
     }
 
