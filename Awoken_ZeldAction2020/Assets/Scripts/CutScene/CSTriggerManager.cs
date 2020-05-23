@@ -69,7 +69,7 @@ public class CSTriggerManager : MonoBehaviour
             stayPlateScript = elementToActivate.GetComponent<StayPressurePlate>();
         }
         
-        if(dialogue != null)
+        if(dialogue != null)                                                                                    //if a dialogue exist
         {
             dialogueExist = true;
         }
@@ -84,7 +84,7 @@ public class CSTriggerManager : MonoBehaviour
         PlayDialogue();  
     }
 
-    void PlayDialogue()
+    void PlayDialogue()                              //depend if a dialogue exist or no : stop the camera & play dialogue at the triggered element
     {
         if (transitionCamFinish)
         {
@@ -93,7 +93,7 @@ public class CSTriggerManager : MonoBehaviour
                 if (!camDestroy)
                 {
                     camDestroy = true;
-                    //dialogue.
+                    dialogue.StartDialogue();
                 }
                 if (dialogue.dialogueEnded)
                 {
@@ -118,58 +118,42 @@ public class CSTriggerManager : MonoBehaviour
         {
             if (actionLeverScript.isPressed && !camExist)
             {
-                camExist = true;
-                GameManager.Instance.gameState = GameManager.GameState.Dialogue;
-                PlayerMovement.playerRgb.velocity = Vector2.zero;
-
-                camInstantiate = Instantiate(camPrefab, new Vector3(elementTriggered.transform.position.x, elementTriggered.transform.position.y, -1), Quaternion.identity);
-                camInstantiate.transform.parent = transform;
-
-                StartCoroutine(TransitionCam());
+                CamTransition();
             }
         }
         else if (distanceLever)
         {
             if (distanceLeverScript.isPressed && !camExist)
             {
-                camExist = true;
-                GameManager.Instance.gameState = GameManager.GameState.Dialogue;
-                PlayerMovement.playerRgb.velocity = Vector2.zero;
-
-                camInstantiate = Instantiate(camPrefab, new Vector3(elementTriggered.transform.position.x, elementTriggered.transform.position.y, -1), Quaternion.identity);
-                camInstantiate.transform.parent = transform;
-
-                StartCoroutine(TransitionCam());
+                CamTransition();
             }
         }
         else if (instantPlate)
         {
             if (instantPlateScript.isPressed && !camExist)
             {
-                camExist = true;
-                GameManager.Instance.gameState = GameManager.GameState.Dialogue;
-                PlayerMovement.playerRgb.velocity = Vector2.zero;
-
-                camInstantiate = Instantiate(camPrefab, new Vector3(elementTriggered.transform.position.x, elementTriggered.transform.position.y, -1), Quaternion.identity);
-                camInstantiate.transform.parent = transform;
-
-                StartCoroutine(TransitionCam());
+                CamTransition();
             }
         }
         else if (stayPlate)
         {
             if (stayPlateScript.isPressed && !camExist)
             {
-                camExist = true;
-                GameManager.Instance.gameState = GameManager.GameState.Dialogue;
-                PlayerMovement.playerRgb.velocity = Vector2.zero;
-
-                camInstantiate = Instantiate(camPrefab, new Vector3(elementTriggered.transform.position.x, elementTriggered.transform.position.y, -1), Quaternion.identity);
-                camInstantiate.transform.parent = transform;
-
-                StartCoroutine(TransitionCam());
+                CamTransition();
             }
         }
+    }                           //to detect which element is fill in the inspector
+
+    void CamTransition()
+    {
+        camExist = true;
+        GameManager.Instance.gameState = GameManager.GameState.Dialogue;
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
+
+        camInstantiate = Instantiate(camPrefab, new Vector3(elementTriggered.transform.position.x, elementTriggered.transform.position.y, -1), Quaternion.identity);
+        camInstantiate.transform.parent = transform;
+
+        StartCoroutine(TransitionCam());
     }
 
     IEnumerator TransitionCam()
