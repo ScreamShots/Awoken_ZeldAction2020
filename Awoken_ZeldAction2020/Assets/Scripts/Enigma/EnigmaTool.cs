@@ -12,7 +12,8 @@ public abstract class  EnigmaTool : MonoBehaviour
     [SerializeField]
     protected bool isEnigmaDone;
 
-
+    public bool transiCam = false;
+    CSTriggerManager csTriggerManagerScript;
 
 
 
@@ -23,13 +24,28 @@ public abstract class  EnigmaTool : MonoBehaviour
         stayPlate = GetComponentInChildren<StayPressurePlate>();
         actionLever = GetComponentInChildren<ActionLever>();
         distanceLever = GetComponentInChildren<DistanceLever>();
+
+        if (transiCam)
+        {
+            csTriggerManagerScript = GetComponent<CSTriggerManager>();
+        }
     }
 
     public void opendoorInstantPlate()
     {
         if (instantPlate.isPressed == true)
         {
-            door.isDoorOpen = true;
+            if (transiCam)
+            {
+                if (csTriggerManagerScript.transitionCamFinish)
+                {
+                    door.isDoorOpen = true;
+                }
+            }
+            else
+            {
+                door.isDoorOpen = true;
+            }
         }
         else if (instantPlate.isPressed == false)
         {
@@ -41,7 +57,17 @@ public abstract class  EnigmaTool : MonoBehaviour
     {
         if (stayPlate.isPressed == true)
         {
-            door.isDoorOpen = true;
+            if (transiCam)
+            {
+                if (csTriggerManagerScript.transitionCamFinish)
+                {
+                    door.isDoorOpen = true;
+                }
+            }
+            else
+            {
+                door.isDoorOpen = true;
+            }
         }
         else if (stayPlate.isPressed == false)
         {
@@ -53,7 +79,17 @@ public abstract class  EnigmaTool : MonoBehaviour
     {
         if (actionLever.isPressed == true)
         {
-            door.isDoorOpen = true;
+            if (transiCam)
+            {
+                if (csTriggerManagerScript.transitionCamFinish)
+                {
+                    door.isDoorOpen = true;
+                }
+            }
+            else
+            {
+                door.isDoorOpen = true;
+            }
         }
         else if (actionLever.isPressed == false)
         {
@@ -65,7 +101,17 @@ public abstract class  EnigmaTool : MonoBehaviour
     {
         if (distanceLever.isPressed == true)
         {
-            door.isDoorOpen = true;
+            if (transiCam)
+            {
+                if (csTriggerManagerScript.transitionCamFinish)
+                {
+                    door.isDoorOpen = true;
+                }
+            }
+            else
+            {
+                door.isDoorOpen = true;
+            }
         }
         else if (distanceLever.isPressed == false)
         {
