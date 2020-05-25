@@ -32,6 +32,7 @@ public class GameElementsHealthSystem : BasicHealthSystem
     float flashFadeTimer = 0;
     bool canFlash = false;
     bool canFadeFlash = false;
+    [HideInInspector] public bool takingDmg = false;
 
     protected override void Start()
     {
@@ -60,6 +61,12 @@ public class GameElementsHealthSystem : BasicHealthSystem
             canFlash = true;
             canFadeFlash = false;
             flashTimer = flashTime;
+            takingDmg = true;
+        }
+        else
+        {
+            takingDmg = true;
+            StartCoroutine(HitElementIndestructible());
         }
     }
 
@@ -81,6 +88,7 @@ public class GameElementsHealthSystem : BasicHealthSystem
             flashTimer = flashTime;
             canFlash = false;
             canFadeFlash = true;
+            takingDmg = false;
         }
     }
 
@@ -96,5 +104,11 @@ public class GameElementsHealthSystem : BasicHealthSystem
             flashFadeTimer = flashFadeTime;
             canFadeFlash = false;
         }
+    }
+
+    IEnumerator HitElementIndestructible()
+    {
+        yield return new WaitForSeconds(0.1f);
+        takingDmg = false;
     }
 }
