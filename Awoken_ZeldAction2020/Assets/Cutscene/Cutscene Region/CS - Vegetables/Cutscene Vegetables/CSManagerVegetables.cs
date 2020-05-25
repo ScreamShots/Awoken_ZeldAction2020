@@ -17,6 +17,8 @@ public class CSManagerVegetables : BasicCutSceneManager
         playerUI.SetActive(true);
 
         base.EndOfCutScene();
+
+        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.VegeteablesStart;
     }
 
     [ContextMenu("StartCutSceneVegetables")]

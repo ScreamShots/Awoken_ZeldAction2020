@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField]
-    Dialogue dialogueToPlay = null;
+    public Dialogue dialogueToPlay = null;
     [SerializeField]
     bool triggerByZone = false;
     [SerializeField]

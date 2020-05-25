@@ -9,8 +9,7 @@ public abstract class  EnigmaTool : MonoBehaviour
     protected StayPressurePlate stayPlate;
     protected ActionLever actionLever;
     protected DistanceLever distanceLever;
-    [SerializeField]
-    protected bool isEnigmaDone;
+    public bool isEnigmaDone;
 
     public bool transiCam = false;
     CSTriggerManager csTriggerManagerScript;

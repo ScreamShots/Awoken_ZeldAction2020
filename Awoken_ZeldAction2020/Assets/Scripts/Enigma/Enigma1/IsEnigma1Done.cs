@@ -5,17 +5,24 @@ using UnityEngine;
 public class IsEnigma1Done : EnigmaTool
 {
 
+    public static int nbrOfFoodCollected;
+    static IsEnigma1Done enigmaInstance;
+
     protected override void Start()
     {
-        
+        Debug.Log(nbrOfFoodCollected);
+        enigmaInstance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void CollectFood()
     {
-        if(FoodPickUp.nbrOfFood == 3)
+        nbrOfFoodCollected += 1;
+        Debug.Log(nbrOfFoodCollected);
+
+        if (nbrOfFoodCollected == 3)
         {
-            isEnigmaDone = true;
+
+            enigmaInstance.isEnigmaDone = true;
         }
     }
 }

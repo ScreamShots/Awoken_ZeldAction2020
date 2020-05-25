@@ -9,6 +9,7 @@ public abstract class BasicProgressionHandler : MonoBehaviour
     protected virtual void Start()
     {
         currentTL = ProgressionManager.Instance.thisSessionTimeLine;
+        InitializeEnv();
     }
 
     protected void InitializeEnv()

@@ -2,31 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class R1ProgressionHandler : BasicProgressionHandler
 {
-    [Header("RequieredElement")]
 
     [Header("Intro")]
+    [Header("RequieredElement")]
 
     [SerializeField] bool showIntroElements;
+    [Space]
 
     #region Serialize var
 
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
     GameObject blockingTreeA2A3 = null;
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
     GameObject[] allVegetables = null;
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
     GameObject enigmaOneCube = null;
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
-    Vector3 enigmaOneCubePosition;
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
+    Vector3 enigmaOneCubePosition = new Vector3(0,0,0);
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
     InstantPressurePlate enigmaOnePressurePlate = null;
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
     ActionLever enigmaOneLever = null;
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
     GameObject PNJ_Vegetables = null;
-    [SerializeField] [ConditionalHide("showIntroElement", false)]
+    [SerializeField]
+    [ConditionalHide("showIntroElements", true)]
+    IsEnigma1Done enigmaOne = null; 
+    [SerializeField] [ConditionalHide("showIntroElements", true)]
     GameObject CutScene_VegetablesStart = null;
 
     #endregion
@@ -36,10 +41,11 @@ public class R1ProgressionHandler : BasicProgressionHandler
     #region Serialize Var
 
     [SerializeField] bool showZeusRevealElements;
+    [Space]
 
-    [SerializeField] [ConditionalHide("showZeusRevealElements", false)]
+    [SerializeField] [ConditionalHide("showZeusRevealElements", true)]
     GameObject[] allLightningsTraces = null;
-    [SerializeField] [ConditionalHide("showZeusRevealElements", false)]
+    [SerializeField] [ConditionalHide("showZeusRevealElements", true)]
     GameObject[] blockingElementsA6A7 = null;
 
     #endregion
@@ -47,10 +53,11 @@ public class R1ProgressionHandler : BasicProgressionHandler
     [Header("Block Unlocked")]
 
     [SerializeField] bool showBlockUnlockElements;
+    [Space]
 
     #region Serialize Var
 
-    [SerializeField] [ConditionalHide("showBlockUnlockElements", false)]
+    [SerializeField] [ConditionalHide("showBlockUnlockElements", true)]
     GameObject CutScene_CaveOut = null;
 
     #endregion
@@ -58,12 +65,13 @@ public class R1ProgressionHandler : BasicProgressionHandler
     [Header("Door")]
 
     [SerializeField] bool showDoorElements;
+    [Space]
 
     #region Serialize Var
 
-    [SerializeField] [ConditionalHide("showDoorElements", false)]
+    [SerializeField] [ConditionalHide("showDoorElements", true)]
     DoorBehavior doorToRegionTwo = null;
-    [SerializeField] [ConditionalHide("showDoorElements", false)]
+    [SerializeField] [ConditionalHide("showDoorElements", true)]
     DoorBehavior doorToRegionThree = null;
 
     #endregion
@@ -79,6 +87,7 @@ public class R1ProgressionHandler : BasicProgressionHandler
         enigmaOneCube.transform.position = enigmaOneCubePosition;
         enigmaOnePressurePlate.isPressed = true;
         enigmaOneLever.isPressed = true;
+        enigmaOne.isEnigmaDone = true;
     }
 
     protected override void OnNewAdventure()
@@ -96,6 +105,8 @@ public class R1ProgressionHandler : BasicProgressionHandler
         {
             lightningTrace.SetActive(false);
         }
+
+        CutScene_VegetablesStart.GetComponent<BasicCutSceneManager>().StartCutScene();
     }
 
     protected override void OnVegetablesStart()
@@ -107,6 +118,19 @@ public class R1ProgressionHandler : BasicProgressionHandler
         {
             vegetable.SetActive(true);
         }
+
+        foreach (GameObject lightningTrace in allLightningsTraces)
+        {
+            lightningTrace.SetActive(false);
+        }
+    }
+
+    protected override void OnVegetablesEnd()
+    {
+        PNJ_Vegetables.SetActive(true);
+        blockingTreeA2A3.SetActive(true);
+
+        EnigmaOneDone();
 
         foreach (GameObject lightningTrace in allLightningsTraces)
         {
@@ -137,49 +161,69 @@ public class R1ProgressionHandler : BasicProgressionHandler
     protected override void OnShieldBlockUnlock()
     {
         CutScene_CaveOut.SetActive(true);
+        EnigmaOneDone();
+        CutScene_CaveOut.GetComponent<BasicCutSceneManager>().StartCutScene();
+    }
+
+    protected override void OnCaveOut()
+    {
+        EnigmaOneDone();
+    }
+
+    protected override void OnTempleSecondEntrance()
+    {
+        EnigmaOneDone();
     }
 
     protected override void OnOlympeFloorOneEnd()
     {
         doorToRegionTwo.isDoorOpen = true;
+        EnigmaOneDone();
     }
 
     protected override void OnSecondRegionEntrance()
     {
         doorToRegionTwo.isDoorOpen = true;
+        EnigmaOneDone();
     }
 
     protected override void OnSecondRegionBrazeros()
     {
         doorToRegionTwo.isDoorOpen = true;
+        EnigmaOneDone();
     }
 
     protected override void OnSecondRegionOut()
     {
         doorToRegionTwo.isDoorOpen = true;
+        EnigmaOneDone();
     }
 
     protected override void OnOlympeFloorTwoEnd()
     {
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
+        EnigmaOneDone();
     }
 
     protected override void OnThirdRegionEntrance()
     {
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
+        EnigmaOneDone();
     }
 
     protected override void OnThirdRegionOut()
     {
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
+        EnigmaOneDone();
     }
 
     protected override void OnEndAdventure()
     {
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
+        EnigmaOneDone();
     }
 }

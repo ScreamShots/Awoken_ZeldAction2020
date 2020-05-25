@@ -5,25 +5,25 @@ using UnityEngine;
 public class FoodPickUp : MonoBehaviour
 {
 
-    public static int nbrOfFood;
+    [SerializeField]
+    int vegetableID = 0;
 
-void Start()
+    private void Start()
     {
-
+        if (ProgressionManager.Instance.R1Vegetables[vegetableID])
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject detectedElement = collision.gameObject;
 
         if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")
         {
-            nbrOfFood++;
+            IsEnigma1Done.CollectFood();
+            ProgressionManager.Instance.R1Vegetables[vegetableID] = true;
             Destroy(gameObject);
         }
     }

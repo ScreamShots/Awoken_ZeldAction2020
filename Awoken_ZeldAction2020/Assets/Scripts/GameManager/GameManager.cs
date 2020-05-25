@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -70,7 +71,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            Debug.Log("1 GameManager Deleted (can't be more than one GameManager in the scene)");
         }
         #endregion        
     }
@@ -177,17 +177,23 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TransitionTimeBeforeLaunchBack());
     }
 
+    public void LaunchGameBack()
+    {
+        blackMelt.gameObject.SetActive(false);
+        StartCoroutine(ChangeGameState(GameState.Running));
+    }
+
+    [ContextMenu("ReloadScene")]
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     IEnumerator TransitionTimeBeforeLaunchBack()
     {
         yield return new WaitForSeconds(1f);
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         blackMelt.MeltOut();
-    }
-
-    public void LaunchGameBack()
-    {
-        blackMelt.gameObject.SetActive(false);
-        StartCoroutine(ChangeGameState(GameState.Running));
     }
 
     public IEnumerator SlowTime(float length, AnimationCurve slowCurve, bool sendMessage)
