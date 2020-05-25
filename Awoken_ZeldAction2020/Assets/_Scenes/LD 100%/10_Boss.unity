@@ -1866,7 +1866,7 @@ MonoBehaviour:
   gateEnter: {fileID: 6703945986299872525}
   gaterExit: {fileID: 978119911}
   bossEndState1Script: {fileID: 125195864}
-  bossEndState2Script: {fileID: 1453847671}
+  bossEndState2Script: {fileID: 0}
   bossStartBattleScript: {fileID: 368231928}
 --- !u!1 &219531215
 GameObject:
@@ -19954,7 +19954,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1453847668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 672adbd62e06c7740a5b230a633a98a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e2e05d6f232b6540a71f318700af6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allCutScenePart:
@@ -19965,7 +19965,7 @@ MonoBehaviour:
   inDialogue: 0
   zeusAniamtor: {fileID: 1169084545}
   zeusCutSceneAniamtor: {fileID: 1606812291}
-  cinemachine: {fileID: 1430044577}
+  cinemachine: {fileID: 988941422}
   playerUI: {fileID: 478922113}
   bossUI: {fileID: 1904872571811664540}
   arenaZone: {fileID: 570083288}
@@ -20406,6 +20406,11 @@ PrefabInstance:
     - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 569979913179481379, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8230288079264719069, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,

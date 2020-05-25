@@ -497,7 +497,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 125157503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a582c13fd023fc42b43d6c3b2362ae0, type: 3}
+  m_Script: {fileID: 11500000, guid: fbdbd01be6e1bc5469d7c18d0bbc7acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allCutScenePart:
@@ -507,6 +507,7 @@ MonoBehaviour:
   allDialogue:
   - {fileID: 311612366}
   - {fileID: 609181561}
+  inDialogue: 0
 --- !u!4 &125157506
 Transform:
   m_ObjectHideFlags: 0
@@ -747,7 +748,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 177287053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a582c13fd023fc42b43d6c3b2362ae0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ccc18cddc6d16143b683d57a033f661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allCutScenePart:
@@ -757,6 +758,7 @@ MonoBehaviour:
   allDialogue:
   - {fileID: 36133476}
   - {fileID: 1889688298}
+  inDialogue: 0
 --- !u!4 &177287056
 Transform:
   m_ObjectHideFlags: 0
@@ -2541,6 +2543,11 @@ PrefabInstance:
     - target: {fileID: 144188320564182204, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 569979913179481379, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8230288079264719069, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
