@@ -131,93 +131,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8183913270917537704}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4637827269608937649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2197486934122593842}
-  - component: {fileID: 3971409134160950232}
-  - component: {fileID: 4436464493868403182}
-  m_Layer: 9
-  m_Name: SoundMinototaure
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2197486934122593842
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4637827269608937649}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8183913270917537704}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3971409134160950232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4637827269608937649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f1bc01ffcfc074d9e99ac19a7aa719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4436464493868403182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4637827269608937649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: MinototaureSpotted
-    clip: {fileID: 8300000, guid: 5fdf559d4521b5345b11c1daa48ce05d, type: 3}
-    volume: 0.008
-    pitch: 1
-    loop: 0
-    isAlreadyPlayed: 0
-    source: {fileID: 0}
-  - name: MinototaureAttack
-    clip: {fileID: 8300000, guid: 15c9cda08d4a35a418c7053e50b0f1c9, type: 3}
-    volume: 0.01
-    pitch: 1
-    loop: 0
-    isAlreadyPlayed: 0
-    source: {fileID: 0}
-  - name: MinototaureTakeHit
-    clip: {fileID: 8300000, guid: 8522f758e0de91748a80edecd0e7c2a0, type: 3}
-    volume: 0.01
-    pitch: 1
-    loop: 0
-    isAlreadyPlayed: 0
-    source: {fileID: 0}
-  - name: MinototaureLaunchAttack
-    clip: {fileID: 8300000, guid: 59103879f3604c648811705c27c2e21a, type: 3}
-    volume: 0.01
-    pitch: 1
-    loop: 0
-    isAlreadyPlayed: 0
-    source: {fileID: 0}
 --- !u!1 &8183913269211416870
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +388,6 @@ Transform:
   - {fileID: 8183913269887376314}
   - {fileID: 8183913269211416871}
   - {fileID: 4057268985291287874}
-  - {fileID: 2197486934122593842}
   - {fileID: 7248544474815780521}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -514,7 +428,6 @@ MonoBehaviour:
   maxHp: 40
   currentHp: 0
   canTakeDmg: 1
-  ProtectByPegase: 0
   shieldOfEnemy: {fileID: 4937395374192434862, guid: 8c8013dbb46c71c45938b19661bcc128,
     type: 3}
   flashColor: {r: 1, g: 0.25943398, b: 0.25943398, a: 0.64705884}
