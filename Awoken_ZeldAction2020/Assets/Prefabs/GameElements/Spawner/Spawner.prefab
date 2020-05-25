@@ -1,76 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2402864121328505331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6106756569217873899}
-  - component: {fileID: 3712976997156980120}
-  - component: {fileID: 2496450309917627085}
-  m_Layer: 17
-  m_Name: SpawnerSound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6106756569217873899
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2402864121328505331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8590007252410235637}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3712976997156980120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2402864121328505331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a3f922716cb45916f1c2f63eab4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2496450309917627085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2402864121328505331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db3e61db1dc4939439370f012df0210e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: SpawnerDeath
-    clip: {fileID: 8300000, guid: 67f6d31c9804c414aad23cd8ec7af08a, type: 3}
-    volume: 0.01
-    pitch: 1
-    loop: 0
-    isAlreadyPlayed: 0
-    source: {fileID: 0}
-  - name: Spawned
-    clip: {fileID: 8300000, guid: d3f6808225ac079409b33999865264d5, type: 3}
-    volume: 0.01
-    pitch: 1
-    loop: 0
-    isAlreadyPlayed: 0
-    source: {fileID: 0}
 --- !u!1 &6223759862211911177
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +178,6 @@ Transform:
   - {fileID: 8590007254118732243}
   - {fileID: 8590007252458541866}
   - {fileID: 3099420041909509125}
-  - {fileID: 6106756569217873899}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -268,6 +196,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 3099420041909509125}
   spawnCloud: {fileID: 316948580318839926, guid: 1d747d565dffcf347a0117af76b7fcfe,
     type: 3}
+  spawnZone: {fileID: 0}
   spawnRadius: 3
   timeBtwSpawn: 2
   enemySpawnLimit: 5
