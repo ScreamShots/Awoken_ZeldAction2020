@@ -36,11 +36,12 @@ public class SoundManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource ambianceSource;
     public AudioSource sfxSource;
+    public AudioSource footStepsSource;
     #endregion
 
-// = = =
+ // = = =
 
-// = = = [ MONOBEHAVIOR METHODS ] = = =
+ // = = = [ MONOBEHAVIOR METHODS ] = = =
 
     void Awake()
     {
@@ -115,5 +116,21 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    // = = =
+    /// <summary>
+    /// Plays footSteps only once.  
+    /// </summary>
+    public void PlayFootSteps(AudioClip footSteps, float volume = 1f, float pitch = 1f)
+    {
+        footStepsSource.pitch = pitch;
+        if (!footStepsSource.isPlaying)
+        {
+            footStepsSource.PlayOneShot(footSteps, (sfxDefaultVolume * volume) * globalDefaultVolume);
+        }
+
+        footStepsSource.pitch = 1;
+
+        return;
+    }
+
+ // = = =
 }
