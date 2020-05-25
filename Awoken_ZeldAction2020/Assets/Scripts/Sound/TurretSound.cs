@@ -9,13 +9,23 @@ public class TurretSound : MonoBehaviour
     [Space]
     [Header("Shooting Sound")]
     public AudioClip turretShoot;
-    public AudioSource turretShootSource;
     [Range(0f, 1f)] public float turretShootVolume = 0.5f;
+
+    [Space]
+    [Header("Damage Sound")]
+    public AudioClip[] turretDamage;
+    [Range(0f, 1f)] public float turretDamageVolume = 0.5f;
+
+    [Space]
+    [Header("Destroy Sound")]
+    public AudioClip turretDestroy;
+    [Range(0f, 1f)] public float turretDestroyVolume = 0.5f;
 
     private GameElementsHealthSystem turretHealthScript;
     private TurretShoot turretShootScript;
 
     private bool turretIsShooting = false;
+    private bool turretTakingDamage = false;
     #endregion
 
     void Start()
@@ -27,6 +37,7 @@ public class TurretSound : MonoBehaviour
     void Update()
     {
         TurretShoot();
+        TurretDamage();
     }
 
     void TurretShoot()
@@ -36,14 +47,33 @@ public class TurretSound : MonoBehaviour
             if (!turretIsShooting)
             {
                 turretIsShooting = true;
-                //SoundManager.Instance.PlaySfx(turretShoot, turretShootVolume);
-                SoundManager.Instance.PlaySfx3D(turretShootSource, turretShootVolume);
-                //turretShootSource.PlayOneShot(turretShootSource.clip);
+                SoundManager.Instance.PlaySfx(turretShoot, turretShootVolume);
             }
         }
         else
         {
             turretIsShooting = false;
         }
+    }
+
+    void TurretDamage()
+    {
+        if (turretHealthScript.takingDmg)
+        {
+            if (!turretTakingDamage)
+            {
+                turretTakingDamage = true;
+                SoundManager.Instance.PlayRandomSfx(turretDamage, turretDamageVolume);
+            }
+        }
+        else
+        {
+            turretTakingDamage = false;
+        }
+    }
+
+    void OnDestroy()
+    {
+        SoundManager.Instance.PlaySfx(turretDestroy, turretDestroyVolume);
     }
 }

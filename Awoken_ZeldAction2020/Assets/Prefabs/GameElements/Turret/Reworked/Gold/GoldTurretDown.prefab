@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 733136425301450130, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.129
+      value: -0.286
       objectReference: {fileID: 0}
     - target: {fileID: 733136425553785722, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
@@ -84,6 +84,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 9d723c48ebd866a479f48a6ffe5f9a07,
         type: 2}
+    - target: {fileID: 4323053619276324297, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: turretDamage.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323053619276324297, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: turretDamage.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a2555e0b5c9ce8e4795e5f14d81819c8, type: 3}
+    - target: {fileID: 4323053619276324297, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: turretDamageVolume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8035796086430515967, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: canTakeDmg

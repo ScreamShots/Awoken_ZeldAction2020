@@ -87,12 +87,30 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
+    /// <summary>
+    /// Plays a given sfx 3D. Specific 3D settings can be specified in GameObject AudioSource.
+    /// </summary>
     public void PlaySfx3D(AudioSource sfx3D, float volume = 1f, float pitch = 1f)
     {
         sfx3D.pitch = pitch;
         sfx3D.PlayOneShot(sfx3D.clip, (sfxDefaultVolume * volume) * globalDefaultVolume);
 
         sfx3D.pitch = 1;
+
+        return;
+    }
+
+    /// <summary>
+    /// Plays a random sfx from a list.
+    /// </summary>
+    public void PlayRandomSfx(AudioClip[] sfxRandom, float volume = 1f, float pitch = 1f)
+    {
+        int randomIndex = Random.Range(0, sfxRandom.Length);
+
+        sfxSource.pitch = pitch;
+        sfxSource.PlayOneShot(sfxRandom[randomIndex], (sfxDefaultVolume * volume) * globalDefaultVolume);
+
+        sfxSource.pitch = 1;
 
         return;
     }

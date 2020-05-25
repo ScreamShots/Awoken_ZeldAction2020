@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: 733136425301450130, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.022
+      value: 0.147
       objectReference: {fileID: 0}
     - target: {fileID: 733136425553785722, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
@@ -61,17 +61,17 @@ PrefabInstance:
     - target: {fileID: 733136425553785724, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 733136425553785724, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 733136425553785724, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 733136425553785724, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
@@ -124,6 +124,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 8f93edcf1cc8c32438e508f52626183c,
         type: 2}
+    - target: {fileID: 4323053619276324297, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: turretShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a0d7fb82bf86df4b8ac737bf1885215, type: 3}
+    - target: {fileID: 4323053619276324297, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: turretShootSource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5822758050077690232, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: m_Offset.x
@@ -144,5 +154,21 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.82799613
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6717055929522789550, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717055929522789550, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035796086430515967, guid: b893fa2030ccae04983341f87053255e,
+        type: 3}
+      propertyPath: maxHp
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6488690689781879886, guid: b893fa2030ccae04983341f87053255e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b893fa2030ccae04983341f87053255e, type: 3}

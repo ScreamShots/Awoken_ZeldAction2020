@@ -215,13 +215,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733136425553785722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.24, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 733136425171181282}
   - {fileID: 733136425121093722}
   - {fileID: 733136425606355619}
   - {fileID: 733136425301450130}
+  - {fileID: 6717055929522789550}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -257,13 +258,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab012259dfbc844e8ab700046a02489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  maxHp: 50
   currentHp: 0
   canTakeDmg: 1
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5
   corps: {fileID: 3275925729707841170, guid: fa555116ac6e6b54a87f372e8ba7c4c8, type: 3}
+  canFlash: 0
 --- !u!1 &733136425606355618
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,3 +323,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.71, y: 0.6}
   m_EdgeRadius: 0
+--- !u!1 &5610983729045768928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6717055929522789550}
+  - component: {fileID: 4323053619276324297}
+  m_Layer: 17
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6717055929522789550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5610983729045768928}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 733136425553785724}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4323053619276324297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5610983729045768928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2680ea42f9a05df4da3332ce91ce9201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretShootSource: {fileID: 0}
+  turretShoot: {fileID: 8300000, guid: 1a0d7fb82bf86df4b8ac737bf1885215, type: 3}
+  turretShootVolume: 0.3
+  turretDamage:
+  - {fileID: 8300000, guid: ed9c6056f138dba42946c88059c310e7, type: 3}
+  - {fileID: 8300000, guid: 75647888b27ae984baffa4473b899096, type: 3}
+  - {fileID: 8300000, guid: 9f6d5a1c3a0d3dc459748bff2f0f62ce, type: 3}
+  turretDamageVolume: 0.2
+  turretDestroy: {fileID: 8300000, guid: 8bd35482f04c0bb4ea090957de817145, type: 3}
+  turretDestroyVolume: 0.2
