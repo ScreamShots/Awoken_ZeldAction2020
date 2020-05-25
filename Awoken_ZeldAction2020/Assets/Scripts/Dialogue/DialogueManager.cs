@@ -154,7 +154,6 @@ public class DialogueManager : MonoBehaviour
 
         if (restartGameplay)
         {
-            Debug.Log("test");
             StartCoroutine(GameManager.Instance.ChangeGameState(GameManager.GameState.Running));
         }
     }

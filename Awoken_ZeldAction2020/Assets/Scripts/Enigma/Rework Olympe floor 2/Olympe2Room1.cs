@@ -5,13 +5,13 @@ using UnityEngine;
 public class Olympe2Room1 : EnigmaTool
 {
     [SerializeField]
-    private ActionLever lever1;
+    private ActionLever lever1 = null;
     [SerializeField]
-    private ActionLever lever2;
+    private ActionLever lever2 = null;
     [SerializeField]
-    private ActionLever lever3;
+    private ActionLever lever3 = null;
     [SerializeField]
-    private DoorBehavior door1;
+    private DoorBehavior door1 = null;
     private bool state1;
     private bool state2;
     private bool state3;

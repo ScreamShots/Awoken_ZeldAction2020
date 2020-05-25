@@ -5,19 +5,19 @@ using UnityEngine;
 public class BigRoomOlympe3 : EnigmaTool
 {
     [SerializeField]
-    private AreaManager area3;
+    private AreaManager area3 = null;
     [SerializeField]
-    private AreaManager area4;
+    private AreaManager area4 = null;
     [SerializeField]
-    private DoorBehavior door1;
+    private DoorBehavior door1 = null;
     [SerializeField]
-    private DoorBehavior door2;
+    private DoorBehavior door2 = null;
     [SerializeField]
-    private InstantPressurePlate plate1;
+    private InstantPressurePlate plate1 = null;
     [SerializeField]
-    private ActionLever lever1;
+    private ActionLever lever1 = null;
     [SerializeField]
-    private DoorBehavior finalDoor;
+    private DoorBehavior finalDoor = null;
     protected override void Start()
     {
 

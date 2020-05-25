@@ -5,17 +5,17 @@ using UnityEngine;
 public class Olympe2Room3 : EnigmaTool
 {
     [SerializeField]
-    private StayPressurePlate plate1;
+    private StayPressurePlate plate1 = null;
     [SerializeField]
-    private StayPressurePlate plate2;
+    private StayPressurePlate plate2 = null;
     [SerializeField]
-    private StayPressurePlate plate3;
+    private StayPressurePlate plate3 = null;
     [SerializeField]
-    private StayPressurePlate plate4;
+    private StayPressurePlate plate4 = null;
     [SerializeField]
-    private DistanceLever lever1;
+    private DistanceLever lever1 = null;
     [SerializeField]
-    private DoorBehavior door1;
+    private DoorBehavior door1 = null;
     protected override void Start()
     {
 

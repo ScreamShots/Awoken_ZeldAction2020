@@ -5,9 +5,10 @@ using UnityEngine;
 public class ArenaRoom : EnigmaTool
 {
     [SerializeField]
-    private AreaManager arena;
+    private AreaManager arena = null;
     [SerializeField]
-    private DoorBehavior door1;
+    private DoorBehavior door1 = null;
+
     protected override void Start()
     {
 
