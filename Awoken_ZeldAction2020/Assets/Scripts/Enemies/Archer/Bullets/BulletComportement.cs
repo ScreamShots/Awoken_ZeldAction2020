@@ -43,6 +43,8 @@ public class BulletComportement : MonoBehaviour
     public bool isParied;
     #endregion
 
+    private BulletSound bulletSoundScript;
+
     private void Awake()
     {
         EnemyManager.Instance.allProjectile.Add(gameObject);
@@ -56,6 +58,7 @@ public class BulletComportement : MonoBehaviour
 
         player = PlayerManager.Instance.gameObject;
         blockHandle = GetComponent<BlockHandler>();
+        bulletSoundScript = GetComponentInChildren<BulletSound>();
 
         perpendicularAimDirection = Vector2.Perpendicular(aimDirection.normalized);
         perpendicularAimDirection.Normalize();
@@ -122,6 +125,7 @@ public class BulletComportement : MonoBehaviour
                     other.gameObject.transform.root.GetComponent<GameElementsHealthSystem>().TakeDmg(dmg);
                 }
 
+                SoundManager.Instance.PlaySfx(bulletSoundScript.bulletHitEnemy, bulletSoundScript.bulletHitEnemyVolume);
                 Destroy(gameObject);
             }
         }

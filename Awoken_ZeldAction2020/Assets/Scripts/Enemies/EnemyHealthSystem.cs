@@ -9,7 +9,8 @@ using UnityEngine;
 public class EnemyHealthSystem : BasicHealthSystem
 {
     //Settings for instantiation of shield of Pegase
-    public GameObject shieldOfEnemy;    
+    public GameObject shieldOfEnemy;
+    public bool protectedByPegase = false;
     private GameObject shieldInstance;
 
     [Header("On Hit Flash")]
@@ -147,6 +148,7 @@ public class EnemyHealthSystem : BasicHealthSystem
         if (!shieldInstance.activeInHierarchy)
         {
             shieldInstance.SetActive(true);
+            protectedByPegase = true;
             canTakeDmg = false;
         }
     }
@@ -156,6 +158,7 @@ public class EnemyHealthSystem : BasicHealthSystem
         if (shieldInstance.activeInHierarchy)
         {
             shieldInstance.SetActive(false);
+            protectedByPegase = false;
             canTakeDmg = true;
         }
     }

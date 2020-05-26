@@ -37,6 +37,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource ambianceSource;
     public AudioSource sfxSource;
     public AudioSource footStepsSource;
+    public AudioSource parrySource;
     #endregion
 
  // = = =
@@ -128,6 +129,29 @@ public class SoundManager : MonoBehaviour
         }
 
         footStepsSource.pitch = 1;
+
+        return;
+    }
+
+    /// <summary>
+    /// Plays parry sound.  
+    /// </summary>
+    public void PlayParry(AudioClip parry, float volume = 1f, float pitch = 1f)
+    {
+        parrySource.pitch = pitch;
+        parrySource.PlayOneShot(parry, (sfxDefaultVolume * volume) * globalDefaultVolume);
+
+        parrySource.pitch = 1;
+
+        return;
+    }
+
+    /// <summary>
+    /// Stop parry sound.  
+    /// </summary>
+    public void StopParry()
+    {
+        parrySource.Stop();
 
         return;
     }
