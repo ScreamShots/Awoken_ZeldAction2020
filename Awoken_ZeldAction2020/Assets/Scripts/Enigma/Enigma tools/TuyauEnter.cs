@@ -8,6 +8,8 @@ public class TuyauEnter : MonoBehaviour
     public GameObject bullet;
     [SerializeField]
     private float bulletTimeTravel = 0;
+    [HideInInspector] public bool bulletIsEnter = false;
+    [HideInInspector] public bool bulletInsideZone = false;
 
 
     void OnTriggerEnter2D(Collider2D other)
@@ -16,16 +18,23 @@ public class TuyauEnter : MonoBehaviour
         {
             bullet = other.gameObject;
             StartCoroutine(BulletTrajectory());
+            bulletInsideZone = true;
+        }
+        else
+        {
+            bulletInsideZone = false;
         }
     }
 
     private IEnumerator BulletTrajectory()
     {
+        bulletIsEnter = true;
         bullet.SetActive(false);
         bullet.transform.position = exit.position;
         yield return new WaitForSeconds(bulletTimeTravel);
         bullet.SetActive(true);
         bullet.GetComponent<BulletComportement>().aimDirection = exit.up;
+        bulletIsEnter = false;
     }
 
 }
