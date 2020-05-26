@@ -30,12 +30,12 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
-        SetWatchDirection();
-        Running();
-        TempAttack();
-        SetBlock();
-        HitKnockBack();
-        Charge();
+            SetWatchDirection();
+            Running();
+            TempAttack();
+            SetBlock();
+            HitKnockBack();
+            Charge();
     }
 
 

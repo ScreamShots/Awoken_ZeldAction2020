@@ -21,8 +21,13 @@ public class Enigma2 : EnigmaTool
     #endregion
 
     #region Battle Statement
-    bool forceClose = false;
 
+    [HideInInspector]
+    public bool forceClose = false;
+
+
+
+    public bool activatePlayerDetection;
     [SerializeField]
     private AreaManager autel = null;
     [SerializeField]
@@ -76,6 +81,11 @@ public class Enigma2 : EnigmaTool
         if (isBrazeroOn1 == true && isBrazeroOn2 == true)
         {
             door1.isDoorOpen = true;
+
+            if(ProgressionManager.Instance.thisSessionTimeLine == ProgressionManager.ProgressionTimeLine.SecondRegionEntrance)
+            {
+                ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.SecondRegionBrazeros;
+            }
         }
         else if (isBrazeroOn1 == false || isBrazeroOn2 == false)
         {
@@ -140,12 +150,15 @@ public class Enigma2 : EnigmaTool
     {
         if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
         {
-            //door1.isDoorOpen = false;
-            forceClose = true;
-            isBrazeroOn1 = false;
-            isBrazeroOn2 = false;
-            //instantPlate1.isPressed = false;
-            //actionLever1.isPressed = false;
+            if(activatePlayerDetection == true)
+            {
+                //door1.isDoorOpen = false;
+                forceClose = true;
+                isBrazeroOn1 = false;
+                isBrazeroOn2 = false;
+                //instantPlate1.isPressed = false;
+                //actionLever1.isPressed = false;
+            }
         }
     }
 

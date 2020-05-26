@@ -17,6 +17,8 @@ public class CSManagerParry : BasicCutSceneManager
         playerUI.SetActive(true);
 
         base.EndOfCutScene();
+
+        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.ShieldParyUnlocked;
     }
 
     [ContextMenu("StartCutSceneParry")]

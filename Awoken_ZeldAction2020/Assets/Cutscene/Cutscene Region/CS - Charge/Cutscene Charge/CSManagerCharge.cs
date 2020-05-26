@@ -17,6 +17,8 @@ public class CSManagerCharge : BasicCutSceneManager
         playerUI.SetActive(true);
 
         base.EndOfCutScene();
+
+        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.ShieldChargeUnlock;
     }
 
     [ContextMenu("StartCutSceneCharge")]

@@ -82,6 +82,20 @@ public class Olympe2Room1 : EnigmaTool
         }
         else door1.isDoorOpen = false;
     }
+
+    public void DoTheEnigma()
+    {
+        isEnigmaDone = true;
+
+        state1 = true;
+        state2 = true;
+        state3 = true;
+
+        lever1.isPressed = true;
+        lever2.isPressed = true;
+        lever3.isPressed = true;
+    }
+
     IEnumerator Reset()
     {
         yield return new WaitForSeconds(1f);

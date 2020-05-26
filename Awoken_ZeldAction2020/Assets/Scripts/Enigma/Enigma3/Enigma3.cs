@@ -10,16 +10,21 @@ public class Enigma3 : EnigmaTool
     private DoorBehavior door1 = null;
     [SerializeField]
     Collider2D activationZone = null;
+    [SerializeField]
+    AltarBehaviour thisAltar = null;
     protected override void Start()
     {
-        door1.isDoorOpen = true;
+        //door1.isDoorOpen = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        EnigmaDone();
-        OpenTheDoor();
+        if(ProgressionManager.Instance.thisSessionTimeLine == ProgressionManager.ProgressionTimeLine.ThirdRegionEntrance)
+        {
+            EnigmaDone();
+            OpenTheDoor();
+        }
     }
     void EnigmaDone()
     {
@@ -31,18 +36,22 @@ public class Enigma3 : EnigmaTool
 
     void OpenTheDoor()
     {
-        if (isEnigmaDone == true)
+        if (isEnigmaDone == true && !thisAltar.buttonActivated)
         {
-            door1.isDoorOpen = true;
+            thisAltar.buttonActivated = true;
+            //door1.isDoorOpen = true;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other) //Looks if the Player enters the pressure plate
     {
-        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+        if(ProgressionManager.Instance.thisSessionTimeLine == ProgressionManager.ProgressionTimeLine.ThirdRegionEntrance)
         {
-            door1.isDoorOpen = false;
-            activationZone.enabled =false;
+            if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+            {
+                door1.isDoorOpen = false;
+                activationZone.enabled = false;
+            }
         }
     }
 }

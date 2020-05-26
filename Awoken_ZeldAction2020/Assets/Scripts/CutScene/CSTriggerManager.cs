@@ -26,6 +26,10 @@ public class CSTriggerManager : MonoBehaviour
     private bool dialogueExist = false;
     private bool dialogueIsFinish = false;
     /*[HideInInspector]*/ public bool shortCutByProgression = false;
+    [SerializeField]
+    bool advanceProgression = false;
+    [SerializeField]
+    ProgressionManager.ProgressionTimeLine targetProgressionState  = ProgressionManager.ProgressionTimeLine.NewAdventure;
 
     ActionLever actionLeverScript;
     DistanceLever distanceLeverScript;
@@ -123,6 +127,10 @@ public class CSTriggerManager : MonoBehaviour
             if (actionLeverScript.isPressed && !camExist)
             {
                 CamTransition();
+                if (advanceProgression)
+                {
+                    ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                }
             }
         }
         else if (distanceLever)
@@ -130,6 +138,10 @@ public class CSTriggerManager : MonoBehaviour
             if (distanceLeverScript.isPressed && !camExist)
             {
                 CamTransition();
+                if (advanceProgression)
+                {
+                    ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                }
             }
         }
         else if (instantPlate)
@@ -137,6 +149,10 @@ public class CSTriggerManager : MonoBehaviour
             if (instantPlateScript.isPressed && !camExist)
             {
                 CamTransition();
+                if (advanceProgression)
+                {
+                    ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                }
             }
         }
         else if (stayPlate)
@@ -144,6 +160,10 @@ public class CSTriggerManager : MonoBehaviour
             if (stayPlateScript.isPressed && !camExist)
             {
                 CamTransition();
+                if (advanceProgression)
+                {
+                    ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                }
             }
         }
     }                           //to detect which element is fill in the inspector

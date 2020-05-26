@@ -89,14 +89,31 @@ public class PlayerHealthSystem : BasicHealthSystem
     {
         if (!playerDead)
         {
-            playerDead = true;
-            PlayerMovement.playerRgb.velocity = Vector2.zero;
-            GameManager.Instance.PlayerDeath();
-            LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = 0.75f;
-            deathCam.SetActive(true);
-            GetComponentInChildren<PlayerAnimator>().Die();
-           
+            StartCoroutine(DeathFeedBack());           
         }
+    }
+
+    IEnumerator DeathFeedBack()
+    {
+        playerDead = true;
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
+
+        if (PlayerStatusManager.Instance.isBlocking)
+        {
+            GetComponent<PlayerShield>().DesactivateBlock();
+        }
+        if (PlayerStatusManager.Instance.isCharging)
+        {
+            GetComponent<PlayerCharge>().FastEndCharge();
+        }
+
+        yield return new WaitForEndOfFrame();
+
+        GameManager.Instance.PlayerDeath();
+        LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = 0.75f;
+        deathCam.SetActive(true);
+
+        GetComponentInChildren<PlayerAnimator>().Die();
     }
 
     public void Respawn()

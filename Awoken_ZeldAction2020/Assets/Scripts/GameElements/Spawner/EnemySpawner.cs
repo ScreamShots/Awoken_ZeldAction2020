@@ -95,6 +95,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        linkedAreaManager.allEnemySpawners.Remove(this);
+
+        foreach(GameObject enemy in enemiesSpawned)
+        {
+            linkedAreaManager.allOrphanEnemies.Add(enemy);
+        }
+    }
+
     public void KillAllEnnemies()
     {
         if (enemiesSpawned.Count > 0)

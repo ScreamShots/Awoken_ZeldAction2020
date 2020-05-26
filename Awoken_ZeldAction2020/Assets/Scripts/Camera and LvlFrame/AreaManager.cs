@@ -25,15 +25,19 @@ public class AreaManager : MonoBehaviour
     public bool allEnemyAreDead;
     [SerializeField]
     bool dungeonRoom = false;
+    [SerializeField]
+    public bool canSpawnEnemies = true;
 
     [HideInInspector]
-    public List<SpawnPlateform> allSpawnPlateforms;
+    public List<SpawnPlateform> allSpawnPlateforms =  new List<SpawnPlateform>();
     [HideInInspector]
-    public List<EnemySpawner> allEnemySpawners;
+    public List<EnemySpawner> allEnemySpawners = new List<EnemySpawner>();
     [HideInInspector]
-    public List<GameObject> allEnemiesToKill;
+    public List<GameObject> allEnemiesToKill = new List<GameObject>();
     [HideInInspector]
-    public List<GameObject> allTurrets;
+    public List<GameObject> allTurrets = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> allOrphanEnemies = new List<GameObject>();
 
     bool areaLoaded;
    
@@ -49,8 +53,6 @@ public class AreaManager : MonoBehaviour
         }
         thisAreaCam.Priority = 0;
         thisAreaCam.gameObject.SetActive(false);
-
-        allSpawnPlateforms = new List<SpawnPlateform>();
     }
 
     private void Update()
@@ -119,15 +121,20 @@ public class AreaManager : MonoBehaviour
                 turret.GetComponent<TurretShoot>().isActivated = true;
             }
         }
-        foreach (SpawnPlateform spawnPlateform in allSpawnPlateforms)
+
+        if (canSpawnEnemies)
         {
-            spawnPlateform.SpawnEnemy();
+            foreach (SpawnPlateform spawnPlateform in allSpawnPlateforms)
+            {
+                spawnPlateform.SpawnEnemy();
+            }
+            foreach (EnemySpawner spawner in allEnemySpawners)
+            {
+                spawner.spawnEnable = true;
+                StartCoroutine(spawner.FastEnemySpawn());
+            }
         }
-        foreach(EnemySpawner spawner in allEnemySpawners)
-        {
-            spawner.spawnEnable = true;
-            StartCoroutine(spawner.FastEnemySpawn());
-        }
+      
 
         areaLoaded = true;
     }
@@ -157,6 +164,16 @@ public class AreaManager : MonoBehaviour
                 turret.GetComponent<TurretShoot>().isActivated = false;
             }
         }
+        foreach (GameObject orphanEnemy in allOrphanEnemies)
+        {
+            if(orphanEnemy != null)
+            {
+                Instantiate(EnemyManager.Instance.cloud, orphanEnemy.transform.position, Quaternion.identity);
+                Destroy(orphanEnemy);
+            }
+        }
+
+        allOrphanEnemies = new List<GameObject>();
 
         areaLoaded = false;
 

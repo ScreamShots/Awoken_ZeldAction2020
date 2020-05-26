@@ -20,6 +20,8 @@ public class CSManagerStartRegion2 : BasicCutSceneManager
         playerUI.SetActive(true);
 
         base.EndOfCutScene();
+
+        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.SecondRegionEntrance;
     }
 
     [ContextMenu("StartCutSceneStartRegion2")]
