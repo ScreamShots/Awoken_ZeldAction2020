@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3378078797885936294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2407371582495871222}
+  - component: {fileID: 3857910785328146782}
+  m_Layer: 17
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2407371582495871222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378078797885936294}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9002305811674333041}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3857910785328146782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378078797885936294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88110ae27709b9d438f36dd5e2d20d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tuyauEnter: {fileID: 8300000, guid: 22fd1598d84de4d499348879d961c440, type: 3}
+  tuyauEnterVolume: 1
+  tuyauExit: {fileID: 8300000, guid: 22fd1598d84de4d499348879d961c440, type: 3}
+  tuyauExitVolume: 1
 --- !u!1 &9002305811674333042
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +77,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9002305813760718296}
+  - {fileID: 2407371582495871222}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,7 +94,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01499781, y: 0.3553903}
+  m_Offset: {x: -0.019806698, y: 0.3553903}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +105,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7500362, y: 0.36148238}
+  m_Size: {x: 0.8317872, y: 0.36148238}
   m_EdgeRadius: 0
 --- !u!114 &9002305811674333043
 MonoBehaviour:
@@ -74,6 +122,8 @@ MonoBehaviour:
   exit: {fileID: 0}
   bullet: {fileID: 0}
   bulletTimeTravel: 0
+  bulletIsEnter: 0
+  bulletInsideZone: 0
 --- !u!1 &9002305813760718299
 GameObject:
   m_ObjectHideFlags: 0

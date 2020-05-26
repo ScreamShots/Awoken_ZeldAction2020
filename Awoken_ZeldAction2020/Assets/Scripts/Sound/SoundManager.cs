@@ -40,9 +40,9 @@ public class SoundManager : MonoBehaviour
     public AudioSource parrySource;
     #endregion
 
- // = = =
+    // = = =
 
- // = = = [ MONOBEHAVIOR METHODS ] = = =
+    // = = = [ MONOBEHAVIOR METHODS ] = = =
 
     void Awake()
     {
@@ -129,6 +129,32 @@ public class SoundManager : MonoBehaviour
         }
 
         footStepsSource.pitch = 1;
+
+        return;
+    }
+
+    /// <summary>
+    /// Plays cube pushed only once.  
+    /// </summary>
+    public void PlayCubePushed(AudioSource cubePushSource, float volume = 1f, float pitch = 1f)
+    {
+        cubePushSource.pitch = pitch;
+        if (!cubePushSource.isPlaying)
+        {
+            cubePushSource.PlayOneShot(cubePushSource.clip, (sfxDefaultVolume * volume) * globalDefaultVolume);
+        }
+
+        cubePushSource.pitch = 1;
+
+        return;
+    }
+
+    /// <summary>
+    /// Stop cube pushed sound.  
+    /// </summary>
+    public void StopCubePushed(AudioSource cubePushSource)
+    {
+        cubePushSource.Stop();
 
         return;
     }
