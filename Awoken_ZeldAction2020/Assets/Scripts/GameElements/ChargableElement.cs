@@ -6,7 +6,7 @@ public class ChargableElement : MonoBehaviour
 {
     Animator elementAnimator = null;
     Collider2D elementCollider = null;
-    bool isDestroyed = false;
+    [HideInInspector] public bool isDestroyed = false;
 
     [SerializeField]
     ChargableElement[] linkedElements = null;
