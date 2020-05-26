@@ -25,6 +25,7 @@ public class CSTriggerManager : MonoBehaviour
     private bool instantPlate = false;
     private bool dialogueExist = false;
     private bool dialogueIsFinish = false;
+    /*[HideInInspector]*/ public bool shortCutByProgression = false;
 
     ActionLever actionLeverScript;
     DistanceLever distanceLeverScript;
@@ -80,8 +81,11 @@ public class CSTriggerManager : MonoBehaviour
 
     void Update()
     {
-        WhichElement();
-        PlayDialogue();  
+        if (!shortCutByProgression)
+        {
+            WhichElement();
+            PlayDialogue();
+        } 
     }
 
     void PlayDialogue()                              //depend if a dialogue exist or no : stop the camera & play dialogue at the triggered element

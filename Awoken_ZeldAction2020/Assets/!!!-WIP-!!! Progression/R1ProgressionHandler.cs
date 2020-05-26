@@ -76,12 +76,6 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     #endregion
 
-    protected override void Start()
-    {
-        base.Start();
-
-    }
-
     void EnigmaOneDone()
     {
         enigmaOneCube.transform.position = enigmaOneCubePosition;

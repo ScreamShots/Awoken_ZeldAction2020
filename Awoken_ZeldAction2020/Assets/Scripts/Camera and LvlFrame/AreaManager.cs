@@ -32,7 +32,7 @@ public class AreaManager : MonoBehaviour
     public List<EnemySpawner> allEnemySpawners;
     [HideInInspector]
     public List<GameObject> allEnemiesToKill;
-    //[HideInInspector]
+    [HideInInspector]
     public List<GameObject> allTurrets;
 
     bool areaLoaded;
@@ -55,20 +55,23 @@ public class AreaManager : MonoBehaviour
 
     private void Update()
     {
-        if(areaLoaded && mustKillAllEnemies && !allEnemyAreDead)
+        if(areaLoaded && !allEnemyAreDead)
         {
             allEnemiesToKill = allEnemiesToKill.Where(item => item != null).ToList();
 
             if(allEnemiesToKill.Count == 0)
             {
-                foreach (GameObject blocker in allLinkedBlockers)
+                if (mustKillAllEnemies)
                 {
-                    blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
-                }
-                foreach (GameObject transZone in allTransitionZone)
-                {
-                    transZone.SetActive(true);
-                }
+                    foreach (GameObject blocker in allLinkedBlockers)
+                    {
+                        blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
+                    }
+                    foreach (GameObject transZone in allTransitionZone)
+                    {
+                        transZone.SetActive(true);
+                    }
+                }                
 
                 allEnemyAreDead = true;
             }

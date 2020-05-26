@@ -14,7 +14,6 @@ public class PNJ_Vegetables : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(enigmaOne.isEnigmaDone);
         l_enigmaOneDone = enigmaOne.isEnigmaDone;
 
         if (enigmaOne.isEnigmaDone)

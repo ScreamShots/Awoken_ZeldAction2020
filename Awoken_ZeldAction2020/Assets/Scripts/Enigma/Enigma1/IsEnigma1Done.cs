@@ -10,19 +10,17 @@ public class IsEnigma1Done : EnigmaTool
 
     protected override void Start()
     {
-        Debug.Log(nbrOfFoodCollected);
         enigmaInstance = this;
     }
 
     public static void CollectFood()
     {
         nbrOfFoodCollected += 1;
-        Debug.Log(nbrOfFoodCollected);
 
         if (nbrOfFoodCollected == 3)
         {
-
             enigmaInstance.isEnigmaDone = true;
+            ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.VegetablesEnd;
         }
     }
 }

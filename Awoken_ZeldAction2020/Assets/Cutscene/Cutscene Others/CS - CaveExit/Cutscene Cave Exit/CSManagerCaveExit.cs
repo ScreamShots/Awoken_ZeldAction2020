@@ -18,7 +18,7 @@ public class CSManagerCaveExit : BasicCutSceneManager
 
         base.EndOfCutScene();
 
-        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.VegeteablesStart;
+        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.CaveOut;
     }
 
     [ContextMenu("StartCutSceneCaveExit")]

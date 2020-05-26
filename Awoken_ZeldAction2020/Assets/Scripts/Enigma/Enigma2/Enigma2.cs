@@ -21,8 +21,14 @@ public class Enigma2 : EnigmaTool
     #endregion
 
     #region Battle Statement
+    bool forceClose = false;
+
     [SerializeField]
-    private AreaManager autel;
+    private AreaManager autel = null;
+    [SerializeField]
+    private AltarBehaviour thisAltar = null;
+    //[HideInInspector]
+    public bool mustActivateAltar = false;
     //[SerializeField]
     //private GameObject chest;
     #endregion
@@ -58,6 +64,11 @@ public class Enigma2 : EnigmaTool
         ActivateTransition();
         EnableLightAfterBlending();
         OpenDoorDoublePlate();
+
+        if (mustActivateAltar)
+        {
+            KillAllEnemiesTest();
+        }
     }
 
     public void OpenDoorDoublePlate()
@@ -87,18 +98,18 @@ public class Enigma2 : EnigmaTool
 
     public void EnableLightAfterBlending()
     {
-        if (instantPlate1.isPressed == true)
+        if (instantPlate1.isPressed == true && forceClose == false)
         {
-            if (csTriggerScriptPlate.transitionCamFinish)
+            if (csTriggerScriptPlate.transitionCamFinish || csTriggerScriptPlate.shortCutByProgression)
             {
                 brazero1.SetActive(true);
                 isBrazeroOn1 = true;
             }
         }
 
-        if (actionLever1.isPressed == true)
+        if (actionLever1.isPressed == true && forceClose == false)
         {
-            if (csTriggerScriptLever.transitionCamFinish)
+            if (csTriggerScriptLever.transitionCamFinish || csTriggerScriptLever.shortCutByProgression)
             {
                 brazero2.SetActive(true);
                 isBrazeroOn2 = true;
@@ -129,11 +140,12 @@ public class Enigma2 : EnigmaTool
     {
         if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
         {
-            door1.isDoorOpen = false;
+            //door1.isDoorOpen = false;
+            forceClose = true;
             isBrazeroOn1 = false;
             isBrazeroOn2 = false;
-            instantPlate1.isPressed = false;
-            actionLever1.isPressed = false;
+            //instantPlate1.isPressed = false;
+            //actionLever1.isPressed = false;
         }
     }
 
@@ -146,6 +158,15 @@ public class Enigma2 : EnigmaTool
         else if (door2.isDoorOpen == true)
         {
             transitionZone.SetActive(true);
+        }
+    }
+
+    void KillAllEnemiesTest()
+    {
+        if (autel.allEnemyAreDead)
+        {
+            thisAltar.buttonActivated = true;
+            mustActivateAltar = false;
         }
     }
 }
