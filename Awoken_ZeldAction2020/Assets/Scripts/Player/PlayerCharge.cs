@@ -57,6 +57,8 @@ public class PlayerCharge : MonoBehaviour
 
     #endregion
 
+    [HideInInspector] public bool explosionIsPlaying = false;
+
     private void Start()
     {
         for (int i = 0; i < allChargeHitZones.Length; i++)                                      // Getting the ShieldHitZone Component of the referenced gameobjects
@@ -127,6 +129,7 @@ public class PlayerCharge : MonoBehaviour
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         GetComponent<PlayerAttack>().currentFury = 0;
         canCharge = true;
+        explosionIsPlaying = false;
         lastPos = transform.position;
         collisionDetection.layer = LayerMask.NameToLayer("Enemy");
         collisionDetectionSecurity.SetActive(true);
@@ -173,6 +176,7 @@ public class PlayerCharge : MonoBehaviour
         canCharge = false;
         trail.gameObject.SetActive(false);
         explosion.Play();
+        explosionIsPlaying = true;
         GetComponentInChildren<PlayerAnimator>().HardEndCharge();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, areaRadius);
         foreach (Collider2D enemy in hitEnemies)
@@ -210,6 +214,7 @@ public class PlayerCharge : MonoBehaviour
         GetComponentInChildren<PlayerAnimator>().Slam();
         yield return new WaitForSeconds(0.40f);
         explosion.Play();
+        explosionIsPlaying = true;
 
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, areaRadius);
