@@ -8,6 +8,11 @@ public class GameOverUI : MonoBehaviour
     GameObject deathUI = null;
     Animator deathUIAnimator = null;
 
+    [Space]
+    [Header("Death Sound")]
+    public AudioClip deathJungle;
+    [Range(0f, 1f)] public float deathJungleVolume = 0.5f;
+
     private void Start()
     {
         deathUI.SetActive(false);
@@ -20,6 +25,7 @@ public class GameOverUI : MonoBehaviour
         deathUI.SetActive(true);
         deathUIAnimator.enabled = true;
         deathUIAnimator.SetTrigger("Display");
+        SoundManager.Instance.PlaySfx(deathJungle, deathJungleVolume);
     }
 
     public void DisableDeathUIAnimator()
