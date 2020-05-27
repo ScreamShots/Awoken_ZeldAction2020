@@ -36,6 +36,7 @@ Transform:
   - {fileID: 506266973661878109}
   - {fileID: 506266973565926885}
   - {fileID: 2952340587437916203}
+  - {fileID: 2655616364969638397}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,6 +130,7 @@ MonoBehaviour:
   canTakeDmg: 1
   shieldOfEnemy: {fileID: 4670674669144742711, guid: 0ba9f86d6586a994a919ac5a28f236e0,
     type: 3}
+  protectedByPegase: 0
   flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
   flashTime: 0.5
   flashFadeTime: 0.5
@@ -397,6 +399,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3da18f7d6595a54a8484a6e6a775f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4178212732459319853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2655616364969638397}
+  - component: {fileID: 7695225396228265234}
+  m_Layer: 9
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2655616364969638397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178212732459319853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 506266972536926344}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7695225396228265234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178212732459319853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434c0c6233e88e34cbf366b1b382a8b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poulionDamage: {fileID: 8300000, guid: c6964b90e24bb6e43b238e7f41d6cf12, type: 3}
+  poulionDamageVolume: 0.5
+  poulionDeath: {fileID: 8300000, guid: 46cb56fe5e27c8649b4bdac2b14aa93b, type: 3}
+  poulionDeathVolume: 0.5
+  poulionAgro: {fileID: 8300000, guid: 9a7dae85ddcf52540969799a5a91d78f, type: 3}
+  poulionAgroVolume: 0.3
+  poulionCharge: {fileID: 8300000, guid: 95d194b9a31666f4abc0c79f4a1c6abe, type: 3}
+  poulionChargeVolume: 0.3
 --- !u!1 &6386901081656048590
 GameObject:
   m_ObjectHideFlags: 0

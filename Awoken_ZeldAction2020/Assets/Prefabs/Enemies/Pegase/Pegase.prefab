@@ -201,6 +201,7 @@ Transform:
   - {fileID: 264327009229165778}
   - {fileID: 264327010051723651}
   - {fileID: 3768341869753682158}
+  - {fileID: 4445776422916798614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -241,6 +242,7 @@ MonoBehaviour:
   currentHp: 0
   canTakeDmg: 1
   shieldOfEnemy: {fileID: 0}
+  protectedByPegase: 0
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5
@@ -468,3 +470,54 @@ Transform:
   m_Father: {fileID: 264327010056913480}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7597088007640028292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4445776422916798614}
+  - component: {fileID: 5260761473221919055}
+  m_Layer: 9
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4445776422916798614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597088007640028292}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 264327010056913480}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5260761473221919055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597088007640028292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a208b1d32d646439f28bdc94ce1d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pegaseDamage: {fileID: 8300000, guid: 55dcae16b1c680646b173df55cc1ab48, type: 3}
+  pegaseDamageVolume: 0.6
+  pegaseDeath: {fileID: 8300000, guid: 4b51b06033d40a546ba0614d7c679baa, type: 3}
+  pegaseDeathVolume: 0.6
+  pegaseTP: {fileID: 8300000, guid: a7688862ecc60d34cbcfd373f4f00ecb, type: 3}
+  pegaseTPVolume: 0.4
+  pegaseExhausted: {fileID: 8300000, guid: 84e193a3546776a4697b358945d866ed, type: 3}
+  pegaseExhaustedVolume: 0.5
