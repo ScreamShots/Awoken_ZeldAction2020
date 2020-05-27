@@ -44,6 +44,7 @@ public class EnemyHealthSystem : BasicHealthSystem
     [HideInInspector]
     public bool canFlash = false;
     bool canFadeFlash = false;
+    [SerializeField] private bool isAffectedByPegase = true;
 
     #region Variables
     private int itemNum;
@@ -145,7 +146,7 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     public void ActivatePegaseProtection()
     {
-        if (!shieldInstance.activeInHierarchy)
+        if (!shieldInstance.activeInHierarchy && isAffectedByPegase == true)
         {
             shieldInstance.SetActive(true);
             protectedByPegase = true;
@@ -155,7 +156,7 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     public void DesactivatePegaseProtection()
     {
-        if (shieldInstance.activeInHierarchy)
+        if (shieldInstance.activeInHierarchy && isAffectedByPegase == true)
         {
             shieldInstance.SetActive(false);
             protectedByPegase = false;
