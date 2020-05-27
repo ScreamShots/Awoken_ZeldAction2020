@@ -132,6 +132,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.3, y: 0.25}
   m_EdgeRadius: 0
+--- !u!1 &2414719224309472922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7876526373141522380}
+  - component: {fileID: 7337772721872706991}
+  m_Layer: 9
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7876526373141522380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414719224309472922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3877349471966037667}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7337772721872706991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414719224309472922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0254dac155cb0ab44bf4dec456dac8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zeusDamage:
+  - {fileID: 8300000, guid: 101b38acc0b25984f956056ff59faf69, type: 3}
+  - {fileID: 8300000, guid: 74370d559dc1fc047a86f8cc74f628e0, type: 3}
+  zeusDamageVolume: 0.5
 --- !u!1 &3877349471966037671
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +220,7 @@ Transform:
   - {fileID: 1647592546}
   - {fileID: 5755821714347063911}
   - {fileID: 7993428495777995873}
+  - {fileID: 7876526373141522380}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -213,6 +261,7 @@ MonoBehaviour:
   currentHp: 0
   canTakeDmg: 1
   shieldOfEnemy: {fileID: 0}
+  protectedByPegase: 0
   flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
   flashTime: 0.5
   flashFadeTime: 0.5
