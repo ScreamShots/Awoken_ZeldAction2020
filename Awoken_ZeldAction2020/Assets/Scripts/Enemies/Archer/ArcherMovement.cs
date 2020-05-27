@@ -50,6 +50,8 @@ public class ArcherMovement : MonoBehaviour
     private bool areRangesDisplayed = false;
     #endregion
 
+    [HideInInspector] public bool playerIsAggro = false;
+
     private void OnValidate()                                   //do stuff when a value is change within the inspector
     {
         #region Activate / Desactivate range circles on tick the var bool 
@@ -109,6 +111,7 @@ public class ArcherMovement : MonoBehaviour
         {
             SetDirection();
             isRetrait = false;
+            playerIsAggro = true;
             rb.velocity = direction * chaseSpeed * Time.fixedDeltaTime;
             GetComponent<ArcherAttack>().archerCanAttack = false;
         }
@@ -133,6 +136,7 @@ public class ArcherMovement : MonoBehaviour
         }
         else if(distance > chaseDistance)
         {
+            playerIsAggro = false;
             watchDirection = Direction.down;
             rb.velocity = Vector2.zero;
             GetComponent<ArcherAttack>().archerCanAttack = false;

@@ -117,6 +117,57 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.12}
   m_EdgeRadius: 0
+--- !u!1 &6251434829332794699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2992215637887409019}
+  - component: {fileID: 4603023397138168413}
+  m_Layer: 9
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2992215637887409019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251434829332794699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7408942957006063677}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4603023397138168413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251434829332794699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c43287a8bb9324883d111dce852724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  archerDamage: {fileID: 8300000, guid: 037ddb3a772470249939641804a84fd8, type: 3}
+  archerDamageVolume: 0.4
+  archerDeath: {fileID: 8300000, guid: 680ecb85b0b812c49bf728c7054d047a, type: 3}
+  archerDeathVolume: 0.4
+  archerAgro: {fileID: 8300000, guid: fb69a5c68d643814aaede8d2df969d3f, type: 3}
+  archernAgroVolume: 0.3
+  archerShoot: {fileID: 8300000, guid: 11705c7db8e23764194ca04ad64b3b6d, type: 3}
+  archerShootVolume: 0.3
 --- !u!1 &7408942955329442412
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +367,7 @@ Transform:
   - {fileID: 5405033374428895737}
   - {fileID: 7668245286677637594}
   - {fileID: 5114243624016402242}
+  - {fileID: 2992215637887409019}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -357,6 +409,7 @@ MonoBehaviour:
   canTakeDmg: 1
   shieldOfEnemy: {fileID: 5224011070959991468, guid: 8fb9f9151dc4c664ea9b171d54764b99,
     type: 3}
+  protectedByPegase: 0
   flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
   flashTime: 0.5
   flashFadeTime: 0.5

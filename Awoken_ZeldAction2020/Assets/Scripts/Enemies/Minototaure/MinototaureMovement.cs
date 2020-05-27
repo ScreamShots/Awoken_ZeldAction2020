@@ -121,6 +121,8 @@ public class MinototaureMovement : MonoBehaviour
     private bool areRangesDisplayed = false;
     #endregion
 
+    [HideInInspector] public bool playerIsAggro = false;
+
     private void OnValidate()                                   
     {
         #region Activate / Desactivate range circles on tick the var bool 
@@ -187,6 +189,7 @@ public class MinototaureMovement : MonoBehaviour
             }
             else if (playerDistance <= playerDetectionDistance)
             {
+                playerIsAggro = true;
                 playerInAttackRange = false;
                 playerDetected = true;
                 if (!minototaureCooldown)
@@ -200,6 +203,7 @@ public class MinototaureMovement : MonoBehaviour
             }
             else                                                                                //else change bool saying the player is to far (for random Move behaviour)
             {
+                playerIsAggro = false;
                 if (!minototaureCooldown)
                 {
                     minototaureHealthScript.canTakeDmg = true;
