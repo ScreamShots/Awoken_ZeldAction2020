@@ -38,6 +38,8 @@ public class HealthPickUp : MonoBehaviour
     public bool isPicked;
     #endregion
 
+    private PickUpSound pickUpSoundScript;
+
     private void Start()
     {
         if (PlayerManager.Instance != null)
@@ -46,6 +48,8 @@ public class HealthPickUp : MonoBehaviour
         }
 
         timer = timeBeforeDestroy;
+
+        pickUpSoundScript = GetComponentInChildren<PickUpSound>();
     }
 
     private void Update()
@@ -86,6 +90,7 @@ public class HealthPickUp : MonoBehaviour
             {
                 detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().Heal(healToRegen);
                 Destroy(gameObject);
+                SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
             }
             else
             {
@@ -93,6 +98,7 @@ public class HealthPickUp : MonoBehaviour
                 {
                     detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().Heal(healToRegen);
                     Destroy(gameObject);
+                    SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
                 }
             }
         }
