@@ -65,6 +65,9 @@ public class PlayerSound : MonoBehaviour
     public AudioClip chargeExplosion;
     [Range(0f, 1f)] public float chargeExplosionVolume = 0.5f;
 
+    public AudioClip furryBarFull;
+    [Range(0f, 1f)] public float furryBarFullVolume = 0.5f;
+
     [Space]
     [Header("Shield Sound")]
     public AudioClip breakShield;
@@ -106,6 +109,7 @@ public class PlayerSound : MonoBehaviour
     private bool shieldIsOut = false;
     private bool elementBlock = false;
     private bool elementParry = false;
+    private bool furryBarIsFull = false;
     #endregion
 
     void Start()
@@ -127,6 +131,7 @@ public class PlayerSound : MonoBehaviour
 
         NoStamina();
         ExplosionCharge();
+        FurryIsFull();
         ShieldTakeOut();
         ElementBlock();
         Parry();
@@ -318,6 +323,22 @@ public class PlayerSound : MonoBehaviour
         else
         {
             explosionIsPlay = false;
+        }
+    }
+
+    void FurryIsFull()
+    {
+        if(playerAttackScript.currentFury == playerAttackScript.maxFury)
+        {
+            if (!furryBarIsFull)
+            {
+                furryBarIsFull = true;
+                SoundManager.Instance.PlaySfx(furryBarFull, furryBarFullVolume);
+            }
+        }
+        else
+        {
+            furryBarIsFull = false;
         }
     }
 

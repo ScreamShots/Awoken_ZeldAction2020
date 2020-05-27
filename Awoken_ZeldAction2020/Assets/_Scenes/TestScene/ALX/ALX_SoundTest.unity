@@ -197,6 +197,8 @@ MonoBehaviour:
   playerRunChargeVolume: 0.3
   chargeExplosion: {fileID: 8300000, guid: 99fbb5c106476b54ca6393389559cb48, type: 3}
   chargeExplosionVolume: 0.15
+  furryBarFull: {fileID: 8300000, guid: 2da177b398531bf4c934b96f00af1a10, type: 3}
+  furryBarFullVolume: 0.4
   breakShield: {fileID: 8300000, guid: c365011d839a6ce488e42b59c4737f24, type: 3}
   breakShieldVolume: 0.3
   shieldOut: {fileID: 8300000, guid: c7a322be75d259049ae906cbea74f9ed, type: 3}
@@ -435,11 +437,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8838596885034999636, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a, type: 3}
 --- !u!1 &1529427322
@@ -572,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 755508699557413138, guid: de99bf1cf7c03704d8b28451602118f8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 755508699557413140, guid: de99bf1cf7c03704d8b28451602118f8,
         type: 3}
