@@ -49,7 +49,10 @@ public class TuyauEnterSound : MonoBehaviour
                 if (!bulletIsExit)
                 {
                     bulletIsExit = true;
-                    SoundManager.Instance.PlaySfx(tuyauExit, tuyauExitVolume);
+                    if (tuyauEnterScript.bulletTimeTravel >= 0.2)
+                    {
+                        SoundManager.Instance.PlaySfx(tuyauExit, tuyauExitVolume);
+                    }
                 }
 
                 bulletIsEnter = false;

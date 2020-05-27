@@ -7,7 +7,7 @@ public class TuyauEnter : MonoBehaviour
     public Transform exit;
     public GameObject bullet;
     [SerializeField]
-    private float bulletTimeTravel = 0;
+    public float bulletTimeTravel = 0;
     [HideInInspector] public bool bulletIsEnter = false;
     [HideInInspector] public bool bulletInsideZone = false;
 
