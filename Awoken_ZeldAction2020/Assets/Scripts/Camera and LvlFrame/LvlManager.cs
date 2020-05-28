@@ -54,7 +54,6 @@ public class LvlManager : MonoBehaviour
         }
         StartCoroutine(LvlStarts[startZoneIndex].InitializeFirstCam());
         PlayerManager.Instance.transform.position = LvlStarts[startZoneIndex].pointOfRespawn.position;
-        Debug.Log("test");
     }
     
 

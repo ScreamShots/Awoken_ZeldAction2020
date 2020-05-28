@@ -139,6 +139,9 @@ MonoBehaviour:
   - {fileID: 7756039121783444715}
   pauseUI: {fileID: 2803644056130123603}
   blackMelt: {fileID: 816639881256173676}
+  areaToLoad: 0
+  sceneToLoad: 0
+  bossRoom: 0
 --- !u!114 &9101460006611814369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathUI: {fileID: 8289946564245783668}
+  deathJungle: {fileID: 8300000, guid: 024a8d2239f5cbe42aff9cc8ecd0a10a, type: 3}
+  deathJungleVolume: 0.5
 --- !u!114 &4376248640292230207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +201,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisSessionTimeLine: 1
+  playerHp: 100
+  playerStamina: 40
+  playerFury: 100
 --- !u!114 &3673448479408987953
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class IsEnigma1Done : EnigmaTool
 {
-    [Space]
+    /*[Space]
     [Header("Engima Sound")]
     public AudioClip partialResolve;
     [Range(0f, 1f)] public float partialResolveVolume = 0.5f;
@@ -15,7 +15,7 @@ public class IsEnigma1Done : EnigmaTool
 
     private bool firstVegetable = false;
     private bool secondVegetable = false;
-    private bool thirdVegetable = false;
+    private bool thirdVegetable = false;*/
 
     public static int nbrOfFoodCollected;
     static IsEnigma1Done enigmaInstance;
@@ -27,15 +27,17 @@ public class IsEnigma1Done : EnigmaTool
 
     public static void CollectFood()
     {
-        if (FoodPickUp.nbrOfFood == 1 && !firstVegetable)
+        //if (FoodPickUp.nbrOfFood == 1 && !firstVegetable)
         nbrOfFoodCollected += 1;
 
         if (nbrOfFoodCollected == 3)
         {
-            firstVegetable = true;
-            SoundManager.Instance.PlaySfx(partialResolve, partialResolveVolume);
+            //firstVegetable = true;
+            enigmaInstance.isEnigmaDone = true;
+            ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.VegetablesEnd;
+            //SoundManager.Instance.PlaySfx(partialResolve, partialResolveVolume);
         }
-        else if (FoodPickUp.nbrOfFood == 2 && !secondVegetable)
+        /*else if (FoodPickUp.nbrOfFood == 2 && !secondVegetable)
         {
             secondVegetable = true;
             SoundManager.Instance.PlaySfx(partialResolve, partialResolveVolume);
@@ -47,7 +49,7 @@ public class IsEnigma1Done : EnigmaTool
             thirdVegetable = true;
             SoundManager.Instance.PlaySfx(globalResolve, globalResolveVolume);
             enigmaInstance.isEnigmaDone = true;
-            ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.VegetablesEnd;
-        }
+            
+        }*/
     }
 }

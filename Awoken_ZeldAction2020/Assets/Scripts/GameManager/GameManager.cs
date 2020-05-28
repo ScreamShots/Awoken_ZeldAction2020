@@ -170,6 +170,7 @@ public class GameManager : MonoBehaviour
 
     public void OutDeathUI()
     {
+    
         foreach(Button button in allGameOverButtons)
         {
             button.gameObject.GetComponent<Image>().enabled = false;
@@ -198,6 +199,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerRespawn()
     {
+
         Time.fixedDeltaTime = 0.02f;
         Time.timeScale = 1;
         if (!bossRoom)
@@ -244,7 +246,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TransitionTimeBeforeLaunchBack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         blackMelt.MeltOut();
     }

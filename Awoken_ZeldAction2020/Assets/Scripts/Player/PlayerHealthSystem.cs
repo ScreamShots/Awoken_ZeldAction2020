@@ -125,7 +125,10 @@ public class PlayerHealthSystem : BasicHealthSystem
         ProgressionManager.Instance.playerHp = maxHp;
         ProgressionManager.Instance.playerFury = 0;
         ProgressionManager.Instance.playerStamina = GetComponent<PlayerShield>().maxStamina;
+
+        currentHp = maxHp;
         playerShieldScript.currentStamina = playerShieldScript.maxStamina;
+        
         GetComponentInChildren<PlayerAnimator>().Respawn();
         deathCam.SetActive(false);
         LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = LvlManager.Instance.defaultblendTime;        

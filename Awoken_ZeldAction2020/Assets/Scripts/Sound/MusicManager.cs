@@ -76,12 +76,6 @@ public class MusicManager : MonoBehaviour
 
 // = = = [ MONOBEHAVIOR METHODS ] = = =
 
-    void Awake()
-    {
-        currentScene = SceneManager.GetActiveScene();
-        sceneNumber = currentScene.buildIndex;
-        WhichSceneWeAre();
-    }
 
 // = = =
 
@@ -89,7 +83,12 @@ public class MusicManager : MonoBehaviour
 
     void Update()
     {
+        currentScene = SceneManager.GetActiveScene();
+        sceneNumber = currentScene.buildIndex;
+        WhichSceneWeAre();
         PlayMusic();
+
+
     }
 
     void WhichSceneWeAre()
