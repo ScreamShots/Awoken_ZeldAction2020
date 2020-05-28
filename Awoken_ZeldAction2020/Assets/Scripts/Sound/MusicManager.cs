@@ -11,6 +11,9 @@ using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
+    public static MusicManager Instance;
+    [HideInInspector] public bool playerDead = false;
+
 // = = = [ VARIABLES DEFINITION ] = = =
 
     #region Inspector Settings
@@ -72,23 +75,45 @@ public class MusicManager : MonoBehaviour
 
     #endregion
 
- // = = =
+// = = =
 
 // = = = [ MONOBEHAVIOR METHODS ] = = =
 
+    void Awake()
+    {
+        #region Make Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        #endregion
+    }
 
-// = = =
+ // = = =
 
-// = = = [RUNNING STATE] = = =
+ // = = = [RUNNING STATE] = = =
 
     void Update()
     {
         currentScene = SceneManager.GetActiveScene();
         sceneNumber = currentScene.buildIndex;
-        WhichSceneWeAre();
+
+        if (!playerDead)
+        {
+            WhichSceneWeAre();
+        }
+        else
+        {
+            whichScene = enumScene.Undefined;
+            currentMusic = null;
+        }
+        
         PlayMusic();
-
-
     }
 
     void WhichSceneWeAre()

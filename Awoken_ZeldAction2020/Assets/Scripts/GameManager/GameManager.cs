@@ -165,6 +165,9 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.Death;
         onEndSlowTime.AddListener(deathUI.ActiveDeathUI);
+        SoundManager.Instance.FadeOutMusic(3f);
+        SoundManager.Instance.StopAmbiance();
+        MusicManager.Instance.playerDead = true;
         StartCoroutine(SlowTime(slowTimeLengthDeath, slowTimeCurveDeath, true));
     }
 
@@ -180,12 +183,14 @@ public class GameManager : MonoBehaviour
         if (!bossRoom)
         {
             blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+            MusicManager.Instance.playerDead = false;
             blackMelt.MeltIn();
         }
         else
         {
             ReloadScene();
             blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+            MusicManager.Instance.playerDead = false;
             blackMelt.MeltIn();
         }
 
@@ -224,6 +229,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToScene()
     {
+        SoundManager.Instance.sfxSource.volume = 0;
         if(sceneToLoad == 10)
         {
             bossRoom = true;
@@ -239,14 +245,24 @@ public class GameManager : MonoBehaviour
         {
             LvlManager.Instance.InitializeLvl(areaToLoad);
         }
-
-        blackMelt.MeltOut();
+        StartCoroutine(SceneTransitionSecurityTime());
     }
 
+    IEnumerator SceneTransitionSecurityTime()
+    {
+        yield return new WaitForSeconds(1f);
+        blackMelt.MeltOut();
+        blackMelt.onMeltOutEnd.AddListener(ActiveBackFXSound);
+    }
+
+    void ActiveBackFXSound()
+    {
+        SoundManager.Instance.sfxSource.volume = 1f;
+    }
 
     IEnumerator TransitionTimeBeforeLaunchBack()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(2f);
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         blackMelt.MeltOut();
     }

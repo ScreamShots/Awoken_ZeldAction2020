@@ -228,7 +228,7 @@ public class SoundManager : MonoBehaviour
         float currentTime = 0;
         while (currentTime < fadeTime)
         {
-            currentTime += Time.deltaTime;
+            currentTime += Time.unscaledDeltaTime;
             musicSource.volume = Mathf.Lerp(currentVolume, 0, currentTime / fadeTime);
 
             yield return null;
