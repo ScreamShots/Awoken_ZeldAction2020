@@ -38,11 +38,13 @@ public class SoundManager : MonoBehaviour
     public AudioSource sfxSource;
     public AudioSource footStepsSource;
     public AudioSource parrySource;
+
+    private bool fadeOut = false;
     #endregion
 
-    // = = =
+ // = = =
 
-    // = = = [ MONOBEHAVIOR METHODS ] = = =
+ // = = = [ MONOBEHAVIOR METHODS ] = = =
 
     void Awake()
     {
@@ -63,22 +65,69 @@ public class SoundManager : MonoBehaviour
 
 // = = = [ CLASS METHODS ] = = =
 
-    /// <summary>
-    /// Start playing a given music.
-    /// </summary>
+    // Start playing ambiance sound.
+    public void PlayAmbiance(AudioClip ambiance, float volume = 1f)
+    {
+        ambianceSource.Stop();
+
+        ambianceSource.clip = ambiance;
+        ambianceSource.volume = (ambiancesDefaultVolume * volume) * globalDefaultVolume;
+        ambianceSource.Play();
+
+        return;
+    }
+
+    // Stop all ambiance sound.
+    public void StopAmbiance()
+    {
+        ambianceSource.Stop();
+    }
+
+    // Start playing a given music.
     public void PlayMusic(AudioClip music, float volume = 1f)
     {
         musicSource.clip = music;
         musicSource.volume = (musicDefaultVolume * volume) * globalDefaultVolume;
-
         musicSource.Play();
 
         return;
     }
 
-    /// <summary>
-    /// Plays a given sfx. Specific volume and pitch can be specified in parameters.
-    /// </summary>
+    // Fade in a given music.
+    public void FadeInMusic(AudioClip music, float volume = 1f, float fadeTime = 1f)
+    {
+        StopAllCoroutines();
+        fadeOut = false;
+
+        musicSource.Stop();
+        StartCoroutine(FadeIn(music, volume, fadeTime));
+
+        return;
+    }
+
+    // Fade out a given music.
+    public void FadeOutMusic(float fadeTime = 1f)
+    {
+        StopAllCoroutines();
+        fadeOut = false;
+
+        StartCoroutine(FadeOut(fadeTime));
+
+        return;
+    }
+
+    // Fade out and Fade in a given music.
+    public void FadeOutFadeInMusic(AudioClip music, float volume = 1f, float fadeInTime = 1f, float fadeOutTime = 1f)
+    {
+        StopAllCoroutines();
+        fadeOut = false;
+
+        StartCoroutine(FadeOutThenFadeIn(music, volume, fadeInTime, fadeOutTime));
+
+        return;
+    }
+
+    // Plays a given sfx. Specific volume and pitch can be specified in parameters.
     public void PlaySfx(AudioClip sfx, float volume = 1f, float pitch = 1f)
     {
         sfxSource.pitch = pitch;
@@ -89,9 +138,7 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// Plays a given sfx 3D. Specific 3D settings can be specified in GameObject AudioSource.
-    /// </summary>
+    // Plays a given sfx 3D. Specific 3D settings can be specified in GameObject AudioSource.
     public void PlaySfx3D(AudioSource sfx3D, float volume = 1f, float pitch = 1f)
     {
         sfx3D.pitch = pitch;
@@ -102,9 +149,7 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// Plays a random sfx from a list.
-    /// </summary>
+    // Plays a random sfx from a list.
     public void PlayRandomSfx(AudioClip[] sfxRandom, float volume = 1f, float pitch = 1f)
     {
         int randomIndex = Random.Range(0, sfxRandom.Length);
@@ -117,9 +162,7 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// Plays footSteps only once.  
-    /// </summary>
+    // Plays footSteps only once.  
     public void PlayFootSteps(AudioClip footSteps, float volume = 1f, float pitch = 1f)
     {
         footStepsSource.pitch = pitch;
@@ -133,9 +176,7 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// Plays cube pushed only once.  
-    /// </summary>
+    // Plays cube pushed only once.  
     public void PlayCubePushed(AudioSource cubePushSource, float volume = 1f, float pitch = 1f)
     {
         cubePushSource.pitch = pitch;
@@ -149,9 +190,7 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// Stop cube pushed sound.  
-    /// </summary>
+    // Stop cube pushed sound.  
     public void StopCubePushed(AudioSource cubePushSource)
     {
         cubePushSource.Stop();
@@ -159,9 +198,7 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// Plays parry sound.  
-    /// </summary>
+    // Plays parry sound.  
     public void PlayParry(AudioClip parry, float volume = 1f, float pitch = 1f)
     {
         parrySource.pitch = pitch;
@@ -172,9 +209,7 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// Stop parry sound.  
-    /// </summary>
+    // Stop parry sound.  
     public void StopParry()
     {
         parrySource.Stop();
@@ -182,5 +217,48 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
- // = = =
+// = = =
+
+// = = = [ IENUMERATOR METHODS ] = = =
+
+    IEnumerator FadeOut(float fadeTime)
+    {
+        fadeOut = true;
+        float currentVolume = musicSource.volume;
+        float currentTime = 0;
+        while (currentTime < fadeTime)
+        {
+            currentTime += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(currentVolume, 0, currentTime / fadeTime);
+
+            yield return null;
+        }
+        musicSource.Stop();
+        fadeOut = false;
+    }
+
+    IEnumerator FadeIn(AudioClip music, float volume, float fadeTime)
+    {
+        PlayMusic(music, volume);
+        musicSource.volume = 0f;
+
+        float currentTime = 0;
+        while(currentTime < fadeTime)
+        {
+            currentTime += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(0, (musicDefaultVolume * volume) * globalDefaultVolume, currentTime / fadeTime);
+
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeOutThenFadeIn(AudioClip music, float volume, float fadeInTime, float fadeOutTime)
+    {
+        StartCoroutine(FadeOut(fadeOutTime));
+        yield return new WaitUntil(() => fadeOut == false);
+        StartCoroutine(FadeIn(music, volume, fadeInTime));
+    }
+
+// = = =
+
 }
