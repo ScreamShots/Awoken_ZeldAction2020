@@ -1866,7 +1866,7 @@ MonoBehaviour:
   gateEnter: {fileID: 6703945986299872525}
   gaterExit: {fileID: 978119911}
   bossEndState1Script: {fileID: 125195864}
-  bossEndState2Script: {fileID: 0}
+  bossEndState2Script: {fileID: 1453847671}
   bossStartBattleScript: {fileID: 368231928}
 --- !u!1 &219531215
 GameObject:
@@ -19280,7 +19280,6 @@ MonoBehaviour:
   inDialogue: 0
   zeus: {fileID: 1850111281}
   lightning: {fileID: 1182127123}
-  cutSceneUI: {fileID: 1471576375}
   cinemachine: {fileID: 850893412}
   playerUI: {fileID: 478922113}
 --- !u!1 &1298403006 stripped
@@ -20412,6 +20411,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376248640292230207, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: thisSessionTimeLine
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8230288079264719069, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
@@ -23014,6 +23018,50 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43d8c3ffb0c46d444b5c62eeb120f8f8, type: 3}
+--- !u!1 &1874391519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1874391521}
+  - component: {fileID: 1874391520}
+  m_Layer: 0
+  m_Name: LvlManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1874391520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874391519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26395c8c7c62378418c6ad5d4378c08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CutScene_FirstFightZeus: {fileID: 1297355581}
+--- !u!4 &1874391521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874391519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2683651, y: -1.0406662, z: -59.603607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1878399202
 PrefabInstance:
   m_ObjectHideFlags: 0

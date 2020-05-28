@@ -10,8 +10,8 @@ public class CSManagerBossFirstMeet : BasicCutSceneManager
     GameObject zeus = null;
     [SerializeField]
     GameObject lightning = null;
-    [SerializeField]
-    GameObject cutSceneUI = null;
+    /*[SerializeField]
+    GameObject cutSceneUI = null;*/
     [SerializeField]
     GameObject cinemachine = null;
     [SerializeField]
@@ -21,11 +21,21 @@ public class CSManagerBossFirstMeet : BasicCutSceneManager
     {
         zeus.SetActive(false);
         lightning.SetActive(false);
-        cutSceneUI.SetActive(false);
+        //cutSceneUI.SetActive(false);
         cinemachine.SetActive(false);
-        playerUI.SetActive(true);
+        //playerUI.SetActive(true);
+
+        // I commented that so it transit rightly with black melt of scene transition (Rémi)
 
         base.EndOfCutScene();
+
+        GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
+        GameManager.Instance.areaToLoad = 0;
+        GameManager.Instance.sceneToLoad = 2;
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
+        GameManager.Instance.blackMelt.MeltIn();
     }
 
     [ContextMenu("StartCutSceneBossFirstWalk")]

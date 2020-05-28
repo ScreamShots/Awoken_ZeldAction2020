@@ -83,7 +83,7 @@ public class PlayerShield : MonoBehaviour
             allParyZoneScript.Add(allParyHitZones[i].name, allParyHitZones[i].GetComponent<ParyHitZone>());
         }
 
-        currentStamina = maxStamina;                                                            //Initializing stamina
+        //currentStamina = maxStamina;                                                            //Initializing stamina
     }
 
     private void Update()

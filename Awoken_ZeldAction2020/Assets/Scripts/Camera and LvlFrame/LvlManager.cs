@@ -42,7 +42,7 @@ public class LvlManager : MonoBehaviour
     {
         lvlCamBrain = GetComponentInChildren<CinemachineBrain>();
         defaultblendTime = lvlCamBrain.m_DefaultBlend.m_Time;
-        InitializeLvl(0);
+        //InitializeLvl(0);
     }
 
     public void InitializeLvl(int startZoneIndex)
@@ -53,6 +53,8 @@ public class LvlManager : MonoBehaviour
             areaManager.UnLoadArea();
         }
         StartCoroutine(LvlStarts[startZoneIndex].InitializeFirstCam());
+        PlayerManager.Instance.transform.position = LvlStarts[startZoneIndex].pointOfRespawn.position;
+        Debug.Log("test");
     }
     
 

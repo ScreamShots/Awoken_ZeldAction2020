@@ -84,11 +84,14 @@ public class EnemySpawner : MonoBehaviour
         {
             l_spawnEnable = spawnEnable;
 
-            for (int i = 0; i < enemiesSpawned.Count; i++)
+            if(linkedAreaManager != null)
             {
-                linkedAreaManager.allEnemiesToKill.Remove(enemiesSpawned[i]);
-                Instantiate(EnemyManager.Instance.cloud, enemiesSpawned[i].transform.position, Quaternion.identity);
-                Destroy(enemiesSpawned[i]);
+                for (int i = 0; i < enemiesSpawned.Count; i++)
+                {
+                    linkedAreaManager.allEnemiesToKill.Remove(enemiesSpawned[i]);
+                    Instantiate(EnemyManager.Instance.cloud, enemiesSpawned[i].transform.position, Quaternion.identity);
+                    Destroy(enemiesSpawned[i]);
+                }
             }
 
             enemiesSpawned = new List<GameObject>();
@@ -97,11 +100,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnDestroy()
     {
-        linkedAreaManager.allEnemySpawners.Remove(this);
-
-        foreach(GameObject enemy in enemiesSpawned)
+        if(linkedAreaManager != null)
         {
-            linkedAreaManager.allOrphanEnemies.Add(enemy);
+            linkedAreaManager.allEnemySpawners.Remove(this);
+
+            foreach (GameObject enemy in enemiesSpawned)
+            {
+                linkedAreaManager.allOrphanEnemies.Add(enemy);
+            }
         }
     }
 

@@ -40,7 +40,7 @@ public class ArenaManager : MonoBehaviour
 
     [Header("Gates")]
     public CSManagerBossEndState1 bossEndState1Script;
-    public CSManagerBossEndState1 bossEndState2Script;
+    public CSManagerBossEndState2 bossEndState2Script;
     public CSManagerBossStartBattle bossStartBattleScript;
 
     #endregion

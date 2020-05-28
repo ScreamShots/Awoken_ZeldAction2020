@@ -55,9 +55,16 @@ public class GameManager : MonoBehaviour
 
     [Header("BlackMelt")]
 
-    [SerializeField]
-    BlackMelt blackMelt = null;
+    public BlackMelt blackMelt = null;
 
+    //LoadScene
+
+    [HideInInspector]
+    public int areaToLoad = 0;
+    [HideInInspector]
+    public int sceneToLoad = 0;
+    [HideInInspector]
+    public bool bossRoom = false;
 
 
     void Awake()
@@ -80,6 +87,11 @@ public class GameManager : MonoBehaviour
         pauseUI.SetActive(false);
         blackMelt.gameObject.SetActive(false);
         if (onEndSlowTime == null) onEndSlowTime = new UnityEvent();
+
+        //Test Transition
+
+        LoadLvlAfterTransition(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+
     }
 
     private void Update()
@@ -164,15 +176,34 @@ public class GameManager : MonoBehaviour
             button.enabled = false;
         }
         blackMelt.gameObject.SetActive(true);
-        blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
-        blackMelt.MeltIn();
+        if (!bossRoom)
+        {
+            blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+            blackMelt.MeltIn();
+        }
+        else
+        {
+            ReloadScene();
+            blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+            blackMelt.MeltIn();
+        }
+
+    }
+
+    public void PlayerRespawnBoss()
+    {
+        blackMelt.onMeltInEnd.AddListener(PlayerRespawnBoss);
+        blackMelt.MeltOut();
     }
 
     public void PlayerRespawn()
     {
         Time.fixedDeltaTime = 0.02f;
         Time.timeScale = 1;
-        PlayerManager.Instance.GetComponent<PlayerHealthSystem>().Respawn();
+        if (!bossRoom)
+        {
+            PlayerManager.Instance.GetComponent<PlayerHealthSystem>().Respawn();
+        }
         deathUI.DesactiveDeathUI();
         StartCoroutine(TransitionTimeBeforeLaunchBack());
     }
@@ -188,6 +219,28 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void GoToScene()
+    {
+        if(sceneToLoad == 10)
+        {
+            bossRoom = true;
+        }
+        SceneManager.LoadScene(sceneToLoad);
+        blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
+        SceneManager.sceneLoaded += LoadLvlAfterTransition;
+    }
+
+    void LoadLvlAfterTransition(Scene scene, LoadSceneMode mode)
+    {
+        if (LvlManager.Instance != null)
+        {
+            LvlManager.Instance.InitializeLvl(areaToLoad);
+        }
+
+        blackMelt.MeltOut();
+    }
+
 
     IEnumerator TransitionTimeBeforeLaunchBack()
     {

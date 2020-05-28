@@ -610,7 +610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3453740053562019914
 RectTransform:
   m_ObjectHideFlags: 0
@@ -899,6 +899,7 @@ GameObject:
   - component: {fileID: 3453740054351218694}
   - component: {fileID: 3453740054351218695}
   - component: {fileID: 3453740054351218688}
+  - component: {fileID: 4931296109960045623}
   - component: {fileID: 3453740054351218689}
   - component: {fileID: 3453740054351218690}
   - component: {fileID: 3453740054351218692}
@@ -993,6 +994,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4931296109960045623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453740054351218691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a973d612f934b2c49a70192e93d3362c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaBar: {fileID: 3453740053562019915}
+  staminaBarScript: {fileID: 3453740054351218690}
+  furryBar: {fileID: 5301849128334953269}
+  furryBarScript: {fileID: 6950524077667845294}
 --- !u!114 &3453740054351218689
 MonoBehaviour:
   m_ObjectHideFlags: 0

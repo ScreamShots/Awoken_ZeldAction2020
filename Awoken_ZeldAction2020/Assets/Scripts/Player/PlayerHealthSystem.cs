@@ -59,7 +59,7 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     protected override void Start()
     {
-        base.Start();
+        //base.Start();
         playerShieldScript = GetComponent<PlayerShield>();
         playerMoveScript = GetComponent<PlayerMovement>();
         playerRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -89,6 +89,10 @@ public class PlayerHealthSystem : BasicHealthSystem
     {
         if (!playerDead)
         {
+            ProgressionManager.Instance.playerHp = maxHp;
+            ProgressionManager.Instance.playerFury = 0;
+            ProgressionManager.Instance.playerStamina = GetComponent<PlayerShield>().maxStamina;
+
             StartCoroutine(DeathFeedBack());           
         }
     }
@@ -118,13 +122,16 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     public void Respawn()
     {
-        currentHp = maxHp;
+        ProgressionManager.Instance.playerHp = maxHp;
+        ProgressionManager.Instance.playerFury = 0;
+        ProgressionManager.Instance.playerStamina = GetComponent<PlayerShield>().maxStamina;
         playerShieldScript.currentStamina = playerShieldScript.maxStamina;
         GetComponentInChildren<PlayerAnimator>().Respawn();
         deathCam.SetActive(false);
-        LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = LvlManager.Instance.defaultblendTime;
-        LvlManager.Instance.InitializeLvl(LvlManager.Instance.lastLoadedstartZoneIndex);
+        LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = LvlManager.Instance.defaultblendTime;        
+        LvlManager.Instance.InitializeLvl(GameManager.Instance.areaToLoad);
         playerDead = false;
+
     }
 
     void HitFlash()

@@ -59,6 +59,12 @@ public class ProgressionManager : MonoBehaviour
 
     public Dictionary<int, bool> R1Vegetables = new Dictionary<int, bool>();
 
+    public Dictionary<string, bool> PlayerCapacity = new Dictionary<string, bool>();
+
+    public float playerHp = 100;
+    public float playerStamina = 40;
+    public float playerFury = 100;
+
     private void Awake()
     {
         #region MakeSingleton
@@ -77,6 +83,108 @@ public class ProgressionManager : MonoBehaviour
         R1Vegetables.Add(2, false);
         R1Vegetables.Add(3, false);
         #endregion
+
+        #region Player
+
+        PlayerCapacity.Add("Shield", false);
+        PlayerCapacity.Add("Block", false);
+        PlayerCapacity.Add("Pary", false);
+        PlayerCapacity.Add("Charge", false);
+
+        switch (thisSessionTimeLine)
+        {
+            case ProgressionTimeLine.NewAdventure:
+                SetPlayerCapacity(false, false, false, false);
+                break;
+            case ProgressionTimeLine.VegeteablesStart:
+                SetPlayerCapacity(false, false, false, false);
+                break;
+            case ProgressionTimeLine.VegetablesEnd:
+                SetPlayerCapacity(false, false, false, false);
+                break;
+            case ProgressionTimeLine.ZeusReveal:
+                SetPlayerCapacity(true, false, false, false);
+                break;
+            case ProgressionTimeLine.TempleFirstEntrance:
+                SetPlayerCapacity(true, false, false, false);
+                break;
+            case ProgressionTimeLine.ShieldBlockUnlock:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.CaveOut:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.TempleSecondEntrance:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.OlympeFloorOneStart:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.OlympeFloorOneLREntrance:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.OlympeFloorOneEnd:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.SecondRegionEntrance:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.SecondRegionBrazeros:
+                SetPlayerCapacity(true, true, false, false);
+                break;
+            case ProgressionTimeLine.ShieldParyUnlocked:
+                SetPlayerCapacity(true, true, true, false);
+                break;
+            case ProgressionTimeLine.SecondRegionOut:
+                SetPlayerCapacity(true, true, true, false);
+                break;
+            case ProgressionTimeLine.OlympeFloorTwoStart:
+                SetPlayerCapacity(true, true, true, false);
+                break;
+            case ProgressionTimeLine.OlympeFloorTwoLREntrance:
+                SetPlayerCapacity(true, true, true, false);
+                break;
+            case ProgressionTimeLine.OlympeFloorTwoEnd:
+                SetPlayerCapacity(true, true, true, false);
+                break;
+            case ProgressionTimeLine.ThirdRegionEntrance:
+                SetPlayerCapacity(true, true, true, false);
+                break;
+            case ProgressionTimeLine.ShieldChargeUnlock:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+            case ProgressionTimeLine.ThirdRegionOut:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+            case ProgressionTimeLine.OlympeFloorThreeStart:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+            case ProgressionTimeLine.OlympeFloorThreeLREntrance:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+            case ProgressionTimeLine.OlympeFloorThreeEnded:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+            case ProgressionTimeLine.ZeusFightStarted:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+            case ProgressionTimeLine.EndAdventure:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+            default:
+                SetPlayerCapacity(true, true, true, true);
+                break;
+        }
+
+        #endregion
+    }
+
+    void SetPlayerCapacity(bool shield, bool block, bool pary, bool charge)
+    {
+        PlayerCapacity["Shield"] = shield;
+        PlayerCapacity["Block"] = block;
+        PlayerCapacity["Pary"] = pary;
+        PlayerCapacity["Charge"] = charge;
     }
 
 }

@@ -12,20 +12,55 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
 
+    [Header("Player Elements")]
+    [Header("Rendering Elements")]
+    
     [SerializeField]
     GameObject classicRender = null;
     [SerializeField]
-    GameObject attackZone = null;
+    GameObject cutsceneRenderer = null;
+    [SerializeField]
+    AnimatorOverrideController classicController = null;
+    [SerializeField]
+    AnimatorOverrideController noShieldController = null;
+
+    [Header("Gameplay Elements")]
+
+    [Header ("Global Components")]
+
     [SerializeField]
     GameObject collisionDetection = null;
     [SerializeField]
     GameObject hitBox = null;
     [SerializeField]
+    PlayerHealthSystem healthSystem = null;
+
+    [Header("Attack Components")]
+
+    [SerializeField]
+    GameObject attackZone = null;
+    [SerializeField]
+    PlayerAttack attackScript = null;
+
+    [Header("Block Components")]
+
+    [SerializeField]
     GameObject shieldZone = null;
     [SerializeField]
-    GameObject paryZone = null;
+    PlayerShield playerShieldScript = null;
+
+    [Header("Pary Components")]
+
     [SerializeField]
-    GameObject cutsceneRenderer = null;
+    GameObject paryZone = null;
+
+    [Header("ChargeComponents")]
+
+    [SerializeField]
+    GameObject chargeZones = null;
+    [SerializeField]
+    PlayerCharge chargeScript = null;
+
     //[SerializeField]
     //GameObject playerSound = null;
 
@@ -47,6 +82,11 @@ public class PlayerManager : MonoBehaviour
         #endregion
     }
 
+    private void Start()
+    {
+        InitializePlayer();
+    }
+
     public void PlayerInitializeCutScene()
     {
         classicRender.SetActive(false);
@@ -65,10 +105,103 @@ public class PlayerManager : MonoBehaviour
         attackZone.SetActive(true);
         collisionDetection.SetActive(true);
         hitBox.SetActive(true);
-        shieldZone.SetActive(true);
-        paryZone.SetActive(true);
+        if (ProgressionManager.Instance.PlayerCapacity["Block"])
+        {
+            shieldZone.SetActive(true);
+        }
+            
+        if (ProgressionManager.Instance.PlayerCapacity["Pary"])
+        {
+            paryZone.SetActive(true);
+        }
         //playerSound.SetActive(true);
         cutsceneRenderer.SetActive(false);
     }
 
+    public void InitializePlayer()
+    {
+        if (!ProgressionManager.Instance.PlayerCapacity["Shield"])
+        {
+            // change animator Controller to no shield controller
+            //classicRender.GetComponent<Animator>().runtimeAnimatorController = noShieldController;
+        }
+
+        if (!ProgressionManager.Instance.PlayerCapacity["Block"])
+        {
+            shieldZone.SetActive(false);
+            playerShieldScript.enabled = false;
+        }
+        else
+        {
+            playerShieldScript.currentStamina = ProgressionManager.Instance.playerStamina;
+        }
+
+        if (!ProgressionManager.Instance.PlayerCapacity["Pary"])
+        {
+            Debug.Log("Desactive Pary");
+            paryZone.SetActive(false);            
+        }
+
+        if (!ProgressionManager.Instance.PlayerCapacity["Charge"])
+        {
+            chargeZones.SetActive(false);
+            chargeScript.enabled = false;
+        }
+        else
+        {
+            attackScript.currentFury = ProgressionManager.Instance.playerFury;
+        }
+
+        healthSystem.currentHp = ProgressionManager.Instance.playerHp;
+
+    }
+
+    public void ActivateShield()
+    {
+        classicRender.GetComponent<Animator>().runtimeAnimatorController = classicController;
+    }
+
+    public void ActivateBlock()
+    {
+        if(HUDManager.Instance != null)
+        {
+            HUDManager.Instance.ActivateBlockHUD();
+        }
+
+        shieldZone.SetActive(false);
+        playerShieldScript.enabled = false;
+
+        playerShieldScript.currentStamina = playerShieldScript.maxStamina;
+
+    }
+
+    public void ActivatePary()
+    {
+        Debug.Log("Active Pary");
+        paryZone.SetActive(true);
+    }
+
+    public void ActivateCharge()
+    {
+        if(HUDManager.Instance != null)
+        {
+            HUDManager.Instance.ActivateChargeHUD();
+        }
+        chargeZones.SetActive(true);
+        chargeScript.enabled = true;
+
+        attackScript.currentFury = attackScript.maxFury;
+    }
+
+    [ContextMenu("Activate all capacity")]
+    public void ActivateAll()
+    {
+        ActivateShield();
+
+        ActivateBlock();
+
+        ActivatePary();
+
+        ActivateCharge();
+    }
 }

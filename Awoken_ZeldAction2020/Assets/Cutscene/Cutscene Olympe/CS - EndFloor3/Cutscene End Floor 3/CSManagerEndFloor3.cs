@@ -20,6 +20,10 @@ public class CSManagerEndFloor3 : BasicCutSceneManager
         playerUI.SetActive(true);
 
         base.EndOfCutScene();
+
+        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorThreeLREntrance;
+        GameManager.Instance.areaToLoad = 1;
+        gameObject.SetActive(false);
     }
 
     [ContextMenu("StartCutSceneStartEndFloor3")]

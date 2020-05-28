@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8505841336542493080}
   - component: {fileID: 6472978564636932187}
   - component: {fileID: 4376248640292230207}
+  - component: {fileID: 3673448479408987953}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -194,6 +195,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisSessionTimeLine: 1
+--- !u!114 &3673448479408987953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144188320564182202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8aa58be0eeb6b46bfb1334b32a4f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &350285195995653498
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +528,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.3584906, g: 0.3534176, b: 0.3534176, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.6698113, g: 0.6413759, b: 0.6413759, a: 0.8235294}
     m_PressedColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1241,9 +1254,9 @@ GameObject:
   - component: {fileID: 6949005976516093514}
   - component: {fileID: 7573797452302505300}
   - component: {fileID: 2841253808764479320}
-  - component: {fileID: 2434771518913839059}
   - component: {fileID: 5623348026280303025}
   - component: {fileID: 2671355246176508475}
+  - component: {fileID: 5974275702376930122}
   m_Layer: 5
   m_Name: DeathUI
   m_TagString: Untagged
@@ -1319,23 +1332,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &2434771518913839059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8289946564245783668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!95 &5623348026280303025
 Animator:
   serializedVersion: 3
@@ -1381,6 +1377,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5974275702376930122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8289946564245783668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &8414747665113274970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1490,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.3584906, g: 0.3534176, b: 0.3534176, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.6698113, g: 0.6413759, b: 0.6413759, a: 0.8235294}
     m_PressedColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}

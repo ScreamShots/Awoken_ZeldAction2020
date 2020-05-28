@@ -50,7 +50,7 @@ public class BigRoomOlympe3 : EnigmaTool
 
     void EnigmaDone()
     {
-        if(plate1 == true && lever1 == true)
+        if(plate1.isPressed == true && lever1.isPressed == true)
         {
             isEnigmaDone = true;
         }

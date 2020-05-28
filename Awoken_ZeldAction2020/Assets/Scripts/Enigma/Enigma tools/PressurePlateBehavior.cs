@@ -37,7 +37,7 @@ public abstract class PressurePlateBehavior : MonoBehaviour
         }
         if (other.gameObject.tag == "ObjectToMove")
         {
-            elementsOnPlate.Remove(other.transform.root.gameObject);
+            elementsOnPlate.Remove(other.gameObject);
             if (elementsOnPlate.Count == 0)
             {
                 isPressed = false;

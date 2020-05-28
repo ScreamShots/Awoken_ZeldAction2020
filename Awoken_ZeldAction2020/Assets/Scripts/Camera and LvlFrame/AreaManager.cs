@@ -14,8 +14,7 @@ public class AreaManager : MonoBehaviour
     [SerializeField]
     private GameObject[] allLinkedBlockers = null;
 
-    [SerializeField]
-    private Transform pointOfRespawn = null;
+    public Transform pointOfRespawn = null;
     
     public Collider2D freeZoneCollider;
 
