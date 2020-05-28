@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4013410571542377000}
   - component: {fileID: 294685260143952098}
   - component: {fileID: 3174447038663973631}
+  - component: {fileID: 8501675288432567306}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -71,7 +72,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -167,7 +168,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -537,3 +538,45 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8501675288432567306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6089955142018737845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a32f54c73d68f14b9e318ab196cca4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMusic: {fileID: 0}
+  whichScene: 0
+  musicFadeIn: 2
+  musicFadeOut: 2
+  aubergeAmbiance: {fileID: 8300000, guid: 2c2145410cc22e44d96485417f05bc1c, type: 3}
+  aubergeAmbianceVolume: 0.3
+  forestAmbiance: {fileID: 8300000, guid: edbab2af73af56c449718a225ab08663, type: 3}
+  forestAmbianceVolume: 0.1
+  caveAmbiance: {fileID: 8300000, guid: e8decd97e9b7ec745ba513803074c570, type: 3}
+  caveAmbianceVolume: 0.2
+  arenaAmbiance: {fileID: 8300000, guid: 3a793decd9cfb0b4a9c297613842e4e1, type: 3}
+  arenaAmbianceVolume: 0.15
+  aubergeMusic: {fileID: 8300000, guid: a00d8601148d91e4a99a8bac267d22f7, type: 3}
+  aubergeMusicVolume: 0.2
+  region1Music: {fileID: 8300000, guid: 4c4b67b24ab759d4e97c2471c5ed80a7, type: 3}
+  region1MusicVolume: 0.2
+  region2Music: {fileID: 8300000, guid: 57ebf8133c51f844ba8ceb0116c0527c, type: 3}
+  region2MusicVolume: 0.2
+  region3Music: {fileID: 8300000, guid: 5a0c8cf9946c9df4789cb7de6e7dbbe2, type: 3}
+  region3MusicVolume: 0.2
+  caveMusic: {fileID: 8300000, guid: e102c9e57bfb4a241bd37f890ddffcde, type: 3}
+  caveMusicVolume: 0.2
+  arenaMusic: {fileID: 8300000, guid: 4b4339dc9421fc94e9fcab2b665b794c, type: 3}
+  arenaMusicVolume: 0.1
+  olympeMusic: {fileID: 8300000, guid: 96a2583a52b80f64caa9df8667d467ef, type: 3}
+  olympeMusicVolume: 0.2
+  templeMusic: {fileID: 8300000, guid: 60637c48e6cff0144aee2c197179f740, type: 3}
+  templeMusicVolume: 0.2
+  menuMusic: {fileID: 8300000, guid: 7db4562993b2d784cb60af1758a3ffa3, type: 3}
+  menuMusicVolume: 0.2

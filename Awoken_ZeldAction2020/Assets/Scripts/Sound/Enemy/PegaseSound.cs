@@ -19,7 +19,7 @@ public class PegaseSound : MonoBehaviour
     public AudioClip pegaseTP;
     [Range(0f, 1f)] public float pegaseTPVolume = 0.5f;
 
-    public AudioClip pegaseExhausted;
+    public AudioSource pegaseExhausted;
     [Range(0f, 1f)] public float pegaseExhaustedVolume = 0.5f;
 
     private EnemyHealthSystem enemyHealthScript;
@@ -67,12 +67,13 @@ public class PegaseSound : MonoBehaviour
             if (!pegaseIsExhausted)
             {
                 pegaseIsExhausted = true;
-                SoundManager.Instance.PlaySfx(pegaseExhausted, pegaseExhaustedVolume);
+                SoundManager.Instance.PlayCubePushed(pegaseExhausted, pegaseExhaustedVolume);
             }
         }
         else
         {
             pegaseIsExhausted = false;
+            SoundManager.Instance.StopCubePushed(pegaseExhausted);
         }
     }
 
