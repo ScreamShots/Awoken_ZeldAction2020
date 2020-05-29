@@ -39,8 +39,8 @@ public class Enigma2 : EnigmaTool
     #endregion
 
     #region Last Part Statement
-    [SerializeField]
-    private DistanceLever distanceLever1 = null;
+    [HideInInspector]
+    public DistanceLever distanceLever1 = null;
     [SerializeField]
     private DoorBehavior door2 = null;
     [SerializeField]
