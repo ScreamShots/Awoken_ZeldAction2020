@@ -295,4 +295,10 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(FadeComboTimer());
         }
     }
+
+    public void RegenFurry(float furryValue)           
+    {
+        currentFury += furryValue;                         //use this function to regen furry
+        if (currentFury > maxFury) currentFury = maxFury;
+    }
 }
