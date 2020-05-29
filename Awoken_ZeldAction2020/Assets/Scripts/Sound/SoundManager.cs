@@ -61,6 +61,19 @@ public class SoundManager : MonoBehaviour
         #endregion
     }
 
+    void Update()
+    {
+        if (musicSource.clip != null)
+        {
+            musicSource.volume = (musicDefaultVolume * MusicManager.Instance.currentMusicVolume) * globalDefaultVolume;
+        }
+
+        if (ambianceSource.clip != null)
+        {
+            ambianceSource.volume = (ambiancesDefaultVolume * MusicManager.Instance.currentAmbianceVolume) * globalDefaultVolume;
+        }
+    }
+
 // = = =
 
 // = = = [ CLASS METHODS ] = = =

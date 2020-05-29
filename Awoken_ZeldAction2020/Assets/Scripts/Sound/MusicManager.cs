@@ -19,6 +19,8 @@ public class MusicManager : MonoBehaviour
     #region Inspector Settings
     [Header("Scene information")]
     public AudioClip currentMusic;
+    [HideInInspector] public float currentMusicVolume;
+    [HideInInspector] public float currentAmbianceVolume;
     public enum enumScene { Undefined, Menu, Inn, Cave, Temple, Region1, Region2, Region3, OlympeFloor, BossArena };
     public enumScene whichScene = enumScene.Undefined;
 
@@ -167,12 +169,14 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = menuMusic;
+                        currentMusicVolume = menuMusicVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(menuMusic, menuMusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.StopAmbiance();
                     }
                     else
                     {
                         currentMusic = menuMusic;
+                        currentMusicVolume = menuMusicVolume;
                         SoundManager.Instance.FadeInMusic(menuMusic, menuMusicVolume, musicFadeIn);
                         SoundManager.Instance.StopAmbiance();
                     }
@@ -185,12 +189,16 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = aubergeMusic;
+                        currentMusicVolume = aubergeMusicVolume;
+                        currentAmbianceVolume = aubergeAmbianceVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(aubergeMusic, aubergeMusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.PlayAmbiance(aubergeAmbiance, aubergeAmbianceVolume);
                     }
                     else
                     {
                         currentMusic = aubergeMusic;
+                        currentMusicVolume = aubergeMusicVolume;
+                        currentAmbianceVolume = aubergeAmbianceVolume;
                         SoundManager.Instance.FadeInMusic(aubergeMusic, aubergeMusicVolume, musicFadeIn);
                         SoundManager.Instance.PlayAmbiance(aubergeAmbiance, aubergeAmbianceVolume);
                     }
@@ -203,12 +211,16 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = caveMusic;
+                        currentMusicVolume = caveMusicVolume;
+                        currentAmbianceVolume = caveAmbianceVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(caveMusic, caveMusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.PlayAmbiance(caveAmbiance, caveAmbianceVolume);
                     }
                     else
                     {
                         currentMusic = caveMusic;
+                        currentMusicVolume = caveMusicVolume;
+                        currentAmbianceVolume = caveAmbianceVolume;
                         SoundManager.Instance.FadeInMusic(caveMusic, caveMusicVolume, musicFadeIn);
                         SoundManager.Instance.PlayAmbiance(caveAmbiance, caveAmbianceVolume);
                     }
@@ -221,12 +233,14 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = templeMusic;
+                        currentMusicVolume = templeMusicVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(templeMusic, templeMusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.StopAmbiance();
                     }
                     else
                     {
                         currentMusic = templeMusic;
+                        currentMusicVolume = templeMusicVolume;
                         SoundManager.Instance.FadeInMusic(templeMusic, templeMusicVolume, musicFadeIn);
                         SoundManager.Instance.StopAmbiance();
                     }
@@ -239,12 +253,16 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = region1Music;
+                        currentMusicVolume = region1MusicVolume;
+                        currentAmbianceVolume = forestAmbianceVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(region1Music, region1MusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.PlayAmbiance(forestAmbiance, forestAmbianceVolume);
                     }
                     else
                     {
                         currentMusic = region1Music;
+                        currentMusicVolume = region1MusicVolume;
+                        currentAmbianceVolume = forestAmbianceVolume;
                         SoundManager.Instance.FadeInMusic(region1Music, region1MusicVolume, musicFadeIn);
                         SoundManager.Instance.PlayAmbiance(forestAmbiance, forestAmbianceVolume);
                     }
@@ -257,12 +275,16 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = region2Music;
+                        currentMusicVolume = region2MusicVolume;
+                        currentAmbianceVolume = forestAmbianceVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(region2Music, region2MusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.PlayAmbiance(forestAmbiance, forestAmbianceVolume);
                     }
                     else
                     {
                         currentMusic = region2Music;
+                        currentMusicVolume = region2MusicVolume;
+                        currentAmbianceVolume = forestAmbianceVolume;
                         SoundManager.Instance.FadeInMusic(region2Music, region2MusicVolume, musicFadeIn);
                         SoundManager.Instance.PlayAmbiance(forestAmbiance, forestAmbianceVolume);
                     }
@@ -275,12 +297,14 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = region3Music;
+                        currentMusicVolume = region3MusicVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(region3Music, region3MusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.StopAmbiance();
                     }
                     else
                     {
                         currentMusic = region3Music;
+                        currentMusicVolume = region3MusicVolume;
                         SoundManager.Instance.FadeInMusic(region3Music, region3MusicVolume, musicFadeIn);
                         SoundManager.Instance.StopAmbiance();
                     }
@@ -293,12 +317,14 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = olympeMusic;
+                        currentMusicVolume = olympeMusicVolume;
                         SoundManager.Instance.FadeOutFadeInMusic(olympeMusic, olympeMusicVolume, musicFadeIn, musicFadeOut);
                         SoundManager.Instance.StopAmbiance();
                     }
                     else
                     {
                         currentMusic = olympeMusic;
+                        currentMusicVolume = olympeMusicVolume;
                         SoundManager.Instance.FadeInMusic(olympeMusic, olympeMusicVolume, musicFadeIn);
                         SoundManager.Instance.StopAmbiance();
                     }
@@ -311,12 +337,16 @@ public class MusicManager : MonoBehaviour
                     if (currentMusic != null)
                     {
                         currentMusic = arenaMusic;
+                        currentMusicVolume = arenaMusicVolume;
+                        currentAmbianceVolume = arenaAmbianceVolume;
                         SoundManager.Instance.PlayAmbiance(arenaAmbiance, arenaAmbianceVolume);
                         SoundManager.Instance.FadeOutMusic();
                     }
                     else
                     {
                         currentMusic = arenaMusic;
+                        currentMusicVolume = arenaMusicVolume;
+                        currentAmbianceVolume = arenaAmbianceVolume;
                         SoundManager.Instance.PlayAmbiance(arenaAmbiance, arenaAmbianceVolume);
                     }
                 }
