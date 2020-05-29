@@ -11,6 +11,7 @@ public class R3ProgressionDetector : MonoBehaviour
             if (ProgressionManager.Instance.thisSessionTimeLine == ProgressionManager.ProgressionTimeLine.ShieldChargeUnlock)
             {
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.ThirdRegionOut;
+                ProgressionManager.Instance.SaveTheProgression();
             }
         }
     }

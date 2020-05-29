@@ -22,6 +22,7 @@ public class CSManagerStartRegion3 : BasicCutSceneManager
         base.EndOfCutScene();
 
         ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.ThirdRegionEntrance;
+        ProgressionManager.Instance.SaveTheProgression();
     }
 
     [ContextMenu("StartCutSceneStartRegion3")]

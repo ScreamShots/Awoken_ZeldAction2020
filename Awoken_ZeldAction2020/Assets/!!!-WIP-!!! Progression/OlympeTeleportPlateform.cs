@@ -82,30 +82,37 @@ public class OlympeTeleportPlateform : MonoBehaviour
             case ProgressionManager.ProgressionTimeLine.TempleFirstEntrance:
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.ShieldBlockUnlock; 
                 LaunchTransition(10, 0);
+                ProgressionManager.Instance.SaveTheProgression();
                 break;
             case ProgressionManager.ProgressionTimeLine.TempleSecondEntrance:
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorOneStart;
                 LaunchTransition(7, 0);
+                ProgressionManager.Instance.SaveTheProgression();
                 break;
             case ProgressionManager.ProgressionTimeLine.OlympeFloorOneLREntrance:
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorOneEnd;
                 LaunchTransition(4, 4);
+                ProgressionManager.Instance.SaveTheProgression();
                 break;
             case ProgressionManager.ProgressionTimeLine.SecondRegionOut:
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorTwoStart;
                 LaunchTransition(8, 0);
+                ProgressionManager.Instance.SaveTheProgression();
                 break;
             case ProgressionManager.ProgressionTimeLine.OlympeFloorTwoLREntrance:
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorTwoEnd;
                 LaunchTransition(4, 4);
+                ProgressionManager.Instance.SaveTheProgression();
                 break;
             case ProgressionManager.ProgressionTimeLine.ThirdRegionOut:
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorThreeStart;
                 LaunchTransition(9, 0);
+                ProgressionManager.Instance.SaveTheProgression();
                 break;
             case ProgressionManager.ProgressionTimeLine.OlympeFloorThreeLREntrance:
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorThreeEnded;
                 LaunchTransition(10, 0);
+                ProgressionManager.Instance.SaveTheProgression();
                 break;
             default:
                 Debug.Log("We can't use teleporter right now");

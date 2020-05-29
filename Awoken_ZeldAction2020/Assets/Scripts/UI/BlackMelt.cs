@@ -12,7 +12,7 @@ public class BlackMelt : MonoBehaviour
     [HideInInspector]
     public Animator blackMeltAnimator;
     [SerializeField]
-    GameObject loadingPoulion;
+    GameObject loadingPoulion = null;
 
     private void Start()
     {

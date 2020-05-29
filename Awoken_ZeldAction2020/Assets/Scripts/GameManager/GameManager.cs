@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,14 +12,6 @@ public class GameManager : MonoBehaviour
 
     public enum GameState {Running, Pause, ProjectilePary, LvlFrameTransition, Dialogue, Death}
     public GameState gameState = GameState.Running;
-
-    [Header("DevTools")]
-
-    [SerializeField] [Range(0,1)]
-    float timeScaleRatio = 1;
-    float l_timeScaleRatio = 1;
-    [SerializeField]
-    float currentTimeScale = 0;
 
     [Header("TimeManagement")]
 
@@ -52,6 +45,7 @@ public class GameManager : MonoBehaviour
     GameObject pauseUI = null;
     bool gameIsPause = false;
     GameState lastGameState;
+    GameObject lastES = null;
 
     [Header("BlackMelt")]
 
@@ -65,6 +59,8 @@ public class GameManager : MonoBehaviour
     public int sceneToLoad = 0;
     [HideInInspector]
     public bool bossRoom = false;
+
+    bool mainMenu = true;
 
 
     void Awake()
@@ -96,27 +92,26 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        currentTimeScale = Time.timeScale;
-
-        if(l_timeScaleRatio != timeScaleRatio)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            Time.timeScale = 1 * timeScaleRatio;
-            l_timeScaleRatio = timeScaleRatio;
+            mainMenu = true;
         }
-
+        else
+        {
+            mainMenu = false;
+        }
 
         if (Input.GetButtonDown("Pause"))
         {
-            if (gameState != GameState.Pause)
+            if (gameState == GameState.Running /*&& !mainMenu*/)
             {
                 StartGamePause();
             }
             else if(gameState == GameState.Pause)
             {
-                EndGamePause();
+                StartCoroutine(EndGamePause());
             }
         }
-
     }
 
     public void ProjectileParyStart(GameObject target)
@@ -140,17 +135,23 @@ public class GameManager : MonoBehaviour
     {
         lastGameState = gameState;
         gameState = GameState.Pause;
+
+        if(EventSystem.current != null)
+        {
+            lastES = EventSystem.current.gameObject;
+            EventSystem.current.gameObject.SetActive(false);
+        }
+
         gameIsPause = true;
         Time.timeScale = 0;
         pauseUI.SetActive(true);
     }
 
-    public void EndGamePause()
+    public IEnumerator EndGamePause()
     {
-        gameState = lastGameState;
-        gameIsPause = false;
+        yield return new WaitForEndOfFrame();
 
-        if(lastGameState == GameState.ProjectilePary)
+        if (lastGameState == GameState.ProjectilePary)
         {
             Time.timeScale = currentSlowValue;
         }
@@ -159,6 +160,13 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
         pauseUI.SetActive(false);
+        if (lastES != null)
+        {
+            lastES.SetActive(true);
+            lastES = null;
+        }
+        gameState = lastGameState;
+        gameIsPause = false;
     }
 
     public void PlayerDeath()

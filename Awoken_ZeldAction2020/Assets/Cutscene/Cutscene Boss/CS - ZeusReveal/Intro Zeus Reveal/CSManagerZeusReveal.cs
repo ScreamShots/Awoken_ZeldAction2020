@@ -27,5 +27,6 @@ public class CSManagerZeusReveal : BasicCutSceneManager
         ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.ZeusReveal;
         ProgressionManager.Instance.PlayerCapacity["Shield"] = true;
         PlayerManager.Instance.ActivateShield();
+        ProgressionManager.Instance.SaveTheProgression();
     }
 }

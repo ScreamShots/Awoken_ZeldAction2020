@@ -10,12 +10,12 @@ public class ProgressionManager : MonoBehaviour
     public enum ProgressionTimeLine
     {
         NewAdventure = 1,               // When the player launch a new game
-        //SAVE HERE
         VegeteablesStart = 2,           //After he leave the inn for the first time
         VegetablesEnd = 3,              //After he collected all the vegetables
         ZeusReveal = 4,
         //SAVE HERE
         TempleFirstEntrance = 5,        //When he walk in the temple for the first time     
+        //SAVE HERE
         ShieldBlockUnlock = 6,          //After the CutScene in the Cave
         CaveOut = 7,                    //After the cutscene Outside the Cave
         //SAVE HERE
@@ -65,8 +65,13 @@ public class ProgressionManager : MonoBehaviour
     public float playerStamina = 40;
     public float playerFury = 100;
 
+    public int currentSceneIndex = 1;
+    public int currentAreaIndex = 0;
+
     private void Awake()
     {
+        SaveSystem.DebugPath();
+
         #region MakeSingleton
         if (Instance == null)
         {
@@ -185,6 +190,151 @@ public class ProgressionManager : MonoBehaviour
         PlayerCapacity["Block"] = block;
         PlayerCapacity["Pary"] = pary;
         PlayerCapacity["Charge"] = charge;
+    }
+
+    public void SaveTheProgression()
+    {
+        switch (thisSessionTimeLine)
+        {
+            case ProgressionTimeLine.NewAdventure:
+                currentSceneIndex = 1;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.VegeteablesStart:
+                currentSceneIndex = 4;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.VegetablesEnd:
+                currentSceneIndex = 1;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.ZeusReveal:
+                currentSceneIndex = 1;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.TempleFirstEntrance:
+                currentSceneIndex = 3;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.ShieldBlockUnlock:
+                currentSceneIndex = 2;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.CaveOut:
+                currentSceneIndex = 4;
+                currentAreaIndex = 3;
+                break;
+            case ProgressionTimeLine.TempleSecondEntrance:
+                currentSceneIndex = 3;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.OlympeFloorOneStart:
+                currentSceneIndex = 7;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.OlympeFloorOneLREntrance:
+                currentSceneIndex = 7;
+                currentAreaIndex = 1;
+                break;
+            case ProgressionTimeLine.OlympeFloorOneEnd:
+                currentSceneIndex = 4;
+                currentAreaIndex = 4;
+                break;
+            case ProgressionTimeLine.SecondRegionEntrance:
+                currentSceneIndex = 5;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.SecondRegionBrazeros:
+                currentSceneIndex = 5;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.ShieldParyUnlocked:
+                currentSceneIndex = 5;
+                currentAreaIndex = 1;
+                break;
+            case ProgressionTimeLine.SecondRegionOut:
+                currentSceneIndex = 4;
+                currentAreaIndex = 1;
+                break;
+            case ProgressionTimeLine.OlympeFloorTwoStart:
+                currentSceneIndex = 8;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.OlympeFloorTwoLREntrance:
+                currentSceneIndex = 8;
+                currentAreaIndex = 1;
+                break;
+            case ProgressionTimeLine.OlympeFloorTwoEnd:
+                currentSceneIndex = 4;
+                currentAreaIndex = 4;
+                break;
+            case ProgressionTimeLine.ThirdRegionEntrance:
+                currentSceneIndex = 6;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.ShieldChargeUnlock:
+                currentSceneIndex = 6;
+                currentAreaIndex = 1;
+                break;
+            case ProgressionTimeLine.ThirdRegionOut:
+                currentSceneIndex = 4;
+                currentAreaIndex = 2;
+                break;
+            case ProgressionTimeLine.OlympeFloorThreeStart:
+                currentSceneIndex = 9;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.OlympeFloorThreeLREntrance:
+                currentSceneIndex = 9;
+                currentAreaIndex = 1;
+                break;
+            case ProgressionTimeLine.OlympeFloorThreeEnded:
+                currentSceneIndex = 10;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.ZeusFightStarted:
+                currentSceneIndex = 10;
+                currentAreaIndex = 0;
+                break;
+            case ProgressionTimeLine.EndAdventure:
+                currentSceneIndex = 1;
+                currentAreaIndex = 0;
+                break;
+            default:
+                currentSceneIndex = 1;
+                currentAreaIndex = 0;
+                break;
+        }
+
+        SaveSystem.SaveData(this);
+    }
+
+    public void LoadTheProgression()
+    {
+        ProgressionFile data = SaveSystem.LoadData();
+
+        thisSessionTimeLine = (ProgressionTimeLine)data.progressionTimeLineValue;
+
+        for (int i =0; i < data.r1VegetablesValue.Length; i++)
+        {
+            R1Vegetables[i + 1] = data.r1VegetablesValue[i];
+        }
+
+        for (int i = 0; i < data.playerCapacityKey.Length; i++)
+        {
+            PlayerCapacity[data.playerCapacityKey[i]] = data.playerCapacityValue[i];
+        }
+
+        playerHp = data.playerHp;
+        playerStamina = data.playerStamina;
+        playerFury = data.playerFury;
+
+        currentAreaIndex = data.currentAreaIndex;
+        currentSceneIndex = data.currentSceneIndex;
+
+        GameManager.Instance.sceneToLoad = currentSceneIndex;
+        GameManager.Instance.areaToLoad = currentAreaIndex;
+        GameManager.Instance.GoToScene();
     }
 
 }
