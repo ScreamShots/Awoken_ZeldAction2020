@@ -265,7 +265,7 @@ MonoBehaviour:
   flashTime: 0.5
   flashFadeTime: 0.5
   corps: {fileID: 3275925729707841170, guid: fa555116ac6e6b54a87f372e8ba7c4c8, type: 3}
-  canFlash: 0
+  takingDmg: 0
 --- !u!1 &733136425606355618
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,13 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2680ea42f9a05df4da3332ce91ce9201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretShootSource: {fileID: 0}
   turretShoot: {fileID: 8300000, guid: 1a0d7fb82bf86df4b8ac737bf1885215, type: 3}
-  turretShootVolume: 0.3
-  turretDamage:
-  - {fileID: 8300000, guid: ed9c6056f138dba42946c88059c310e7, type: 3}
-  - {fileID: 8300000, guid: 75647888b27ae984baffa4473b899096, type: 3}
-  - {fileID: 8300000, guid: 9f6d5a1c3a0d3dc459748bff2f0f62ce, type: 3}
-  turretDamageVolume: 0.2
+  turretShootVolume: 0.2
   turretDestroy: {fileID: 8300000, guid: 8bd35482f04c0bb4ea090957de817145, type: 3}
   turretDestroyVolume: 0.2
