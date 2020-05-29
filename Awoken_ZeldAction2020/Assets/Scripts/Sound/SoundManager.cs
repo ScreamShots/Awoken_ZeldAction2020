@@ -32,12 +32,17 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float sfxDefaultVolume = 0.5f;
 
     [Space]
+    [Header("Menu")]
+    [Range(0f, 1f)] public float PauseDefaultVolume = 0.5f;
+
+    [Space]
     [Header("References")]
     public AudioSource musicSource;
     public AudioSource ambianceSource;
     public AudioSource sfxSource;
     public AudioSource footStepsSource;
     public AudioSource parrySource;
+    public AudioSource PauseSource;
 
     private bool fadeOut = false;
     #endregion
@@ -228,6 +233,98 @@ public class SoundManager : MonoBehaviour
         parrySource.Stop();
 
         return;
+    }
+
+    // Plays a menu sound.
+    public void PlayPause(AudioClip pause, float volume = 1f, float pitch = 1f)
+    {
+        PauseSource.pitch = pitch;
+        PauseSource.PlayOneShot(pause, (PauseDefaultVolume * volume) * globalDefaultVolume);
+
+        PauseSource.pitch = 1;
+
+        return;
+    }
+
+// = = =
+
+// = = = [ STATE METHODS ] = = =
+
+    // If player is dead or not.  
+    public void PlayerDead(bool isDead)
+    {
+        if (!isDead)
+        {
+            sfxSource.volume = 1f;
+            MusicManager.Instance.playerDead = false;
+        }
+        else
+        {
+            sfxSource.volume = 0f;
+            FadeOutMusic(3f);
+            StopAmbiance();
+            MusicManager.Instance.playerDead = true;
+        }
+    }
+
+    // If player press pause button.  
+    public void PauseGame(bool isPause)
+    {
+        if (!isPause)
+        {
+            musicSource.UnPause();
+            ambianceSource.UnPause();
+            sfxSource.volume = 1f;
+        }
+        else
+        {
+            musicSource.Pause();
+            ambianceSource.Pause();
+            sfxSource.volume = 0f;
+        }
+    }
+
+    // If player is in a cutscene or not.  
+    public void Cutscene(bool isCutscene)
+    {
+        if (!isCutscene)
+        {
+            musicSource.UnPause();
+            ambianceSource.UnPause();
+            sfxSource.volume = 1f;
+        }
+        else
+        {
+            musicSource.Pause();
+            ambianceSource.Pause();
+            sfxSource.volume = 0f;
+        }
+    }
+
+    // If player switch to a different scene.  
+    public void SwitchScene(bool isSwitching)
+    {
+        if (!isSwitching)
+        {
+            sfxSource.volume = 1f;
+        }
+        else
+        {
+            sfxSource.volume = 0f;
+        }
+    }
+
+    // If player switch to a different area.  
+    public void SwitchArea(bool isSwitching)
+    {
+        if (!isSwitching)
+        {
+            sfxSource.volume = 1f;
+        }
+        else
+        {
+            sfxSource.volume = 0f;
+        }
     }
 
 // = = =

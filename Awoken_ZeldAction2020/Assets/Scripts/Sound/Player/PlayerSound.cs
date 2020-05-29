@@ -160,8 +160,8 @@ public class PlayerSound : MonoBehaviour
             if (!playerIsDead)
             {
                 playerIsDead = true;
-                SoundManager.Instance.PlaySfx(playerDead, playerDeadVolume);
-                SoundManager.Instance.PlaySfx(deadSound, deadSoundVolume);
+                SoundManager.Instance.PlayPause(playerDead, playerDeadVolume);
+                SoundManager.Instance.PlayPause(deadSound, deadSoundVolume);
             }
         }
         else
