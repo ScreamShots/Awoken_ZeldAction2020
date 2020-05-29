@@ -25,12 +25,20 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+
+
     public void LaunchNewGame()
+    {
+
+        StartCoroutine(NewGame());
+    }
+
+    IEnumerator NewGame()
     {
         GameObject progressionManagerHolder = ProgressionManager.Instance.gameObject;
         Destroy(ProgressionManager.Instance);
+        yield return new WaitForEndOfFrame();
         progressionManagerHolder.AddComponent<ProgressionManager>();
-
         GameManager.Instance.sceneToLoad = 1;
         GameManager.Instance.areaToLoad = 0;
         GameManager.Instance.GoToScene();
