@@ -35,6 +35,8 @@ public class PegaseSound : MonoBehaviour
     {
         enemyHealthScript = GetComponentInParent<EnemyHealthSystem>();
         pegaseMovementScript = GetComponentInParent<PegaseMovement>();
+
+        enemyHealthScript.onDead.AddListener(Dead);
     }
 
     void Update()
@@ -93,7 +95,7 @@ public class PegaseSound : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void Dead()
     {
         SoundManager.Instance.PlaySfx(pegaseDeath, pegaseDeathVolume);
     }

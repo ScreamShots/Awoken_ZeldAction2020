@@ -17,6 +17,7 @@ public class SpawnerSound : MonoBehaviour
     [Range(0f, 1f)] public float spawnerDestroyVolume = 0.5f;
 
     private EnemySpawner enemySpawnerScript;
+    private GameElementsHealthSystem gameElementHealtSystemScript;
 
     private bool isSpawning = false;
     #endregion
@@ -24,6 +25,9 @@ public class SpawnerSound : MonoBehaviour
     void Start()
     {
         enemySpawnerScript = GetComponentInParent<EnemySpawner>();
+        gameElementHealtSystemScript = GetComponentInParent<GameElementsHealthSystem>();
+
+        gameElementHealtSystemScript.onDead.AddListener(Dead);
     }
 
     void Update()
@@ -47,7 +51,7 @@ public class SpawnerSound : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void Dead()
     {
         SoundManager.Instance.PlaySfx(spawnerDestroy, spawnerDestroyVolume);
     }

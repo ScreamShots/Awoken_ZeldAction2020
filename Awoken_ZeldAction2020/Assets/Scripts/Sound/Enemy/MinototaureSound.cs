@@ -41,6 +41,8 @@ public class MinototaureSound : MonoBehaviour
         enemyHealthScript = GetComponentInParent<EnemyHealthSystem>();
         minototaureAttackScript = GetComponentInParent<MinototaureAttack>();
         minototaureMovementScript = GetComponentInParent<MinototaureMovement>();
+
+        enemyHealthScript.onDead.AddListener(Dead);
     }
 
     void Update()
@@ -115,7 +117,7 @@ public class MinototaureSound : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void Dead()
     {
         SoundManager.Instance.PlaySfx(MinototaureDeath, MinototaureDeathVolume);
     }

@@ -17,6 +17,7 @@ public class TurretSound : MonoBehaviour
     [Range(0f, 1f)] public float turretDestroyVolume = 0.5f;
 
     private TurretShoot turretShootScript;
+    private GameElementsHealthSystem gameElementHealthSystemScript;
 
     private bool turretIsShooting = false;
     #endregion
@@ -24,6 +25,8 @@ public class TurretSound : MonoBehaviour
     void Start()
     {
         turretShootScript = GetComponentInParent<TurretShoot>();
+        gameElementHealthSystemScript = GetComponentInParent<GameElementsHealthSystem>();
+        gameElementHealthSystemScript.onDead.AddListener(Dead);
     }
 
     void Update()
@@ -47,7 +50,7 @@ public class TurretSound : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void Dead()
     {
         SoundManager.Instance.PlaySfx(turretDestroy, turretDestroyVolume);
     }

@@ -37,6 +37,8 @@ public class PoulionSound : MonoBehaviour
         enemyHealthScript = GetComponentInParent<EnemyHealthSystem>();
         poulionMovementScript = GetComponentInParent<PoulionMovementReworked>();
         poulionAttackScript = GetComponentInParent<PoulionAttackReworked>();
+
+        enemyHealthScript.onDead.AddListener(Dead);
     }
 
     void Update()
@@ -94,7 +96,7 @@ public class PoulionSound : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void Dead()
     {
         SoundManager.Instance.PlaySfx(poulionDeath, poulionDeathVolume);
     }

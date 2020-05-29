@@ -37,6 +37,8 @@ public class ArcherSound : MonoBehaviour
         enemyHealthScript = GetComponentInParent<EnemyHealthSystem>();
         archerAttackScript = GetComponentInParent<ArcherAttack>();
         archerMovementScript = GetComponentInParent<ArcherMovement>();
+
+        enemyHealthScript.onDead.AddListener(Dead);
     }
 
     void Update()
@@ -94,7 +96,7 @@ public class ArcherSound : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void Dead()
     {
         SoundManager.Instance.PlaySfx(archerDeath, archerDeathVolume);
     }

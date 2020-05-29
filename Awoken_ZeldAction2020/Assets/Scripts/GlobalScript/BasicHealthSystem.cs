@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 ///Made by Rémi Sécher
@@ -19,11 +20,18 @@ public abstract class BasicHealthSystem : MonoBehaviour
     public float currentHp;
     [Space]
     public bool canTakeDmg = true;
+    [HideInInspector]
+    public UnityEvent onDead = null;
+
     #endregion
 
     protected virtual void Start()
     {
         currentHp = maxHp;                              //Initializing base Hp 
+        if (onDead == null)
+        {
+            onDead = new UnityEvent();
+        }
     }
 
     protected virtual void Update()                    //can be override in children class
@@ -59,6 +67,7 @@ public abstract class BasicHealthSystem : MonoBehaviour
 
     public virtual void Death()                         //can be override in children class
     {
+        onDead.Invoke();
         Destroy(gameObject);
     }
 

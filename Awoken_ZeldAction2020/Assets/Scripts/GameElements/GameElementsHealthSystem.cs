@@ -72,6 +72,7 @@ public class GameElementsHealthSystem : BasicHealthSystem
 
     public override void Death()
     {
+        onDead.Invoke();
         Instantiate(corps, transform.position, Quaternion.identity);        //Instanciate a corps before destroy the object
         Destroy(gameObject);
     }
