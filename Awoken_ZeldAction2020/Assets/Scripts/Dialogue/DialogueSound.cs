@@ -87,7 +87,7 @@ public class DialogueSound : MonoBehaviour
 
     void ImageActive()
     {
-        if (dialogueManagerScript.currentDialogue != null)
+        if (dialogueManagerScript.currentDialogue != null && dialogueManagerScript.dialogueWithFace)
         {
             if (dialogueManagerScript.currentDialoguePos == Dialogue.DialogueUIPos.Down)
             {

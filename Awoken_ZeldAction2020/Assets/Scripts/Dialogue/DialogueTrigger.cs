@@ -8,8 +8,7 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogueToPlay = null;
     [SerializeField]
     bool triggerByZone = false;
-    [SerializeField]
-    bool restartGameplayAtTheEnd = true;
+    public bool restartGameplayAtTheEnd = true;
 
     [HideInInspector]
     public bool dialogueStarted;

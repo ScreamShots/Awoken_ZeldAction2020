@@ -223,7 +223,10 @@ public class GameManager : MonoBehaviour
     public void LaunchGameBack()
     {
         blackMelt.gameObject.SetActive(false);
-        StartCoroutine(ChangeGameState(GameState.Running));
+        if(gameState != GameState.Dialogue)
+        {
+            StartCoroutine(ChangeGameState(GameState.Running));
+        }
     }
 
     [ContextMenu("ReloadScene")]

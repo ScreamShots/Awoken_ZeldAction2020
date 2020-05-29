@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
     DialogueTrigger currentTrigger;
 
     int dialoguePhaseIndex;
-    bool dialogueWithFace;
+    public bool dialogueWithFace;
     [HideInInspector]
     public bool typingAPhase;
     [HideInInspector]

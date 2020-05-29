@@ -30,6 +30,7 @@ public class PNJ_Vegetables : MonoBehaviour
             l_enigmaOneDone = enigmaOne.isEnigmaDone;
             pnjDialogueTrigger.dialogueEnded = false;
             pnjDialogueTrigger.dialogueToPlay = endVegeDialogue;
+            pnjDialogueTrigger.restartGameplayAtTheEnd = false;
             changedDialogue = true;
         }
 

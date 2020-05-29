@@ -44,6 +44,7 @@ public class BasicCutSceneManager : MonoBehaviour
     public virtual void StartCutScene()
     {
         PlayerManager.Instance.PlayerInitializeCutScene();
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
         GameManager.Instance.gameState = GameManager.GameState.Dialogue;
         nextCutScenePart = null;
         inDialogue = true;
