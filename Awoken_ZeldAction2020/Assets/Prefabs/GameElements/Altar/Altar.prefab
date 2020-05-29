@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 6437515172970426024}
   - component: {fileID: 1010572828512536594}
   - component: {fileID: 5050713222697218260}
+  - component: {fileID: 3599833882030776417}
   m_Layer: 0
   m_Name: Altar
   m_TagString: Untagged
@@ -123,6 +124,25 @@ CircleCollider2D:
   m_Offset: {x: -0.03, y: 0.38}
   serializedVersion: 2
   m_Radius: 1.22
+--- !u!95 &3599833882030776417
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437515172970426025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87905a1172eb994439174ed9e575232f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6437515173801129121
 GameObject:
   m_ObjectHideFlags: 0

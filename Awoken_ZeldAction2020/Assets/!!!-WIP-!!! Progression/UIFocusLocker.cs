@@ -6,10 +6,7 @@ using UnityEngine.EventSystems;
 public class UIFocusLocker : MonoBehaviour
 {
     GameObject lastselect;
-    void Start()
-    {
-        lastselect = new GameObject();
-    }
+
     void Update()
     {
         if(EventSystem.current != null)
