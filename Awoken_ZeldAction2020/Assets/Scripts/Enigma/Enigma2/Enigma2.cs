@@ -51,6 +51,18 @@ public class Enigma2 : EnigmaTool
     public CSTriggerManager csTriggerScriptLever;
     public CSTriggerManager csTriggerScriptPlate;
 
+    [Space]
+    [Header("Engima Sound")]
+    public AudioClip partialResolve;
+    [Range(0f, 1f)] public float partialResolveVolume = 0.5f;
+
+    public AudioClip globalResolve;
+    [Range(0f, 1f)] public float globalResolveVolume = 0.5f;
+
+    private bool plateActivate = false;
+    private bool leverActivate = false;
+    private bool doorParyActivate = false;
+
     void Awake()
     {
         brazero1.SetActive(false);
@@ -114,6 +126,12 @@ public class Enigma2 : EnigmaTool
             {
                 brazero1.SetActive(true);
                 isBrazeroOn1 = true;
+
+                if (!plateActivate)
+                {
+                    plateActivate = true;
+                    SoundManager.Instance.PlaySfx(partialResolve, partialResolveVolume);
+                }
             }
         }
 
@@ -123,6 +141,12 @@ public class Enigma2 : EnigmaTool
             {
                 brazero2.SetActive(true);
                 isBrazeroOn2 = true;
+
+                if (!leverActivate)
+                {
+                    leverActivate = true;
+                    SoundManager.Instance.PlaySfx(partialResolve, partialResolveVolume);
+                }
             }
         }
     }
@@ -143,6 +167,12 @@ public class Enigma2 : EnigmaTool
             {
                 door2.isDoorOpen = true;
                 door1.isDoorOpen = true;
+
+                if (!doorParyActivate)
+                {
+                    doorParyActivate = true;
+                    SoundManager.Instance.PlaySfx(globalResolve, globalResolveVolume);
+                }
             }
         }
     }
