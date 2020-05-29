@@ -31,10 +31,10 @@ public class DialogueManager : MonoBehaviour
     GameObject dialogueUIUp = null;
 
     [SerializeField] [ConditionalHide("showRequieredElement", true)]
-    Image faceDisplayDown = null;
+    public Image faceDisplayDown = null;
 
     [SerializeField] [ConditionalHide("showRequieredElement", true)]
-    Image faceDisplayUp = null;
+    public Image faceDisplayUp = null;
 
     [SerializeField] [ConditionalHide("showRequieredElement", true)]
     TextMeshProUGUI textBoxNoFaceDown = null;
@@ -64,7 +64,7 @@ public class DialogueManager : MonoBehaviour
     [HideInInspector]
     public bool processingDialogue;
     bool restartGameplay = false;
-    Dialogue.DialogueUIPos currentDialoguePos = Dialogue.DialogueUIPos.Down;
+    [HideInInspector] public Dialogue.DialogueUIPos currentDialoguePos = Dialogue.DialogueUIPos.Down;
 
     private void Awake()
     {
