@@ -74,6 +74,9 @@ MonoBehaviour:
   exit: {fileID: 0}
   bullet: {fileID: 0}
   bulletTimeTravel: 0
+  nbrOfPipes: 0
+  isEnter: 0
+  isExit: 0
 --- !u!1 &9002305813760718299
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,6 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9002305813760718296}
   - component: {fileID: 9002305813760718297}
+  - component: {fileID: 2593038292413478268}
+  - component: {fileID: 2330208854740990406}
   m_Layer: 17
   m_Name: Rendering
   m_TagString: Untagged
@@ -155,3 +160,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2593038292413478268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002305813760718299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75eea3ed50623e94f8779d0f4847c89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &2330208854740990406
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002305813760718299}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
