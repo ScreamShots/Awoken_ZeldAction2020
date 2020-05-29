@@ -764,6 +764,50 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &508307136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2945681921345374013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6133f6fa3fc57f04d8464afa06bcc505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whoSpeaking: 0
+  currentSprite: {fileID: 0}
+  aaron: {fileID: 21300000, guid: fe85ac6e8c08e6147bf1b584e6947400, type: 3}
+  aaronSleep: {fileID: 21300000, guid: b7cf9c5c76f112c4bbb4bea839e06236, type: 3}
+  aaronSchok: {fileID: 21300000, guid: de3a6d9ec2b6f3348891915b90357500, type: 3}
+  shield: {fileID: 21300000, guid: 97336f4168624e141ad9cba0e9ccc946, type: 3}
+  shieldAngry: {fileID: 21300000, guid: e9c42252e05747e4b90b1223e6c2b4df, type: 3}
+  zeus: {fileID: 21300000, guid: 3400673348075f448bcd3f3ec1e2a47b, type: 3}
+  zeusAngry: {fileID: 21300000, guid: fa0578888b443d740acf411c199f2e12, type: 3}
+  zeusHide: {fileID: 21300000, guid: 561c4a8ba30b7dd4c99ae088dadeba57, type: 3}
+  pnj1: {fileID: 21300000, guid: c7ac46381294bb446bfab41944f27ad0, type: 3}
+  pnj2: {fileID: 21300000, guid: b4ba55b0cbad1fc4598bc499c581305e, type: 3}
+  pnj3: {fileID: 21300000, guid: 90f8be21902098747b144dbb1e241731, type: 3}
+  pnj4: {fileID: 21300000, guid: f9b84776dc5fa4e4991dc3e38f2ac52b, type: 3}
+  aaronVoice: {fileID: 8300000, guid: da6b27dce493fcc4bb7b6fec096fc194, type: 3}
+  aaronVoiceVolume: 0.5
+  aaronVoiceSleep: {fileID: 8300000, guid: da6b27dce493fcc4bb7b6fec096fc194, type: 3}
+  aaronVoiceSleepVolume: 0.5
+  aaronVoiceShock: {fileID: 8300000, guid: da6b27dce493fcc4bb7b6fec096fc194, type: 3}
+  aaronVoiceShockVolume: 0.5
+  shieldVoice: {fileID: 8300000, guid: da6b27dce493fcc4bb7b6fec096fc194, type: 3}
+  shieldVoiceVolume: 0.5
+  shieldVoiceAngry: {fileID: 8300000, guid: 062005a632fe0134b8f3901fd2915d8e, type: 3}
+  shieldVoiceAngryVolume: 0.5
+  zeusVoice: {fileID: 8300000, guid: 42f978103b4a560449068aebf66e1c18, type: 3}
+  zeusVoiceVolume: 0.5
+  zeusVoiceAngry: {fileID: 8300000, guid: 42f978103b4a560449068aebf66e1c18, type: 3}
+  zeusVoiceAngryVolume: 0.5
+  zeusVoiceHide: {fileID: 8300000, guid: 85e0f009054ce254ab5295ce116dd600, type: 3}
+  zeusVoiceHideVolume: 0.5
+  pnjVoice: {fileID: 8300000, guid: 0313af1df05bd264ab465114536058d9, type: 3}
+  pnjVoiceVolume: 0.5
 --- !u!1 &3815070035466724804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,6 +1969,12 @@ PrefabInstance:
 --- !u!4 &2945681921345374015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7921804885824546752, guid: 6fe40246284827e44bee2f6cf6815ed9,
+    type: 3}
+  m_PrefabInstance: {fileID: 4976140638540161279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2945681921345374013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7921804885824546754, guid: 6fe40246284827e44bee2f6cf6815ed9,
     type: 3}
   m_PrefabInstance: {fileID: 4976140638540161279}
   m_PrefabAsset: {fileID: 0}

@@ -32,8 +32,8 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float sfxDefaultVolume = 0.5f;
 
     [Space]
-    [Header("Menu")]
-    [Range(0f, 1f)] public float PauseDefaultVolume = 0.5f;
+    [Header("Voice")]
+    [Range(0f, 1f)] public float voiceDefaultVolume = 0.5f;
 
     [Space]
     [Header("References")]
@@ -42,7 +42,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource sfxSource;
     public AudioSource footStepsSource;
     public AudioSource parrySource;
-    public AudioSource PauseSource;
+    public AudioSource pauseSource;
+    public AudioSource voiceSource;
 
     private bool fadeOut = false;
     #endregion
@@ -238,10 +239,26 @@ public class SoundManager : MonoBehaviour
     // Plays a menu sound.
     public void PlayPause(AudioClip pause, float volume = 1f, float pitch = 1f)
     {
-        PauseSource.pitch = pitch;
-        PauseSource.PlayOneShot(pause, (PauseDefaultVolume * volume) * globalDefaultVolume);
+        pauseSource.pitch = pitch;
+        pauseSource.PlayOneShot(pause, (sfxDefaultVolume * volume) * globalDefaultVolume);
 
-        PauseSource.pitch = 1;
+        pauseSource.pitch = 1;
+
+        return;
+    }
+
+    // Plays a voice sound.
+    public void PlayVoice(AudioClip voice, float volume = 1f, float pitch = 1f)
+    {
+        voiceSource.Stop();
+
+        voiceSource.pitch = pitch;
+        if (!voiceSource.isPlaying)
+        {
+            voiceSource.PlayOneShot(voice, (voiceDefaultVolume * volume) * globalDefaultVolume);
+        }
+
+        voiceSource.pitch = 1;
 
         return;
     }
