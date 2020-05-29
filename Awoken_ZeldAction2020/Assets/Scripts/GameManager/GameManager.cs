@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
 
     bool mainMenu = true;
 
-
     void Awake()
     {
         #region Make Singleton

@@ -4,28 +4,30 @@ using UnityEngine;
 
 public class TuyauEnter : MonoBehaviour
 {
-    public Transform exit;
-    public GameObject bullet;
+    public Transform exit = null;
+    public GameObject bullet = null;
     [Header("Pipe Duration")]
+    public float bulletTimeTravel = 0;
     [SerializeField]
-    private float bulletTimeTravel = 0;
-    [SerializeField]
-    private float nbrOfPipes;
-    private float animDuration;
+    public float nbrOfPipes = 0;
     [HideInInspector]
-    public bool isEnter;
+    public bool isEnter = false;
     [HideInInspector]
-    public bool isExit;
+    public bool isExit = false;
+    [HideInInspector]
+    public bool bulletIsEnter = false;
+    [HideInInspector]
+    public bool bulletInsideZone = false;
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer ("PlayerProjectile"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile"))
         {
             StartCoroutine(animEnter());
             bullet = other.gameObject;
             StartCoroutine(BulletTrajectory());
-
+            bulletInsideZone = true;
         }
         else
         {
