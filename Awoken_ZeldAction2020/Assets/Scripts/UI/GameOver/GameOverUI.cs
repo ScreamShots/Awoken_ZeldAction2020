@@ -25,7 +25,7 @@ public class GameOverUI : MonoBehaviour
         deathUI.SetActive(true);
         deathUIAnimator.enabled = true;
         deathUIAnimator.SetTrigger("Display");
-        SoundManager.Instance.PlaySfx(deathJungle, deathJungleVolume);
+        SoundManager.Instance.PlayPause(deathJungle, deathJungleVolume);
     }
 
     public void DisableDeathUIAnimator()
