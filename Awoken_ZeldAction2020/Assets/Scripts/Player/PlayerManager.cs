@@ -138,7 +138,6 @@ public class PlayerManager : MonoBehaviour
 
         if (!ProgressionManager.Instance.PlayerCapacity["Pary"])
         {
-            Debug.Log("Desactive Pary");
             paryZone.SetActive(false);            
         }
 
@@ -158,7 +157,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ActivateShield()
     {
-        classicRender.GetComponent<Animator>().runtimeAnimatorController = classicController;
+        //classicRender.GetComponent<Animator>().runtimeAnimatorController = classicController;
     }
 
     public void ActivateBlock()
@@ -177,7 +176,6 @@ public class PlayerManager : MonoBehaviour
 
     public void ActivatePary()
     {
-        Debug.Log("Active Pary");
         paryZone.SetActive(true);
     }
 

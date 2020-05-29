@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
         {
             bossRoom = true;
         }
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadSceneAsync(sceneToLoad);
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         SceneManager.sceneLoaded += LoadLvlAfterTransition;
     }

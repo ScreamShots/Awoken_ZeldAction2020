@@ -9,14 +9,21 @@ public class BlackMelt : MonoBehaviour
     public UnityEvent onMeltInEnd = null;
     [HideInInspector]
     public UnityEvent onMeltOutEnd = null;
-
+    [HideInInspector]
     public Animator blackMeltAnimator;
+    [SerializeField]
+    GameObject loadingPoulion;
 
     private void Start()
     {
         blackMeltAnimator = GetComponent<Animator>();
         if (onMeltInEnd == null) onMeltInEnd = new UnityEvent();
         if (onMeltOutEnd == null) onMeltOutEnd = new UnityEvent();
+    }
+
+    private void OnEnable()
+    {
+        loadingPoulion.SetActive(false);
     }
 
     public void MeltIn()
@@ -26,11 +33,13 @@ public class BlackMelt : MonoBehaviour
 
     public void MeltOut()
     {
+        loadingPoulion.SetActive(false);
         blackMeltAnimator.SetTrigger("MeltOut");
     }
 
     public void EndMeltIn()
     {
+        loadingPoulion.SetActive(true);
         onMeltInEnd.Invoke();
         onMeltInEnd.RemoveAllListeners();
     }
@@ -39,5 +48,16 @@ public class BlackMelt : MonoBehaviour
     {
         onMeltOutEnd.Invoke();
         onMeltOutEnd.RemoveAllListeners();
+    }
+
+    void LoadingPoulionAppear()
+    {
+        loadingPoulion.SetActive(true);
+    }
+
+    void LoadingPoulionDiseappear()
+    {
+        loadingPoulion.SetActive(false);
+
     }
 }

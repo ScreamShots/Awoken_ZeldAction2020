@@ -117,6 +117,21 @@ public class R1ProgressionHandler : BasicProgressionHandler
         {
             lightningTrace.SetActive(false);
         }
+
+        bool enigmaDone = true;
+        foreach (KeyValuePair<int, bool>  vegatables in ProgressionManager.Instance.R1Vegetables)
+        {
+            if(vegatables.Value == false)
+            {
+                enigmaDone = false;
+                break;
+            }
+        }
+
+        if (enigmaDone)
+        {
+            EnigmaOneDone();
+        }
     }
 
     protected override void OnVegetablesEnd()

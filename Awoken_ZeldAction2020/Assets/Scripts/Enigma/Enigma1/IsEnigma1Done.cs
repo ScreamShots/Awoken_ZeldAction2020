@@ -34,7 +34,6 @@ public class IsEnigma1Done : EnigmaTool
         {
             //firstVegetable = true;
             enigmaInstance.isEnigmaDone = true;
-            ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.VegetablesEnd;
             //SoundManager.Instance.PlaySfx(partialResolve, partialResolveVolume);
         }
         /*else if (FoodPickUp.nbrOfFood == 2 && !secondVegetable)
