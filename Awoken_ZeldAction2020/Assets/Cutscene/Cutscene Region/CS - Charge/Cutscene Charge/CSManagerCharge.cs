@@ -22,6 +22,7 @@ public class CSManagerCharge : BasicCutSceneManager
         GameManager.Instance.areaToLoad = 1;
         ProgressionManager.Instance.PlayerCapacity["Charge"] = true;
         PlayerManager.Instance.ActivateCharge();
+        ProgressionManager.Instance.SaveTheProgression();
     }
 
     [ContextMenu("StartCutSceneCharge")]

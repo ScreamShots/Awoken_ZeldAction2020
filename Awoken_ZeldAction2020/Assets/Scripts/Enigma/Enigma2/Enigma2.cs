@@ -85,6 +85,7 @@ public class Enigma2 : EnigmaTool
             if(ProgressionManager.Instance.thisSessionTimeLine == ProgressionManager.ProgressionTimeLine.SecondRegionEntrance)
             {
                 ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.SecondRegionBrazeros;
+                ProgressionManager.Instance.SaveTheProgression();
             }
         }
         else if (isBrazeroOn1 == false || isBrazeroOn2 == false)

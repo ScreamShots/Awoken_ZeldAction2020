@@ -10,5 +10,6 @@ public class CSManagerTempleFirstWalk : BasicCutSceneManager
         base.EndOfCutScene();
 
         ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.TempleFirstEntrance;
+        ProgressionManager.Instance.SaveTheProgression();
     }
 }

@@ -130,6 +130,7 @@ public class CSTriggerManager : MonoBehaviour
                 if (advanceProgression)
                 {
                     ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                    ProgressionManager.Instance.SaveTheProgression();
                 }
             }
         }
@@ -141,6 +142,7 @@ public class CSTriggerManager : MonoBehaviour
                 if (advanceProgression)
                 {
                     ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                    ProgressionManager.Instance.SaveTheProgression();
                 }
             }
         }
@@ -152,6 +154,7 @@ public class CSTriggerManager : MonoBehaviour
                 if (advanceProgression)
                 {
                     ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                    ProgressionManager.Instance.SaveTheProgression();
                 }
             }
         }
@@ -163,6 +166,7 @@ public class CSTriggerManager : MonoBehaviour
                 if (advanceProgression)
                 {
                     ProgressionManager.Instance.thisSessionTimeLine = targetProgressionState;
+                    ProgressionManager.Instance.SaveTheProgression();
                 }
             }
         }

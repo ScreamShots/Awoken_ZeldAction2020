@@ -24,6 +24,7 @@ public class FoodPickUp : MonoBehaviour
         {
             IsEnigma1Done.CollectFood();
             ProgressionManager.Instance.R1Vegetables[vegetableID] = true;
+            ProgressionManager.Instance.SaveTheProgression();
             Destroy(gameObject);
         }
     }

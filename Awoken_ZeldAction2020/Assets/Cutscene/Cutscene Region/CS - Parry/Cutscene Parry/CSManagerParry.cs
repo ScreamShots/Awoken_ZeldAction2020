@@ -22,6 +22,7 @@ public class CSManagerParry : BasicCutSceneManager
         GameManager.Instance.areaToLoad = 1;
         ProgressionManager.Instance.PlayerCapacity["Pary"] = true;
         PlayerManager.Instance.ActivatePary();
+        ProgressionManager.Instance.SaveTheProgression();
     }
 
     [ContextMenu("StartCutSceneParry")]

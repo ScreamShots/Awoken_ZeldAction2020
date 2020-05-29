@@ -24,6 +24,7 @@ public class CSManagerEndFloor2 : BasicCutSceneManager
         ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.OlympeFloorTwoLREntrance;
         GameManager.Instance.areaToLoad = 1;
         gameObject.SetActive(false);
+        ProgressionManager.Instance.SaveTheProgression();
     }
 
     [ContextMenu("StartCutSceneStartEndFloor2")]

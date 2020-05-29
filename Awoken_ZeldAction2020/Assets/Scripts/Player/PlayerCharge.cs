@@ -73,7 +73,7 @@ public class PlayerCharge : MonoBehaviour
     {        
         if(GameManager.Instance.gameState == GameManager.GameState.Running)
         {
-            if (Input.GetButtonDown("Charge") && PlayerStatusManager.Instance.canCharge /*&& GetComponent<PlayerAttack>().currentFury == GetComponent<PlayerAttack>().maxFury*/)
+            if (Input.GetButtonDown("Charge") && PlayerStatusManager.Instance.canCharge && GetComponent<PlayerAttack>().currentFury == GetComponent<PlayerAttack>().maxFury)
             {
                 StartCharge();
             }
