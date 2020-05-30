@@ -9,14 +9,12 @@ public class BlackMelt : MonoBehaviour
     public UnityEvent onMeltInEnd = null;
     [HideInInspector]
     public UnityEvent onMeltOutEnd = null;
-    [HideInInspector]
     public Animator blackMeltAnimator;
     [SerializeField]
     GameObject loadingPoulion = null;
 
     private void Start()
     {
-        blackMeltAnimator = GetComponent<Animator>();
         if (onMeltInEnd == null) onMeltInEnd = new UnityEvent();
         if (onMeltOutEnd == null) onMeltOutEnd = new UnityEvent();
     }

@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         playerRgb = GetComponent<Rigidbody2D>();
     }
