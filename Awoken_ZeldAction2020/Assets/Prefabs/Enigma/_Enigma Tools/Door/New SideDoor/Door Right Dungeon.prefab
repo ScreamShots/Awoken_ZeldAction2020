@@ -158,6 +158,8 @@ GameObject:
   - component: {fileID: 4524835499602206112}
   - component: {fileID: 5793004339825855736}
   - component: {fileID: 5367518009162754176}
+  - component: {fileID: 5684752167411584693}
+  - component: {fileID: 2309216136524545779}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -192,7 +194,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.060636938, y: -0.26484543}
+  m_Offset: {x: 0.060636938, y: -0.21355772}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -203,7 +205,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44964492, y: 0.22795665}
+  m_Size: {x: 0.44964492, y: 0.33053207}
   m_EdgeRadius: 0
 --- !u!61 &5367518009162754176
 BoxCollider2D:
@@ -231,6 +233,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.43914363, y: 0.19160748}
   m_EdgeRadius: 0
+--- !u!68 &5684752167411584693
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3993720263885991253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.83}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6, y: -0.066586554}
+  - {x: 0.28914165, y: -0.07213545}
+--- !u!68 &2309216136524545779
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3993720263885991253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.01}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6, y: -0.066586554}
+  - {x: 0.28914165, y: -0.07213545}
 --- !u!1 &4834086483315018605
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoorOpen: 0
   doorCollider: {fileID: 0}
+  edgeDoors: []
 --- !u!1 &8158185640285999234
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,11 +11,14 @@ public class DoorBehavior : MonoBehaviour
     public bool isDoorOpen;
     [SerializeField]
     private BoxCollider2D doorCollider;
+    [SerializeField]
+    private EdgeCollider2D[] edgeDoors;
 
 
     void Start()
     {
         doorCollider = GetComponent<BoxCollider2D>();
+        edgeDoors = GetComponentsInChildren<EdgeCollider2D>();
     }
     void Update()
     {
@@ -27,6 +30,10 @@ public class DoorBehavior : MonoBehaviour
         if (isDoorOpen == false)
         {
             doorCollider.enabled = true;
+            for(int i = 0; i < edgeDoors.Length; i++)
+            {
+                edgeDoors[i].enabled = false;
+            }
         }
     }
 
@@ -35,6 +42,10 @@ public class DoorBehavior : MonoBehaviour
         if (isDoorOpen == true)
         {
             doorCollider.enabled = false;
+            for (int i = 0; i < edgeDoors.Length; i++)
+            {
+                edgeDoors[i].enabled = true;
+            }
         }
     }
 }

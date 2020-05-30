@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 529667433591787264}
   - component: {fileID: 7635381003411054168}
   - component: {fileID: 8354161229842971168}
+  - component: {fileID: 2897645125915390909}
+  - component: {fileID: 2805288556808275665}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -71,7 +73,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.062110275, y: -0.26435673}
+  m_Offset: {x: 0.062110275, y: -0.21419883}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -82,8 +84,44 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.45941657, y: 0.19002318}
+  m_Size: {x: 0.45941657, y: 0.290339}
   m_EdgeRadius: 0
+--- !u!68 &2897645125915390909
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080366085971984373}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.85}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6, y: -0.066586554}
+  - {x: 0.28914165, y: -0.07213545}
+--- !u!68 &2805288556808275665
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080366085971984373}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6, y: -0.066586554}
+  - {x: 0.28914165, y: -0.07213545}
 --- !u!1 &5234593221857346082
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoorOpen: 0
   doorCollider: {fileID: 0}
+  edgeDoors: []
 --- !u!1 &8645235702000073090
 GameObject:
   m_ObjectHideFlags: 0

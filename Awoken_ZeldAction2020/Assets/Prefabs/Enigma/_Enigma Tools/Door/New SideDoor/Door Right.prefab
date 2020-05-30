@@ -157,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDoorOpen: 0
   doorCollider: {fileID: 0}
+  edgeDoors: []
 --- !u!1 &4022154922311841370
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +295,8 @@ GameObject:
   - component: {fileID: 8659669893191383928}
   - component: {fileID: 1622070797718858272}
   - component: {fileID: 908428851252858456}
+  - component: {fileID: 2892079843387426422}
+  - component: {fileID: 8294830939926456604}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -328,7 +331,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.060636938, y: -0.26484543}
+  m_Offset: {x: 0.060636938, y: -0.20179562}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -339,7 +342,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44964492, y: 0.22795665}
+  m_Size: {x: 0.44964492, y: 0.35405627}
   m_EdgeRadius: 0
 --- !u!61 &908428851252858456
 BoxCollider2D:
@@ -354,7 +357,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0349017, y: 0.8897376}
+  m_Offset: {x: 0.05125369, y: 0.8383459}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -365,8 +368,44 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42591226, y: 0.23130226}
+  m_Size: {x: 0.3932083, y: 0.15655065}
   m_EdgeRadius: 0
+--- !u!68 &2892079843387426422
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8181537908729629581}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.05}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6, y: -0.066586554}
+  - {x: 0.28914165, y: -0.07213545}
+--- !u!68 &8294830939926456604
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8181537908729629581}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.83}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6, y: -0.066586554}
+  - {x: 0.28914165, y: -0.07213545}
 --- !u!1 &8869621751368109242
 GameObject:
   m_ObjectHideFlags: 0
