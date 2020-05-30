@@ -73,6 +73,25 @@ public class DialogueSound : MonoBehaviour
 
     #endregion
 
+    public static DialogueSound Instance;
+
+    [HideInInspector] public float currentVoiceVolume;
+
+    void Awake()
+    {
+        #region Make Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        #endregion
+    }
+
     void Start()
     {
         dialogueManagerScript = GetComponent<DialogueManager>();
@@ -198,6 +217,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(aaronVoice, aaronVoiceVolume);
+                        currentVoiceVolume = aaronVoiceVolume;
                     }
                     break;
                 case enumSpeaking.Aaron_sleep:
@@ -216,6 +236,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(aaronVoiceSleep, aaronVoiceSleepVolume);
+                        currentVoiceVolume = aaronVoiceSleepVolume;
                     }
                     break;
                 case enumSpeaking.Aaron_shock:
@@ -234,6 +255,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(aaronVoiceShock, aaronVoiceShockVolume);
+                        currentVoiceVolume = aaronVoiceShockVolume;
                     }
                     break;
                 case enumSpeaking.Shield:
@@ -252,6 +274,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(shieldVoice, shieldVoiceVolume);
+                        currentVoiceVolume = shieldVoiceVolume;
                     }
                     break;
                 case enumSpeaking.Shield_angry:
@@ -270,6 +293,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(shieldVoiceAngry, shieldVoiceAngryVolume);
+                        currentVoiceVolume = shieldVoiceAngryVolume;
                     }
                     break;
                 case enumSpeaking.Zeus:
@@ -288,6 +312,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(zeusVoice, zeusVoiceVolume);
+                        currentVoiceVolume = zeusVoiceVolume;
                     }
                     break;
                 case enumSpeaking.Zeus_angry:
@@ -306,6 +331,8 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(zeusVoiceAngry, zeusVoiceAngryVolume);
+                        currentVoiceVolume = zeusVoiceAngryVolume;
+
                     }
                     break;
                 case enumSpeaking.Zeus_hide:
@@ -324,6 +351,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(zeusVoiceHide, zeusVoiceHideVolume);
+                        currentVoiceVolume = zeusVoiceHideVolume;
                     }
                     break;
                 case enumSpeaking.PNJ_1:
@@ -342,6 +370,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(pnjVoice, pnjVoiceVolume);
+                        currentVoiceVolume = pnjVoiceVolume;
                     }
                     break;
                 case enumSpeaking.PNJ_2:
@@ -360,6 +389,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(pnjVoice, pnjVoiceVolume);
+                        currentVoiceVolume = pnjVoiceVolume;
                     }
                     break;
                 case enumSpeaking.PNJ_3:
@@ -378,6 +408,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = true;
                         pnj4IsSpeaking = false;
                         SoundManager.Instance.PlayVoice(pnjVoice, pnjVoiceVolume);
+                        currentVoiceVolume = pnjVoiceVolume;
                     }
                     break;
                 case enumSpeaking.PNJ_4:
@@ -396,6 +427,7 @@ public class DialogueSound : MonoBehaviour
                         pnj3IsSpeaking = false;
                         pnj4IsSpeaking = true;
                         SoundManager.Instance.PlayVoice(pnjVoice, pnjVoiceVolume);
+                        currentVoiceVolume = pnjVoiceVolume;
                     }
                     break;
             }

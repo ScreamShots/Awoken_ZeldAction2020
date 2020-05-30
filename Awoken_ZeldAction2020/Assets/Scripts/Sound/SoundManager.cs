@@ -79,6 +79,11 @@ public class SoundManager : MonoBehaviour
         {
             ambianceSource.volume = (ambiancesDefaultVolume * MusicManager.Instance.currentAmbianceVolume) * globalDefaultVolume;
         }
+
+        if (voiceSource.clip != null)
+        {
+            voiceSource.volume = (voiceDefaultVolume * DialogueSound.Instance.currentVoiceVolume) * globalDefaultVolume;
+        }
     }
 
 // = = =
@@ -280,9 +285,9 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-    // = = =
+// = = =
 
-    // = = = [ STATE METHODS ] = = =
+// = = = [ STATE METHODS ] = = =
 
     // If player is dead or not.  
     public void PlayerDead(bool isDead)
