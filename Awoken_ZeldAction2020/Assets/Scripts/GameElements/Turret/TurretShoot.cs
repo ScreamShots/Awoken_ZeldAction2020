@@ -96,7 +96,12 @@ public class TurretShoot : MonoBehaviour
                     broken = false;
                 }
             }
-        }       
+        }
+
+        if (!isActivated)
+        {
+            StopAllCoroutines();
+        }
     }    
 
     IEnumerator Shoot()
