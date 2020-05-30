@@ -40,6 +40,11 @@ public class EnigmaParryCam : MonoBehaviour
             turretShootScript.isActivated = false;
             StartCoroutine(DeZoomArena());
         }
+
+        if (enigma2Script.distanceLever1.isPressed)
+        {
+            turretShootScript.isActivated = false;
+        }
     }
 
     IEnumerator DeZoomArena()
@@ -51,10 +56,10 @@ public class EnigmaParryCam : MonoBehaviour
 
         camArena3.SetActive(true);
         globalArenaCam.SetActive(false);
-        isBlending = false;
         if (!enigma2Script.distanceLever1.isPressed)
         {
             turretShootScript.isActivated = true;
         }
+        isBlending = false;
     }
 }
