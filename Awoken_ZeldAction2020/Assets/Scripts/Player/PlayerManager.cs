@@ -20,9 +20,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     GameObject cutsceneRenderer = null;
     [SerializeField]
-    AnimatorOverrideController classicController = null;
+    RuntimeAnimatorController classicController = null;
     [SerializeField]
-    AnimatorOverrideController noShieldController = null;
+    RuntimeAnimatorController noShieldController = null;
 
     [Header("Gameplay Elements")]
 
@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour
         if (!ProgressionManager.Instance.PlayerCapacity["Shield"])
         {
             // change animator Controller to no shield controller
-            //classicRender.GetComponent<Animator>().runtimeAnimatorController = noShieldController;
+            classicRender.GetComponent<Animator>().runtimeAnimatorController = noShieldController;
         }
 
         if (!ProgressionManager.Instance.PlayerCapacity["Block"])
@@ -157,7 +157,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ActivateShield()
     {
-        //classicRender.GetComponent<Animator>().runtimeAnimatorController = classicController;
+        classicRender.GetComponent<Animator>().runtimeAnimatorController = classicController;
     }
 
     public void ActivateBlock()
