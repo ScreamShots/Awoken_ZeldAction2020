@@ -141,6 +141,7 @@ public class GameManager : MonoBehaviour
             EventSystem.current.gameObject.SetActive(false);
         }
 
+        SoundManager.Instance.PauseGame(true);
         gameIsPause = true;
         Time.timeScale = 0;
         pauseUI.SetActive(true);
@@ -164,6 +165,7 @@ public class GameManager : MonoBehaviour
             lastES.SetActive(true);
             lastES = null;
         }
+        SoundManager.Instance.PauseGame(false);
         gameState = lastGameState;
         gameIsPause = false;
     }
