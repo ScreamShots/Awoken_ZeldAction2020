@@ -295,11 +295,19 @@ public class SoundManager : MonoBehaviour
         if (!isDead)
         {
             sfxSource.volume = 1f;
+            footStepsSource.volume = 1f;
+            parrySource.volume = 1f;
+            voiceSource.volume = 1f;
+
             MusicManager.Instance.playerDead = false;
         }
         else
         {
             sfxSource.volume = 0f;
+            footStepsSource.volume = 0f;
+            parrySource.volume = 0f;
+            voiceSource.volume = 0f;
+
             FadeOutMusic(3f);
             StopAmbiance();
             MusicManager.Instance.playerDead = true;
@@ -314,12 +322,18 @@ public class SoundManager : MonoBehaviour
             musicSource.UnPause();
             ambianceSource.UnPause();
             sfxSource.volume = 1f;
+            footStepsSource.volume = 1f;
+            parrySource.volume = 1f;
+            voiceSource.volume = 1f;
         }
         else
         {
             musicSource.Pause();
             ambianceSource.Pause();
             sfxSource.volume = 0f;
+            footStepsSource.volume = 0f;
+            parrySource.volume = 0f;
+            voiceSource.volume = 0f;
         }
     }
 
@@ -331,12 +345,16 @@ public class SoundManager : MonoBehaviour
             musicSource.UnPause();
             ambianceSource.UnPause();
             sfxSource.volume = 1f;
+            footStepsSource.volume = 1f;
+            parrySource.volume = 1f;
         }
         else
         {
             musicSource.Pause();
             ambianceSource.Pause();
             sfxSource.volume = 0f;
+            footStepsSource.volume = 0f;
+            parrySource.volume = 0f;
         }
     }
 
