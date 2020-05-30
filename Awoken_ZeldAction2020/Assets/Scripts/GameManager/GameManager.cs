@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetButtonDown("Pause"))
         {
-            if (gameState == GameState.Running /*&& !mainMenu*/)
+            if (gameState == GameState.Running && !mainMenu)
             {
                 StartGamePause();
             }
