@@ -12,6 +12,7 @@ public class Enigma3 : EnigmaTool
     Collider2D activationZone = null;
     [SerializeField]
     AltarBehaviour thisAltar = null;
+    bool alrdyActiveAltar = false;
     protected override void Start()
     {
         //door1.isDoorOpen = true;
@@ -37,9 +38,10 @@ public class Enigma3 : EnigmaTool
 
     void OpenTheDoor()
     {
-        if (isEnigmaDone == true && !thisAltar.buttonActivated)
+        if (isEnigmaDone == true && !thisAltar.buttonActivated && !alrdyActiveAltar)
         {
             thisAltar.buttonActivated = true;
+            alrdyActiveAltar = true;
             //door1.isDoorOpen = true;
         }
     }

@@ -167,8 +167,8 @@ public class PlayerManager : MonoBehaviour
             HUDManager.Instance.ActivateBlockHUD();
         }
 
-        shieldZone.SetActive(false);
-        playerShieldScript.enabled = false;
+        shieldZone.SetActive(true);
+        playerShieldScript.enabled = true;
 
         playerShieldScript.currentStamina = playerShieldScript.maxStamina;
 

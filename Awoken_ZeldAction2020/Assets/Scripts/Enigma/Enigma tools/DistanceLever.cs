@@ -8,7 +8,7 @@ public class DistanceLever : PressurePlateBehavior
     private BoxCollider2D hitbox = null;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if ((other.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile")) || other.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
+        if ((other.gameObject.layer == LayerMask.NameToLayer("PlayerProjectile")) || other.gameObject.layer == LayerMask.NameToLayer("TurretProjectile"))
         {
             isPressed = true;
             Destroy(other.gameObject);

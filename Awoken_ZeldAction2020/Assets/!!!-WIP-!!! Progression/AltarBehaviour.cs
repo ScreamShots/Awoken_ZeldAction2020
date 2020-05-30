@@ -24,8 +24,9 @@ public class AltarBehaviour : MonoBehaviour
     {
         if (playerIsHere && Input.GetButtonDown("Interraction") && buttonActivated)
         {
-            linkedInterractionButton.HideButton();
             buttonActivated = false;
+            playerIsHere = false;
+            linkedInterractionButton.HideButton();
             linkedCutsceneManager.StartCutScene();   
             
         }

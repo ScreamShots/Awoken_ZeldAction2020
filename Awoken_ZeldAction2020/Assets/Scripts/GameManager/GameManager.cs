@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SlowTime(slowTimeLengthDeath, slowTimeCurveDeath, true));
     }
 
-    public void OutDeathUI()
+    public void OutDeathUI(int actionIndex)
     {
     
         foreach(Button button in allGameOverButtons)
@@ -187,19 +187,29 @@ public class GameManager : MonoBehaviour
             button.enabled = false;
         }
         blackMelt.gameObject.SetActive(true);
-        if (!bossRoom)
+        if(actionIndex == 0)
         {
-            blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+            if (!bossRoom)
+            {
+                blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+                SoundManager.Instance.PlayerDead(false);
+                blackMelt.MeltIn();
+            }
+            else
+            {
+                ReloadScene();
+                blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
+                SoundManager.Instance.PlayerDead(false);
+                blackMelt.MeltIn();
+            }
+        }
+        else if(actionIndex == 1)
+        {
+            blackMelt.onMeltInEnd.AddListener(BackToMainMenu);
             SoundManager.Instance.PlayerDead(false);
             blackMelt.MeltIn();
         }
-        else
-        {
-            ReloadScene();
-            blackMelt.onMeltInEnd.AddListener(PlayerRespawn);
-            SoundManager.Instance.PlayerDead(false);
-            blackMelt.MeltIn();
-        }
+
 
     }
 
@@ -317,5 +327,23 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         gameState = nextGS;
+    }
+
+    public void BackToMainMenu()
+    {
+        Time.fixedDeltaTime = 0.02f;
+        Time.timeScale = 1;
+        deathUI.DesactiveDeathUI();
+        blackMelt.MeltOut();
+        sceneToLoad = 0;
+        areaToLoad = 0;
+        GoToScene();
+        blackMelt.onMeltOutEnd.AddListener(BackToMainMenuP2);      
+    }
+
+    public void BackToMainMenuP2()
+    {
+        blackMelt.gameObject.SetActive(false);
+        
     }
 }
