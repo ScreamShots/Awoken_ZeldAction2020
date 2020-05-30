@@ -116,7 +116,10 @@ public class PlayerHealthSystem : BasicHealthSystem
         yield return new WaitForEndOfFrame();
 
         GameManager.Instance.PlayerDeath();
-        LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = 0.75f;
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = 0.75f;
+        }
         deathCam.SetActive(true);
 
         GetComponentInChildren<PlayerAnimator>().Die();

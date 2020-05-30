@@ -81,6 +81,9 @@ public class BossManager : EnemyHealthSystem
     [HideInInspector] public bool ZeusIsTirred;
     [HideInInspector] public bool zeusIdle;
 
+    [SerializeField] private BasicCutSceneManager cutsceneEndBattle = null;
+    private bool cutSceneStart = false;
+
     void Awake()
     {
         #region Make Singleton
@@ -171,6 +174,11 @@ public class BossManager : EnemyHealthSystem
             {
                 DestroyObjects("EnemyProjectile");
             }
+        }
+        else if (currentHp <= 0 && !cutSceneStart)
+        {
+            cutSceneStart = true;
+            cutsceneEndBattle.StartCutScene();
         }
     }
 

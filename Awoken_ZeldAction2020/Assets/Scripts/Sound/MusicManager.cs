@@ -13,6 +13,7 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
     [HideInInspector] public bool playerDead = false;
+    private bool musicBoss = false;
 
 // = = = [ VARIABLES DEFINITION ] = = =
 
@@ -350,9 +351,14 @@ public class MusicManager : MonoBehaviour
                         SoundManager.Instance.PlayAmbiance(arenaAmbiance, arenaAmbianceVolume);
                     }
                 }
-                if (BossManager.Instance.canStartBossFight)
+                if (BossManager.Instance.canStartBossFight && !musicBoss)
                 {
+                    musicBoss = true;
                     SoundManager.Instance.FadeInMusic(arenaMusic, arenaMusicVolume, musicFadeIn);
+                }
+                else if (!BossManager.Instance.canStartBossFight)
+                {
+                    musicBoss = false;
                 }
                 break;
         }

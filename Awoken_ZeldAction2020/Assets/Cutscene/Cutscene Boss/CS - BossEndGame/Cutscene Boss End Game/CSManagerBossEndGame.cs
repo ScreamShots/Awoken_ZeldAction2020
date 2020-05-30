@@ -18,6 +18,8 @@ public class CSManagerBossEndGame : BasicCutSceneManager
     GameObject playerUI = null;
     [SerializeField]
     GameObject bossUI = null;
+    [SerializeField]
+    GameObject realBossRendering = null;
 
     override public void EndOfCutScene()
     {
@@ -34,6 +36,7 @@ public class CSManagerBossEndGame : BasicCutSceneManager
     [ContextMenu("StartCutSceneBossEndGame")]
     public override void StartCutScene()
     {
+        realBossRendering.SetActive(false);
         playerUI.SetActive(false);
         bossUI.SetActive(false);
         zeus.SetActive(true);
