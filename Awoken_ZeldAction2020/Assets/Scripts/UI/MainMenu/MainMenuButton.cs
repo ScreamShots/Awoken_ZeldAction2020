@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class MainMenuButton : MonoBehaviour
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+public class MainMenuButton : MonoBehaviour, ISelectHandler
 {
     Button myButton = null;
     TextMeshProUGUI myText = null;
 
     bool colorOnTransparent = false;
     bool colorOnOpac = false;
+
+    public UnityEvent onSelection;
 
     private void Start()
     {
@@ -31,5 +35,10 @@ public class MainMenuButton : MonoBehaviour
             colorOnOpac = true;
             myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 1);
         }
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        onSelection.Invoke();
     }
 }

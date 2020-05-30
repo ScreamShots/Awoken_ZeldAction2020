@@ -44,6 +44,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource parrySource;
     public AudioSource pauseSource;
     public AudioSource voiceSource;
+    public AudioSource buttonSource;
 
     private bool fadeOut = false;
     #endregion
@@ -263,9 +264,25 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
-// = = =
+    // Plays a button sound.
+    public void PlayButton(AudioClip button, float volume = 1f, float pitch = 1f)
+    {
+        buttonSource.Stop();
 
-// = = = [ STATE METHODS ] = = =
+        buttonSource.pitch = pitch;
+        if (!buttonSource.isPlaying)
+        {
+            buttonSource.PlayOneShot(button, (sfxDefaultVolume * volume) * globalDefaultVolume);
+        }
+
+        buttonSource.pitch = 1;
+
+        return;
+    }
+
+    // = = =
+
+    // = = = [ STATE METHODS ] = = =
 
     // If player is dead or not.  
     public void PlayerDead(bool isDead)
@@ -331,18 +348,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    // If player switch to a different area.  
-    public void SwitchArea(bool isSwitching)
-    {
-        if (!isSwitching)
-        {
-            sfxSource.volume = 1f;
-        }
-        else
-        {
-            sfxSource.volume = 0f;
-        }
-    }
 
 // = = =
 
