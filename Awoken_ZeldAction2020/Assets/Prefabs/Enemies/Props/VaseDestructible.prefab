@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2082132507695153291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4360705699649152055}
+  - component: {fileID: 6955871333032824413}
+  m_Layer: 9
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4360705699649152055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082132507695153291}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.27, y: 2.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7169583901921163049}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6955871333032824413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082132507695153291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f20fc5b4f377d04fbea0bf50a80fa92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyVase: {fileID: 8300000, guid: 8e2c8e4ae19e67849b85287761318f72, type: 3}
+  destroyVaseVolume: 0.3
 --- !u!1 &7169583901685983156
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +189,7 @@ Transform:
   - {fileID: 7169583902589689742}
   - {fileID: 7169583901899280988}
   - {fileID: 7169583902566239468}
+  - {fileID: 4360705699649152055}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -162,7 +208,11 @@ MonoBehaviour:
   maxHp: 1
   currentHp: 0
   canTakeDmg: 1
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
   shieldOfEnemy: {fileID: 0}
+  protectedByPegase: 0
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5

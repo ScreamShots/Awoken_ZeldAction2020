@@ -126,6 +126,7 @@ public class EnemyHealthSystem : BasicHealthSystem
         }
         if (!dontHaveCorps)
         {
+            onDead.Invoke();
             Instantiate(corps, dropPoint.position, Quaternion.identity);        //Instanciate a corps before destroy the object
 
             Destroy(gameObject);
