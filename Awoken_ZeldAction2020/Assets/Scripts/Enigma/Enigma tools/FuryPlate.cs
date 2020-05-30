@@ -5,9 +5,9 @@ using UnityEngine;
 public class FuryPlate : PressurePlateBehavior
 {
     [SerializeField]
-    private GameObject furyPickUp;
+    private GameObject furyPickUp = null;
     [SerializeField]
-    private Transform spawnPoint;
+    private Transform spawnPoint = null;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")

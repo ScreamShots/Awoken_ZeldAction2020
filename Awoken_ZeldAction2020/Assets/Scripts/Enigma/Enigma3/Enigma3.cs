@@ -15,6 +15,7 @@ public class Enigma3 : EnigmaTool
     protected override void Start()
     {
         //door1.isDoorOpen = true;
+        PlayerManager.Instance.GetComponent<PlayerHealthSystem>().onDead.AddListener(ResetAfterPlayerDeath);
     }
 
     // Update is called once per frame
@@ -53,5 +54,11 @@ public class Enigma3 : EnigmaTool
                 activationZone.enabled = false;
             }
         }
+    }
+
+    void ResetAfterPlayerDeath()
+    {
+        door1.isDoorOpen = true;
+        activationZone.enabled = true;
     }
 }

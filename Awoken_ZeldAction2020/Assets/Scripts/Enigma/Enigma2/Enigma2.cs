@@ -72,6 +72,7 @@ public class Enigma2 : EnigmaTool
 
     protected override void Start()
     {
+        PlayerManager.Instance.GetComponent<PlayerHealthSystem>().onDead.AddListener(AfterPlayerDeathReset);
     }
 
     void Update()
@@ -189,6 +190,7 @@ public class Enigma2 : EnigmaTool
                 isBrazeroOn2 = false;
                 //instantPlate1.isPressed = false;
                 //actionLever1.isPressed = false;
+                activatePlayerDetection = false;
             }
         }
     }
@@ -212,5 +214,11 @@ public class Enigma2 : EnigmaTool
             thisAltar.buttonActivated = true;
             mustActivateAltar = false;
         }
+    }
+
+    void AfterPlayerDeathReset()
+    {
+        forceClose = false;
+        activatePlayerDetection = true;
     }
 }

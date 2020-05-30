@@ -26,7 +26,7 @@ public class TransitionZone : MonoBehaviour
         {
             if (GameManager.Instance.gameState == GameManager.GameState.Running)
             {
-                if (!PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isKnockBacked)
+                if (!PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isKnockBacked && !PlayerStatusManager.Instance.isCharging)
                 {
                     OutTransition();
                     needToTransit = false;
@@ -37,16 +37,20 @@ public class TransitionZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("CollisionDetection"))
+        if (collision.CompareTag("CollisionDetection") && collision.transform.root.CompareTag("Player"))
         {
             if (GameManager.Instance.gameState == GameManager.GameState.Running)
             {
-                if (!PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isKnockBacked)
+                if (!PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isKnockBacked && !PlayerStatusManager.Instance.isCharging)
                 {
                     OutTransition();
                 }
-                else if (PlayerStatusManager.Instance.isKnockBacked || PlayerStatusManager.Instance.isAttacking)
+                else if (PlayerStatusManager.Instance.isKnockBacked || PlayerStatusManager.Instance.isAttacking || PlayerStatusManager.Instance.isCharging)
                 {
+                    if (PlayerStatusManager.Instance.isCharging)
+                    {
+                        PlayerManager.Instance.GetComponent<PlayerCharge>().FastEndCharge();
+                    }
                     needToTransit = true;
                 }
             }
@@ -55,7 +59,7 @@ public class TransitionZone : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("CollisionDetection"))
+        if (collision.CompareTag("CollisionDetection") && collision.transform.root.CompareTag("Player"))
         {
             if (GameManager.Instance.gameState == GameManager.GameState.LvlFrameTransition)
             {

@@ -97,7 +97,7 @@ public class AreaManager : MonoBehaviour
 
     public void LoadArea()
     {
-        if (mustKillAllEnemies && !allEnemyAreDead && allSpawnPlateforms.Count > 0)
+        if (mustKillAllEnemies && !allEnemyAreDead && allSpawnPlateforms.Count > 0 && canSpawnEnemies)
         {
             foreach(GameObject blocker in allLinkedBlockers)
             {

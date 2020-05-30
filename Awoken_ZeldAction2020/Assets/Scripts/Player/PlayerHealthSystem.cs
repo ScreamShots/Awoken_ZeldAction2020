@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class PlayerHealthSystem : BasicHealthSystem
 {
@@ -37,6 +38,7 @@ public class PlayerHealthSystem : BasicHealthSystem
     [SerializeField]
     GameObject deathCam = null;
     bool playerDead = false;
+
     #endregion
 
     #region HideInInspector var Statement
@@ -122,6 +124,7 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     public void Respawn()
     {
+        onDead.Invoke();
         ProgressionManager.Instance.playerHp = maxHp;
         ProgressionManager.Instance.playerFury = 0;
         ProgressionManager.Instance.playerStamina = GetComponent<PlayerShield>().maxStamina;

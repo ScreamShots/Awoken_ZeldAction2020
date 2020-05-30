@@ -135,14 +135,22 @@ public class PoulionAttackReworked : MonoBehaviour
             {
                 overlappedShield = detectedElement;         //storing the actual shield zone for security test of charge method                                
                 isOverlappingShield = true;                 //saying that we are overlapping a player shield zone(so if the enemy dont go out before the next attack if we trigger security check of charge method)
-                if (detectedElement.GetComponent<ShieldHitZone>().isActivated)                          //if the shield zone is activated
+                if (detectedElement.GetComponent<ShieldHitZone>().isActivated && !PlayerStatusManager.Instance.isCharging)                          //if the shield zone is activated
                 {                    
                     isCharging = false;
                     poulionHealthScript.canTakeDmg = true;
                     isStun = true;                                                                      //Apply Block behaviour and launch part3- stun
                     StartCoroutine(Stun());
                     detectedElement.transform.root.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                }               
+                }
+                else if (detectedElement.GetComponent<ShieldHitZone>().isActivated && PlayerStatusManager.Instance.isCharging)
+                {
+                    isCharging = false;
+                    poulionHealthScript.canTakeDmg = true;
+                    isStun = true;                                                                      //Apply Block behaviour and launch part3- stun
+                    StartCoroutine(Stun());
+                    PlayerManager.Instance.GetComponent<PlayerCharge>().FastEndCharge();
+                }
             }
             else if (detectedElement.tag == "Wall")                                 //if the collided element is a obstacle
             {
