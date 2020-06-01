@@ -31,6 +31,14 @@ public class CSManagerBossEndGame : BasicCutSceneManager
         bossUI.SetActive(true);
 
         base.EndOfCutScene();
+
+        ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.EndAdventure;
+        ProgressionManager.Instance.SaveTheProgression();
+
+        GameManager.Instance.areaToLoad = 0;
+        GameManager.Instance.sceneToLoad = 0;
+
+        GameManager.Instance.GoToScene();
     }
 
     [ContextMenu("StartCutSceneBossEndGame")]

@@ -22,6 +22,7 @@ public class VideoStream : MonoBehaviour
     {       
         myVideoPlayer.Prepare();
         yield return new WaitUntil(() => myVideoPlayer.isPrepared);
+        myRawImage.gameObject.SetActive(true);
         SoundManager.Instance.PauseGame(true);
         myRawImage.texture = myVideoPlayer.texture;
         myVideoPlayer.Play();
