@@ -63,6 +63,22 @@ public class MinototaureAnimator : MonoBehaviour
                 minototaureAnim.SetFloat("XMove", -1);
                 minototaureAnim.SetFloat("YMove", 0);
                 break;
+            case MinototaureMovement.Direction.diagonalUpLeft:
+                minototaureAnim.SetFloat("XMove", -1);
+                minototaureAnim.SetFloat("YMove", 0);
+                break;
+            case MinototaureMovement.Direction.diagonalDownLeft:
+                minototaureAnim.SetFloat("XMove", -1);
+                minototaureAnim.SetFloat("YMove", 0);
+                break;
+            case MinototaureMovement.Direction.diagonalUpRight:
+                minototaureAnim.SetFloat("XMove", 1);
+                minototaureAnim.SetFloat("YMove", 0);
+                break;
+            case MinototaureMovement.Direction.diagonalDownRight:
+                minototaureAnim.SetFloat("XMove", 1);
+                minototaureAnim.SetFloat("YMove", 0);
+                break;
             default:
                 break;
         }

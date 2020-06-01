@@ -87,12 +87,18 @@ public class MinototaureSound : MonoBehaviour
 
     void MinototaureLauchAttack()
     {
-        if (minototaureAttackScript.lauchAttack)
+        if (minototaureAttackScript.isAttacking)
         {
-            if (!MinototaureIsAttacking)
+            if (!minototaureAttackScript.isPreparingAttack)
             {
-                MinototaureIsAttacking = true;
-                SoundManager.Instance.PlaySfx(MinototaureAttack, MinototaureAttackVolume);
+                if (!MinototaureIsAttacking)
+                {
+                    MinototaureIsAttacking = true;
+                    if (!minototaureAttackScript.minototaureDetectScript.overlappedShield.GetComponent<ShieldHitZone>().isActivated)
+                    {
+                        SoundManager.Instance.PlaySfx(MinototaureAttack, MinototaureAttackVolume);
+                    }
+                }
             }
         }
         else
