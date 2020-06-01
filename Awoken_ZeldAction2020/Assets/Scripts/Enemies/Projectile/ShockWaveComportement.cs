@@ -39,11 +39,15 @@ public class ShockWaveComportement : MonoBehaviour
     public enum Direction { up, down, left, right, diagonalUpRight, diagonalUpLeft, diagonalDownRight, diagonalDownLeft }
     [HideInInspector] public Direction watchDirection;
 
+    private PlayerHealthSystem playerHealtScript;
+
     #endregion
 
     private void Start()
     {
         player = PlayerManager.Instance.gameObject;
+
+        playerHealtScript = player.GetComponent<PlayerHealthSystem>();
 
         playerMoveScript = player.GetComponent<PlayerMovement>();
 
@@ -57,6 +61,11 @@ public class ShockWaveComportement : MonoBehaviour
 
     private void Update()
     {
+        if (playerHealtScript.currentHp <= 0)
+        {
+            Destroy(gameObject);
+        }
+
         if (transform.localScale == maxScale)                                                                                   //To destroy shock wave when max scale is reached
         {
             Destroy(gameObject);
