@@ -20,7 +20,7 @@ public class MinototaureMovement : MonoBehaviour
     MinototaureAttack minototaureAttackScript;
     EnemyHealthSystem minototaureHealthScript;
 
-    public enum Direction { up, down, left, right }
+    public enum Direction { up, down, left, right, diagonalUpRight, diagonalUpLeft, diagonalDownRight, diagonalDownLeft }
     [HideInInspector]                                           
     public Direction watchDirection = Direction.down;
 
@@ -236,7 +236,6 @@ public class MinototaureMovement : MonoBehaviour
         }
 
         SetDirection();                                                                         //set the direction every frame for the animator
-
     }
 
     private void FixedUpdate()
@@ -323,84 +322,117 @@ public class MinototaureMovement : MonoBehaviour
                 Vector2 playerdirection = player.transform.position - transform.position;
                 playerdirection.Normalize();
 
-                if (Mathf.Abs(playerdirection.x) > Mathf.Abs(playerdirection.y))
+                if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y > 0)
                 {
-                    if (playerdirection.x > 0)
-                    {
-                        watchDirection = Direction.right;
-                    }
-                    else
-                    {
-                        watchDirection = Direction.left;
-                    }
+                    watchDirection = Direction.up;
                 }
-                else
+                else if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y < 0)
                 {
-                    if (playerdirection.y > 0)
-                    {
-                        watchDirection = Direction.up;
-                    }
-                    else
-                    {
-                        watchDirection = Direction.down;
-                    }
+                    watchDirection = Direction.down;
+                }
+                else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x < 0)
+                {
+                    watchDirection = Direction.left;
+                }
+                else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x > 0)
+                {
+                    watchDirection = Direction.right;
+                }
+
+                else if (playerdirection.x >= 0.20f && playerdirection.y >= 0.40f)
+                {
+                    watchDirection = Direction.diagonalUpRight;
+                }
+                else if (playerdirection.x <= 0.20f && playerdirection.y >= 0.40f)
+                {
+                    watchDirection = Direction.diagonalUpLeft;
+                }
+                else if (playerdirection.x >= 0.20f && playerdirection.y <= -0.60f)
+                {
+                    watchDirection = Direction.diagonalDownRight;
+                }
+                else if (playerdirection.x <= 0.20f && playerdirection.y <= -0.60f)
+                {
+                    watchDirection = Direction.diagonalDownLeft;
                 }
             }
             else
             {
                 if (minototaureRgb.velocity.x != 0 || minototaureRgb.velocity.y != 0)
                 {
-                    if (Mathf.Abs(minototaureRgb.velocity.x) > Mathf.Abs(minototaureRgb.velocity.y))
+                    if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.x >= -0.20f && minototaureRgb.velocity.y > 0)
                     {
-                        if (minototaureRgb.velocity.x > 0)
-                        {
-                            watchDirection = Direction.right;
-                        }
-                        else
-                        {
-                            watchDirection = Direction.left;
-                        }
+                        watchDirection = Direction.up;
                     }
-                    else
+                    else if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.x >= -0.20f && minototaureRgb.velocity.y < 0)
                     {
-                        if (minototaureRgb.velocity.y > 0)
-                        {
-                            watchDirection = Direction.up;
-                        }
-                        else
-                        {
-                            watchDirection = Direction.down;
-                        }
+                        watchDirection = Direction.down;
                     }
-                }
-            }         
+                    else if (minototaureRgb.velocity.y <= 0.40f && minototaureRgb.velocity.y >= -0.60f && minototaureRgb.velocity.x < 0)
+                    {
+                        watchDirection = Direction.left;
+                    }
+                    else if (minototaureRgb.velocity.y <= 0.40f && minototaureRgb.velocity.y >= -0.60f && minototaureRgb.velocity.x > 0)
+                    {
+                        watchDirection = Direction.right;
+                    }
+
+                    else if (minototaureRgb.velocity.x >= 0.20f && minototaureRgb.velocity.y >= 0.40f)
+                    {
+                        watchDirection = Direction.diagonalUpRight;
+                    }
+                    else if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.y >= 0.40f)
+                    {
+                        watchDirection = Direction.diagonalUpLeft;
+                    }
+                    else if (minototaureRgb.velocity.x >= 0.20f && minototaureRgb.velocity.y <= -0.60f)
+                    {
+                        watchDirection = Direction.diagonalDownRight;
+                    }
+                    else if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.y <= -0.60f)
+                    {
+                        watchDirection = Direction.diagonalDownLeft;
+                    }
+                }                
+            }
         }
-        else if (playerDetected)                                            
+        else if (playerDetected)
         {
             Vector2 playerdirection = player.transform.position - transform.position;
             playerdirection.Normalize();
 
-            if (Mathf.Abs(playerdirection.x) > Mathf.Abs(playerdirection.y))
+            if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y > 0)
             {
-                if (playerdirection.x > 0)
-                {
-                    watchDirection = Direction.right;
-                }
-                else
-                {
-                    watchDirection = Direction.left;
-                }
+                watchDirection = Direction.up;
             }
-            else
+            else if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y < 0)
             {
-                if (playerdirection.y > 0)
-                {
-                    watchDirection = Direction.up;
-                }
-                else
-                {
-                    watchDirection = Direction.down;
-                }
+                watchDirection = Direction.down;
+            }
+            else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x < 0)
+            {
+                watchDirection = Direction.left;
+            }
+            else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x > 0)
+            {
+                watchDirection = Direction.right;
+            }
+
+            else if (playerdirection.x >= 0.20f && playerdirection.y >= 0.40f)
+            {
+                watchDirection = Direction.diagonalUpRight;
+            }
+            else if (playerdirection.x <= 0.20f && playerdirection.y >= 0.40f)
+            {
+                watchDirection = Direction.diagonalUpLeft;
+            }
+            else if (playerdirection.x >= 0.20f && playerdirection.y <= -0.60f)
+            {
+                watchDirection = Direction.diagonalDownRight;
+            }
+            else if (playerdirection.x <= 0.20f && playerdirection.y <= -0.60f)
+            {
+                watchDirection = Direction.diagonalDownLeft;
             }
         }
     }

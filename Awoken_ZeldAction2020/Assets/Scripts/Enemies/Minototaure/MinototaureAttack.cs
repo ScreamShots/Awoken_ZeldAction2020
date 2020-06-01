@@ -13,7 +13,7 @@ public class MinototaureAttack : MonoBehaviour
     //global
 
     MinototaureMovement minototaureMoveScript;
-    MinototaureDetectZone minototaureDetectScript;
+    [HideInInspector] public MinototaureDetectZone minototaureDetectScript;
     EnemyHealthSystem minototaureHealthScript;
     GameObject player;
     private PlayerMovement playerMoveScript;
@@ -102,6 +102,7 @@ public class MinototaureAttack : MonoBehaviour
         {
             if (minototaureDetectScript.overlappedShield.GetComponent<ShieldHitZone>().isActivated)     //if shield is enable      
             {
+                // 4 normal directions case
                 if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.left && playerMoveScript.watchDirection == PlayerMovement.Direction.right)
                 {
                     lauchAttack = false;
@@ -130,6 +131,37 @@ public class MinototaureAttack : MonoBehaviour
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
                     StartCoroutine(Stun());
                 }
+                
+                //Diagonal case
+                else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.diagonalUpLeft && (playerMoveScript.watchDirection == PlayerMovement.Direction.right || playerMoveScript.watchDirection == PlayerMovement.Direction.down))
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+                else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.diagonalDownLeft && (playerMoveScript.watchDirection == PlayerMovement.Direction.right || playerMoveScript.watchDirection == PlayerMovement.Direction.up))
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+                else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.diagonalUpRight && (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.down))
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+                else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.diagonalDownRight && (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.up))
+                {
+                    lauchAttack = false;
+                    isStun = true;
+                    player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
+                    StartCoroutine(Stun());
+                }
+
                 else
                 {
                     lauchAttack = false;
@@ -172,6 +204,18 @@ public class MinototaureAttack : MonoBehaviour
                 break;
             case MinototaureMovement.Direction.left:
                 attackZone.transform.rotation = Quaternion.Euler(0, 0, -90);
+                break;
+            case MinototaureMovement.Direction.diagonalUpLeft:
+                attackZone.transform.rotation = Quaternion.Euler(0, 0, -90);
+                break;
+            case MinototaureMovement.Direction.diagonalDownLeft:
+                attackZone.transform.rotation = Quaternion.Euler(0, 0, -90);
+                break;
+            case MinototaureMovement.Direction.diagonalUpRight:
+                attackZone.transform.rotation = Quaternion.Euler(0, 0, 90);
+                break;
+            case MinototaureMovement.Direction.diagonalDownRight:
+                attackZone.transform.rotation = Quaternion.Euler(0, 0, 90);
                 break;
         }
     }
