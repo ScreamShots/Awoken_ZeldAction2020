@@ -29,6 +29,9 @@ public class BulletComportement : MonoBehaviour
     [Space]
     public float TimeBeforeDestroy;
 
+    [Header("Particle")]
+    public GameObject projectileParticle = null;
+
     private GameObject player;
 
     [HideInInspector]
@@ -42,6 +45,8 @@ public class BulletComportement : MonoBehaviour
     [HideInInspector]
     public bool isParied;
     #endregion
+
+
 
     private BulletSound bulletSoundScript;
 
@@ -141,5 +146,13 @@ public class BulletComportement : MonoBehaviour
     {
         PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLoseOnBlock);        //cause player lost stamina
         Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        if (projectileParticle != null)
+        {
+            Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);
+        }
     }
 }
