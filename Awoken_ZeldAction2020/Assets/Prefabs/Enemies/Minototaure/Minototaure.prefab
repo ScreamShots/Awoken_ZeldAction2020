@@ -480,9 +480,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 40
+  maxHp: 70
   currentHp: 0
   canTakeDmg: 1
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
   shieldOfEnemy: {fileID: 4937395374192434862, guid: 8c8013dbb46c71c45938b19661bcc128,
     type: 3}
   protectedByPegase: 0
@@ -497,6 +500,7 @@ MonoBehaviour:
   timeBeforeDestroy: 0
   linkedSpawnPlateform: {fileID: 0}
   canFlash: 0
+  isAffectedByPegase: 1
   minDropDistance: -0.5
   maxDropDistance: 0.5
   dropChanceItem0: 10
@@ -548,17 +552,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4cd7eb642fb3c41b2d4932a5b01250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minototaureDetectScript: {fileID: 0}
   isAttacking: 0
   isPreparingAttack: 0
   lauchAttack: 0
   isStun: 0
   cooldownAttack: 0
   attackZone: {fileID: 103080870856343294}
-  prepareChargeTime: 0.5
-  stunTime: 0.7
+  prepareChargeTime: 0.6
+  stunTime: 1
   dmg: 30
   staminaLost: 0
-  timeBtwAttack: 4
+  timeBtwAttack: 1.5
 --- !u!114 &4356942347588007911
 MonoBehaviour:
   m_ObjectHideFlags: 0
