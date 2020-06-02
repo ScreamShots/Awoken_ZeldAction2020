@@ -12,13 +12,22 @@ public class PauseMenuManager : MonoBehaviour
     public void MainMenu()
     {
         GameManager.Instance.sceneToLoad = 0;
-        GameManager.Instance.areaToLoad = 0;        
-        GameManager.Instance.GoToScene();
-        StartCoroutine(GameManager.Instance.EndGamePause());
+        GameManager.Instance.areaToLoad = 0;
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(EndGamePause);
+        GameManager.Instance.blackMelt.MeltIn();        
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(Application.Quit);
+        GameManager.Instance.blackMelt.MeltIn();        
+    }
+
+    public void EndGamePause()
+    {
+        StartCoroutine(GameManager.Instance.EndGamePause());
     }
 }

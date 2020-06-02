@@ -118,6 +118,7 @@ public class HealthPickUp : MonoBehaviour
             maxTimeBtwFlash -= 0.02f;
             GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
+        SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
 
         Destroy(gameObject);
     }

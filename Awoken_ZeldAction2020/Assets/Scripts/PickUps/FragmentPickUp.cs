@@ -18,6 +18,13 @@ public class FragmentPickUp : MonoBehaviour
     int fragmentToAdd = 0;
     #endregion
 
+    PickUpSound pickUpSoundScript = null;
+
+    private void Start()
+    {
+        pickUpSoundScript = GetComponentInChildren<PickUpSound>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject detectedElement = collision.gameObject;
@@ -25,6 +32,7 @@ public class FragmentPickUp : MonoBehaviour
         if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")
         {
             PlayerManager.fragmentNumber += fragmentToAdd;
+            SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
             Destroy(gameObject);
         }
     }

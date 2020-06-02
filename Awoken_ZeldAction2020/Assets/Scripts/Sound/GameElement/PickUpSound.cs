@@ -15,11 +15,4 @@ public class PickUpSound : MonoBehaviour
 
     #endregion
 
-    void OnDestroy()
-    {
-        if (!destroyByTime)
-        {
-            SoundManager.Instance.PlaySfx(pickUp, pickUpVolume);
-        }
-    }
 }

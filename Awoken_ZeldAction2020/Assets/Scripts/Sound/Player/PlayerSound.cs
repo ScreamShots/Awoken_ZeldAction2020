@@ -296,7 +296,7 @@ public class PlayerSound : MonoBehaviour
 
     void NoStamina()
     {
-        if (playerShieldScript.currentStamina == 0)
+        if (PlayerStatusManager.Instance.cdOnBlock)
         {
             if (!shieldBreak)
             {

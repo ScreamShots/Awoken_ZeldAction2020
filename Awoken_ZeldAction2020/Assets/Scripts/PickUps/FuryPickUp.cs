@@ -123,6 +123,8 @@ public class FuryPickUp : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
 
+        SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
+
         Destroy(gameObject);
     }
 }

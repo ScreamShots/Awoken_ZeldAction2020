@@ -44,7 +44,10 @@ public class MainMenuManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        eventSystem.SetActive(false);
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(Application.Quit); ;
+        GameManager.Instance.blackMelt.MeltIn();
     }
 
 
@@ -57,17 +60,21 @@ public class MainMenuManager : MonoBehaviour
 
     IEnumerator NewGame()
     {
+        eventSystem.SetActive(false);
         GameObject progressionManagerHolder = ProgressionManager.Instance.gameObject;
         Destroy(ProgressionManager.Instance);
         yield return new WaitForEndOfFrame();
         progressionManagerHolder.AddComponent<ProgressionManager>();
         GameManager.Instance.sceneToLoad = 1;
         GameManager.Instance.areaToLoad = 0;
-        GameManager.Instance.GoToScene();
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
+        GameManager.Instance.blackMelt.MeltIn();
     }
 
     public void Continue()
     {
+        eventSystem.SetActive(false);
         ProgressionManager.Instance.LoadTheProgression();        
     }
 

@@ -11,14 +11,14 @@ public class ActionLever : PressurePlateBehavior
     protected bool playerHere;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+        if (other.tag == "AttackZone" && other.transform.root.tag == "Player")
         {
             playerHere = true;
         }
     }
     protected override void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+        if (other.tag == "AttackZone" && other.transform.root.tag == "Player")
         {
             playerHere = false;
         }
@@ -30,7 +30,7 @@ public class ActionLever : PressurePlateBehavior
 
     private void Update()
     {
-        if(playerHere && Input.GetButtonDown("Interraction"))
+        if(playerHere && Input.GetButtonDown("Attack"))
         {
             isPressed = true;
         }

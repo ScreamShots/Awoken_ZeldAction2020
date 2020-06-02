@@ -334,7 +334,9 @@ public class ProgressionManager : MonoBehaviour
 
         GameManager.Instance.sceneToLoad = currentSceneIndex;
         GameManager.Instance.areaToLoad = currentAreaIndex;
-        GameManager.Instance.GoToScene();
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
+        GameManager.Instance.blackMelt.MeltIn();
     }
 
 }
