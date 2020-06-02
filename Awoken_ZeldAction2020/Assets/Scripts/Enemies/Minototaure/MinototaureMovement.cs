@@ -235,7 +235,10 @@ public class MinototaureMovement : MonoBehaviour
             }
         }
 
-        SetDirection();                                                                         //set the direction every frame for the animator
+        if (!minototaureAttackScript.isAttacking)
+        {
+            SetDirection();                     //set the direction every frame for the animator
+        }                                                                       
     }
 
     private void FixedUpdate()
@@ -315,127 +318,80 @@ public class MinototaureMovement : MonoBehaviour
 
     void SetDirection()                                 //method setting the direction for the animator
     {
-        if (!playerDetected)                                                //this part work if we are in phase 1
+        Vector2 playerdirection = player.transform.position - transform.position;
+        playerdirection.Normalize();
+        float playerAngle = Mathf.Atan2(playerdirection.y, playerdirection.x) * Mathf.Rad2Deg;
+
+        if(playerAngle < 0)
         {
-            if (playerInAttackRange)
-            {
-                Vector2 playerdirection = player.transform.position - transform.position;
-                playerdirection.Normalize();
-
-                if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y > 0)
-                {
-                    watchDirection = Direction.up;
-                }
-                else if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y < 0)
-                {
-                    watchDirection = Direction.down;
-                }
-                else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x < 0)
-                {
-                    watchDirection = Direction.left;
-                }
-                else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x > 0)
-                {
-                    watchDirection = Direction.right;
-                }
-
-                else if (playerdirection.x >= 0.20f && playerdirection.y >= 0.40f)
-                {
-                    watchDirection = Direction.diagonalUpRight;
-                }
-                else if (playerdirection.x <= 0.20f && playerdirection.y >= 0.40f)
-                {
-                    watchDirection = Direction.diagonalUpLeft;
-                }
-                else if (playerdirection.x >= 0.20f && playerdirection.y <= -0.60f)
-                {
-                    watchDirection = Direction.diagonalDownRight;
-                }
-                else if (playerdirection.x <= 0.20f && playerdirection.y <= -0.60f)
-                {
-                    watchDirection = Direction.diagonalDownLeft;
-                }
-            }
-            else
-            {
-                if (minototaureRgb.velocity.x != 0 || minototaureRgb.velocity.y != 0)
-                {
-                    if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.x >= -0.20f && minototaureRgb.velocity.y > 0)
-                    {
-                        watchDirection = Direction.up;
-                    }
-                    else if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.x >= -0.20f && minototaureRgb.velocity.y < 0)
-                    {
-                        watchDirection = Direction.down;
-                    }
-                    else if (minototaureRgb.velocity.y <= 0.40f && minototaureRgb.velocity.y >= -0.60f && minototaureRgb.velocity.x < 0)
-                    {
-                        watchDirection = Direction.left;
-                    }
-                    else if (minototaureRgb.velocity.y <= 0.40f && minototaureRgb.velocity.y >= -0.60f && minototaureRgb.velocity.x > 0)
-                    {
-                        watchDirection = Direction.right;
-                    }
-
-                    else if (minototaureRgb.velocity.x >= 0.20f && minototaureRgb.velocity.y >= 0.40f)
-                    {
-                        watchDirection = Direction.diagonalUpRight;
-                    }
-                    else if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.y >= 0.40f)
-                    {
-                        watchDirection = Direction.diagonalUpLeft;
-                    }
-                    else if (minototaureRgb.velocity.x >= 0.20f && minototaureRgb.velocity.y <= -0.60f)
-                    {
-                        watchDirection = Direction.diagonalDownRight;
-                    }
-                    else if (minototaureRgb.velocity.x <= 0.20f && minototaureRgb.velocity.y <= -0.60f)
-                    {
-                        watchDirection = Direction.diagonalDownLeft;
-                    }
-                }                
-            }
+            playerAngle += 360;
         }
-        else if (playerDetected)
+
+        if (!isOnRandomMove)
         {
-            Vector2 playerdirection = player.transform.position - transform.position;
-            playerdirection.Normalize();
-
-            if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y > 0)
-            {
-                watchDirection = Direction.up;
-            }
-            else if (playerdirection.x <= 0.20f && playerdirection.x >= -0.20f && playerdirection.y < 0)
-            {
-                watchDirection = Direction.down;
-            }
-            else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x < 0)
-            {
-                watchDirection = Direction.left;
-            }
-            else if (playerdirection.y <= 0.40f && playerdirection.y >= -0.60f && playerdirection.x > 0)
-            {
-                watchDirection = Direction.right;
-            }
-
-            else if (playerdirection.x >= 0.20f && playerdirection.y >= 0.40f)
+            if (playerAngle > 22.5f && playerAngle < 67.5f)
             {
                 watchDirection = Direction.diagonalUpRight;
             }
-            else if (playerdirection.x <= 0.20f && playerdirection.y >= 0.40f)
+            else if (playerAngle > 67.5f && playerAngle < 112.5f)
+            {
+                watchDirection = Direction.up;
+            }
+            else if(playerAngle > 112.5f && playerAngle < 157.5f)
             {
                 watchDirection = Direction.diagonalUpLeft;
             }
-            else if (playerdirection.x >= 0.20f && playerdirection.y <= -0.60f)
+            else if(playerAngle > 157.5f && playerAngle < 202.5f)
             {
-                watchDirection = Direction.diagonalDownRight;
+                watchDirection = Direction.left;
             }
-            else if (playerdirection.x <= 0.20f && playerdirection.y <= -0.60f)
+            else if (playerAngle > 202.5f && playerAngle < 247.5f)
             {
                 watchDirection = Direction.diagonalDownLeft;
             }
+            else if (playerAngle > 247.5f && playerAngle < 292.5f)
+            {
+                watchDirection = Direction.down;
+            }
+            else if (playerAngle > 292.5f && playerAngle <337.5f)
+            {
+                watchDirection = Direction.diagonalDownRight;
+            }
+            else
+            {
+                watchDirection = Direction.right;
+            }
+        }
+        else
+        {
+            if (minototaureRgb.velocity != Vector2.zero)
+            {
+                if (Mathf.Abs(minototaureRgb.velocity.x) > Mathf.Abs(minototaureRgb.velocity.y))
+                {
+                    if (minototaureRgb.velocity.x < 0)
+                    {
+                        watchDirection = Direction.left;
+                    }
+                    else
+                    {
+                        watchDirection = Direction.right;
+                    }
+                }
+                else
+                {
+                    if (minototaureRgb.velocity.y < 0)
+                    {
+                        watchDirection = Direction.down;
+                    }
+                    else
+                    {
+                        watchDirection = Direction.up;
+                    }
+                }
+            }
         }
     }
+
 
     public void StartKnockBack()
     {

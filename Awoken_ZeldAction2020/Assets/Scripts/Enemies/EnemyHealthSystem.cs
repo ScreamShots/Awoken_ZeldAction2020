@@ -11,7 +11,6 @@ public class EnemyHealthSystem : BasicHealthSystem
     //Settings for instantiation of shield of Pegase
     public GameObject shieldOfEnemy;
     public bool protectedByPegase = false;
-    private GameObject shieldInstance;
 
     [Header("On Hit Flash")]
 
@@ -81,9 +80,7 @@ public class EnemyHealthSystem : BasicHealthSystem
         enemyRenderer = GetComponentInChildren<SpriteRenderer>();
         if(shieldOfEnemy != null)
         {
-            shieldInstance = Instantiate(shieldOfEnemy, transform.position, Quaternion.identity);
-            shieldInstance.transform.parent = transform;
-            shieldInstance.SetActive(false);
+            shieldOfEnemy.SetActive(false);
         }
     }
 
@@ -147,9 +144,9 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     public void ActivatePegaseProtection()
     {
-        if (!shieldInstance.activeInHierarchy && isAffectedByPegase == true)
+        if (!shieldOfEnemy.activeInHierarchy && isAffectedByPegase == true)
         {
-            shieldInstance.SetActive(true);
+            shieldOfEnemy.SetActive(true);
             protectedByPegase = true;
             canTakeDmg = false;
         }
@@ -157,9 +154,9 @@ public class EnemyHealthSystem : BasicHealthSystem
 
     public void DesactivatePegaseProtection()
     {
-        if (shieldInstance.activeInHierarchy && isAffectedByPegase == true)
+        if (shieldOfEnemy.activeInHierarchy && isAffectedByPegase == true)
         {
-            shieldInstance.SetActive(false);
+            shieldOfEnemy.SetActive(false);
             protectedByPegase = false;
             canTakeDmg = true;
         }
@@ -197,32 +194,37 @@ public class EnemyHealthSystem : BasicHealthSystem
     private void DropItem()
     {
         float randomNum = Random.Range(0, 101);                       //100% for determining loot chance
-        float randomNum1 = Random.Range(0, 101);
-        float randomNum2 = Random.Range(0, 101);
 
-        if (randomNum <= dropChanceItem0 & !alreadyDropItem)           //if a random number is inferior to % of dropping item we set in Inspector
+        if (randomNum <= dropChanceItem0 )           //if a random number is inferior to % of dropping item we set in Inspector
         {
             itemNum = 0;
-            alreadyDropItem = true;                                   //can't drop 2 items on same enemy
 
-            GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
-            itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
+            if (DropItemList[itemNum] != null)
+            {
+                GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
+                itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
+            }
         }
-        if (randomNum1 <= dropChanceItem1 & !alreadyDropItem)
+        else if (randomNum <= dropChanceItem1 + dropChanceItem0 & randomNum > dropChanceItem0)
         {
             itemNum = 1;
-            alreadyDropItem = true;
 
-            GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
-            itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
+            if (DropItemList[itemNum] != null)
+            {
+                GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
+                itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
+            }
         }
-        if (randomNum2 <= dropChanceItem2 & !alreadyDropItem)
+        else if (randomNum > dropChanceItem0 + dropChanceItem1 && randomNum <= dropChanceItem2 + dropChanceItem1 + dropChanceItem0)
         {
             itemNum = 2;
-            alreadyDropItem = true;
 
-            GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
-            itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
+            if (DropItemList[itemNum] != null)
+            {
+                GameObject itemDrop = Instantiate(DropItemList[itemNum], transform.position, Quaternion.identity);
+                itemDrop.transform.position = new Vector2(dropPoint.position.x + Random.Range(minDropDistance, maxDropDistance), dropPoint.position.y + Random.Range(minDropDistance, maxDropDistance));
+            }
+
         }
     }
 

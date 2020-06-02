@@ -238,12 +238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  maxHp: 30
   currentHp: 0
   canTakeDmg: 1
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
   shieldOfEnemy: {fileID: 0}
   protectedByPegase: 0
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 1}
   flashTime: 0.5
   flashFadeTime: 0.5
   bloodParticle: {fileID: 8883298912550994381, guid: 9903cd97e4234be49b56926cf774fe36,
@@ -254,6 +257,7 @@ MonoBehaviour:
   timeBeforeDestroy: 0
   linkedSpawnPlateform: {fileID: 0}
   canFlash: 0
+  isAffectedByPegase: 1
   minDropDistance: -0.5
   maxDropDistance: 0.5
   dropChanceItem0: 10
@@ -293,7 +297,7 @@ MonoBehaviour:
   teleportationTime: 0.6
   maxRadiusTeleport: 5
   minRadiusTeleport: 3
-  numberTpBeforeCooldown: 4
+  numberTpBeforeCooldown: 3
   timeCooldown: 3
   showRanges: 0
 --- !u!114 &8093984034480427404

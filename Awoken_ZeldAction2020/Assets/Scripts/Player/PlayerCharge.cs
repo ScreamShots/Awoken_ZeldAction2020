@@ -31,6 +31,8 @@ public class PlayerCharge : MonoBehaviour
     [SerializeField]
     float chargeDamage = 0;
     [SerializeField]
+    float knockBackDamage = 0;
+    [SerializeField]
     float areaRadius = 0;
     [SerializeField]
     float knockBackStrenght = 0;
@@ -248,7 +250,7 @@ public class PlayerCharge : MonoBehaviour
     public void KnockBackEnemy(GameObject enemy)
     {
         enemy.GetComponent<EnemyKnockBackCaller>().KnockEnemy(knockBackStrenght, chargeDir);
-        enemy.GetComponent<BasicHealthSystem>().TakeDmg(chargeDamage / 3);
+        enemy.GetComponent<BasicHealthSystem>().TakeDmg(knockBackDamage);
     }
     
     private void OnDrawGizmosSelected()

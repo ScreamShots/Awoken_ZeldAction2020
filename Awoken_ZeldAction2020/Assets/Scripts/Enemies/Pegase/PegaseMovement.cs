@@ -427,4 +427,11 @@ public class PegaseMovement : MonoBehaviour
 
         pegaseRgb.velocity = Vector2.zero;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+
+        Gizmos.DrawWireSphere(transform.position, maxRadiusTeleport);
+        Gizmos.DrawWireSphere(transform.position, minRadiusTeleport);
+    }
 }

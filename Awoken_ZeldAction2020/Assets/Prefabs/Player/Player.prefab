@@ -1878,7 +1878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00601ea3a09ebd943aa614ac38e8f973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 80
   currentHp: 0
   canTakeDmg: 1
   onDead:
@@ -1891,7 +1891,7 @@ MonoBehaviour:
   invulnerabilityTime: 1
   positivFlashColor: {r: 1, g: 1, b: 1, a: 1}
   negativFlashColor: {r: 1, g: 0.25, b: 0.25, a: 0.69411767}
-  flashFrequency: 0.33
+  flashFrequency: 0.2
   bloodParticle: {fileID: 8883298912550994381, guid: 9903cd97e4234be49b56926cf774fe36,
     type: 3}
   deathCam: {fileID: 5704052692926552122}
@@ -1935,13 +1935,13 @@ MonoBehaviour:
   thirdAttackdmg: 30
   attackProjection: 35
   timeBtwAttack: 0.05
-  timeBtwCombo: 0.5
+  timeBtwCombo: 0.35
   timeComboFade: 0.5
   vibrateIntensity: 0.02
   maxFury: 100
   furyGainAttackOne: 10
   furyGainAttackTwo: 10
-  furyGainAttackThree: 20
+  furyGainAttackThree: 30
   autoAttack: 0
 --- !u!114 &5459978421040826452
 MonoBehaviour:
@@ -1972,8 +1972,8 @@ MonoBehaviour:
   maxStamina: 40
   currentStamina: 0
   staminaLoseSpeed: 10
-  staminaReloadSpeed: 50
-  timeBeforeReload: 3
+  staminaReloadSpeed: 30
+  timeBeforeReload: 2
   vibrateIntensity: 0.3
 --- !u!114 &6285846879323941749
 MonoBehaviour:
@@ -2054,7 +2054,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  chargeDamage: 40
+  chargeDamage: 50
+  knockBackDamage: 30
   areaRadius: 3
   knockBackStrenght: 6
   explosion: {fileID: 3557050727639198685}
@@ -2085,8 +2086,8 @@ MonoBehaviour:
   particleEndPary: {fileID: 3425761647748948589}
   orientationElements: {fileID: 8239789303636065395}
   angleAmplitude: 120
-  rotaSpeed: 70
-  timeBeforeLaunchBack: 10
+  rotaSpeed: 80
+  timeBeforeLaunchBack: 4
   buttonIsPressed: 1
 --- !u!95 &6920300998927922022
 Animator:

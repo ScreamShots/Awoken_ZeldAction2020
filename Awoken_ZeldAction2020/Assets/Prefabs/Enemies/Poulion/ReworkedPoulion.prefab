@@ -37,6 +37,7 @@ Transform:
   - {fileID: 506266973565926885}
   - {fileID: 2952340587437916203}
   - {fileID: 2655616364969638397}
+  - {fileID: 3968824686721403376}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85,7 +86,7 @@ MonoBehaviour:
   randomWalkDuration: 0.7
   stayDuration: 2
   playerDetectionDistance: 5
-  chaseSpeed: 200
+  chaseSpeed: 275
   frequency: 20
   minAmplitude: 2.69
   maxAmplitude: 8.52
@@ -107,10 +108,10 @@ MonoBehaviour:
   isCharging: 0
   isStun: 0
   stunCooldown: 0
-  prepareChargeTime: 2
-  chargeSpeed: 300
+  prepareChargeTime: 0.85
+  chargeSpeed: 350
   chargeDistance: 2.5
-  stunTime: 3
+  stunTime: 2
   dmg: 10
   staminaLost: 0
 --- !u!114 &506266972536926346
@@ -125,11 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 30
   currentHp: 0
   canTakeDmg: 1
-  shieldOfEnemy: {fileID: 4670674669144742711, guid: 0ba9f86d6586a994a919ac5a28f236e0,
-    type: 3}
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+  shieldOfEnemy: {fileID: 3968824686721403383}
   protectedByPegase: 0
   flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
   flashTime: 0.5
@@ -142,6 +145,7 @@ MonoBehaviour:
   timeBeforeDestroy: 0
   linkedSpawnPlateform: {fileID: 0}
   canFlash: 0
+  isAffectedByPegase: 1
   minDropDistance: -0.5
   maxDropDistance: 0.5
   dropChanceItem0: 10
@@ -480,3 +484,84 @@ Transform:
   m_Father: {fileID: 506266972536926344}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8630454738730422976
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 506266972536926344}
+    m_Modifications:
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.054
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670674669144742711, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+        type: 3}
+      propertyPath: m_Name
+      value: shield_poulion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ba9f86d6586a994a919ac5a28f236e0, type: 3}
+--- !u!1 &3968824686721403383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4670674669144742711, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8630454738730422976}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3968824686721403376 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4670674669144742704, guid: 0ba9f86d6586a994a919ac5a28f236e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8630454738730422976}
+  m_PrefabAsset: {fileID: 0}
