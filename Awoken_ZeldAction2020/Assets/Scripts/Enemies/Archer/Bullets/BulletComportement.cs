@@ -16,7 +16,9 @@ public class BulletComportement : MonoBehaviour
 
     [Header("Bullet Stats")]
     [Min(0)]
-    [SerializeField] private float dmg = 0;
+    public float dmg = 0;
+    [Min(0)]
+    public float launchBackDmg = 20;
 
     public float bulletSpeed;
 

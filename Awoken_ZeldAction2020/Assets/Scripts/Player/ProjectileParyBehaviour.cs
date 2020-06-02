@@ -163,6 +163,7 @@ public class ProjectileParyBehaviour : MonoBehaviour
         if(projectile != null)
         {
             projectile.GetComponent<BulletComportement>().isParied = false;
+            projectile.GetComponent<BulletComportement>().dmg = projectile.GetComponent<BulletComportement>().launchBackDmg;
             projectileBlockHandler.hasBeenLaunchBack = true;                                                    //tell the projectile he has been paried and launch back (all modification on the projectile are managed on intern)
         }
 
