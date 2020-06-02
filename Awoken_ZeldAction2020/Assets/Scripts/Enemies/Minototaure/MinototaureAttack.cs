@@ -47,6 +47,9 @@ public class MinototaureAttack : MonoBehaviour
     [SerializeField]
     [Min(0)]
     float stunTime = 0;
+    [SerializeField]
+    [Min(0)]
+    float noBlockedStunTime = 0;
 
     [Header("Stats")]
 
@@ -108,28 +111,28 @@ public class MinototaureAttack : MonoBehaviour
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
                 else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.right && playerMoveScript.watchDirection == PlayerMovement.Direction.left)
                 {
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
                 else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.up && playerMoveScript.watchDirection == PlayerMovement.Direction.down)
                 {
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
                 else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.down && playerMoveScript.watchDirection == PlayerMovement.Direction.up)
                 {
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
                 
                 //Diagonal case
@@ -138,54 +141,62 @@ public class MinototaureAttack : MonoBehaviour
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
                 else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.diagonalDownLeft && (playerMoveScript.watchDirection == PlayerMovement.Direction.right || playerMoveScript.watchDirection == PlayerMovement.Direction.up))
                 {
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
                 else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.diagonalUpRight && (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.down))
                 {
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
                 else if (minototaureMoveScript.watchDirection == MinototaureMovement.Direction.diagonalDownRight && (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.up))
                 {
                     lauchAttack = false;
                     isStun = true;
                     player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
-                    StartCoroutine(Stun());
+                    StartCoroutine(Stun(stunTime));
                 }
 
                 else
                 {
                     lauchAttack = false;
                     player.GetComponent<BasicHealthSystem>().TakeDmg(dmg, transform.position);
-                    StartCoroutine(NotStunt());
+                    //StartCoroutine(NotStunt());
+                    isStun = true;
+                    StartCoroutine(Stun(noBlockedStunTime));
                 }
             }
             else if (minototaureDetectScript.isOverlappingPlayer)                                       //if shield is disabled
             {
                 lauchAttack = false;
                 player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
-                StartCoroutine(NotStunt());
+                //StartCoroutine(NotStunt());
+                isStun = true;
+                StartCoroutine(Stun(noBlockedStunTime));
             }
         }
         else if (minototaureDetectScript.isOverlappingPlayer == true && !minototaureDetectScript.isOverlappingShield)           //if collide with player without shield
         {
             lauchAttack = false;
             player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
-            StartCoroutine(NotStunt());
+            //StartCoroutine(NotStunt());
+            isStun = true;
+            StartCoroutine(Stun(noBlockedStunTime));
         }
         else                                                                                                                    //if no collide
         {
-            lauchAttack = false;    
-            StartCoroutine(NotStunt());
+            lauchAttack = false;
+            //StartCoroutine(NotStunt());
+            isStun = true;
+            StartCoroutine(Stun(noBlockedStunTime));
         }
     }
 
@@ -229,10 +240,10 @@ public class MinototaureAttack : MonoBehaviour
         lauchAttack = true;
     }
 
-    IEnumerator Stun()                  //Coroutine that handle stun
+    IEnumerator Stun(float stun)                  //Coroutine that handle stun
     {
         minototaureHealthScript.canTakeDmg = true;
-        yield return new WaitForSeconds(stunTime + 0.5f);       //wait the stun duration
+        yield return new WaitForSeconds(stun + 0.5f);       //wait the stun duration
         minototaureHealthScript.canTakeDmg = false;
         isStun = false;
         yield return new WaitForSeconds(0.3f);

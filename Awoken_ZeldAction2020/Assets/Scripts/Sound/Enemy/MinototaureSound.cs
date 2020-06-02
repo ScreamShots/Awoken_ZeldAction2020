@@ -94,9 +94,12 @@ public class MinototaureSound : MonoBehaviour
                 if (!MinototaureIsAttacking)
                 {
                     MinototaureIsAttacking = true;
-                    if (!minototaureAttackScript.minototaureDetectScript.overlappedShield.GetComponent<ShieldHitZone>().isActivated)
+                    if (minototaureAttackScript.minototaureDetectScript.overlappedShield != null)
                     {
-                        SoundManager.Instance.PlaySfx(MinototaureAttack, MinototaureAttackVolume);
+                        if (!minototaureAttackScript.minototaureDetectScript.overlappedShield.GetComponent<ShieldHitZone>().isActivated)
+                        {
+                            SoundManager.Instance.PlaySfx(MinototaureAttack, MinototaureAttackVolume);
+                        }
                     }
                 }
             }
