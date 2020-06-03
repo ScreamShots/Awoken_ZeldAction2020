@@ -154,7 +154,8 @@ public class BulletComportement : MonoBehaviour
     {
         if (projectileParticle != null)
         {
-            Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);
+            GameObject particleInstance = Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);
+            Destroy(particleInstance, 1f);
         }
     }
 }

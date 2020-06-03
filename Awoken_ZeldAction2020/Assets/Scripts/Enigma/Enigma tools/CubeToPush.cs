@@ -12,6 +12,13 @@ public class CubeToPush : MonoBehaviour
     public bool playerPushing = false;
     public Vector2 move;
     public float moveSpeed;
+
+    [Header("Particle")]
+    public Transform particleSpawn = null;
+    public GameObject particleTrail = null;
+    private bool particleExist = false;
+
+    private GameObject particleInstance = null;
     #endregion
 
 
@@ -34,7 +41,21 @@ public class CubeToPush : MonoBehaviour
                 cubeRgb.velocity = new Vector2(0, 0); //Cube has got a vertical or horizontal velocity so we stop the cube
             }
         }
-        
+
+        if (playerPushing)
+        {
+            if (!particleExist)
+            {
+                particleExist = true;
+                particleInstance = Instantiate(particleTrail, particleSpawn.position, particleTrail.transform.rotation);
+                particleInstance.transform.parent = gameObject.transform;
+            }
+        }
+        else
+        {
+            Destroy(particleInstance);
+            particleExist = false;
+        }
     }
 
     /// <summary>

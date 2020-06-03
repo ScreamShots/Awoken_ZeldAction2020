@@ -32,6 +32,8 @@ public class LightningComportement : MonoBehaviour
     public List<GameObject> inLightningZone;
     #endregion
 
+    private bool infligeDmg = false;
+
     private void Start()
     {
         StartCoroutine(LightningFadeIn(alphaStart, alphaEnd, FadeInTime));
@@ -47,14 +49,19 @@ public class LightningComportement : MonoBehaviour
         {
             StartCoroutine(ThunderSlam());
 
-            if (inLightningZone.Count > 0)
+            if (!infligeDmg)
             {
-                for (int i = 0; i < inLightningZone.Count; i++)
+                infligeDmg = true;
+
+                if (inLightningZone.Count > 0)
                 {
-                    inLightningZone[i].GetComponentInParent<PlayerHealthSystem>().TakeDmg(dmgLightning, transform.position);
-                    inLightningZone.Remove(inLightningZone[i].gameObject);
+                    for (int i = 0; i < inLightningZone.Count; i++)
+                    {
+                        inLightningZone[i].GetComponentInParent<PlayerHealthSystem>().TakeDmg(dmgLightning, transform.position);
+                        inLightningZone.Remove(inLightningZone[i].gameObject);
+                    }
                 }
-            }   
+            }    
         }
     }
 
