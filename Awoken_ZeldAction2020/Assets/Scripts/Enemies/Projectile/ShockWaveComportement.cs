@@ -35,7 +35,6 @@ public class ShockWaveComportement : MonoBehaviour
 
     private PlayerMovement playerMoveScript;
 
-    private Vector2 direction;
     public enum Direction { up, down, left, right, diagonalUpRight, diagonalUpLeft, diagonalDownRight, diagonalDownLeft }
     [HideInInspector] public Direction watchDirection;
 
@@ -77,49 +76,55 @@ public class ShockWaveComportement : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(startColor, endColor, startTime);
         }
 
-        SetDirectionWithDiagonal();
+        if (player != null)
+        {
+            SetDirectionWithDiagonal();
+        }
     }
 
-    void SetDirectionWithDiagonal()                                                                                                         
+    void SetDirectionWithDiagonal()
     {
-        if(player != null)
-        {
-            direction = (player.transform.position - transform.position).normalized;                                                //Calculate direction between shock wave && player  
-        }                                           
+        Vector2 playerdirection = player.transform.position - transform.position;
+        playerdirection.Normalize();
+        float playerAngle = Mathf.Atan2(playerdirection.y, playerdirection.x) * Mathf.Rad2Deg;
 
-        if (direction.x <= 0.20f && direction.x >= -0.20f && direction.y > 0)
+        if (playerAngle < 0)
         {
-            watchDirection = Direction.up;
-        }
-        else if (direction.x <= 0.20f && direction.x >= -0.20f && direction.y < 0)
-        {
-            watchDirection = Direction.down;
-        }
-        else if (direction.y <= 0.20f && direction.y >= -0.20f && direction.x < 0)
-        {
-            watchDirection = Direction.left;
-        }
-        else if (direction.y <= 0.20f && direction.y >= -0.20f && direction.x > 0)
-        {
-            watchDirection = Direction.right;
+            playerAngle += 360;
         }
 
-        else if (direction.x >= 0.20f && direction.y >= 0.40f)
+        if (playerAngle > 22.5f && playerAngle < 67.5f)
         {
             watchDirection = Direction.diagonalUpRight;
         }
-        else if (direction.x <= 0.20f && direction.y >= 0.40f)
+        else if (playerAngle > 67.5f && playerAngle < 112.5f)
+        {
+            watchDirection = Direction.up;
+        }
+        else if (playerAngle > 112.5f && playerAngle < 157.5f)
         {
             watchDirection = Direction.diagonalUpLeft;
         }
-        else if (direction.x >= 0.20f && direction.y <= -0.40f)
+        else if (playerAngle > 157.5f && playerAngle < 202.5f)
+        {
+            watchDirection = Direction.left;
+        }
+        else if (playerAngle > 202.5f && playerAngle < 247.5f)
+        {
+            watchDirection = Direction.diagonalDownLeft;
+        }
+        else if (playerAngle > 247.5f && playerAngle < 292.5f)
+        {
+            watchDirection = Direction.down;
+        }
+        else if (playerAngle > 292.5f && playerAngle < 337.5f)
         {
             watchDirection = Direction.diagonalDownRight;
         }
-        else if (direction.x <= 0.20f && direction.y <= -0.40f)
+        else
         {
-            watchDirection = Direction.diagonalDownLeft;
-        }     
+            watchDirection = Direction.right;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

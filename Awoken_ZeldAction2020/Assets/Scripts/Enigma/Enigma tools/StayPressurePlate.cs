@@ -8,6 +8,12 @@ using UnityEngine;
 /// </summary>
 public class StayPressurePlate : PressurePlateBehavior
 {
+    [Header("Particle")]
+    public Transform particleSpawn = null;
+    public GameObject particlePouf = null;
+    private bool particleExist = false;
+
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
@@ -28,5 +34,23 @@ public class StayPressurePlate : PressurePlateBehavior
         {
             isPressed = true;
         }*/
+    }
+
+    void Update()
+    {
+        if (isPressed)
+        {
+            if (!particleExist)
+            {
+                particleExist = true;
+
+                GameObject particleInstance = Instantiate(particlePouf, particleSpawn.position, particlePouf.transform.rotation);
+                Destroy(particleInstance, 0.5f);
+            }
+        }
+        else
+        {
+            particleExist = false;
+        }
     }
 }

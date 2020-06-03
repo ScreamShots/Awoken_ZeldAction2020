@@ -20,7 +20,9 @@ public class StaminaBar : MonoBehaviour
 
     [Header("Requiered Elements")]
     [SerializeField] private Image fillStaminaBar = null;
+    [SerializeField] private Image graduationStaminaBar = null;
 
+    [Space] public Sprite[] graduationBar;
     #endregion
 
 
@@ -46,6 +48,33 @@ public class StaminaBar : MonoBehaviour
         if (playerShieldSystem != null)
         {
             fillStaminaBar.fillAmount = playerShieldSystem.currentStamina / playerShieldSystem.maxStamina;                     //Filling of the UI immage depends of the hp value of the player compare to his max health
+
+            ShowBarGraduation();
+        }
+    }
+
+    private void ShowBarGraduation()
+    {
+        switch (playerShieldSystem.maxStamina)
+        {
+            case 40:
+                graduationStaminaBar.sprite = graduationBar[0];
+                break;
+            case 50:
+                graduationStaminaBar.sprite = graduationBar[1];
+                break;
+            case 60:
+                graduationStaminaBar.sprite = graduationBar[2];
+                break;
+            case 70:
+                graduationStaminaBar.sprite = graduationBar[3];
+                break;
+            case 80:
+                graduationStaminaBar.sprite = graduationBar[4];
+                break;
+            case 90:
+                graduationStaminaBar.sprite = graduationBar[5];
+                break;
         }
     }
 }
