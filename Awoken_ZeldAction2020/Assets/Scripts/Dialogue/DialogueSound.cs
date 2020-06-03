@@ -8,7 +8,7 @@ public class DialogueSound : MonoBehaviour
     #region Variables
     private DialogueManager dialogueManagerScript;
 
-    public enum enumSpeaking {Nobody, Aaron, Aaron_sleep, Aaron_shock, Shield, Shield_angry, Zeus, Zeus_angry, Zeus_hide, PNJ_1, PNJ_2, PNJ_3, PNJ_4};
+    public enum enumSpeaking {Nobody, Aaron, Aaron_sleep, Aaron_shock, Aaron_jaded, Shield, Shield_angry, Shield_jaded, Shield_wary, Shield_shock, Zeus, Zeus_angry, Zeus_hide, PNJ_1, PNJ_2, PNJ_3, PNJ_4};
     public enumSpeaking whoSpeaking = enumSpeaking.Nobody;
     public Sprite currentSprite;
 
@@ -18,8 +18,12 @@ public class DialogueSound : MonoBehaviour
     public Sprite aaron = null;
     public Sprite aaronSleep = null;
     public Sprite aaronSchok = null;
+    public Sprite aaronJaded = null;
     public Sprite shield = null;
     public Sprite shieldAngry = null;
+    public Sprite shieldJaded = null;
+    public Sprite shieldWary = null;
+    public Sprite shieldShock = null;
     public Sprite zeus = null;
     public Sprite zeusAngry = null;
     public Sprite zeusHide = null;
@@ -40,11 +44,23 @@ public class DialogueSound : MonoBehaviour
     public AudioClip aaronVoiceShock;
     [Range(0f, 1f)] public float aaronVoiceShockVolume = 0.5f;
 
+    public AudioClip aaronVoiceJaded;
+    [Range(0f, 1f)] public float aaronVoiceJadedVolume = 0.5f;
+
     public AudioClip shieldVoice;
     [Range(0f, 1f)] public float shieldVoiceVolume = 0.5f;
 
     public AudioClip shieldVoiceAngry;
     [Range(0f, 1f)] public float shieldVoiceAngryVolume = 0.5f;
+
+    public AudioClip shieldVoiceJaded;
+    [Range(0f, 1f)] public float shieldVoiceJadedVolume = 0.5f;
+
+    public AudioClip shieldVoiceWary;
+    [Range(0f, 1f)] public float shieldVoiceWaryVolume = 0.5f;
+
+    public AudioClip shieldVoiceShock;
+    [Range(0f, 1f)] public float shieldVoiceShockVolume = 0.5f;
 
     public AudioClip zeusVoice;
     [Range(0f, 1f)] public float zeusVoiceVolume = 0.5f;
@@ -61,8 +77,12 @@ public class DialogueSound : MonoBehaviour
     private bool aaronIsSpeaking = false;
     private bool aaronSleepIsSpeaking = false;
     private bool aaronShockIsSpeaking = false;
+    private bool aaronJadedIsSpeaking = false;
     private bool shieldIsSpeaking = false;
     private bool shieldAngryIsSpeaking = false;
+    private bool shieldJadedIsSpeaking = false;
+    private bool shieldWaryIsSpeaking = false;
+    private bool shieldShockIsSpeaking = false;
     private bool zeusIsSpeaking = false;
     private bool zeusAngryIsSpeaking = false;
     private bool zeusHideIsSpeaking = false;
@@ -139,6 +159,10 @@ public class DialogueSound : MonoBehaviour
             {
                 whoSpeaking = enumSpeaking.Aaron_shock;
             }
+            else if (currentSprite == aaronJaded)
+            {
+                whoSpeaking = enumSpeaking.Aaron_jaded;
+            }
             else if (currentSprite == shield)
             {
                 whoSpeaking = enumSpeaking.Shield;
@@ -146,6 +170,18 @@ public class DialogueSound : MonoBehaviour
             else if (currentSprite == shieldAngry)
             {
                 whoSpeaking = enumSpeaking.Shield_angry;
+            }
+            else if (currentSprite == shieldJaded)
+            {
+                whoSpeaking = enumSpeaking.Shield_jaded;
+            }
+            else if (currentSprite == shieldWary)
+            {
+                whoSpeaking = enumSpeaking.Shield_wary;
+            }
+            else if (currentSprite == shieldShock)
+            {
+                whoSpeaking = enumSpeaking.Shield_shock;
             }
             else if (currentSprite == zeus)
             {
@@ -183,8 +219,12 @@ public class DialogueSound : MonoBehaviour
             aaronIsSpeaking = false;
             aaronSleepIsSpeaking = false;
             aaronShockIsSpeaking = false;
+            aaronJadedIsSpeaking = false;
             shieldIsSpeaking = false;
             shieldAngryIsSpeaking = false;
+            shieldJadedIsSpeaking = false;
+            shieldWaryIsSpeaking = false;
+            shieldShockIsSpeaking = false;
             zeusIsSpeaking = false;
             zeusAngryIsSpeaking = false;
             zeusHideIsSpeaking = false;
@@ -192,7 +232,7 @@ public class DialogueSound : MonoBehaviour
             pnj2IsSpeaking = false;
             pnj3IsSpeaking = false;
             pnj4IsSpeaking = false;
-        }
+}
     }
 
     void PlaySpeakSound()
@@ -207,8 +247,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = true;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -226,8 +270,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = true;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -245,8 +293,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = true;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -258,14 +310,41 @@ public class DialogueSound : MonoBehaviour
                         currentVoiceVolume = aaronVoiceShockVolume;
                     }
                     break;
+                case enumSpeaking.Aaron_jaded:
+                    if (!aaronJadedIsSpeaking)
+                    {
+                        aaronIsSpeaking = false;
+                        aaronSleepIsSpeaking = false;
+                        aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = true;
+                        shieldIsSpeaking = false;
+                        shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
+                        zeusIsSpeaking = false;
+                        zeusAngryIsSpeaking = false;
+                        zeusHideIsSpeaking = false;
+                        pnj1IsSpeaking = false;
+                        pnj2IsSpeaking = false;
+                        pnj3IsSpeaking = false;
+                        pnj4IsSpeaking = false;
+                        SoundManager.Instance.PlayVoice(aaronVoiceJaded, aaronVoiceJadedVolume);
+                        currentVoiceVolume = aaronVoiceJadedVolume;
+                    }
+                    break;
                 case enumSpeaking.Shield:
                     if (!shieldIsSpeaking)
                     {
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = true;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -283,8 +362,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = true;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -296,14 +379,87 @@ public class DialogueSound : MonoBehaviour
                         currentVoiceVolume = shieldVoiceAngryVolume;
                     }
                     break;
+                case enumSpeaking.Shield_jaded:
+                    if (!shieldJadedIsSpeaking)
+                    {
+                        aaronIsSpeaking = false;
+                        aaronSleepIsSpeaking = false;
+                        aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
+                        shieldIsSpeaking = false;
+                        shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = true;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
+                        zeusIsSpeaking = false;
+                        zeusAngryIsSpeaking = false;
+                        zeusHideIsSpeaking = false;
+                        pnj1IsSpeaking = false;
+                        pnj2IsSpeaking = false;
+                        pnj3IsSpeaking = false;
+                        pnj4IsSpeaking = false;
+                        SoundManager.Instance.PlayVoice(shieldVoiceJaded, shieldVoiceJadedVolume);
+                        currentVoiceVolume = shieldVoiceJadedVolume;
+                    }
+                    break;
+                case enumSpeaking.Shield_wary:
+                    if (!shieldWaryIsSpeaking)
+                    {
+                        aaronIsSpeaking = false;
+                        aaronSleepIsSpeaking = false;
+                        aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
+                        shieldIsSpeaking = false;
+                        shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = true;
+                        shieldShockIsSpeaking = false;
+                        zeusIsSpeaking = false;
+                        zeusAngryIsSpeaking = false;
+                        zeusHideIsSpeaking = false;
+                        pnj1IsSpeaking = false;
+                        pnj2IsSpeaking = false;
+                        pnj3IsSpeaking = false;
+                        pnj4IsSpeaking = false;
+                        SoundManager.Instance.PlayVoice(shieldVoiceWary, shieldVoiceWaryVolume);
+                        currentVoiceVolume = shieldVoiceWaryVolume;
+                    }
+                    break;
+                case enumSpeaking.Shield_shock:
+                    if (!shieldShockIsSpeaking)
+                    {
+                        aaronIsSpeaking = false;
+                        aaronSleepIsSpeaking = false;
+                        aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
+                        shieldIsSpeaking = false;
+                        shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = true;
+                        zeusIsSpeaking = false;
+                        zeusAngryIsSpeaking = false;
+                        zeusHideIsSpeaking = false;
+                        pnj1IsSpeaking = false;
+                        pnj2IsSpeaking = false;
+                        pnj3IsSpeaking = false;
+                        pnj4IsSpeaking = false;
+                        SoundManager.Instance.PlayVoice(shieldVoiceShock, shieldVoiceShockVolume);
+                        currentVoiceVolume = shieldVoiceShockVolume;
+                    }
+                    break;
                 case enumSpeaking.Zeus:
                     if (!zeusIsSpeaking)
                     {
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = true;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -321,8 +477,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = true;
                         zeusHideIsSpeaking = false;
@@ -341,8 +501,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = true;
@@ -360,8 +524,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -379,8 +547,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -398,8 +570,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
@@ -417,8 +593,12 @@ public class DialogueSound : MonoBehaviour
                         aaronIsSpeaking = false;
                         aaronSleepIsSpeaking = false;
                         aaronShockIsSpeaking = false;
+                        aaronJadedIsSpeaking = false;
                         shieldIsSpeaking = false;
                         shieldAngryIsSpeaking = false;
+                        shieldJadedIsSpeaking = false;
+                        shieldWaryIsSpeaking = false;
+                        shieldShockIsSpeaking = false;
                         zeusIsSpeaking = false;
                         zeusAngryIsSpeaking = false;
                         zeusHideIsSpeaking = false;
