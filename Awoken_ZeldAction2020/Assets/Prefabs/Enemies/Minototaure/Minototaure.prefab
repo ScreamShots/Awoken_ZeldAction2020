@@ -503,9 +503,9 @@ MonoBehaviour:
   isAffectedByPegase: 1
   minDropDistance: -0.5
   maxDropDistance: 0.5
-  dropChanceItem0: 10
-  dropChanceItem1: 15
-  dropChanceItem2: 33
+  dropChanceItem0: 20
+  dropChanceItem1: 40
+  dropChanceItem2: 10
   DropItemList:
   - {fileID: 7549480610179070698, guid: adbd223cf1666f1439d27db13f5d3ee1, type: 3}
   - {fileID: 1266662756116312142, guid: a8984afa3f081fd4b9ce8ca4a7ba9268, type: 3}
@@ -660,6 +660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shield_minotaure
+      objectReference: {fileID: 0}
+    - target: {fileID: 4937395374192434862, guid: 8c8013dbb46c71c45938b19661bcc128,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c8013dbb46c71c45938b19661bcc128, type: 3}

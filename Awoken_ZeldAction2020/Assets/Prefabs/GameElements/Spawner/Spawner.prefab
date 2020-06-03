@@ -267,10 +267,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab012259dfbc844e8ab700046a02489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 70
   currentHp: 0
   canTakeDmg: 1
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+  flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
   flashTime: 0.5
   flashFadeTime: 0.5
   corps: {fileID: 4552071387671090876, guid: 89c000dc89a7b16449f848ca91d2288d, type: 3}

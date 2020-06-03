@@ -427,9 +427,9 @@ MonoBehaviour:
   isAffectedByPegase: 1
   minDropDistance: -0.5
   maxDropDistance: 0.5
-  dropChanceItem0: 10
+  dropChanceItem0: 20
   dropChanceItem1: 15
-  dropChanceItem2: 33
+  dropChanceItem2: 5
   DropItemList:
   - {fileID: 7549480610179070698, guid: adbd223cf1666f1439d27db13f5d3ee1, type: 3}
   - {fileID: 1266662756116312142, guid: a8984afa3f081fd4b9ce8ca4a7ba9268, type: 3}
@@ -531,6 +531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: shield_cyclope
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224011070959991468, guid: 8fb9f9151dc4c664ea9b171d54764b99,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5224011070959991471, guid: 8fb9f9151dc4c664ea9b171d54764b99,
         type: 3}
