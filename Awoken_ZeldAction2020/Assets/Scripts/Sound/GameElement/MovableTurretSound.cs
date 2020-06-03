@@ -8,7 +8,7 @@ public class MovableTurretSound : MonoBehaviour
     #region Variables
     [Space]
     [Header("Shooting Sound")]
-    public AudioClip turretShoot;
+    public AudioSource turretShoot;
     [Range(0f, 1f)] public float turretShootVolume = 0.5f;
 
     [Space]
@@ -24,6 +24,7 @@ public class MovableTurretSound : MonoBehaviour
     private TurretShoot turretShootScript;
     private GameElementsHealthSystem gameElementHealthSystemScript;
     private CubeToPush cubeToPushScript;
+    private PlayerHealthSystem playerHealthScript;
 
     private bool turretIsShooting = false;
     #endregion
@@ -34,11 +35,16 @@ public class MovableTurretSound : MonoBehaviour
         gameElementHealthSystemScript = GetComponentInParent<GameElementsHealthSystem>();
         cubeToPushScript = GetComponentInParent<CubeToPush>();
         gameElementHealthSystemScript.onDead.AddListener(Dead);
+        playerHealthScript = PlayerManager.Instance.GetComponent<PlayerHealthSystem>();
     }
 
     void Update()
     {
-        TurretShoot();
+        if (playerHealthScript.currentHp >= 0)
+        {
+            TurretShoot();
+        }
+
         TurretMove();
     }
 
@@ -61,7 +67,7 @@ public class MovableTurretSound : MonoBehaviour
             if (!turretIsShooting)
             {
                 turretIsShooting = true;
-                SoundManager.Instance.PlaySfx(turretShoot, turretShootVolume);
+                SoundManager.Instance.PlaySfx3D(turretShoot, turretShootVolume);
             }
         }
         else
