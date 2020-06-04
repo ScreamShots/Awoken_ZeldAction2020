@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2347,7 +2347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212171384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08012756, y: -1.0217094, z: -10}
+  m_LocalPosition: {x: 0.07743343, y: -1.0217094, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1076767811}
@@ -2730,6 +2730,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a, type: 3}
+--- !u!82 &1388661429 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4619148655133149107, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1388661428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1416884980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,6 +3332,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6371173130185707794, guid: a67fab304ea4c16429066c80235b2135,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7824363300928001298, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_IsActive
@@ -3447,6 +3458,8 @@ PlayableDirector:
     value: {fileID: 1749419473}
   - key: {fileID: 8745017760182224237, guid: d25d861791a74d448bb3f3f5f49f7a56, type: 2}
     value: {fileID: 1749419475}
+  - key: {fileID: -2833677029099693486, guid: d25d861791a74d448bb3f3f5f49f7a56, type: 2}
+    value: {fileID: 1388661429}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1712675586
@@ -3718,7 +3731,7 @@ SpriteRenderer:
   m_Size: {x: 0.45833334, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1759454092

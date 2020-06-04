@@ -1193,7 +1193,7 @@ MonoBehaviour:
   aaronVoice: {fileID: 8300000, guid: 539c5b7fc3954ff4ea1fbd0904d3fbfe, type: 3}
   aaronVoiceVolume: 0.5
   aaronVoiceSleep: {fileID: 8300000, guid: 81eb1c4b284befd408e677eaddad4cc1, type: 3}
-  aaronVoiceSleepVolume: 0.5
+  aaronVoiceSleepVolume: 0.7
   aaronVoiceShock: {fileID: 8300000, guid: aa3fc7d088f4b6343bfa3426b6d93ab7, type: 3}
   aaronVoiceShockVolume: 0.5
   aaronVoiceJaded: {fileID: 8300000, guid: 77959c3eec155194b9e562a4dd403563, type: 3}
@@ -1209,11 +1209,11 @@ MonoBehaviour:
   shieldVoiceShock: {fileID: 8300000, guid: 7e1ae834d2acdbf4894d7d9bc070bb01, type: 3}
   shieldVoiceShockVolume: 0.5
   zeusVoice: {fileID: 8300000, guid: 42f978103b4a560449068aebf66e1c18, type: 3}
-  zeusVoiceVolume: 0.4
+  zeusVoiceVolume: 0.5
   zeusVoiceAngry: {fileID: 8300000, guid: 5fe253d710f5e4244a4bbb9e4dba5e31, type: 3}
-  zeusVoiceAngryVolume: 0.4
+  zeusVoiceAngryVolume: 0.5
   zeusVoiceHide: {fileID: 8300000, guid: 85e0f009054ce254ab5295ce116dd600, type: 3}
-  zeusVoiceHideVolume: 0.4
+  zeusVoiceHideVolume: 0.5
   pnjVoice: {fileID: 8300000, guid: 0313af1df05bd264ab465114536058d9, type: 3}
   pnjVoiceVolume: 0.4
   currentVoiceVolume: 0
@@ -3641,6 +3641,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144188320564182204}
     m_Modifications:
+    - target: {fileID: 920265369364235613, guid: f80894bc301bc1548bbe65d11c30715a,
+        type: 3}
+      propertyPath: voiceDefaultVolume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4094441188431923576, guid: f80894bc301bc1548bbe65d11c30715a,
         type: 3}
       propertyPath: m_LocalPosition.x
