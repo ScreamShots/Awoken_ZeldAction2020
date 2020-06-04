@@ -57,6 +57,18 @@ public class PlayerSound : MonoBehaviour
     public AudioClip playerRunShield;
     [Range(0f, 1f)] public float playerRunShieldVolume = 0.5f;
 
+    public AudioClip playerRunRock;
+    [Range(0f, 1f)] public float playerRunRockVolume = 0.5f;
+
+    public AudioClip playerRunRockShield;
+    [Range(0f, 1f)] public float playerRunRockShieldVolume = 0.5f;
+
+    public AudioClip playerRunEcho;
+    [Range(0f, 1f)] public float playerRunEchoVolume = 0.5f;
+
+    public AudioClip playerRunEchoShield;
+    [Range(0f, 1f)] public float playerRunEchoShieldVolume = 0.5f;
+
     [Space]
     [Header("Charge Sound")]
     public AudioClip playerRunCharge;
@@ -174,13 +186,39 @@ public class PlayerSound : MonoBehaviour
     {
         if (playerMovementScript.isRunning && !PlayerStatusManager.Instance.isBlocking && !PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isCharging)                //Normal run : without shield
         {
-            SoundManager.Instance.PlayFootSteps(playerRun, playerRunVolume);
-            playerIsCharging = false;
+            if (MusicManager.Instance.whichScene == MusicManager.enumScene.Region1 || MusicManager.Instance.whichScene == MusicManager.enumScene.Region2)
+            {
+                SoundManager.Instance.PlayFootSteps(playerRun, playerRunVolume);
+                playerIsCharging = false;
+            }
+            else if (MusicManager.Instance.whichScene == MusicManager.enumScene.Cave)
+            {
+                SoundManager.Instance.PlayFootSteps(playerRunEcho, playerRunEchoVolume);
+                playerIsCharging = false;
+            }
+            else if (MusicManager.Instance.whichScene == MusicManager.enumScene.Region3 || MusicManager.Instance.whichScene == MusicManager.enumScene.Temple || MusicManager.Instance.whichScene == MusicManager.enumScene.Inn || MusicManager.Instance.whichScene == MusicManager.enumScene.BossArena || MusicManager.Instance.whichScene == MusicManager.enumScene.OlympeFloor)
+            {
+                SoundManager.Instance.PlayFootSteps(playerRunRock, playerRunRockVolume);
+                playerIsCharging = false;
+            }
         }
         else if (playerMovementScript.isRunning && PlayerStatusManager.Instance.isBlocking && !PlayerStatusManager.Instance.isAttacking && !PlayerStatusManager.Instance.isCharging)            //Shield run : with shield up 
         {
-            SoundManager.Instance.PlayFootSteps(playerRunShield, playerRunShieldVolume);
-            playerIsCharging = false;
+            if (MusicManager.Instance.whichScene == MusicManager.enumScene.Region1 || MusicManager.Instance.whichScene == MusicManager.enumScene.Region2)
+            {
+                SoundManager.Instance.PlayFootSteps(playerRunShield, playerRunShieldVolume);
+                playerIsCharging = false;
+            }
+            else if (MusicManager.Instance.whichScene == MusicManager.enumScene.Cave)
+            {
+                SoundManager.Instance.PlayFootSteps(playerRunEchoShield, playerRunEchoShieldVolume);
+                playerIsCharging = false;
+            }
+            else if (MusicManager.Instance.whichScene == MusicManager.enumScene.Region3 || MusicManager.Instance.whichScene == MusicManager.enumScene.Temple || MusicManager.Instance.whichScene == MusicManager.enumScene.Inn || MusicManager.Instance.whichScene == MusicManager.enumScene.BossArena || MusicManager.Instance.whichScene == MusicManager.enumScene.OlympeFloor)
+            {
+                SoundManager.Instance.PlayFootSteps(playerRunRockShield, playerRunRockShieldVolume);
+                playerIsCharging = false;
+            }
         }
         else if (playerMovementScript.isRunning && !PlayerStatusManager.Instance.isBlocking && !PlayerStatusManager.Instance.isAttacking && PlayerStatusManager.Instance.isCharging)
         {
