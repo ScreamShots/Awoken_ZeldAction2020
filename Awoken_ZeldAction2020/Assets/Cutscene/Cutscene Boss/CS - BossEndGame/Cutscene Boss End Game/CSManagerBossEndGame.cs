@@ -51,4 +51,9 @@ public class CSManagerBossEndGame : BasicCutSceneManager
 
         base.StartCutScene();
     }
+
+    public void StopBossMusic()
+    {
+        SoundManager.Instance.FadeOutMusic(3f);
+    }
 }
