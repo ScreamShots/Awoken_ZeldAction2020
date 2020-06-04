@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class ProgressionManager : MonoBehaviour
@@ -59,6 +61,28 @@ public class ProgressionManager : MonoBehaviour
 
     public Dictionary<int, bool> R1Vegetables = new Dictionary<int, bool>();
 
+    public Dictionary<int, bool> R1Fragments = new Dictionary<int, bool>();
+    public Dictionary<int, bool> R2Fragments = new Dictionary<int, bool>();
+    public Dictionary<int, bool> R3Fragments = new Dictionary<int, bool>();
+
+
+
+    public int numberOfFragmentsInR1 = 0;
+
+    public int numberOfFragmentsInR2 = 0;
+
+    public int numberOfFragmentsInR3 = 0;
+
+    public int numberOfFragmentsInF1 = 0;
+
+    public int numberOfFragmentsInF2 = 0;
+
+    public int numberOfFragmentsInF3 = 0;
+
+    public Dictionary<int, bool> F1Fragments = new Dictionary<int, bool>();
+    public Dictionary<int, bool> F2Fragments = new Dictionary<int, bool>();
+    public Dictionary<int, bool> F3Fragments = new Dictionary<int, bool>();
+
     public Dictionary<string, bool> PlayerCapacity = new Dictionary<string, bool>();
 
     [HideInInspector]
@@ -96,6 +120,42 @@ public class ProgressionManager : MonoBehaviour
         R1Vegetables.Add(1, false);
         R1Vegetables.Add(2, false);
         R1Vegetables.Add(3, false);
+        #endregion
+
+        #region Fragment Dictionaries Initialization
+               
+        for(int i = 0; i < numberOfFragmentsInR1; i++)
+        {
+            R1Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInR2; i++)
+        {
+            R2Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInR3; i++)
+        {
+            R3Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF1; i++)
+        {
+            F1Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF2; i++)
+        {
+            F2Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF3; i++)
+        {
+            F3Fragments.Add(i, false);
+        }
+
+        Debug.Log(R1Fragments.Count);
+        Debug.Log(R2Fragments.Count);
+        Debug.Log(R3Fragments.Count);
+        Debug.Log(F1Fragments.Count);
+        Debug.Log(F2Fragments.Count);
+        Debug.Log(F3Fragments.Count);
+
         #endregion
 
         #region Player
@@ -378,5 +438,71 @@ public class ProgressionManager : MonoBehaviour
         GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
         GameManager.Instance.blackMelt.MeltIn();
     }
+
+#if UNITY_EDITOR
+
+    public void SetFrgValue(int nbrFrg, int sceneIndex)
+    {
+        Undo.RecordObject(this, "apply Fragment Number To Prefab");
+
+        switch (sceneIndex)
+        {
+            case 4:
+                numberOfFragmentsInR1 = nbrFrg;
+                break;
+            case 5:
+                numberOfFragmentsInR2 = nbrFrg;
+                break;
+            case 6:
+                numberOfFragmentsInR3 = nbrFrg;
+                break;
+            case 7:
+                numberOfFragmentsInF1 = nbrFrg;
+                break;
+            case 8:
+                numberOfFragmentsInF2 = nbrFrg;
+                break;
+            case 9:
+                numberOfFragmentsInF3 = nbrFrg;
+                break;
+            default:
+                break;
+        }        
+    }
+
+    public void ApplyToPrefab(int sceneIndex)
+    {
+        SerializedObject thisObjSerialized = new SerializedObject(this);
+        SerializedProperty numberOfFragmentValue = null;
+
+        switch (sceneIndex)
+        {
+            case 4:
+                numberOfFragmentValue = thisObjSerialized.FindProperty("numberOfFragmentsInR1");
+                break;
+            case 5:
+                numberOfFragmentValue = thisObjSerialized.FindProperty("numberOfFragmentsInR2");
+                break;
+            case 6:
+                numberOfFragmentValue = thisObjSerialized.FindProperty("numberOfFragmentsInR3");
+                break;
+            case 7:
+                numberOfFragmentValue = thisObjSerialized.FindProperty("numberOfFragmentsInF1");
+                break;
+            case 8:
+                numberOfFragmentValue = thisObjSerialized.FindProperty("numberOfFragmentsInF2");
+                break;
+            case 9:
+                numberOfFragmentValue = thisObjSerialized.FindProperty("numberOfFragmentsInF3");
+                break;
+            default:
+                break;
+        }
+         
+        PrefabUtility.ApplyPropertyOverride(numberOfFragmentValue, "Assets/Prefabs/GameManager.prefab", InteractionMode.UserAction);
+        
+    }
+
+#endif
 
 }

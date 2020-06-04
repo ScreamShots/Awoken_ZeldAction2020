@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3673448479408987953}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,8 +198,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833cdc86ada53b74d974073526e3cfcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisSessionTimeLine: 2
+  thisSessionTimeLine: 1
+  numberOfFragmentsInR1: 1
+  numberOfFragmentsInR2: 0
+  numberOfFragmentsInR3: 0
+  numberOfFragmentsInF1: 0
+  numberOfFragmentsInF2: 0
+  numberOfFragmentsInF3: 0
+  maxHp: 80
   playerHp: 100
+  maxStamina: 40
   playerStamina: 40
   playerFury: 100
   currentSceneIndex: 1

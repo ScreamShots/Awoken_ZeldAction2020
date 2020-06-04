@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3449eaf4492cbde479bec0882f08ac1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lvlCamBrain: {fileID: 0}
+  defaultblendTime: 0
   canEndTransition: 0
   LvlStarts:
   - {fileID: 0}
@@ -51,7 +53,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  allAreaManager: []
   currentArea: {fileID: 0}
+  lastLoadedstartZoneIndex: 0
 --- !u!1 &1801118363122801962
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801118363122801962}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.605518, y: -6.245691, z: 18.710938}
+  m_LocalPosition: {x: 5.784482, y: -5.63569, z: 18.710938}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1801118361934519099}

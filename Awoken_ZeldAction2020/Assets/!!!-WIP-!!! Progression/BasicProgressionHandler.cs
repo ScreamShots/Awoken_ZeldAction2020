@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class BasicProgressionHandler : MonoBehaviour
 {
     ProgressionManager.ProgressionTimeLine currentTL;
+
+    public int numberOfFragmentsInThisScene = 0;
 
     protected virtual void Start()
     {
@@ -229,5 +233,71 @@ public abstract class BasicProgressionHandler : MonoBehaviour
     {
 
     }
+
+#if UNITY_EDITOR
+
+    [ContextMenu("Set Fragements ID")]
+    public virtual void SetFragmentsID()
+    {
+        var currentScene = SceneManager.GetActiveScene();
+        var allGameObjInScene = currentScene.GetRootGameObjects();
+
+        List<FragmentPickUp> allFragmentInScene = new List<FragmentPickUp>();
+
+        foreach(GameObject sceneObj in allGameObjInScene)
+        {
+            if (sceneObj.CompareTag("Fragment"))
+            {
+                allFragmentInScene.Add(sceneObj.GetComponent<FragmentPickUp>());
+            }
+            else
+            {
+                if(sceneObj.GetComponentInChildren<FragmentPickUp>(true) != null)
+                {
+                    foreach(FragmentPickUp fragmentChildren in sceneObj.GetComponentsInChildren<FragmentPickUp>(true))
+                    {
+                        allFragmentInScene.Add(fragmentChildren);
+                    }                    
+                }
+            }
+        }
+
+        for (int i = 0; i < allFragmentInScene.Count; i++)
+        {
+            Undo.RecordObject(allFragmentInScene[i], "change Fragment instance ID");
+            allFragmentInScene[i].fragmentID = i;
+        }
+
+        numberOfFragmentsInThisScene = allFragmentInScene.Count;
+
+        foreach (GameObject sceneObj in allGameObjInScene)
+        {
+            if (sceneObj.CompareTag("GM"))
+            {               
+                sceneObj.GetComponent<ProgressionManager>().SetFrgValue(numberOfFragmentsInThisScene, currentScene.buildIndex);
+            }
+        }
+        
+        Debug.Log("their is " + allFragmentInScene.Count + " in this Scene, dont forget to apply changes in the context Menu");
+    }
+
+    [ContextMenu("Apply Modifications")]
+    public void ApplyToProgressionManagerPrefab()
+    {
+        var currentScene = SceneManager.GetActiveScene();
+        var allGameObjInScene = currentScene.GetRootGameObjects();
+
+        foreach (GameObject sceneObj in allGameObjInScene)
+        {
+            if (sceneObj.CompareTag("GM"))
+            {
+                sceneObj.GetComponent<ProgressionManager>().ApplyToPrefab(currentScene.buildIndex);
+            }
+        }
+
+        Debug.Log("Modification on fragment managment for this scene are now saved for the project overall");
+    }
+
+#endif
 
 }
