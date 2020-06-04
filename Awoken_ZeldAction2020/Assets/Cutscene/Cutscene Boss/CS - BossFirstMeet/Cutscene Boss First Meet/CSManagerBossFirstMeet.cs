@@ -46,4 +46,14 @@ public class CSManagerBossFirstMeet : BasicCutSceneManager
 
         base.StartCutScene();
     }
+
+    public void StartBossMusic()
+    {
+        SoundManager.Instance.PlayMusic(MusicManager.Instance.arenaMusic, MusicManager.Instance.arenaMusicVolume);
+    }
+
+    public void StopBossMusic()
+    {
+        SoundManager.Instance.FadeOutMusic(3f);
+    }
 }

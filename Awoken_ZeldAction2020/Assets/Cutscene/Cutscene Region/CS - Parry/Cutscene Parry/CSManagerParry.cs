@@ -16,6 +16,8 @@ public class CSManagerParry : BasicCutSceneManager
         cinemachineAltar.SetActive(false);
         playerUI.SetActive(true);
 
+        SoundManager.Instance.Cutscene(false);
+
         base.EndOfCutScene();
 
         ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.ShieldParyUnlocked;
@@ -30,6 +32,8 @@ public class CSManagerParry : BasicCutSceneManager
     {
         cinemachineAltar.SetActive(true);
         playerUI.SetActive(false);
+
+        SoundManager.Instance.Cutscene(true);
 
         base.StartCutScene();
     }

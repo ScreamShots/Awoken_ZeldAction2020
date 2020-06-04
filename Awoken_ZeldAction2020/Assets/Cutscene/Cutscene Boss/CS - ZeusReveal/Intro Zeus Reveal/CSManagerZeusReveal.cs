@@ -29,4 +29,25 @@ public class CSManagerZeusReveal : BasicCutSceneManager
         PlayerManager.Instance.ActivateShield();
         ProgressionManager.Instance.SaveTheProgression();
     }
+
+    public void StopMusic()
+    {
+        SoundManager.Instance.Cutscene(true);
+        SoundManager.Instance.ambianceSource.UnPause();
+    }
+
+    public void MusicBack()
+    {
+        SoundManager.Instance.Cutscene(false);
+    }
+
+    public void StopAmbiance()
+    {
+        SoundManager.Instance.ambianceSource.Pause();
+    }
+
+    public void AmbianceBack()
+    {
+        SoundManager.Instance.ambianceSource.UnPause();
+    }
 }

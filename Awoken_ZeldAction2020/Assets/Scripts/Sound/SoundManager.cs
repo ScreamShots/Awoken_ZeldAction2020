@@ -36,6 +36,10 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float voiceDefaultVolume = 0.5f;
 
     [Space]
+    [Header("Voice")]
+    [Range(0f, 1f)] public float cutsceneDefaultVolume = 0.5f;
+
+    [Space]
     [Header("References")]
     public AudioSource musicSource;
     public AudioSource ambianceSource;
@@ -45,6 +49,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource pauseSource;
     public AudioSource voiceSource;
     public AudioSource buttonSource;
+    public AudioSource cutsceneSource;
 
     private bool fadeOut = false;
     #endregion
@@ -83,6 +88,11 @@ public class SoundManager : MonoBehaviour
         if (voiceSource.clip != null)
         {
             voiceSource.volume = (voiceDefaultVolume * DialogueSound.Instance.currentVoiceVolume) * globalDefaultVolume;
+        }
+
+        if (cutsceneSource.volume != cutsceneDefaultVolume)
+        {
+            cutsceneSource.volume = cutsceneDefaultVolume;
         }
     }
 
@@ -130,6 +140,17 @@ public class SoundManager : MonoBehaviour
         return;
     }
 
+    // Fade in and unpause a given music.
+    public void UnPauseFadeInMusic(float volume = 1f, float fadeTime = 1f)
+    {
+        StopAllCoroutines();
+        fadeOut = false;
+
+        StartCoroutine(UnPauseFadeIn(volume, fadeTime));
+
+        return;
+    }
+
     // Fade out a given music.
     public void FadeOutMusic(float fadeTime = 1f)
     {
@@ -137,6 +158,17 @@ public class SoundManager : MonoBehaviour
         fadeOut = false;
 
         StartCoroutine(FadeOut(fadeTime));
+
+        return;
+    }
+
+    // Fade out and pause a given music.
+    public void PauseFadeOutMusic(float fadeTime = 1f)
+    {
+        StopAllCoroutines();
+        fadeOut = false;
+
+        StartCoroutine(PauseFadeOut(fadeTime));
 
         return;
     }
@@ -342,7 +374,7 @@ public class SoundManager : MonoBehaviour
     {
         if (!isCutscene)
         {
-            musicSource.UnPause();
+            UnPauseFadeInMusic(MusicManager.Instance.currentMusicVolume, 3);
             ambianceSource.UnPause();
             sfxSource.volume = 1f;
             footStepsSource.volume = 1f;
@@ -350,7 +382,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            musicSource.Pause();
+            PauseFadeOutMusic(3f);
             ambianceSource.Pause();
             sfxSource.volume = 0f;
             footStepsSource.volume = 0f;
@@ -392,6 +424,22 @@ public class SoundManager : MonoBehaviour
         fadeOut = false;
     }
 
+    IEnumerator PauseFadeOut(float fadeTime)
+    {
+        fadeOut = true;
+        float currentVolume = musicSource.volume;
+        float currentTime = 0;
+        while (currentTime < fadeTime)
+        {
+            currentTime += Time.unscaledDeltaTime;
+            musicSource.volume = Mathf.Lerp(currentVolume, 0, currentTime / fadeTime);
+
+            yield return null;
+        }
+        musicSource.Pause();
+        fadeOut = false;
+    }
+
     IEnumerator FadeIn(AudioClip music, float volume, float fadeTime)
     {
         PlayMusic(music, volume);
@@ -399,6 +447,21 @@ public class SoundManager : MonoBehaviour
 
         float currentTime = 0;
         while(currentTime < fadeTime)
+        {
+            currentTime += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(0, (musicDefaultVolume * volume) * globalDefaultVolume, currentTime / fadeTime);
+
+            yield return null;
+        }
+    }
+
+    IEnumerator UnPauseFadeIn(float volume, float fadeTime)
+    {
+        musicSource.UnPause();
+        musicSource.volume = 0f;
+
+        float currentTime = 0;
+        while (currentTime < fadeTime)
         {
             currentTime += Time.deltaTime;
             musicSource.volume = Mathf.Lerp(0, (musicDefaultVolume * volume) * globalDefaultVolume, currentTime / fadeTime);

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -731,6 +731,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1927466299546609983, guid: 604c119cef5795c4a895989560d3dbd7,
     type: 3}
   m_PrefabInstance: {fileID: 361395685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &78431184 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4619148655133149107, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1056086365}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &91553065
 PrefabInstance:
@@ -8023,12 +8029,12 @@ PrefabInstance:
     - target: {fileID: 164921014573434059, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 997760411061681978, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1419295551282254985, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
@@ -8084,7 +8090,7 @@ PrefabInstance:
     - target: {fileID: 1487570810460538562, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2109168031095777893, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
@@ -8134,7 +8140,7 @@ PrefabInstance:
     - target: {fileID: 3557050727639198682, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5724466032748658159, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
@@ -8224,7 +8230,7 @@ PrefabInstance:
     - target: {fileID: 6784015584281500367, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7431840551368744504, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
@@ -8249,7 +8255,7 @@ PrefabInstance:
     - target: {fileID: 8939524888363390088, guid: a67fab304ea4c16429066c80235b2135,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a67fab304ea4c16429066c80235b2135, type: 3}
@@ -9501,7 +9507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &853249635
 Transform:
   m_ObjectHideFlags: 0
@@ -13921,6 +13927,8 @@ PlayableDirector:
     value: {fileID: 547663315}
   - key: {fileID: -8870536561160507549, guid: 7a69292cc591489438310d7622ed9944, type: 2}
     value: {fileID: 853249636}
+  - key: {fileID: -2091673225104445919, guid: 7a69292cc591489438310d7622ed9944, type: 2}
+    value: {fileID: 78431184}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1415309717
