@@ -234,7 +234,7 @@ public class PlayerShield : MonoBehaviour
                 if(pariedElement == null)
                 {
                     allShieldZoneScrpit["Up"].isActivated = true;
-                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                    movementScript.currentSpeed = movementScript.shieldWalkSpeed;                          //SlowPlayer Movement during block
                 }                
                 
                 break;
@@ -260,7 +260,7 @@ public class PlayerShield : MonoBehaviour
                 if (pariedElement == null)
                 {
                     allShieldZoneScrpit["Down"].isActivated = true;
-                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                    movementScript.currentSpeed = movementScript.shieldWalkSpeed;                          //SlowPlayer Movement during block
                 }
                 break;
             case PlayerMovement.Direction.left:
@@ -285,7 +285,7 @@ public class PlayerShield : MonoBehaviour
                 if (pariedElement == null)
                 {
                     allShieldZoneScrpit["Left"].isActivated = true;
-                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                    movementScript.currentSpeed = movementScript.shieldWalkSpeed;                          //SlowPlayer Movement during block
                 }
                 break;
             case PlayerMovement.Direction.right:
@@ -310,7 +310,7 @@ public class PlayerShield : MonoBehaviour
                 if (pariedElement == null)
                 {
                     allShieldZoneScrpit["Right"].isActivated = true;
-                    movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                    movementScript.currentSpeed = movementScript.shieldWalkSpeed;                           //SlowPlayer Movement during block
                 }
                 break;
             default:
@@ -324,20 +324,20 @@ public class PlayerShield : MonoBehaviour
         {
             case PlayerMovement.Direction.up:
                 allShieldZoneScrpit["Up"].isActivated = true;
-                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                movementScript.currentSpeed = movementScript.shieldWalkSpeed;                           //SlowPlayer Movement during block
                 break;
             case PlayerMovement.Direction.down:
 
                 allShieldZoneScrpit["Down"].isActivated = true;
-                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block                
+                movementScript.currentSpeed = movementScript.shieldWalkSpeed;                           //SlowPlayer Movement during block                
                 break;
             case PlayerMovement.Direction.left:
                 allShieldZoneScrpit["Left"].isActivated = true;
-                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                movementScript.currentSpeed = movementScript.shieldWalkSpeed;                           //SlowPlayer Movement during block
                 break;
             case PlayerMovement.Direction.right:
                 allShieldZoneScrpit["Right"].isActivated = true;
-                movementScript.speed *= slowRatio;                          //SlowPlayer Movement during block
+                movementScript.currentSpeed = movementScript.shieldWalkSpeed;                           //SlowPlayer Movement during block
                 break;
             default:
                 break;
@@ -351,7 +351,7 @@ public class PlayerShield : MonoBehaviour
 
         if (!onPary)
         {
-            movementScript.speed *= 1 / slowRatio;                          //Getting player movement speed back to normal
+            movementScript.currentSpeed = movementScript.normalWalkSpeed;                          //Getting player movement speed back to normal
         }
 
         

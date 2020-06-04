@@ -15,6 +15,7 @@ public class DialogueTrigger : MonoBehaviour
     [HideInInspector]
     public bool dialogueEnded;
     bool canStartDialogue = false;
+    bool forceHide = false;
 
     InterractionButton buttonDisplay;
 
@@ -33,10 +34,18 @@ public class DialogueTrigger : MonoBehaviour
         {
             if(canStartDialogue && Input.GetButtonDown("Interraction") && !dialogueStarted)
             {
+                buttonDisplay.HideButton();
+                forceHide = true;
                 PlayerMovement.playerRgb.velocity = Vector2.zero;
                 StartDialogue();
             }
-        }
+
+            if (!dialogueStarted && canStartDialogue && forceHide)
+            {
+                forceHide = false;
+                buttonDisplay.ShowButton();
+            }
+        }    
     }
 
     [ContextMenu("StartDialogue")]

@@ -100,13 +100,15 @@ public class PoulionAttackReworked : MonoBehaviour
             else                                                            //when the timer come to and end 
             {
                 isCharging = false;                                         //change some bool according to the enemy conception
-                poulionHealthScript.canTakeDmg = true;
+                if (!poulionHealthScript.protectedByPegase)
+                {
+                    poulionHealthScript.canTakeDmg = true;
+                }                
                 isStun = true;
                 StartCoroutine(Stun());                                     //launch part3 -> stun
             }
                                                                             //The timer can be cut if the is charge bool is stoped before it falls to  0
         }
-
     }
     private void FixedUpdate()
     {
@@ -126,7 +128,10 @@ public class PoulionAttackReworked : MonoBehaviour
             {
                 isOverlappingPlayer = true;     //saying that we are overlapping a player hitbox(so if the enemy dont go out before the next attack if we trigger security check of charge method)
                 isCharging = false;
-                poulionHealthScript.canTakeDmg = true;                                                              //deal dmg and launch part3- stun
+                if (!poulionHealthScript.protectedByPegase)
+                {
+                    poulionHealthScript.canTakeDmg = true;                                                              //deal dmg and launch part3- stun
+                }                
                 isStun = true;
                 StartCoroutine(Stun());
                 detectedElement.transform.root.gameObject.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
@@ -138,7 +143,10 @@ public class PoulionAttackReworked : MonoBehaviour
                 if (detectedElement.GetComponent<ShieldHitZone>().isActivated && !PlayerStatusManager.Instance.isCharging)                          //if the shield zone is activated
                 {                    
                     isCharging = false;
-                    poulionHealthScript.canTakeDmg = true;
+                    if (!poulionHealthScript.protectedByPegase)
+                    {
+                        poulionHealthScript.canTakeDmg = true;
+                    }                    
                     isStun = true;                                                                      //Apply Block behaviour and launch part3- stun
                     StartCoroutine(Stun());
                     detectedElement.transform.root.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
@@ -146,7 +154,10 @@ public class PoulionAttackReworked : MonoBehaviour
                 else if (detectedElement.GetComponent<ShieldHitZone>().isActivated && PlayerStatusManager.Instance.isCharging)
                 {
                     isCharging = false;
-                    poulionHealthScript.canTakeDmg = true;
+                    if (!poulionHealthScript.protectedByPegase)
+                    {
+                        poulionHealthScript.canTakeDmg = true;
+                    }                    
                     isStun = true;                                                                      //Apply Block behaviour and launch part3- stun
                     StartCoroutine(Stun());
                     PlayerManager.Instance.GetComponent<PlayerCharge>().FastEndCharge();
@@ -155,7 +166,10 @@ public class PoulionAttackReworked : MonoBehaviour
             else if (detectedElement.tag == "Wall")                                 //if the collided element is a obstacle
             {
                 isCharging = false;
-                poulionHealthScript.canTakeDmg = true;                              //launch part 3- stun
+                if (!poulionHealthScript.protectedByPegase)
+                {
+                    poulionHealthScript.canTakeDmg = true;                              //launch part 3- stun
+                }                
                 isStun = true;
                 StartCoroutine(Stun());
             }
@@ -194,7 +208,10 @@ public class PoulionAttackReworked : MonoBehaviour
             if (overlappedShield.GetComponent<ShieldHitZone>().isActivated)                 //check if this shield is activated or not 
             {
                 isCharging = false;
-                poulionHealthScript.canTakeDmg = true;
+                if (!poulionHealthScript.protectedByPegase)
+                {
+                    poulionHealthScript.canTakeDmg = true;
+                }                
                 isStun = true;                                                              //if it is activated we pass to the part3- stun and we apply every consequences to the player (he did block)
                 player.GetComponent<PlayerShield>().OnElementBlocked(staminaLost);
                 StartCoroutine(Stun());
@@ -202,7 +219,10 @@ public class PoulionAttackReworked : MonoBehaviour
             else if (isOverlappingPlayer)                                                   //if it's disactivated we check if the enemy is overlapping the player hitbox
             {
                 isCharging = false;
-                poulionHealthScript.canTakeDmg = true;
+                if (!poulionHealthScript.protectedByPegase)
+                {
+                    poulionHealthScript.canTakeDmg = true;
+                }                
                 isStun = true;                                                              //if it's so we infligt damages to the player and launch the part3- stun
                 player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
                 StartCoroutine(Stun());
@@ -211,7 +231,10 @@ public class PoulionAttackReworked : MonoBehaviour
         else if (isOverlappingPlayer == true && !isOverlappingShield)                       //security: if the enemy is overlapping hitbox but no shield
         {
             isCharging = false;
-            poulionHealthScript.canTakeDmg = true;
+            if (!poulionHealthScript.protectedByPegase)
+            {
+                poulionHealthScript.canTakeDmg = true;
+            }
             isStun = true;                                                                  //we infligt damages to the player and launch the part3- stun
             player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
             StartCoroutine(Stun());

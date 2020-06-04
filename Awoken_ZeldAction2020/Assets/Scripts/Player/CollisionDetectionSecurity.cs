@@ -17,7 +17,7 @@ public class CollisionDetectionSecurity : MonoBehaviour
         {
             playerChargeScript.KnockBackEnemy(collision.transform.root.gameObject);
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Default") || collision.gameObject.layer == LayerMask.NameToLayer("GameElements"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Default") || collision.gameObject.layer == LayerMask.NameToLayer("GameElements") || collision.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
             if (!collision.isTrigger)
             {

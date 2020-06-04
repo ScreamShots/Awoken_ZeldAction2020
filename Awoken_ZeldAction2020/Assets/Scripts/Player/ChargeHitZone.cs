@@ -14,7 +14,7 @@ public class ChargeHitZone : ShieldHitZone
     {
         base.OnTriggerEnter2D(collision);
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Default") || collision.gameObject.layer == LayerMask.NameToLayer("GameElements"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Default") || collision.gameObject.layer == LayerMask.NameToLayer("GameElements") || collision.gameObject.layer == LayerMask.NameToLayer("Water"))
         {
             if (!collision.isTrigger)
             {

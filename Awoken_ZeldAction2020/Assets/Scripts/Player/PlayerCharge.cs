@@ -249,7 +249,10 @@ public class PlayerCharge : MonoBehaviour
 
     public void KnockBackEnemy(GameObject enemy)
     {
-        enemy.GetComponent<EnemyKnockBackCaller>().KnockEnemy(knockBackStrenght, chargeDir);
+        if(enemy.GetComponent<EnemyKnockBackCaller>() != null)
+        {
+            enemy.GetComponent<EnemyKnockBackCaller>().KnockEnemy(knockBackStrenght, chargeDir);
+        }
         enemy.GetComponent<BasicHealthSystem>().TakeDmg(knockBackDamage);
     }
     

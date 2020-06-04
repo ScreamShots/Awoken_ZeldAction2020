@@ -89,6 +89,6 @@ public class TransitionZone : MonoBehaviour
         isTheStart = true;
         nextAreaManager.ActivateCam();
         PlayerMovement.playerRgb.velocity = Vector2.zero;
-        PlayerMovement.playerRgb.velocity = transform.up * PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>().speed * Time.fixedDeltaTime;
+        PlayerMovement.playerRgb.velocity = transform.up * PlayerManager.Instance.gameObject.GetComponent<PlayerMovement>().currentSpeed * Time.fixedDeltaTime;
     }
 }

@@ -133,6 +133,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
+            playerShieldScript.maxStamina = ProgressionManager.Instance.maxStamina;
             playerShieldScript.currentStamina = ProgressionManager.Instance.playerStamina;
         }
 
@@ -151,6 +152,7 @@ public class PlayerManager : MonoBehaviour
             attackScript.currentFury = ProgressionManager.Instance.playerFury;
         }
 
+        healthSystem.maxHp = ProgressionManager.Instance.maxHp;
         healthSystem.currentHp = ProgressionManager.Instance.playerHp;
 
     }

@@ -242,7 +242,10 @@ public class MinototaureAttack : MonoBehaviour
 
     IEnumerator Stun(float stun)                  //Coroutine that handle stun
     {
-        minototaureHealthScript.canTakeDmg = true;
+        if (!minototaureHealthScript.protectedByPegase)
+        {
+            minototaureHealthScript.canTakeDmg = true;
+        }        
         yield return new WaitForSeconds(stun + 0.5f);       //wait the stun duration
         minototaureHealthScript.canTakeDmg = false;
         isStun = false;

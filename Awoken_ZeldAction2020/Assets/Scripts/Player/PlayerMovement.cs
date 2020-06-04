@@ -26,13 +26,22 @@ public class PlayerMovement : MonoBehaviour
     [Header ("Stats")] 
     
     [Min (0)] [Tooltip ("speed of the player on his basic movement (Min: 0)")]
-    public float speed;
+    public float currentSpeed;
+    [Min(0)]
+    public float normalWalkSpeed;
+    [Min(0)]
+    public float shieldWalkSpeed;
 
     #endregion
 
     private void Awake()
     {
         playerRgb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        currentSpeed = normalWalkSpeed;
     }
 
     private void FixedUpdate()      // usage of the Fixed Update because we are working on physics and rigidBody
@@ -61,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         move = new Vector2(horizontalAxis, verticalAxis);           // setting a vector that give the player the direction of the movement
         move = move.normalized;                                     // normalizing the direction to prevent the player to move faster on diagonal directions 
 
-        playerRgb.velocity = move * speed * Time.fixedDeltaTime;    // actualy do the player move (Time.fixedDeltaTime) is required to prevent lag issue
+        playerRgb.velocity = move * currentSpeed * Time.fixedDeltaTime;    // actualy do the player move (Time.fixedDeltaTime) is required to prevent lag issue
 
 
     }                  

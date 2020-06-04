@@ -101,6 +101,8 @@ public class TurretShoot : MonoBehaviour
         if (!isActivated)
         {
             StopAllCoroutines();
+            isShooting = false;
+            timer = timeBtwShots;
         }
     }    
 

@@ -61,11 +61,20 @@ public class ProgressionManager : MonoBehaviour
 
     public Dictionary<string, bool> PlayerCapacity = new Dictionary<string, bool>();
 
-    public float playerHp = 100;
+    [HideInInspector]
+    public float maxHp = 80;
+    [HideInInspector]
+    public float playerHp = 80;
+    [HideInInspector]
+    public float maxStamina = 40;
+    [HideInInspector]
     public float playerStamina = 40;
+    [HideInInspector]
     public float playerFury = 100;
 
+    [HideInInspector]
     public int currentSceneIndex = 1;
+    [HideInInspector]
     public int currentAreaIndex = 0;
 
     private void Awake()
@@ -139,47 +148,78 @@ public class ProgressionManager : MonoBehaviour
                 break;
             case ProgressionTimeLine.ShieldParyUnlocked:
                 SetPlayerCapacity(true, true, true, false);
+                maxHp = 100f;
+                maxStamina = 50f;
                 break;
             case ProgressionTimeLine.SecondRegionOut:
                 SetPlayerCapacity(true, true, true, false);
+                maxHp = 100f;
+                maxStamina = 50f;
                 break;
             case ProgressionTimeLine.OlympeFloorTwoStart:
                 SetPlayerCapacity(true, true, true, false);
+                maxHp = 100f;
+                maxStamina = 50f;
                 break;
             case ProgressionTimeLine.OlympeFloorTwoLREntrance:
                 SetPlayerCapacity(true, true, true, false);
+                maxHp = 100f;
+                maxStamina = 50f;
                 break;
             case ProgressionTimeLine.OlympeFloorTwoEnd:
                 SetPlayerCapacity(true, true, true, false);
+                maxHp = 100f;
+                maxStamina = 50f;
                 break;
             case ProgressionTimeLine.ThirdRegionEntrance:
                 SetPlayerCapacity(true, true, true, false);
+                maxHp = 100f;
+                maxStamina = 50f;
                 break;
             case ProgressionTimeLine.ShieldChargeUnlock:
                 SetPlayerCapacity(true, true, true, true);
+                maxHp = 120f;
+                maxStamina = 60f;
                 break;
             case ProgressionTimeLine.ThirdRegionOut:
                 SetPlayerCapacity(true, true, true, true);
+                maxHp = 120f;
+                maxStamina = 60f;
                 break;
             case ProgressionTimeLine.OlympeFloorThreeStart:
                 SetPlayerCapacity(true, true, true, true);
+                maxHp = 120f;
+                maxStamina = 60f;
                 break;
             case ProgressionTimeLine.OlympeFloorThreeLREntrance:
                 SetPlayerCapacity(true, true, true, true);
+                maxHp = 120f;
+                maxStamina = 60f;
                 break;
             case ProgressionTimeLine.OlympeFloorThreeEnded:
                 SetPlayerCapacity(true, true, true, true);
+                maxHp = 120f;
+                maxStamina = 60f;
                 break;
             case ProgressionTimeLine.ZeusFightStarted:
                 SetPlayerCapacity(true, true, true, true);
-                break;
+                maxHp = 120f;
+                maxStamina = 60f;
+                break;                
             case ProgressionTimeLine.EndAdventure:
                 SetPlayerCapacity(true, true, true, true);
+                maxHp = 120f;
+                maxStamina = 60f;
                 break;
             default:
                 SetPlayerCapacity(true, true, true, true);
+                maxHp = 120f;
+                maxStamina = 60f;
                 break;
         }
+
+        playerHp = maxHp;
+        playerStamina = maxStamina;
 
         #endregion
     }

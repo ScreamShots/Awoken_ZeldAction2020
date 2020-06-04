@@ -85,7 +85,7 @@ public class EnemyHealthSystem : BasicHealthSystem
     }
 
     protected override void Update()
-    {
+    {        
         base.Update();
 
         if (canFlash)
