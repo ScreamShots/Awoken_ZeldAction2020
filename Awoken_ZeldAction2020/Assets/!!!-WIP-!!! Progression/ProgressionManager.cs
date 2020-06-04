@@ -61,12 +61,6 @@ public class ProgressionManager : MonoBehaviour
 
     public Dictionary<int, bool> R1Vegetables = new Dictionary<int, bool>();
 
-    public Dictionary<int, bool> R1Fragments = new Dictionary<int, bool>();
-    public Dictionary<int, bool> R2Fragments = new Dictionary<int, bool>();
-    public Dictionary<int, bool> R3Fragments = new Dictionary<int, bool>();
-
-
-
     public int numberOfFragmentsInR1 = 0;
 
     public int numberOfFragmentsInR2 = 0;
@@ -78,6 +72,10 @@ public class ProgressionManager : MonoBehaviour
     public int numberOfFragmentsInF2 = 0;
 
     public int numberOfFragmentsInF3 = 0;
+
+    public Dictionary<int, bool> R1Fragments = new Dictionary<int, bool>();
+    public Dictionary<int, bool> R2Fragments = new Dictionary<int, bool>();
+    public Dictionary<int, bool> R3Fragments = new Dictionary<int, bool>();
 
     public Dictionary<int, bool> F1Fragments = new Dictionary<int, bool>();
     public Dictionary<int, bool> F2Fragments = new Dictionary<int, bool>();
@@ -148,14 +146,6 @@ public class ProgressionManager : MonoBehaviour
         {
             F3Fragments.Add(i, false);
         }
-
-        Debug.Log(R1Fragments.Count);
-        Debug.Log(R2Fragments.Count);
-        Debug.Log(R3Fragments.Count);
-        Debug.Log(F1Fragments.Count);
-        Debug.Log(F2Fragments.Count);
-        Debug.Log(F3Fragments.Count);
-
         #endregion
 
         #region Player
@@ -425,9 +415,36 @@ public class ProgressionManager : MonoBehaviour
             PlayerCapacity[data.playerCapacityKey[i]] = data.playerCapacityValue[i];
         }
 
+        maxHp = data.maxHp;
         playerHp = data.playerHp;
+        maxStamina = data.maxStamina;
         playerStamina = data.playerStamina;
         playerFury = data.playerFury;
+
+        for (int i = 0; i < R1Fragments.Count; i++)
+        {
+            R1Fragments[i] = data.r1Fragments[i];
+        }
+        for (int i = 0; i < R2Fragments.Count; i++)
+        {
+            R2Fragments[i] = data.r2Fragments[i];
+        }
+        for (int i = 0; i < R3Fragments.Count; i++)
+        {
+            R3Fragments[i] = data.r3Fragments[i];
+        }
+        for (int i = 0; i < F1Fragments.Count; i++)
+        {
+            F1Fragments[i] = data.f1Fragments[i];
+        }
+        for (int i = 0; i < F2Fragments.Count; i++)
+        {
+            F2Fragments[i] = data.f2Fragments[i];
+        }
+        for (int i = 0; i < F3Fragments.Count; i++)
+        {
+            F3Fragments[i] = data.f3Fragments[i];
+        }
 
         currentAreaIndex = data.currentAreaIndex;
         currentSceneIndex = data.currentSceneIndex;
@@ -437,6 +454,72 @@ public class ProgressionManager : MonoBehaviour
         GameManager.Instance.blackMelt.gameObject.SetActive(true);
         GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
         GameManager.Instance.blackMelt.MeltIn();
+    }
+
+    public void ResetProgressionManager()
+    {
+        #region Vegetables Dictionary Initialization
+
+        R1Vegetables = new Dictionary<int, bool>();
+
+        R1Vegetables.Add(1, false);
+        R1Vegetables.Add(2, false);
+        R1Vegetables.Add(3, false);
+        #endregion
+
+        #region Fragment Dictionaries Initialization
+
+        R1Fragments = new Dictionary<int, bool>();
+        R2Fragments = new Dictionary<int, bool>();
+        R3Fragments = new Dictionary<int, bool>();
+
+        F1Fragments = new Dictionary<int, bool>();
+        F2Fragments = new Dictionary<int, bool>();
+        F3Fragments = new Dictionary<int, bool>();
+
+        for (int i = 0; i < numberOfFragmentsInR1; i++)
+        {
+            R1Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInR2; i++)
+        {
+            R2Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInR3; i++)
+        {
+            R3Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF1; i++)
+        {
+            F1Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF2; i++)
+        {
+            F2Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF3; i++)
+        {
+            F3Fragments.Add(i, false);
+        }
+        #endregion
+
+        #region Player
+
+        PlayerCapacity = new Dictionary<string, bool>();
+
+        PlayerCapacity.Add("Shield", false);
+        PlayerCapacity.Add("Block", false);
+        PlayerCapacity.Add("Pary", false);
+        PlayerCapacity.Add("Charge", false);
+
+        SetPlayerCapacity(false, false, false, false);
+
+        maxHp = 80f;
+        playerHp = maxHp;
+        maxStamina = 40f;
+        playerStamina = maxStamina;
+
+        #endregion
     }
 
 #if UNITY_EDITOR
