@@ -55,10 +55,16 @@ public class MainMenuManager : MonoBehaviour
     public void LaunchNewGame()
     {
 
-        StartCoroutine(NewGame());
+        eventSystem.SetActive(false);
+        ProgressionManager.Instance.ResetProgressionManager();
+        GameManager.Instance.sceneToLoad = 1;
+        GameManager.Instance.areaToLoad = 0;
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
+        GameManager.Instance.blackMelt.MeltIn();
     }
 
-    IEnumerator NewGame()
+    /*IEnumerator NewGame()
     {
         eventSystem.SetActive(false);
         GameObject progressionManagerHolder = ProgressionManager.Instance.gameObject;
@@ -70,7 +76,7 @@ public class MainMenuManager : MonoBehaviour
         GameManager.Instance.blackMelt.gameObject.SetActive(true);
         GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
         GameManager.Instance.blackMelt.MeltIn();
-    }
+    }*/
 
     public void Continue()
     {
