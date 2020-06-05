@@ -2,21 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Made by Antoine
+/// This script gather attacks relative to state 2 Bis of Zeus
+/// </summary>
+
 public class BossState2Bis : MonoBehaviour
 {
     private GameObject player;
+    PlayerHealthSystem playerHealthScript;
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
 
-    [Space]
-    [Header("Pattern1 - Shoot 1 bullet")]
+    #region Pattern 1
 
-    private bool bossIsShooting;
+    [Space(30)]
+    [Header("PATTERN 1 - Shoot 1 bullet")]
 
     [SerializeField]
     private Transform shootPoint = null;
     [SerializeField]
     private GameObject bossStrike = null;
+
+    [HideInInspector] public bool pattern1IsRunning;
+    private bool bossIsShooting;
 
     [Header("Stats")]
 
@@ -32,19 +41,15 @@ public class BossState2Bis : MonoBehaviour
 
     [HideInInspector] public bool animShoot;                            //anim of shooting
 
-    #region Pattern 1
-
-    ZeusWallZone zeusWallZoneScript;
-
-    [HideInInspector] public bool pattern1IsRunning;
-
-    [Space]
-    [Header("Pattern1 - Instantiate wall")]
+    [Space(30)]
+    [Header("PATTERN 1 - Instantiate wall")]
 
     [SerializeField]
     private GameObject protectionWall = null;
     [SerializeField]
     private Transform wallTransform = null;
+    private GameObject wallInstance = null;
+    ZeusWallZone zeusWallZoneScript;
 
     [Header("Stats")]
 
@@ -55,18 +60,53 @@ public class BossState2Bis : MonoBehaviour
     [HideInInspector] public bool animWall;                             //anim of instantiate wall
     [HideInInspector] public bool isPunching;                           //anim of Zeus punching player
     private bool canInstancieWall;
+
+    [Space(30)]
+    [Header("PATTERN 1 - Spawner ")]
+    public Transform spawnerPlace;
+    public Transform spawnerPlace2;
+    public GameObject spawner;
+    [HideInInspector] public GameObject spawnerA;
+    [HideInInspector] public GameObject spawnerB;
+    public float timeBeforePlaceSpawner;
+    private float time;
+
+    [Header("Stats")]
+
+    [Space] [SerializeField] private float spawnRadius = 0;
+    [SerializeField] private float timeBtwSpawn = 0;
+    [SerializeField] private float enemySpawnLimit = 0;
+
+    [Space] public GameObject[] enemiesToSpawn;
+
+    [HideInInspector] public bool spawnerExist;
+
+    [Space(30)]
+    [Header("PATTERN 1 - Instantiate Blocs")]
+    public GameObject indestructibleBloc;
+    [SerializeField] private GameObject spawnCloud = null;
+
+    [HideInInspector] public GameObject bloc1;
+    [HideInInspector] public GameObject bloc2;
+    [HideInInspector] public GameObject bloc3;
+
+    public Transform bloc1Place;
+    public Transform bloc2Place;
+    public Transform bloc3Place;
+
+    private bool spawnerIsDisable = false;
     #endregion
 
     #region Pattern 2
 
-    [HideInInspector] public bool pattern2IsRunning;
-
-    [Space]
-    [Header("Pattern2 - Lightning")]
+    [Space(30)]
+    [Header("PATTERN 2 - Thunderbolt")]
 
     public Transform throneArena;
     public GameObject Lightning;
     private GameObject newLightning;
+
+    [HideInInspector] public bool pattern2IsRunning;
 
     [Header("Stats")]
 
@@ -75,20 +115,21 @@ public class BossState2Bis : MonoBehaviour
     [HideInInspector] public bool animThunder;                         //anim of lightning
     #endregion
 
-    private GameObject wallInstance = null;
-    PlayerHealthSystem playerHealthScript;
-
     [HideInInspector] public bool ZeusTp;
-    private bool CoroutinePlayOnce;
 
     void Start()
     {
         player = PlayerManager.Instance.gameObject;
+
         playerHealthScript = player.GetComponent<PlayerHealthSystem>();
+        zeusWallZoneScript = GetComponentInChildren<ZeusWallZone>();
+        spawner.GetComponent<EnemySpawner>().spawnRadius = spawnRadius;
+        spawner.GetComponent<EnemySpawner>().timeBtwSpawn = timeBtwSpawn;
+        spawner.GetComponent<EnemySpawner>().enemySpawnLimit = enemySpawnLimit;
+        spawner.GetComponent<EnemySpawner>().enemiesToSpawn = enemiesToSpawn;
 
         timeLeft = timeBtwLightning;
-
-        zeusWallZoneScript = GetComponentInChildren<ZeusWallZone>();
+        time = timeBeforePlaceSpawner;
     }
 
     void Update()
@@ -103,6 +144,19 @@ public class BossState2Bis : MonoBehaviour
         if (playerHealthScript.currentHp <= 0)
         {
             Destroy(wallInstance);
+        }
+
+        if (spawnerExist)
+        {
+            if (!spawnerIsDisable)
+            {               
+                if (bloc1.GetComponent<ChargableElement>().isDestroyed && bloc2.GetComponent<ChargableElement>().isDestroyed && bloc3.GetComponent<ChargableElement>().isDestroyed)
+                {
+                    spawnerIsDisable = true;
+                    spawnerA.GetComponent<EnemySpawner>().spawnEnable = false;
+                    spawnerB.GetComponent<EnemySpawner>().spawnEnable = false;
+                }
+            }
         }
     }
 
@@ -133,6 +187,18 @@ public class BossState2Bis : MonoBehaviour
         {
             animThunder = false;
             Pattern1();
+
+            time -= Time.deltaTime;
+
+            if (time <= 0)
+            {
+                if (!spawnerExist)
+                {
+                    spawnerExist = true;
+                    SpawnSpawner();                                 //Instantiate a spawner to a position
+                    SpawnIndestructibleBloc();
+                }
+            }
         }
         else if (BossManager.Instance.s2Bis_Pattern2)
         {
@@ -228,6 +294,22 @@ public class BossState2Bis : MonoBehaviour
         GameObject bulletInstance = Instantiate(bossStrike, shootPoint.position, Quaternion.Euler(0, 0, rotationZ + 90f));
         bulletInstance.GetComponent<BulletComportement>().aimDirection = directionBullet;
         bulletInstance.GetComponent<BulletComportement>().bulletSpeed = strikeSpeed;
+    }
+
+    void SpawnSpawner()
+    {
+        spawnerA = Instantiate(spawner, spawnerPlace.position, spawner.transform.rotation);
+        spawnerB = Instantiate(spawner, spawnerPlace2.position, spawner.transform.rotation);
+    }
+
+    void SpawnIndestructibleBloc()
+    {
+        bloc1 = Instantiate(indestructibleBloc, bloc1Place.position, indestructibleBloc.transform.rotation);
+        Instantiate(spawnCloud, bloc1Place.position, Quaternion.identity);
+        bloc2 = Instantiate(indestructibleBloc, bloc2Place.position, indestructibleBloc.transform.rotation);
+        Instantiate(spawnCloud, bloc2Place.position, Quaternion.identity);
+        bloc3 = Instantiate(indestructibleBloc, bloc3Place.position, indestructibleBloc.transform.rotation);
+        Instantiate(spawnCloud, bloc3Place.position, Quaternion.identity);
     }
 
     #region Pattern1

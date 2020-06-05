@@ -11,6 +11,7 @@ public class ArenaManager : MonoBehaviour
 {
     #region Variables
     TransitionArena transitionArenaScript;
+    BossState2Bis bossState2BisScript;
     BossState3 bossState3Script;
     EnemySpawner enemySpawnerAScript;
     EnemySpawner enemySpawnerBScript;
@@ -51,6 +52,7 @@ public class ArenaManager : MonoBehaviour
     void Start()
     {
         transitionArenaScript = arenaZone.GetComponent<TransitionArena>();
+        bossState2BisScript = BossManager.Instance.GetComponent<BossState2Bis>();
         bossState3Script = BossManager.Instance.GetComponent<BossState3>();
 
         ennemisToKillToOpenGate = bossState3Script.ennemisToKillToOpenGate;
@@ -60,19 +62,10 @@ public class ArenaManager : MonoBehaviour
     {
         LauchDialogue();
 
-        /*if (transitionArenaScript.playerInZone && !exitGateOpen)                    //To close gate after player when he enter in arena
+        if (bossState2BisScript.spawnerExist && bossState3Script.CounterIsActivate)                              //when pattern 1 of state 3 actived, get the two spawners and count how many ennemis dead
         {
-            BossManager.Instance.canStartBossFight = true;
-            //gateEnter.SetActive(true);
-            //gaterExit.SetActive(true);
-
-            //bossUI.SetActive(true);
-        }*/
-
-        if (bossState3Script.spawnerExist)                                                   //when pattern 1 of state 3 actived, get the two spawners and count how many ennemis dead
-        {
-            enemySpawnerAScript = bossState3Script.spawnerA.GetComponent<EnemySpawner>();
-            enemySpawnerBScript = bossState3Script.spawnerB.GetComponent<EnemySpawner>();
+            enemySpawnerAScript = bossState2BisScript.spawnerA.GetComponent<EnemySpawner>();
+            enemySpawnerBScript = bossState2BisScript.spawnerB.GetComponent<EnemySpawner>();
             currentEnnemisKilled = enemySpawnerAScript.enemiesDead + enemySpawnerBScript.enemiesDead;
         }
 

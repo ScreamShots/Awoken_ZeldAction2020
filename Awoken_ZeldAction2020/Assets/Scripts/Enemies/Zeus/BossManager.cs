@@ -14,8 +14,8 @@ public class BossManager : EnemyHealthSystem
     #region State 1
     BossState1 state1Script;
 
-    [Space]
-    [Header("Boss State 1")]
+    [Space(30)]
+    [Header("BOSS STATE 1")]
     public bool s1_Pattern1;
     public bool s1_Pattern2;
 
@@ -37,8 +37,8 @@ public class BossManager : EnemyHealthSystem
     #region State 2
     BossState2 state2Script;
 
-    [Space]
-    [Header("Boss State 2")]
+    [Space(30)]
+    [Header("BOSS STATE 2")]
     public bool s2_Pattern1;
     public bool s2_Pattern2;
     public bool s2_Pattern3;
@@ -61,8 +61,8 @@ public class BossManager : EnemyHealthSystem
     #region State 2 Bis
     BossState2Bis state2BisScript;
 
-    [Space]
-    [Header("Boss State 2 Bis")]
+    [Space(30)]
+    [Header("BOSS STATE 2 BIS")]
     public bool s2Bis_Pattern1;
     public bool s2Bis_Pattern2;
 
@@ -86,8 +86,8 @@ public class BossManager : EnemyHealthSystem
     #region State 3
     BossState3 state3Script;
 
-    [Space]
-    [Header("Boss State 3")]
+    [Space(30)]
+    [Header("BOSS STATE 3")]
     public bool s3_Pattern1;
 
     [Space]
@@ -143,7 +143,7 @@ public class BossManager : EnemyHealthSystem
     {
         base.Update();
 
-        if (currentHp <= 620 && currentHp > 470 && canStartBossFight)             //state 1
+        if (currentHp <= 620 && currentHp > 470 && canStartBossFight)               //state 1
         {
             if(!playCoroutine && !canPlayFirstState)
             {
@@ -155,7 +155,7 @@ public class BossManager : EnemyHealthSystem
                 State1();
             }
         }
-        else if (currentHp <= 470 && currentHp > 200)         //state 2
+        else if (currentHp <= 470 && currentHp > 200)                               //state 2
         {
             StopCoroutine(S1Pattern1()); StopCoroutine(S1Pattern2());                                   //for stopping the previous pattern
 
@@ -179,7 +179,7 @@ public class BossManager : EnemyHealthSystem
                 DestroyObjects("ShockWave");
             }
         }
-        else if (currentHp <= 200 && currentHp > 50)         //state 2 bis 
+        else if (currentHp <= 200 && currentHp > 50)                                //state 2 bis 
         {
             StopCoroutine(S2Pattern1()); StopCoroutine(S2Pattern2()); StopCoroutine(S2Pattern3());      //for stopping the previous pattern
 
@@ -204,7 +204,7 @@ public class BossManager : EnemyHealthSystem
                 DestroyObjects("EnemyProjectile");
             }
         }
-        else if (currentHp <= 50 && currentHp > 0)           //state 3
+        else if (currentHp <= 50 && currentHp > 0)                                  //state 3
         {
             StopCoroutine(S2BisPattern1()); StopCoroutine(S2BisPattern2());                             //for stopping the previous pattern
 
