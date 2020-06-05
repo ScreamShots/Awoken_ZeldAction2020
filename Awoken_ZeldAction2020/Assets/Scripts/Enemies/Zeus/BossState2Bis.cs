@@ -2,27 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Made by Bastien Prigent / Update by Antoine
-/// All the pattern in the boss state 2 fight
-/// </summary>
-
-public class BossState2 : MonoBehaviour
+public class BossState2Bis : MonoBehaviour
 {
-    #region Pattern 1
-
-    [HideInInspector] public bool pattern1IsRunning;
-
     private GameObject player;
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
 
     [Space]
-    [Header("Pattern1 - Shoot 3 bullets")]
+    [Header("Pattern1 - Shoot 1 bullet")]
 
     private bool bossIsShooting;
-    private bool shoot3bullets;
-    
+
     [SerializeField]
     private Transform shootPoint = null;
     [SerializeField]
@@ -36,23 +26,20 @@ public class BossState2 : MonoBehaviour
     private float timeBtwStrike = 0;
     [SerializeField]
     private float strikeSpeed = 0;
-    [SerializeField]
-    private float quickShoot = 0;
     private Vector2 direction;
     private Vector2 directionBullet;
     private float playerDistance;
 
     [HideInInspector] public bool animShoot;                            //anim of shooting
-    #endregion
 
-    #region Pattern 2
+    #region Pattern 1
 
     ZeusWallZone zeusWallZoneScript;
 
-    [HideInInspector] public bool pattern2IsRunning;
+    [HideInInspector] public bool pattern1IsRunning;
 
     [Space]
-    [Header("Pattern2 - Instantiate wall")]
+    [Header("Pattern1 - Instantiate wall")]
 
     [SerializeField]
     private GameObject protectionWall = null;
@@ -62,22 +49,20 @@ public class BossState2 : MonoBehaviour
     [Header("Stats")]
 
     [SerializeField]
-    private float knockbackIntensity = 0;
-    [SerializeField]
     private float destroyWallTIme = 0;
     private bool shoot1bullets;
 
     [HideInInspector] public bool animWall;                             //anim of instantiate wall
     [HideInInspector] public bool isPunching;                           //anim of Zeus punching player
     private bool canInstancieWall;
-    private bool canKickPlayer;
     #endregion
 
-    #region Pattern 3
+    #region Pattern 2
 
-    [HideInInspector] public bool pattern3IsRunning;
+    [HideInInspector] public bool pattern2IsRunning;
 
-    [Space][Header("Pattern3 - Lightning")]
+    [Space]
+    [Header("Pattern2 - Lightning")]
 
     public Transform throneArena;
     public GameObject Lightning;
@@ -114,7 +99,6 @@ public class BossState2 : MonoBehaviour
 
         InstancieWall();
         SetWallDistance();
-        //KickPlayerOutZone();
 
         if (playerHealthScript.currentHp <= 0)
         {
@@ -124,7 +108,7 @@ public class BossState2 : MonoBehaviour
 
     void CheckPatternRunning()
     {
-        if (shoot3bullets)
+        if (shoot1bullets)
         {
             pattern1IsRunning = true;
         }
@@ -133,7 +117,7 @@ public class BossState2 : MonoBehaviour
             pattern1IsRunning = false;
         }
 
-        if (shoot1bullets)
+        if (newLightning != null)
         {
             pattern2IsRunning = true;
         }
@@ -141,55 +125,38 @@ public class BossState2 : MonoBehaviour
         {
             pattern2IsRunning = false;
         }
-
-        if (newLightning != null)
-        {
-            pattern3IsRunning = true;
-        }
-        else
-        {
-            pattern3IsRunning = false;
-        }
     }
 
     void AttackState2()
     {
-        if (BossManager.Instance.s2_Pattern1)
+        if (BossManager.Instance.s2Bis_Pattern1)
         {
             animThunder = false;
             Pattern1();
         }
-        else if (BossManager.Instance.s2_Pattern2)
-        {
-            Pattern2();
-        }
-        else if (BossManager.Instance.s2_Pattern3)
+        else if (BossManager.Instance.s2Bis_Pattern2)
         {
             animWall = false;
-            Pattern3();
+            Pattern2();
         }
-        else if (BossManager.Instance.currentHp <= 200)
+        else if (BossManager.Instance.currentHp <= 50)
         {
             StopAllCoroutines();
             animShoot = false;
+        }
+        else
+        {
+            animThunder = false;
         }
     }
 
     void Move()
     {
-        if (BossManager.Instance.s2_Pattern1)
-        {
-            /*if (!CoroutinePlayOnce && transform.position != throneArena.position)
-            {
-                CoroutinePlayOnce = true;
-                StartCoroutine(ZeusCanTpThrone());
-            }*/
-        }
-        else if (BossManager.Instance.s2_Pattern2)
+        if (BossManager.Instance.s2Bis_Pattern1)
         {
             transform.position = throneArena.position;
         }
-        else if (BossManager.Instance.s2_Pattern3)
+        else if (BossManager.Instance.s2Bis_Pattern2)
         {
             transform.position = throneArena.position;
         }
@@ -253,21 +220,6 @@ public class BossState2 : MonoBehaviour
         }
     }
 
-    void KickPlayerOutZone()
-    {
-        if (canKickPlayer)
-        {
-            if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone)
-            {
-                if (!isPunching)
-                {
-                    isPunching = true;
-                    StartCoroutine(KickPlayer());
-                }
-            }
-        }
-    }
-
     void BossAttackStrike()
     {
         directionBullet = (player.transform.position - shootPoint.transform.position).normalized;
@@ -283,71 +235,6 @@ public class BossState2 : MonoBehaviour
     {
         if (!bossIsShooting)
         {
-            shoot3bullets = true;
-            bossIsShooting = true;
-            StartCoroutine(PrepareForShoot1());
-        }
-    }
-
-    IEnumerator PrepareForShoot1()
-    {
-
-        SetDirectionAttack();
-        StartCoroutine(StartAnimationShoot());
-
-        yield return new WaitForSeconds(timeBeforeShoot);
-
-        StartCoroutine(Pattern1Shoot());
-    }
-
-    IEnumerator Pattern1Shoot()
-    {
-        BossAttackStrike();
-        animShoot = false;
-        StartCoroutine(StartAnimationShootBtwStrike());
-
-        yield return new WaitForSeconds(quickShoot);
-        BossAttackStrike();
-        StartCoroutine(StartAnimationShootBtwStrike());
-        animShoot = false;
-
-        yield return new WaitForSeconds(quickShoot);
-        BossAttackStrike();
-        animShoot = false;
-
-        yield return new WaitForSeconds(timeBtwStrike - 0.1f);
-        shoot3bullets = false;
-
-        yield return new WaitForSeconds(0.1f);
-        bossIsShooting = false;
-    }
-
-    IEnumerator StartAnimationShoot()
-    {
-        yield return new WaitForSeconds(timeBeforeShoot - 0.4f);
-        animShoot = true;
-    }
-
-    IEnumerator StartAnimationShootBtwStrike()
-    {
-        yield return new WaitForSeconds(quickShoot - 0.4f);
-        animShoot = true;
-    }
-
-    IEnumerator ZeusCanTpThrone()
-    {
-        ZeusTp = true;
-        yield return new WaitForSeconds(0.3f);
-        transform.position = throneArena.position;
-        ZeusTp = false;
-    }
-    #endregion
-
-    #region Pattern2
-    void Pattern2()
-    {
-        if (!bossIsShooting)
-        {
             shoot1bullets = true;
             bossIsShooting = true;
             StartCoroutine(PrepareForShoot2());
@@ -358,20 +245,25 @@ public class BossState2 : MonoBehaviour
     {
         SetDirectionAttack();
         StartCoroutine(StartAnimationShoot());
-        //StartCoroutine(TimeToKickPlayer());
 
         yield return new WaitForSeconds(timeBeforeShoot);
 
-        StartCoroutine(Pattern2Shoot());
+        StartCoroutine(Pattern1Shoot());
     }
 
-    IEnumerator Pattern2Shoot()
+    IEnumerator StartAnimationShoot()
+    {
+        yield return new WaitForSeconds(timeBeforeShoot - 0.4f);
+        animShoot = true;
+    }
+
+    IEnumerator Pattern1Shoot()
     {
         animShoot = false;
-        BossAttackStrike();       
+        BossAttackStrike();
         canInstancieWall = true;
 
-        yield return new WaitForSeconds(timeBtwStrike -0.1f + 1.5f);
+        yield return new WaitForSeconds(timeBtwStrike - 0.1f + 0.5f);
         shoot1bullets = false;
 
         yield return new WaitForSeconds(0.1f);
@@ -384,26 +276,10 @@ public class BossState2 : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         animWall = false;
     }
-
-    IEnumerator TimeToKickPlayer()
-    {
-        yield return new WaitForSeconds(timeBeforeShoot - 1f);
-        canKickPlayer = true;
-        yield return new WaitForSeconds(0.1f);
-        canKickPlayer = false;
-    }
-
-    IEnumerator KickPlayer()
-    {
-        yield return new WaitForSeconds(0.5f);
-        PlayerMovement.playerRgb.AddForce(new Vector2(0, -20) * knockbackIntensity);
-        yield return new WaitForSeconds(0.1f);
-        isPunching = false;
-    }
     #endregion
 
-    #region Pattern3
-    void Pattern3()
+    #region Pattern2
+    void Pattern2()
     {
         timeLeft -= Time.deltaTime;
         animThunder = false;

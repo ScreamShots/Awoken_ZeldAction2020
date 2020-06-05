@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 3877349471966037664}
   - component: {fileID: 3877349471966037668}
   - component: {fileID: 1686074760679940912}
+  - component: {fileID: 5456772945080268906}
   - component: {fileID: 3877349471188818552}
   - component: {fileID: 457906417}
   m_Layer: 9
@@ -257,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4de292400c181f4bbf0acf08bfde649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 380
+  maxHp: 620
   currentHp: 0
   canTakeDmg: 1
   onDead:
@@ -300,11 +301,20 @@ MonoBehaviour:
   s2_pauseTimePattern1_2: 1
   s2_pauseTimePattern2_3: 4
   s2_pauseTimePattern3_1: 1
+  s2Bis_Pattern1: 0
+  s2Bis_Pattern2: 0
+  pauseTimeBeforeState2Bis: 0
+  s2Bis_pattern1_DurationTime: 12
+  s2Bis_pattern2_DurationTime: 3
+  s2Bis_pauseTimePattern1_2: 4
+  s2Bis_pauseTimePattern2_1: 1
+  pauseTimeBtwState2_2Bis: 0
   s3_Pattern1: 0
-  pauseTimeBtwState2_3: 1
+  pauseTimeBtwState2Bis_3: 0
   canStartBossFight: 0
   dialogueState1Finish: 0
   dialogueState2Finish: 0
+  dialogueState3Finish: 0
   ZeusIsTirred: 0
   zeusIdle: 0
   cutsceneEndBattle: {fileID: 0}
@@ -365,6 +375,40 @@ MonoBehaviour:
   animWall: 0
   isPunching: 0
   pattern3IsRunning: 0
+  throneArena: {fileID: 0}
+  Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
+    type: 3}
+  timeBtwLightning: 1
+  animThunder: 0
+  ZeusTp: 0
+--- !u!114 &5456772945080268906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877349471966037671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1190197889125d4597ce15401930303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  watchDirection: 0
+  shootPoint: {fileID: 1058051325}
+  bossStrike: {fileID: 5304666703343253110, guid: 26e85fb8febcc784a895b58ba87e6cfd,
+    type: 3}
+  timeBeforeShoot: 1.5
+  timeBtwStrike: 2
+  strikeSpeed: 300
+  animShoot: 0
+  pattern1IsRunning: 0
+  protectionWall: {fileID: 8249182235389160825, guid: 25cc648498b132c4eb409401669c1898,
+    type: 3}
+  wallTransform: {fileID: 1647592546}
+  destroyWallTIme: 2
+  animWall: 0
+  isPunching: 0
+  pattern2IsRunning: 0
   throneArena: {fileID: 0}
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
     type: 3}
@@ -788,6 +832,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ac8e8f568131e054f81561e233cfdbc5, type: 2}
     - {fileID: 11400000, guid: 835e7900a025b4a42b5caa8da5bddc82, type: 2}
     - {fileID: 11400000, guid: ef91a624059fe9e429951836f4cac13b, type: 2}
+    - {fileID: 11400000, guid: ed507718bae71ea4d9002a874726d4d8, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -839,5 +884,18 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Zeus_Idle_Down
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6236418613264157963}
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Zeus_StayAngry
             m_BoolArgument: 0
           m_CallState: 2
