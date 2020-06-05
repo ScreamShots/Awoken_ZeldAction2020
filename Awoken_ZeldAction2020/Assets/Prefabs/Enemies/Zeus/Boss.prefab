@@ -260,6 +260,9 @@ MonoBehaviour:
   maxHp: 380
   currentHp: 0
   canTakeDmg: 1
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
   shieldOfEnemy: {fileID: 0}
   protectedByPegase: 0
   flashColor: {r: 1, g: 0.25882354, b: 0.25882354, a: 0.64705884}
@@ -273,6 +276,7 @@ MonoBehaviour:
   timeBeforeDestroy: 0
   linkedSpawnPlateform: {fileID: 0}
   canFlash: 0
+  isAffectedByPegase: 1
   minDropDistance: 0
   maxDropDistance: 0
   dropChanceItem0: 0
@@ -294,7 +298,7 @@ MonoBehaviour:
   s2_pattern2_DurationTime: 12
   s2_pattern3_DurationTime: 3
   s2_pauseTimePattern1_2: 1
-  s2_pauseTimePattern2_3: 2
+  s2_pauseTimePattern2_3: 4
   s2_pauseTimePattern3_1: 1
   s3_Pattern1: 0
   pauseTimeBtwState2_3: 1
@@ -303,6 +307,7 @@ MonoBehaviour:
   dialogueState2Finish: 0
   ZeusIsTirred: 0
   zeusIdle: 0
+  cutsceneEndBattle: {fileID: 0}
 --- !u!114 &3877349471966037668
 MonoBehaviour:
   m_ObjectHideFlags: 0
