@@ -99,6 +99,9 @@ public class ProgressionManager : MonoBehaviour
     [HideInInspector]
     public int currentAreaIndex = 0;
 
+    public int availableFragments = 0;
+    public int totalFragments = 0;
+
     private void Awake()
     {
         SaveSystem.DebugPath();
@@ -448,6 +451,9 @@ public class ProgressionManager : MonoBehaviour
 
         currentAreaIndex = data.currentAreaIndex;
         currentSceneIndex = data.currentSceneIndex;
+
+        availableFragments = data.availableFragments;
+        totalFragments = data.totalFragemnts;
 
         GameManager.Instance.sceneToLoad = currentSceneIndex;
         GameManager.Instance.areaToLoad = currentAreaIndex;

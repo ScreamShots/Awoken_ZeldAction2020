@@ -64,8 +64,6 @@ public class PlayerManager : MonoBehaviour
     //[SerializeField]
     //GameObject playerSound = null;
 
-
-    public static int fragmentNumber;
     void Awake()
     {
         #region Make Singleton

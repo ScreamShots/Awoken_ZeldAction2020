@@ -29,6 +29,9 @@ public class ProgressionFile
     public int currentSceneIndex;
     public int currentAreaIndex;
 
+    public int availableFragments;
+    public int totalFragemnts;
+
     public ProgressionFile (ProgressionManager progressionManager)
     {
         progressionTimeLineValue = (int)progressionManager.thisSessionTimeLine;
@@ -94,6 +97,9 @@ public class ProgressionFile
 
         currentAreaIndex = progressionManager.currentAreaIndex;
         currentSceneIndex = progressionManager.currentSceneIndex;
+
+        availableFragments = progressionManager.availableFragments;
+        totalFragemnts = progressionManager.totalFragments;
     }
 
 }

@@ -77,7 +77,8 @@ public class FragmentPickUp : MonoBehaviour
 
         if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")
         {
-            PlayerManager.fragmentNumber += fragmentToAdd;
+            ProgressionManager.Instance.availableFragments += fragmentToAdd;
+            ProgressionManager.Instance.totalFragments += fragmentToAdd;
             SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
 
             switch (SceneManager.GetActiveScene().buildIndex)
