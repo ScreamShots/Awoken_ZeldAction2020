@@ -1302,6 +1302,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddfe3b2a31239fb4196744453e4c2bbe, type: 3}
+--- !u!82 &144681138 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4619148655133149107, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1484653238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &163185596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +1817,10 @@ PlayableDirector:
     value: {fileID: 1850111283}
   - key: {fileID: 0}
     value: {fileID: 981466785}
+  - key: {fileID: 2530219700983873083, guid: 1b79e0bf7a46358439b062b6a5f840c3, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: -5561184889141275576, guid: 1b79e0bf7a46358439b062b6a5f840c3, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &214092356
@@ -1986,6 +1996,12 @@ PlayableDirector:
     value: {fileID: 368231927}
   - key: {fileID: 6359491255105857437, guid: e773eb66f24caa942aff7afcc3d04eb9, type: 2}
     value: {fileID: 796002967}
+  - key: {fileID: 6034325702617747044, guid: e773eb66f24caa942aff7afcc3d04eb9, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: -3812670844628223754, guid: e773eb66f24caa942aff7afcc3d04eb9, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: -2290610710937723974, guid: e773eb66f24caa942aff7afcc3d04eb9, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &219531217
@@ -2224,6 +2240,12 @@ PlayableDirector:
     value: {fileID: 1085571449}
   - key: {fileID: -5884993759445455866, guid: f93b68d8749f08842b33d7bad175bed1, type: 2}
     value: {fileID: 1721232118}
+  - key: {fileID: 2087471884295302546, guid: f93b68d8749f08842b33d7bad175bed1, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: -6018934388482590652, guid: f93b68d8749f08842b33d7bad175bed1, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: 2064669471988255758, guid: f93b68d8749f08842b33d7bad175bed1, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &289831883
@@ -2324,6 +2346,10 @@ PlayableDirector:
     value: {fileID: 2074194217}
   - key: {fileID: 8332483531214443300, guid: 856b19d6825d7324da36ba77ba3f556f, type: 2}
     value: {fileID: 459380633}
+  - key: {fileID: -8396068523604323569, guid: 856b19d6825d7324da36ba77ba3f556f, type: 2}
+    value: {fileID: 893657755}
+  - key: {fileID: -6183937440884896479, guid: 856b19d6825d7324da36ba77ba3f556f, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &314907134
@@ -10211,6 +10237,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 5701d9d45f797544b9ba748643d68f5d, type: 2}
     - {fileID: 11400000, guid: 3a017c022d79b7a4b9c31fe2359b05d9, type: 2}
     - {fileID: 11400000, guid: 146a28bbf18dc274d87316282300ce5e, type: 2}
+    - {fileID: 11400000, guid: d9f5e7d52fc12b94ab381b1ba4039aa5, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -10255,6 +10282,19 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 893657756}
           m_MethodName: EndOfCutScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 893657756}
+          m_MethodName: StopBossMusic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15853,6 +15893,14 @@ PlayableDirector:
     value: {fileID: 1850111283}
   - key: {fileID: 7246862380556390874, guid: c7d5214029da9ed47b9c13635de4c23f, type: 2}
     value: {fileID: 1850111285}
+  - key: {fileID: -2851298011317156743, guid: c7d5214029da9ed47b9c13635de4c23f, type: 2}
+    value: {fileID: 1297355579}
+  - key: {fileID: 1340763753964674813, guid: c7d5214029da9ed47b9c13635de4c23f, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: -8971961702665898843, guid: c7d5214029da9ed47b9c13635de4c23f, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: 7850296083612498229, guid: c7d5214029da9ed47b9c13635de4c23f, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!1001 &1105052521
@@ -17214,6 +17262,12 @@ PlayableDirector:
     value: {fileID: 2005905436}
   - key: {fileID: 447346719159923794, guid: bb57b66327aceed4fa61ddc0b406f88d, type: 2}
     value: {fileID: 2005905437}
+  - key: {fileID: 999251753070239251, guid: bb57b66327aceed4fa61ddc0b406f88d, type: 2}
+    value: {fileID: 1297355579}
+  - key: {fileID: -1441057064021406163, guid: bb57b66327aceed4fa61ddc0b406f88d, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: -3891795775072730482, guid: bb57b66327aceed4fa61ddc0b406f88d, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1257375647
@@ -19211,6 +19265,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 04ba35b88ab686c42b265ff7560d1038, type: 2}
     - {fileID: 11400000, guid: 5b89b962facddaa419ad50e82d8b815b, type: 2}
     - {fileID: 11400000, guid: f83f38ce7062fe94281dc03eda4951ca, type: 2}
+    - {fileID: 11400000, guid: 0bd4583df00d5964c935f9f59ea548fd, type: 2}
+    - {fileID: 11400000, guid: 41f331ea800bcbf4e8a9a757e0edd5ee, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -19242,6 +19298,32 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1297355581}
           m_MethodName: EndOfCutScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1297355581}
+          m_MethodName: StartBossMusic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1297355581}
+          m_MethodName: StopBossMusic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -22292,6 +22374,12 @@ PlayableDirector:
     value: {fileID: 1863179222}
   - key: {fileID: 2181011565268098768, guid: c1f9cb4b10fd89549b01e3c611991d80, type: 2}
     value: {fileID: 2074194217}
+  - key: {fileID: 5619390144185626837, guid: c1f9cb4b10fd89549b01e3c611991d80, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: 5327285591178075681, guid: c1f9cb4b10fd89549b01e3c611991d80, type: 2}
+    value: {fileID: 144681138}
+  - key: {fileID: 1299810440818357769, guid: c1f9cb4b10fd89549b01e3c611991d80, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1861689386
@@ -23057,6 +23145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26395c8c7c62378418c6ad5d4378c08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfFragmentsInThisScene: 0
   CutScene_FirstFightZeus: {fileID: 1297355581}
 --- !u!4 &1874391521
 Transform:
@@ -25263,6 +25352,8 @@ PlayableDirector:
     value: {fileID: 2074194219}
   - key: {fileID: 8167742372879534122, guid: 09f79ae50a1c3794d91d4d8a518c5207, type: 2}
     value: {fileID: 893657755}
+  - key: {fileID: 5556101011712244769, guid: 09f79ae50a1c3794d91d4d8a518c5207, type: 2}
+    value: {fileID: 144681138}
   m_ExposedReferences:
     m_References: []
 --- !u!1001 &461861304103542476
