@@ -14,8 +14,6 @@ public class R3ProgressionHandler : BasicProgressionHandler
 #pragma warning restore
 
     [SerializeField] [ConditionalHide("showGameplayElements", true)]
-    DistanceLever firstDoorDistanceLever = null;
-    [SerializeField] [ConditionalHide("showGameplayElements", true)]
     DoorBehavior doorAutelArea = null;
     [SerializeField] [ConditionalHide("showGameplayElements", true)]
     GameObject[] allDestructibleBlocsAfterAutel = null;
@@ -41,7 +39,6 @@ public class R3ProgressionHandler : BasicProgressionHandler
     protected override void OnOlympeFloorTwoEnd()
     {
         autelArea.canSpawnEnemies = true;
-        firstDoorDistanceLever.isPressed = false;
         thisAltar.DesactivateAltarGraph();
         foreach(GameObject destructibleBloc in allDestructibleBlocsAfterAutel)
         {
@@ -56,7 +53,6 @@ public class R3ProgressionHandler : BasicProgressionHandler
     protected override void OnThirdRegionEntrance()
     {
         autelArea.canSpawnEnemies = true;
-        firstDoorDistanceLever.isPressed = false;
         thisAltar.DesactivateAltarGraph();
         foreach (GameObject destructibleBloc in allDestructibleBlocsAfterAutel)
         {
