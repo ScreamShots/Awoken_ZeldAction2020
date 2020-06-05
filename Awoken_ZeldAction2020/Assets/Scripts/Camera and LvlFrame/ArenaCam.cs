@@ -39,7 +39,7 @@ public class ArenaCam : MonoBehaviour
     {
         if (transitionArenaScript.playerInZone)                                                                         //if Player is in Area
         {
-            if (!switchCamBoss && (!BossManager.Instance.s1_Pattern1 && !BossManager.Instance.s2_Pattern3 && !BossManager.Instance.s3_Pattern1) && BossManager.Instance.canStartBossFight)             //camera Boss fight is active
+            if (!switchCamBoss && (!BossManager.Instance.s1_Pattern1 && !BossManager.Instance.s2_Pattern3 && !BossManager.Instance.s2Bis_Pattern2 && !BossManager.Instance.s3_Pattern1) && BossManager.Instance.canStartBossFight)             //camera Boss fight is active
             {
                 switchCamPlayer = false;
                 switchCamBoss = true;
@@ -50,7 +50,7 @@ public class ArenaCam : MonoBehaviour
 
                 playerCam.SetActive(false);
             }
-            else if (!switchCamArena && (BossManager.Instance.s1_Pattern1 || BossManager.Instance.s2_Pattern3))         //if Thunder pattern is active = Arena camera active 
+            else if (!switchCamArena && (BossManager.Instance.s1_Pattern1 || BossManager.Instance.s2_Pattern3 || BossManager.Instance.s2Bis_Pattern2))         //if Thunder pattern is active = Arena camera active 
             {
                 switchCamArena = true;
                 switchCamBoss = false;

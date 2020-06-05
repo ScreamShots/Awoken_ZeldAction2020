@@ -58,6 +58,31 @@ public class BossManager : EnemyHealthSystem
     private bool canPlayState2_pattern3;
     #endregion
 
+    #region State 2 Bis
+    BossState2Bis state2BisScript;
+
+    [Space]
+    [Header("Boss State 2 Bis")]
+    public bool s2Bis_Pattern1;
+    public bool s2Bis_Pattern2;
+
+    [Space]
+    [Header("Stats")]
+    public float pauseTimeBeforeState2Bis;
+    [Space]
+    public float s2Bis_pattern1_DurationTime;
+    public float s2Bis_pattern2_DurationTime;
+    [Space]
+    public float s2Bis_pauseTimePattern1_2;
+    [Space]
+    public float s2Bis_pauseTimePattern2_1;
+    [Space]
+    public float pauseTimeBtwState2_2Bis;
+
+    private bool canPlayState2Bis_pattern1;
+    private bool canPlayState2Bis_pattern2;
+    #endregion
+
     #region State 3
     BossState3 state3Script;
 
@@ -67,17 +92,19 @@ public class BossManager : EnemyHealthSystem
 
     [Space]
     [Header("Stats")]
-    public float pauseTimeBtwState2_3;
+    public float pauseTimeBtwState2Bis_3;
     #endregion
 
     private bool canPlayFirstState;
     private bool canPlayNextState;
     private bool canPlayNextState2;
+    private bool canPlayNextState3;
     private bool playCoroutine;
 
     [HideInInspector] public bool canStartBossFight;
     [HideInInspector] public bool dialogueState1Finish = false;
     [HideInInspector] public bool dialogueState2Finish = false;
+    [HideInInspector] public bool dialogueState3Finish = false;
     [HideInInspector] public bool ZeusIsTirred;
     [HideInInspector] public bool zeusIdle;
 
@@ -104,8 +131,10 @@ public class BossManager : EnemyHealthSystem
 
         state1Script = GetComponent<BossState1>();
         state2Script = GetComponent<BossState2>();
+        state2BisScript = GetComponent<BossState2Bis>();
         state3Script = GetComponent<BossState3>();
 
+        canPlayState2Bis_pattern1 = true;
         canPlayState2_pattern1 = true;
         canPlayState1_pattern1 = true;
     }
@@ -114,7 +143,7 @@ public class BossManager : EnemyHealthSystem
     {
         base.Update();
 
-        if (currentHp <= 380 && currentHp > 230 && canStartBossFight)             //state 1
+        if (currentHp <= 620 && currentHp > 470 && canStartBossFight)             //state 1
         {
             if(!playCoroutine && !canPlayFirstState)
             {
@@ -126,7 +155,7 @@ public class BossManager : EnemyHealthSystem
                 State1();
             }
         }
-        else if (currentHp <= 230 && currentHp > 50)         //state 2
+        else if (currentHp <= 470 && currentHp > 200)         //state 2
         {
             StopCoroutine(S1Pattern1()); StopCoroutine(S1Pattern2());                                   //for stopping the previous pattern
 
@@ -150,7 +179,7 @@ public class BossManager : EnemyHealthSystem
                 DestroyObjects("ShockWave");
             }
         }
-        else if (currentHp <= 50 && currentHp > 0)           //state 3
+        else if (currentHp <= 200 && currentHp > 50)         //state 2 bis 
         {
             StopCoroutine(S2Pattern1()); StopCoroutine(S2Pattern2()); StopCoroutine(S2Pattern3());      //for stopping the previous pattern
 
@@ -160,12 +189,36 @@ public class BossManager : EnemyHealthSystem
 
             if (dialogueState2Finish)
             {
-                if (!playCoroutine)
+                if (!playCoroutine & !canPlayNextState2)
                 {
                     playCoroutine = true;
                     StartCoroutine(waitBeforeStartNextState2());
                 }
                 if (canPlayNextState2)
+                {
+                    State2Bis();
+                }
+            }
+            else
+            {
+                DestroyObjects("EnemyProjectile");
+            }
+        }
+        else if (currentHp <= 50 && currentHp > 0)           //state 3
+        {
+            StopCoroutine(S2BisPattern1()); StopCoroutine(S2BisPattern2());                             //for stopping the previous pattern
+
+            s2Bis_Pattern1 = false;
+            s2Bis_Pattern2 = false;
+
+            if (dialogueState3Finish)
+            {
+                if (!playCoroutine)
+                {
+                    playCoroutine = true;
+                    StartCoroutine(waitBeforeStartNextState3());
+                }
+                if (canPlayNextState3)
                 {
                     State3();
                 }
@@ -316,7 +369,7 @@ public class BossManager : EnemyHealthSystem
 
         yield return new WaitForSeconds(s2_pattern2_DurationTime);
 
-        if (s2_pauseTimePattern1_2 > 0)
+        if (s2_pauseTimePattern2_3 > 0)
         {
             s2_Pattern2 = false;
             yield return new WaitForSeconds(s2_pauseTimePattern2_3);
@@ -352,6 +405,69 @@ public class BossManager : EnemyHealthSystem
     }
     #endregion
 
+    #region State2 Bis
+    void State2Bis()
+    {
+        if (canPlayState2Bis_pattern1 & !state2BisScript.pattern2IsRunning)
+        {
+            StartCoroutine(S2BisPattern1());
+        }
+        else if (canPlayState2Bis_pattern2)
+        {
+            s2Bis_Pattern1 = false;
+
+            if (!state2BisScript.pattern1IsRunning)
+            {
+                StartCoroutine(S2BisPattern2());
+            }
+        }
+    }
+
+    IEnumerator S2BisPattern1()
+    {
+        canPlayState2Bis_pattern1 = false;
+
+        s2Bis_Pattern1 = true;
+        canTakeDmg = true;
+        s2Bis_Pattern2 = false;
+
+        yield return new WaitForSeconds(s2Bis_pattern1_DurationTime);
+
+        if (s2Bis_pauseTimePattern1_2 > 0)
+        {
+            s2Bis_Pattern1 = false;
+            yield return new WaitForSeconds(s2Bis_pauseTimePattern1_2);
+            canPlayState2Bis_pattern2 = true;
+        }
+        else
+        {
+            canPlayState2Bis_pattern2 = true;
+        }
+    }
+
+    IEnumerator S2BisPattern2()
+    {
+        canPlayState2Bis_pattern2 = false;
+
+        s2Bis_Pattern1 = false;
+        canTakeDmg = false;
+        s2Bis_Pattern2 = true;
+
+        yield return new WaitForSeconds(s2Bis_pattern2_DurationTime);
+
+        if (s2Bis_pauseTimePattern2_1 > 0)
+        {
+            s2Bis_Pattern2 = false;
+            yield return new WaitForSeconds(s2Bis_pauseTimePattern2_1);
+            canPlayState2Bis_pattern1 = true;
+        }
+        else
+        {
+            canPlayState2Bis_pattern1 = true;
+        }
+    }
+    #endregion
+
     #region State3
     void State3()
     {
@@ -379,9 +495,17 @@ public class BossManager : EnemyHealthSystem
     IEnumerator waitBeforeStartNextState2()
     {
         canTakeDmg = false;
-        zeusIdle = true;
-        yield return new WaitForSeconds(pauseTimeBtwState2_3);
-        zeusIdle = false;
+        yield return new WaitForSeconds(pauseTimeBtwState2_2Bis);
+        playCoroutine = false;
         canPlayNextState2 = true;
+    }
+
+    IEnumerator waitBeforeStartNextState3()
+    {
+        canTakeDmg = false;
+        zeusIdle = true;
+        yield return new WaitForSeconds(pauseTimeBtwState2Bis_3);
+        zeusIdle = false;
+        canPlayNextState3 = true;
     }
 }

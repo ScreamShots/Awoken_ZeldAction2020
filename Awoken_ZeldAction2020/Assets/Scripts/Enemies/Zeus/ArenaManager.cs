@@ -26,6 +26,8 @@ public class ArenaManager : MonoBehaviour
     private bool dialogue1Finish = false;
     private bool dialogue2Running = false;
     private bool dialogue2Finish = false;
+    private bool dialogue3Running = false;
+    private bool dialogue3Finish = false;
 
     #endregion
 
@@ -41,6 +43,7 @@ public class ArenaManager : MonoBehaviour
     [Header("Gates")]
     public CSManagerBossEndState1 bossEndState1Script;
     public CSManagerBossEndState2 bossEndState2Script;
+    public CSManagerBossEndState3 bossEndState3Script;
     public CSManagerBossStartBattle bossStartBattleScript;
 
     #endregion
@@ -112,7 +115,7 @@ public class ArenaManager : MonoBehaviour
             }
         }
 
-        if (BossManager.Instance.currentHp <= 230)
+        if (BossManager.Instance.currentHp <= 470)
         {
             if (!dialogue1Running)
             {
@@ -128,8 +131,8 @@ public class ArenaManager : MonoBehaviour
                 }
             }
         }
-        
-        if (BossManager.Instance.currentHp <= 50)
+
+        if (BossManager.Instance.currentHp <= 200)
         {
             if (!dialogue2Running)
             {
@@ -142,6 +145,23 @@ public class ArenaManager : MonoBehaviour
                 {
                     dialogue2Finish = true;
                     BossManager.Instance.dialogueState2Finish = true;
+                }
+            }
+        }
+
+        if (BossManager.Instance.currentHp <= 50)
+        {
+            if (!dialogue3Running)
+            {
+                dialogue3Running = true;
+                bossEndState3Script.StartCutScene();
+            }
+            else
+            {
+                if (!bossEndState3Script.inDialogue && !dialogue3Finish)
+                {
+                    dialogue3Finish = true;
+                    BossManager.Instance.dialogueState3Finish = true;
                 }
             }
         }
