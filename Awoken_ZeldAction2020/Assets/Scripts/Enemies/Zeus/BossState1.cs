@@ -12,9 +12,9 @@ public class BossState1 : MonoBehaviour
     #region Pattern1
     [HideInInspector ]public bool pattern1IsRunning;
 
-    [Header("Pattern1")] public Transform throneArena;
+    [Space(30)]
+    [Header("PATTERN 1 - Thunderbolt")] public Transform throneArena;
 
-    [Space]
     public float timeBtwLightning;
     private float timeLeft;
 
@@ -27,9 +27,11 @@ public class BossState1 : MonoBehaviour
     #region Pattern2
     [HideInInspector] public bool pattern2IsRunning;
 
-    [Header("Pattern2")] public Transform middleArena; public Transform shockWaveSpawn;
-
-    [Space]
+    [Space(30)]
+    [Header("PATTERN 2 - ShockWave")] 
+    
+    public Transform middleArena; 
+    public Transform shockWaveSpawn;
     public float timeBtwShockWave;                              //need to be superior of alive time of ShockWave
     private float timeLeft2;
 

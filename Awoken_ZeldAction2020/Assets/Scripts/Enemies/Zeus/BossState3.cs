@@ -5,89 +5,60 @@ using UnityEngine;
 public class BossState3 : MonoBehaviour
 {
     #region Pattern1
-    [HideInInspector] public bool pattern1IsRunning;
 
-    [Header("Pattern1")] public Transform secretRoomArena;
-    public Transform spawnerPlace;
-    public Transform spawnerPlace2;
-    public GameObject spawner;
-    [HideInInspector] public GameObject spawnerA;
-    [HideInInspector] public GameObject spawnerB;
-    public float timeBeforePlaceSpawner;
-    private float time;
+    [Space(30)]
+    [Header("PATTERN 1 - Spawner")]
 
-    [Space]
-    [Header("Stats")]
     public int ennemisToKillToOpenGate;
 
-    [Space] [SerializeField] private float spawnRadius = 0;
+    [SerializeField] private float spawnRadius = 0;
     [SerializeField] private float timeBtwSpawn = 0;
     [SerializeField] private float enemySpawnLimit = 0;
 
     [Space] public GameObject[] enemiesToSpawn;
 
-    [HideInInspector] public bool spawnerExist;
     #endregion
 
+    BossState2Bis bossState2BisScript;
+
+    [HideInInspector] public bool CounterIsActivate = false;
+    [HideInInspector] public bool spawnerExist;
     [HideInInspector] public bool ZeusTp;
-    private bool CoroutinePlayOnce;
 
     void Start()
     {
-        time = timeBeforePlaceSpawner;
-        
-        spawner.GetComponent<EnemySpawner>().spawnRadius = spawnRadius;
-        spawner.GetComponent<EnemySpawner>().timeBtwSpawn = timeBtwSpawn;
-        spawner.GetComponent<EnemySpawner>().enemySpawnLimit = enemySpawnLimit;
+        bossState2BisScript = GetComponent<BossState2Bis>();       
     }
 
     private void Update()
     {
-        AttackState3();
-        //Move();
+        ResetSpawner();
     }
 
-    void Move()
+    void ResetSpawner()
     {
         if (BossManager.Instance.s3_Pattern1)
         {
-            if (!CoroutinePlayOnce)
+            if (!spawnerExist)
             {
-                CoroutinePlayOnce = true;
-                StartCoroutine(ZeusCanTpSecretRoom());
+                spawnerExist = true;
+
+                bossState2BisScript.spawnerA.GetComponent<EnemySpawner>().spawnEnable = true;
+                bossState2BisScript.spawnerA.GetComponent<EnemySpawner>().spawnRadius = spawnRadius;
+                bossState2BisScript.spawnerA.GetComponent<EnemySpawner>().timeBtwSpawn = timeBtwSpawn;
+                bossState2BisScript.spawnerA.GetComponent<EnemySpawner>().enemySpawnLimit = enemySpawnLimit;
+                bossState2BisScript.spawnerA.GetComponent<EnemySpawner>().enemiesToSpawn = enemiesToSpawn;
+                bossState2BisScript.spawnerA.GetComponent<EnemySpawner>().enemiesDead = 0;
+
+                bossState2BisScript.spawnerB.GetComponent<EnemySpawner>().spawnEnable = true;
+                bossState2BisScript.spawnerB.GetComponent<EnemySpawner>().spawnRadius = spawnRadius;
+                bossState2BisScript.spawnerB.GetComponent<EnemySpawner>().timeBtwSpawn = timeBtwSpawn;
+                bossState2BisScript.spawnerB.GetComponent<EnemySpawner>().enemySpawnLimit = enemySpawnLimit;
+                bossState2BisScript.spawnerB.GetComponent<EnemySpawner>().enemiesToSpawn = enemiesToSpawn;
+                bossState2BisScript.spawnerB.GetComponent<EnemySpawner>().enemiesDead = 0;
+
+                CounterIsActivate = true;
             }
         }
-    }
-
-    void AttackState3()
-    {
-        if (BossManager.Instance.s3_Pattern1)
-        {
-            time -= Time.deltaTime;
-
-            if (time <= 0)
-            {
-                if (!spawnerExist)
-                {
-                    spawnerExist = true;
-                    Pattern1();                                 //Instantiate a spawner to a position
-                }
-            }
-        }
-    }
-
-    void Pattern1()
-    {
-        spawnerA = Instantiate(spawner, spawnerPlace.position, spawner.transform.rotation);
-        spawnerB = Instantiate(spawner, spawnerPlace2.position, spawner.transform.rotation);
-    }
-
-    IEnumerator ZeusCanTpSecretRoom()
-    {
-        ZeusTp = true;
-        yield return new WaitForSeconds(0.3f);
-        transform.position = secretRoomArena.position;
-        ZeusTp = false;
-        yield return new WaitForSeconds(0.5f);
     }
 }

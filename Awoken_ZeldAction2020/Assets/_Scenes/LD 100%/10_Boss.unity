@@ -2134,7 +2134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255841587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.53, y: 28.18, z: 0}
+  m_LocalPosition: {x: 3.33, y: 29.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651934979}
@@ -2152,6 +2152,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 132561171}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &289219938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289219939}
+  m_Layer: 0
+  m_Name: BlocIndestructiblePlace1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &289219939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289219938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.233, y: 27.526, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1651934979}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &289831881
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,7 +4403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533218159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.03, y: 23.92, z: 0}
+  m_LocalPosition: {x: -4.35, y: 29.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651934979}
@@ -11399,36 +11429,11 @@ PrefabInstance:
       propertyPath: throneArena
       value: 
       objectReference: {fileID: 1507778534}
-    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: secretRoomArena
-      value: 
-      objectReference: {fileID: 979014630}
-    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: spawnerPlace
-      value: 
-      objectReference: {fileID: 533218160}
-    - target: {fileID: 3877349471188818552, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: spawnerPlace2
-      value: 
-      objectReference: {fileID: 255841588}
     - target: {fileID: 3877349471966037664, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: cutsceneEndBattle
       value: 
       objectReference: {fileID: 893657756}
-    - target: {fileID: 3877349471966037664, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: s2Bis_pauseTimePattern1_2
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3877349471966037664, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: s2Bis_pattern2_DurationTime
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3877349471966037667, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11501,19 +11506,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
+      propertyPath: spawnerPlace
+      value: 
+      objectReference: {fileID: 533218160}
+    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
+      propertyPath: spawnerPlace2
+      value: 
+      objectReference: {fileID: 255841588}
+    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
+      propertyPath: bloc1Place
+      value: 
+      objectReference: {fileID: 289219939}
+    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
+      propertyPath: bloc2Place
+      value: 
+      objectReference: {fileID: 1606198494}
+    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
+      propertyPath: bloc3Place
+      value: 
+      objectReference: {fileID: 1687499194}
+    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
       propertyPath: throneArena
       value: 
       objectReference: {fileID: 1507778534}
-    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: timeBeforeShoot
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
-        type: 3}
-      propertyPath: timeBtwLightning
-      value: 0.85
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa0537723b32bdb449490066e1f2d73d, type: 3}
 --- !u!1 &964110440
@@ -15921,7 +15941,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651934979}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1028624429
 GameObject:
@@ -21702,6 +21722,36 @@ MonoBehaviour:
   restartGameplayAtTheEnd: 0
   dialogueStarted: 0
   dialogueEnded: 0
+--- !u!1 &1606198493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1606198494}
+  m_Layer: 0
+  m_Name: BlocIndestructiblePlace2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1606198494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606198493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.646, y: 29.254, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1651934979}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1606812291 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5511380067110308094, guid: fa0537723b32bdb449490066e1f2d73d,
@@ -22004,6 +22054,9 @@ Transform:
   - {fileID: 979014630}
   - {fileID: 533218160}
   - {fileID: 255841588}
+  - {fileID: 289219939}
+  - {fileID: 1606198494}
+  - {fileID: 1687499194}
   - {fileID: 1703999332}
   - {fileID: 1027554554}
   m_Father: {fileID: 214092357}
@@ -22207,6 +22260,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fae5cd90667f51488a76459753c5b7c, type: 3}
+--- !u!1 &1687499193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687499194}
+  m_Layer: 0
+  m_Name: BlocIndestructiblePlace3
+  m_TagString: Untagged
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687499194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687499193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.307, y: 28.183, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1651934979}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1696978864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22420,7 +22503,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651934979}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1721232118
 GameObject:

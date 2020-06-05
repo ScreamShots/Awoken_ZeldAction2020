@@ -17,16 +17,16 @@ public class BossState2 : MonoBehaviour
     public enum Direction { up, down, left, right }
     [HideInInspector] public Direction watchDirection;
 
-    [Space]
-    [Header("Pattern1 - Shoot 3 bullets")]
+    [Space(30)]
+    [Header("PATTERN 1 - Shoot 3 bullets")]
 
-    private bool bossIsShooting;
-    private bool shoot3bullets;
-    
     [SerializeField]
     private Transform shootPoint = null;
     [SerializeField]
     private GameObject bossStrike = null;
+
+    private bool bossIsShooting;
+    private bool shoot3bullets;
 
     [Header("Stats")]
 
@@ -51,13 +51,14 @@ public class BossState2 : MonoBehaviour
 
     [HideInInspector] public bool pattern2IsRunning;
 
-    [Space]
-    [Header("Pattern2 - Instantiate wall")]
+    [Space(30)]
+    [Header("PATTERN 2 - Instantiate wall")]
 
     [SerializeField]
     private GameObject protectionWall = null;
     [SerializeField]
     private Transform wallTransform = null;
+    private GameObject wallInstance = null;
 
     [Header("Stats")]
 
@@ -70,14 +71,14 @@ public class BossState2 : MonoBehaviour
     [HideInInspector] public bool animWall;                             //anim of instantiate wall
     [HideInInspector] public bool isPunching;                           //anim of Zeus punching player
     private bool canInstancieWall;
-    private bool canKickPlayer;
     #endregion
 
     #region Pattern 3
 
     [HideInInspector] public bool pattern3IsRunning;
 
-    [Space][Header("Pattern3 - Lightning")]
+    [Space(30)]
+    [Header("PATTERN 3 - Thunderbolt")]
 
     public Transform throneArena;
     public GameObject Lightning;
@@ -90,20 +91,16 @@ public class BossState2 : MonoBehaviour
     [HideInInspector] public bool animThunder;                         //anim of lightning
     #endregion
 
-    private GameObject wallInstance = null;
     PlayerHealthSystem playerHealthScript;
-
     [HideInInspector] public bool ZeusTp;
-    private bool CoroutinePlayOnce;
 
     void Start()
     {
         player = PlayerManager.Instance.gameObject;
         playerHealthScript = player.GetComponent<PlayerHealthSystem>();
+        zeusWallZoneScript = GetComponentInChildren<ZeusWallZone>();
 
         timeLeft = timeBtwLightning;
-
-        zeusWallZoneScript = GetComponentInChildren<ZeusWallZone>();
     }
 
     void Update()
@@ -114,7 +111,6 @@ public class BossState2 : MonoBehaviour
 
         InstancieWall();
         SetWallDistance();
-        //KickPlayerOutZone();
 
         if (playerHealthScript.currentHp <= 0)
         {
@@ -177,15 +173,7 @@ public class BossState2 : MonoBehaviour
 
     void Move()
     {
-        if (BossManager.Instance.s2_Pattern1)
-        {
-            /*if (!CoroutinePlayOnce && transform.position != throneArena.position)
-            {
-                CoroutinePlayOnce = true;
-                StartCoroutine(ZeusCanTpThrone());
-            }*/
-        }
-        else if (BossManager.Instance.s2_Pattern2)
+        if (BossManager.Instance.s2_Pattern2)
         {
             transform.position = throneArena.position;
         }
@@ -249,21 +237,6 @@ public class BossState2 : MonoBehaviour
                 wallInstance = Instantiate(protectionWall, wallTransform.position, wallTransform.rotation);
 
                 Destroy(wallInstance, destroyWallTIme);
-            }
-        }
-    }
-
-    void KickPlayerOutZone()
-    {
-        if (canKickPlayer)
-        {
-            if (throneArena.GetComponent<ZeusTeleportZone>().playerInZone)
-            {
-                if (!isPunching)
-                {
-                    isPunching = true;
-                    StartCoroutine(KickPlayer());
-                }
             }
         }
     }
@@ -333,14 +306,6 @@ public class BossState2 : MonoBehaviour
         yield return new WaitForSeconds(quickShoot - 0.4f);
         animShoot = true;
     }
-
-    IEnumerator ZeusCanTpThrone()
-    {
-        ZeusTp = true;
-        yield return new WaitForSeconds(0.3f);
-        transform.position = throneArena.position;
-        ZeusTp = false;
-    }
     #endregion
 
     #region Pattern2
@@ -358,7 +323,6 @@ public class BossState2 : MonoBehaviour
     {
         SetDirectionAttack();
         StartCoroutine(StartAnimationShoot());
-        //StartCoroutine(TimeToKickPlayer());
 
         yield return new WaitForSeconds(timeBeforeShoot);
 
@@ -383,14 +347,6 @@ public class BossState2 : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         animWall = false;
-    }
-
-    IEnumerator TimeToKickPlayer()
-    {
-        yield return new WaitForSeconds(timeBeforeShoot - 1f);
-        canKickPlayer = true;
-        yield return new WaitForSeconds(0.1f);
-        canKickPlayer = false;
     }
 
     IEnumerator KickPlayer()
