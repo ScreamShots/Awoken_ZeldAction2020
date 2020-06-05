@@ -1,7 +1,49 @@
 fileFormatVersion: 2
 guid: 0aa0a2524d445b44eb405217f8ba8bbf
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 5674335932039357094
+    second: PROPS_statue_activate_0
+  - first:
+      213: 389927143385257443
+    second: PROPS_statue_activate_1
+  - first:
+      213: 6350178947698700788
+    second: PROPS_statue_activate_2
+  - first:
+      213: 5541664459455269726
+    second: PROPS_statue_activate_3
+  - first:
+      213: 93272882509665975
+    second: PROPS_statue_activate_4
+  - first:
+      213: -4437667059385266098
+    second: PROPS_statue_activate_5
+  - first:
+      213: 5480641599994791465
+    second: PROPS_statue_activate_6
+  - first:
+      213: -3876416385498145535
+    second: PROPS_statue_activate_0
+  - first:
+      213: 5441434233320569754
+    second: PROPS_statue_activate_1
+  - first:
+      213: -7909486931135538013
+    second: PROPS_statue_activate_2
+  - first:
+      213: -283852917070503619
+    second: PROPS_statue_activate_3
+  - first:
+      213: 7079839201133455477
+    second: PROPS_statue_activate_4
+  - first:
+      213: -3377718554640204469
+    second: PROPS_statue_activate_5
+  - first:
+      213: -6521422963307092172
+    second: PROPS_statue_activate_6
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +73,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,12 +82,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -63,7 +105,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -72,7 +126,154 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: PROPS_statue_activate_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10d11e4e5d3343ac0800000000000000
+      internalID: -3876416385498145535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PROPS_statue_activate_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9bf8b1fa9bd38b40800000000000000
+      internalID: 5441434233320569754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PROPS_statue_activate_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ac521ada8bdb3290800000000000000
+      internalID: -7909486931135538013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PROPS_statue_activate_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d31ed8d964d8f0cf0800000000000000
+      internalID: -283852917070503619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PROPS_statue_activate_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 578e17a2e34a04260800000000000000
+      internalID: 7079839201133455477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PROPS_statue_activate_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4dbc67dedeef11d0800000000000000
+      internalID: -3377718554640204469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PROPS_statue_activate_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0117}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 437610aed504f75a0800000000000000
+      internalID: -6521422963307092172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

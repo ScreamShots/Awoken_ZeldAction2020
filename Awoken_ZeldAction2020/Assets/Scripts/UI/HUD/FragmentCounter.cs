@@ -20,6 +20,6 @@ public class FragmentCounter : MonoBehaviour
 
     private void Update()
     {
-        fragmentNumber.text = "" + PlayerManager.fragmentNumber;                //Show number of Fragments Player have
+        fragmentNumber.text = "" + ProgressionManager.Instance.availableFragments;                //Show number of Fragments Player have
     }
 }
