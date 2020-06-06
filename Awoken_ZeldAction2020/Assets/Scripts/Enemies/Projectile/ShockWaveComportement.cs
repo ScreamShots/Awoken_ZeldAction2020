@@ -70,7 +70,7 @@ public class ShockWaveComportement : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (transform.localScale.x >= maxScale.x / 2)
+        if (transform.localScale.x >= maxScale.x / 1.2)
         {
             startTime += Time.deltaTime * speed;
             GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(startColor, endColor, startTime);

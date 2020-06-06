@@ -108,6 +108,9 @@ public class BossManager : EnemyHealthSystem
     [HideInInspector] public bool ZeusIsTirred;
     [HideInInspector] public bool zeusIdle;
 
+    PlayerCharge playerChargeScript;
+    ProjectileParyBehaviour playerParyScript;
+
     [SerializeField] private BasicCutSceneManager cutsceneEndBattle = null;
     private bool cutSceneStart = false;
 
@@ -133,6 +136,9 @@ public class BossManager : EnemyHealthSystem
         state2Script = GetComponent<BossState2>();
         state2BisScript = GetComponent<BossState2Bis>();
         state3Script = GetComponent<BossState3>();
+
+        playerChargeScript = PlayerManager.Instance.GetComponent<PlayerCharge>();
+        playerParyScript = PlayerManager.Instance.GetComponent<ProjectileParyBehaviour>();
 
         canPlayState2Bis_pattern1 = true;
         canPlayState2_pattern1 = true;
@@ -230,6 +236,15 @@ public class BossManager : EnemyHealthSystem
         }
         else if (currentHp <= 0 && !cutSceneStart)
         {
+            if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.charge)
+            {
+                playerChargeScript.FastEndCharge();
+            }
+            else if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.block)
+            {
+                playerParyScript.StopOrientation();
+            }
+
             cutSceneStart = true;
             cutsceneEndBattle.StartCutScene();
         }
