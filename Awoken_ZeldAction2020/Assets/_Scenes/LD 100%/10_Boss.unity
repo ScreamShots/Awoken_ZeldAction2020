@@ -451,7 +451,7 @@ PrefabInstance:
     - target: {fileID: 3205219699404818624, guid: 7442c5dafe7580544b55d940260a8a1a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3205219699404818624, guid: 7442c5dafe7580544b55d940260a8a1a,
         type: 3}
@@ -1855,6 +1855,7 @@ Transform:
   - {fileID: 744986545}
   - {fileID: 1651934979}
   - {fileID: 485339710}
+  - {fileID: 1610585846}
   - {fileID: 1976763584}
   - {fileID: 909830459}
   m_Father: {fileID: 0}
@@ -2176,7 +2177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289219938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.233, y: 27.526, z: 0}
+  m_LocalPosition: {x: -7.183, y: 27.452, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1651934979}
@@ -11516,6 +11517,11 @@ PrefabInstance:
       objectReference: {fileID: 255841588}
     - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
         type: 3}
+      propertyPath: spawnZone
+      value: 
+      objectReference: {fileID: 1610585847}
+    - target: {fileID: 5456772945080268906, guid: fa0537723b32bdb449490066e1f2d73d,
+        type: 3}
       propertyPath: bloc1Place
       value: 
       objectReference: {fileID: 289219939}
@@ -17443,7 +17449,7 @@ PrefabInstance:
     - target: {fileID: 6762422496369309733, guid: a2705636d257eb643ade353f70c73c56,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6762422496369309733, guid: a2705636d257eb643ade353f70c73c56,
         type: 3}
@@ -22016,6 +22022,69 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f44363515940e749861a49cd65ef39a, type: 3}
+--- !u!1 &1610585845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610585846}
+  - component: {fileID: 1610585847}
+  m_Layer: 15
+  m_Name: SpawnZoneArena
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1610585846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610585845}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.9387782, y: 28.218058, z: -4.0351562}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 214092357}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1610585847
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610585845}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -5.862184, y: 1.9171085}
+      - {x: -6.6389008, y: -1.5869312}
+      - {x: -6.1666656, y: -5.6905365}
+      - {x: 0.97300404, y: -6.0987644}
+      - {x: 5.927991, y: -5.5263634}
+      - {x: 6.5153465, y: -2.0511894}
+      - {x: 6.6625156, y: 1.8700123}
 --- !u!4 &1638472901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8040209731828791134, guid: 8fae5cd90667f51488a76459753c5b7c,
