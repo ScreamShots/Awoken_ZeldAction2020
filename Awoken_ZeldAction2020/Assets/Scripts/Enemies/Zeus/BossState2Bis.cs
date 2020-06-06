@@ -76,6 +76,7 @@ public class BossState2Bis : MonoBehaviour
     [Space] [SerializeField] private float spawnRadius = 0;
     [SerializeField] private float timeBtwSpawn = 0;
     [SerializeField] private float enemySpawnLimit = 0;
+    public Collider2D spawnZone = null;
 
     [Space] public GameObject[] enemiesToSpawn;
 
@@ -85,16 +86,22 @@ public class BossState2Bis : MonoBehaviour
     [Header("PATTERN 1 - Instantiate Blocs")]
     public GameObject indestructibleBloc;
     [SerializeField] private GameObject spawnCloud = null;
+    public float timeBtwSpawnBloc = 0;
 
-    [HideInInspector] public GameObject bloc1;
-    [HideInInspector] public GameObject bloc2;
-    [HideInInspector] public GameObject bloc3;
+    private GameObject bloc1 = null;
+    private GameObject bloc2 = null;
+    private GameObject bloc3 = null;
 
     public Transform bloc1Place;
     public Transform bloc2Place;
     public Transform bloc3Place;
 
+    [Space]
+    public AudioClip blocSpawn;
+    [Range(0f, 1f)] public float blocSpawnVolume = 0.5f;
+
     private bool spawnerIsDisable = false;
+    private bool blocExit = false;
     #endregion
 
     #region Pattern 2
@@ -127,6 +134,7 @@ public class BossState2Bis : MonoBehaviour
         spawner.GetComponent<EnemySpawner>().timeBtwSpawn = timeBtwSpawn;
         spawner.GetComponent<EnemySpawner>().enemySpawnLimit = enemySpawnLimit;
         spawner.GetComponent<EnemySpawner>().enemiesToSpawn = enemiesToSpawn;
+        spawner.GetComponent<EnemySpawner>().spawnZone = spawnZone;
 
         timeLeft = timeBtwLightning;
         time = timeBeforePlaceSpawner;
@@ -146,7 +154,7 @@ public class BossState2Bis : MonoBehaviour
             Destroy(wallInstance);
         }
 
-        if (spawnerExist)
+        if (blocExit)
         {
             if (!spawnerIsDisable)
             {               
@@ -304,12 +312,7 @@ public class BossState2Bis : MonoBehaviour
 
     void SpawnIndestructibleBloc()
     {
-        bloc1 = Instantiate(indestructibleBloc, bloc1Place.position, indestructibleBloc.transform.rotation);
-        Instantiate(spawnCloud, bloc1Place.position, Quaternion.identity);
-        bloc2 = Instantiate(indestructibleBloc, bloc2Place.position, indestructibleBloc.transform.rotation);
-        Instantiate(spawnCloud, bloc2Place.position, Quaternion.identity);
-        bloc3 = Instantiate(indestructibleBloc, bloc3Place.position, indestructibleBloc.transform.rotation);
-        Instantiate(spawnCloud, bloc3Place.position, Quaternion.identity);
+        StartCoroutine(SpawnBloc());
     }
 
     #region Pattern1
@@ -375,4 +378,25 @@ public class BossState2Bis : MonoBehaviour
         }
     }
     #endregion
+
+    IEnumerator SpawnBloc()
+    {
+        yield return new WaitForSeconds(timeBtwSpawnBloc);
+
+        bloc1 = Instantiate(indestructibleBloc, bloc1Place.position, indestructibleBloc.transform.rotation);
+        Instantiate(spawnCloud, bloc1Place.position, Quaternion.identity);
+        SoundManager.Instance.PlaySfx(blocSpawn, blocSpawnVolume);
+        yield return new WaitForSeconds(timeBtwSpawnBloc);
+
+        bloc2 = Instantiate(indestructibleBloc, bloc2Place.position, indestructibleBloc.transform.rotation);
+        Instantiate(spawnCloud, bloc2Place.position, Quaternion.identity);
+        SoundManager.Instance.PlaySfx(blocSpawn, blocSpawnVolume);
+        yield return new WaitForSeconds(timeBtwSpawnBloc);
+
+        bloc3 = Instantiate(indestructibleBloc, bloc3Place.position, indestructibleBloc.transform.rotation);
+        Instantiate(spawnCloud, bloc3Place.position, Quaternion.identity);
+        SoundManager.Instance.PlaySfx(blocSpawn, blocSpawnVolume);
+
+        blocExit = true;
+    }
 }

@@ -417,6 +417,7 @@ MonoBehaviour:
   spawnRadius: 1
   timeBtwSpawn: 1
   enemySpawnLimit: 1
+  spawnZone: {fileID: 0}
   enemiesToSpawn:
   - {fileID: 506266972536926349, guid: 8641850e61c5b96499a449f5003fb9e6, type: 3}
   spawnerExist: 0
@@ -424,12 +425,12 @@ MonoBehaviour:
     type: 3}
   spawnCloud: {fileID: 316948580318839926, guid: 1d747d565dffcf347a0117af76b7fcfe,
     type: 3}
-  bloc1: {fileID: 0}
-  bloc2: {fileID: 0}
-  bloc3: {fileID: 0}
+  timeBtwSpawnBloc: 0.5
   bloc1Place: {fileID: 0}
   bloc2Place: {fileID: 0}
   bloc3Place: {fileID: 0}
+  blocSpawn: {fileID: 8300000, guid: 4b09c92b0b4be3144ba3a002f5305c89, type: 3}
+  blocSpawnVolume: 0.8
   throneArena: {fileID: 0}
   Lightning: {fileID: 6677114848982876142, guid: f41c42a82aaaa2641bbb6346f776206e,
     type: 3}
