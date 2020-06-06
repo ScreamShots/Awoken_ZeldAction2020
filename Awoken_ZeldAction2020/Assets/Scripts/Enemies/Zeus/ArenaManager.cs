@@ -49,11 +49,16 @@ public class ArenaManager : MonoBehaviour
 
     #endregion
 
+    PlayerCharge playerChargeScript;
+    ProjectileParyBehaviour playerParyScript;
+
     void Start()
     {
         transitionArenaScript = arenaZone.GetComponent<TransitionArena>();
         bossState2BisScript = BossManager.Instance.GetComponent<BossState2Bis>();
         bossState3Script = BossManager.Instance.GetComponent<BossState3>();
+        playerChargeScript = PlayerManager.Instance.GetComponent<PlayerCharge>();
+        playerParyScript = PlayerManager.Instance.GetComponent<ProjectileParyBehaviour>();
 
         ennemisToKillToOpenGate = bossState3Script.ennemisToKillToOpenGate;
     }
@@ -95,6 +100,15 @@ public class ArenaManager : MonoBehaviour
         {
             if (!dialogueStartBattleRunning)
             {
+                if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.charge)
+                {
+                    playerChargeScript.FastEndCharge();
+                }
+                else if(PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.block)
+                {
+                    playerParyScript.StopOrientation();
+                }
+
                 dialogueStartBattleRunning = true;
                 bossStartBattleScript.StartCutScene();
             }
@@ -112,6 +126,15 @@ public class ArenaManager : MonoBehaviour
         {
             if (!dialogue1Running)
             {
+                if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.charge)
+                {
+                    playerChargeScript.FastEndCharge();
+                }
+                else if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.block)
+                {
+                    playerParyScript.StopOrientation();
+                }
+
                 dialogue1Running = true;
                 bossEndState1Script.StartCutScene();
             }
@@ -129,6 +152,15 @@ public class ArenaManager : MonoBehaviour
         {
             if (!dialogue2Running)
             {
+                if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.charge)
+                {
+                    playerChargeScript.FastEndCharge();
+                }
+                else if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.block)
+                {
+                    playerParyScript.StopOrientation();
+                }
+
                 dialogue2Running = true;
                 bossEndState2Script.StartCutScene();
             }
@@ -146,6 +178,15 @@ public class ArenaManager : MonoBehaviour
         {
             if (!dialogue3Running)
             {
+                if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.charge)
+                {
+                    playerChargeScript.FastEndCharge();
+                }
+                else if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.block)
+                {
+                    playerParyScript.StopOrientation();
+                }
+
                 dialogue3Running = true;
                 bossEndState3Script.StartCutScene();
             }
