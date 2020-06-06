@@ -22,7 +22,6 @@ public class VaseSound : MonoBehaviour
 
     void Dead()
     {
-        Debug.Log("vaseDead");
         SoundManager.Instance.PlaySfx(destroyVase, destroyVaseVolume);
     }
 }
