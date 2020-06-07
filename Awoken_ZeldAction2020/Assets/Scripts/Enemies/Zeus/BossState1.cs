@@ -116,6 +116,12 @@ public class BossState1 : MonoBehaviour
             animThunder = false;
             Pattern2();                                                                                 //Instantiate the shock wave
         }
+        else if (BossManager.Instance.currentHp <= 470)
+        {
+            StopAllCoroutines();
+            animShockWave = false;
+            animThunder = false;
+        }
     }
 
     void Pattern1()

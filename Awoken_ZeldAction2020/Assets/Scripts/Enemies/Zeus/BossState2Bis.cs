@@ -217,6 +217,8 @@ public class BossState2Bis : MonoBehaviour
         {
             StopAllCoroutines();
             animShoot = false;
+            animWall = false;
+            animThunder = false;
         }
         else
         {

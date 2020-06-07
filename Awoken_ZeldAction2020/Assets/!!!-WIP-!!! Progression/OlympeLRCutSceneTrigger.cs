@@ -8,6 +8,7 @@ public class OlympeLRCutSceneTrigger : MonoBehaviour
     BasicCutSceneManager cutsceneToTrigger = null;
 
     PlayerCharge playerChargeScript;
+    private bool cutsceneIsPlaying = false;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class OlympeLRCutSceneTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("CollisionDetection") && collision.transform.root.CompareTag("Player"))
-        if (cutsceneToTrigger.gameObject.activeInHierarchy)
+        if (cutsceneToTrigger.gameObject.activeInHierarchy && !cutsceneIsPlaying)
         {
             if (PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.charge)
             {
@@ -25,6 +26,7 @@ public class OlympeLRCutSceneTrigger : MonoBehaviour
             }
 
             cutsceneToTrigger.StartCutScene();
+            cutsceneIsPlaying = true;
         }
     }
 }

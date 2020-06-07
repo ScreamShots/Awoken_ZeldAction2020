@@ -13,25 +13,26 @@ public class BasicCutSceneManager : MonoBehaviour
     DialogueTrigger[] allDialogue = null;
 
     GameObject nextCutScenePart = null;
-    PlayableDirector currentPlayableDirector = null;
+    [HideInInspector] public PlayableDirector currentPlayableDirector = null;
     [HideInInspector] public bool inDialogue = false;
+    [HideInInspector] public bool inQTE = false;
     int dialogueIndex;
 
-    protected virtual void Update()
+    public virtual void Update()
     {
         if (dialogueIndex < allDialogue.Length)
         {
             LaunchDialogue();
         }
 
-        if (Input.GetButtonDown("MenuValidate") && inDialogue)
+        if (Input.GetButtonDown("MenuValidate") && inDialogue && !inQTE)
         {
             if(currentPlayableDirector.playableGraph.IsValid())
             {
                 currentPlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(2);
             }
         }
-        else if (Input.GetButtonUp("MenuValidate") && inDialogue)
+        else if (Input.GetButtonUp("MenuValidate") && inDialogue && !inQTE)
         {
             if (currentPlayableDirector.playableGraph.IsValid())
             {
