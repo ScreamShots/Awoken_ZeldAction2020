@@ -168,6 +168,12 @@ public class BossState2 : MonoBehaviour
         {
             StopAllCoroutines();
             animShoot = false;
+            animWall = false;
+            animThunder = false;
+        }
+        else
+        {
+            animThunder = false;
         }
     }
 
