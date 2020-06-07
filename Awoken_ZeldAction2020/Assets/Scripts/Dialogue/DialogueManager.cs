@@ -99,6 +99,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        PlayerManager.Instance.PlayerInitializeDialogue();
         GameManager.Instance.gameState = GameManager.GameState.Dialogue;
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         currentDialoguePos = thisDialogue.displayPos;
@@ -115,6 +116,8 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        PlayerManager.Instance.PlayerEndDialogue();
+
         StopAllCoroutines();
         currentTrigger.dialogueStarted = false;
         currentTrigger.dialogueEnded = true;

@@ -87,6 +87,31 @@ public class PlayerManager : MonoBehaviour
         InitializePlayer();
     }
 
+    public void PlayerInitializeDialogue()
+    {
+        attackZone.SetActive(false);
+        collisionDetection.SetActive(false);
+        hitBox.SetActive(false);
+        shieldZone.SetActive(false);
+        paryZone.SetActive(false);
+    }
+
+    public void PlayerEndDialogue()
+    {
+        attackZone.SetActive(true);
+        collisionDetection.SetActive(true);
+        hitBox.SetActive(true);
+        if (ProgressionManager.Instance.PlayerCapacity["Block"])
+        {
+            shieldZone.SetActive(true);
+        }
+
+        if (ProgressionManager.Instance.PlayerCapacity["Pary"])
+        {
+            paryZone.SetActive(true);
+        }
+    }
+
     public void PlayerInitializeCutScene()
     {
         classicRender.SetActive(false);

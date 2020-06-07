@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7921804885824546752}
   - component: {fileID: 7921804885824546755}
+  - component: {fileID: 4036872308505189199}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -57,8 +58,88 @@ MonoBehaviour:
   textBoxDown: {fileID: 3979236954419779778}
   textBoxUp: {fileID: 7443781615488465890}
   typeSpeed: 0.05
+  dialogueWithFace: 0
   typingAPhase: 0
   processingDialogue: 0
+  currentDialoguePos: 1
+--- !u!114 &4036872308505189199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921804885824546754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6133f6fa3fc57f04d8464afa06bcc505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whoSpeaking: 0
+  currentSprite: {fileID: 0}
+  aaron: {fileID: 21300000, guid: fe85ac6e8c08e6147bf1b584e6947400, type: 3}
+  aaronSleep: {fileID: 21300000, guid: b7cf9c5c76f112c4bbb4bea839e06236, type: 3}
+  aaronSchok: {fileID: 21300000, guid: de3a6d9ec2b6f3348891915b90357500, type: 3}
+  aaronJaded: {fileID: 21300000, guid: 6fd82a538756d754a8450eb12ca911c5, type: 3}
+  shield: {fileID: 21300000, guid: 97336f4168624e141ad9cba0e9ccc946, type: 3}
+  shieldAngry: {fileID: 21300000, guid: e9c42252e05747e4b90b1223e6c2b4df, type: 3}
+  shieldJaded: {fileID: 21300000, guid: dc5d90eff163ab144a0f4384b873626e, type: 3}
+  shieldWary: {fileID: 21300000, guid: 12f022d6eefef204fa043660d4a3878d, type: 3}
+  shieldShock: {fileID: 21300000, guid: f3d24d4b22531ad4fa88f588f9549c6f, type: 3}
+  zeus: {fileID: 21300000, guid: 3400673348075f448bcd3f3ec1e2a47b, type: 3}
+  zeusAngry: {fileID: 21300000, guid: fa0578888b443d740acf411c199f2e12, type: 3}
+  zeusHide: {fileID: 21300000, guid: 561c4a8ba30b7dd4c99ae088dadeba57, type: 3}
+  pnj1: {fileID: 21300000, guid: c7ac46381294bb446bfab41944f27ad0, type: 3}
+  pnj2: {fileID: 21300000, guid: b4ba55b0cbad1fc4598bc499c581305e, type: 3}
+  pnj3: {fileID: 21300000, guid: 90f8be21902098747b144dbb1e241731, type: 3}
+  pnj4: {fileID: 21300000, guid: f9b84776dc5fa4e4991dc3e38f2ac52b, type: 3}
+  siren: {fileID: 21300000, guid: c12ad6d091b404f4fad8d043123034ec, type: 3}
+  sheep: {fileID: 21300000, guid: cfd6c78bff9f02444902b4d42a1d92c4, type: 3}
+  sombrage: {fileID: 21300000, guid: 7b79f9013ff7fd041b6c57154d954e66, type: 3}
+  cyclope: {fileID: 21300000, guid: e0bb815bf52769140acb765501f90d7f, type: 3}
+  grandma: {fileID: 21300000, guid: ade525be1eb9c4443b8d9c8399239569, type: 3}
+  aaronVoice: {fileID: 8300000, guid: 2a12ac7b23db6c748b9ac0cf0ea87de9, type: 3}
+  aaronVoiceVolume: 0.2
+  aaronVoiceSleep: {fileID: 8300000, guid: 81eb1c4b284befd408e677eaddad4cc1, type: 3}
+  aaronVoiceSleepVolume: 0.7
+  aaronVoiceShock: {fileID: 8300000, guid: aa3fc7d088f4b6343bfa3426b6d93ab7, type: 3}
+  aaronVoiceShockVolume: 0.5
+  aaronVoiceJaded: {fileID: 8300000, guid: 77959c3eec155194b9e562a4dd403563, type: 3}
+  aaronVoiceJadedVolume: 0.5
+  shieldVoice: {fileID: 8300000, guid: 401337c7e8f8b384dbf9b51557272bd7, type: 3}
+  shieldVoiceVolume: 0.4
+  shieldVoiceAngry: {fileID: 8300000, guid: 22256fb4415348d4eae7fabd18383f5a, type: 3}
+  shieldVoiceAngryVolume: 0.3
+  shieldVoiceJaded: {fileID: 8300000, guid: c5211615355abb648848965c20712776, type: 3}
+  shieldVoiceJadedVolume: 0.4
+  shieldVoiceWary: {fileID: 8300000, guid: 2dc990a291ea917469faddb949eff86b, type: 3}
+  shieldVoiceWaryVolume: 0.2
+  shieldVoiceShock: {fileID: 8300000, guid: 7e1ae834d2acdbf4894d7d9bc070bb01, type: 3}
+  shieldVoiceShockVolume: 0.5
+  zeusVoice: {fileID: 8300000, guid: 42f978103b4a560449068aebf66e1c18, type: 3}
+  zeusVoiceVolume: 0.5
+  zeusVoiceAngry: {fileID: 8300000, guid: 5fe253d710f5e4244a4bbb9e4dba5e31, type: 3}
+  zeusVoiceAngryVolume: 0.5
+  zeusVoiceHide: {fileID: 8300000, guid: 85e0f009054ce254ab5295ce116dd600, type: 3}
+  zeusVoiceHideVolume: 0.5
+  pnj1Voice: {fileID: 8300000, guid: 0313af1df05bd264ab465114536058d9, type: 3}
+  pnj1VoiceVolume: 0.5
+  pnj2Voice: {fileID: 8300000, guid: 1e0ef38128be2c04ebb53f10a670b50c, type: 3}
+  pnj2VoiceVolume: 0.5
+  pnj3Voice: {fileID: 8300000, guid: 4707fba4b23b6ad4e9201937701a2fae, type: 3}
+  pnj3VoiceVolume: 0.5
+  pnj4Voice: {fileID: 8300000, guid: d5c98f3da8b01f34588f2ece1f4fad9f, type: 3}
+  pnj4VoiceVolume: 0.5
+  sirenVoice: {fileID: 8300000, guid: 3e8dd4e194dc5be4a89f9ba4ed33bd49, type: 3}
+  sirenVoiceVolume: 0.5
+  sheepVoice: {fileID: 8300000, guid: 9151f6e3cc322b749a40aacad4e21934, type: 3}
+  sheepVoiceVolume: 0.5
+  sombrageVoice: {fileID: 8300000, guid: d488c447effe07843829a103dd62b920, type: 3}
+  sombrageVoiceVolume: 0.5
+  cyclopeVoice: {fileID: 8300000, guid: 25bdad1f423ae2e45a7e806baf5c6d1e, type: 3}
+  cyclopeVoiceVolume: 0.5
+  grandmaVoice: {fileID: 8300000, guid: 01ab606090758364d887dfb14fe48ef9, type: 3}
+  grandmaVoiceVolume: 0.5
+  currentVoiceVolume: 0
 --- !u!1001 &5274035346341701095
 PrefabInstance:
   m_ObjectHideFlags: 0

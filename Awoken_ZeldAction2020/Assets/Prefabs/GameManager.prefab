@@ -1160,63 +1160,6 @@ MonoBehaviour:
   leaveVolume: 0.5
   pause: {fileID: 8300000, guid: f9c47698828abae42853ff4cb816a769, type: 3}
   pauseVolume: 0.5
---- !u!114 &4036872308505189199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2945681921345374013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6133f6fa3fc57f04d8464afa06bcc505, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whoSpeaking: 0
-  currentSprite: {fileID: 0}
-  aaron: {fileID: 21300000, guid: fe85ac6e8c08e6147bf1b584e6947400, type: 3}
-  aaronSleep: {fileID: 21300000, guid: b7cf9c5c76f112c4bbb4bea839e06236, type: 3}
-  aaronSchok: {fileID: 21300000, guid: de3a6d9ec2b6f3348891915b90357500, type: 3}
-  aaronJaded: {fileID: 21300000, guid: 6fd82a538756d754a8450eb12ca911c5, type: 3}
-  shield: {fileID: 21300000, guid: 97336f4168624e141ad9cba0e9ccc946, type: 3}
-  shieldAngry: {fileID: 21300000, guid: e9c42252e05747e4b90b1223e6c2b4df, type: 3}
-  shieldJaded: {fileID: 21300000, guid: dc5d90eff163ab144a0f4384b873626e, type: 3}
-  shieldWary: {fileID: 21300000, guid: 12f022d6eefef204fa043660d4a3878d, type: 3}
-  shieldShock: {fileID: 21300000, guid: f3d24d4b22531ad4fa88f588f9549c6f, type: 3}
-  zeus: {fileID: 21300000, guid: 3400673348075f448bcd3f3ec1e2a47b, type: 3}
-  zeusAngry: {fileID: 21300000, guid: fa0578888b443d740acf411c199f2e12, type: 3}
-  zeusHide: {fileID: 21300000, guid: 561c4a8ba30b7dd4c99ae088dadeba57, type: 3}
-  pnj1: {fileID: 21300000, guid: c7ac46381294bb446bfab41944f27ad0, type: 3}
-  pnj2: {fileID: 21300000, guid: b4ba55b0cbad1fc4598bc499c581305e, type: 3}
-  pnj3: {fileID: 21300000, guid: 90f8be21902098747b144dbb1e241731, type: 3}
-  pnj4: {fileID: 21300000, guid: f9b84776dc5fa4e4991dc3e38f2ac52b, type: 3}
-  aaronVoice: {fileID: 8300000, guid: 2a12ac7b23db6c748b9ac0cf0ea87de9, type: 3}
-  aaronVoiceVolume: 0.2
-  aaronVoiceSleep: {fileID: 8300000, guid: 81eb1c4b284befd408e677eaddad4cc1, type: 3}
-  aaronVoiceSleepVolume: 0.7
-  aaronVoiceShock: {fileID: 8300000, guid: aa3fc7d088f4b6343bfa3426b6d93ab7, type: 3}
-  aaronVoiceShockVolume: 0.5
-  aaronVoiceJaded: {fileID: 8300000, guid: 77959c3eec155194b9e562a4dd403563, type: 3}
-  aaronVoiceJadedVolume: 0.5
-  shieldVoice: {fileID: 8300000, guid: 401337c7e8f8b384dbf9b51557272bd7, type: 3}
-  shieldVoiceVolume: 0.4
-  shieldVoiceAngry: {fileID: 8300000, guid: 22256fb4415348d4eae7fabd18383f5a, type: 3}
-  shieldVoiceAngryVolume: 0.3
-  shieldVoiceJaded: {fileID: 8300000, guid: c5211615355abb648848965c20712776, type: 3}
-  shieldVoiceJadedVolume: 0.4
-  shieldVoiceWary: {fileID: 8300000, guid: 2dc990a291ea917469faddb949eff86b, type: 3}
-  shieldVoiceWaryVolume: 0.2
-  shieldVoiceShock: {fileID: 8300000, guid: 7e1ae834d2acdbf4894d7d9bc070bb01, type: 3}
-  shieldVoiceShockVolume: 0.5
-  zeusVoice: {fileID: 8300000, guid: 42f978103b4a560449068aebf66e1c18, type: 3}
-  zeusVoiceVolume: 0.5
-  zeusVoiceAngry: {fileID: 8300000, guid: 5fe253d710f5e4244a4bbb9e4dba5e31, type: 3}
-  zeusVoiceAngryVolume: 0.5
-  zeusVoiceHide: {fileID: 8300000, guid: 85e0f009054ce254ab5295ce116dd600, type: 3}
-  zeusVoiceHideVolume: 0.5
-  pnjVoice: {fileID: 8300000, guid: 0313af1df05bd264ab465114536058d9, type: 3}
-  pnjVoiceVolume: 0.4
-  currentVoiceVolume: 0
 --- !u!1 &3119150686352053344
 GameObject:
   m_ObjectHideFlags: 0
@@ -3721,11 +3664,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 144188320564182204}
     m_Modifications:
-    - target: {fileID: 3979236953913999394, guid: 6fe40246284827e44bee2f6cf6815ed9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7921804885824546752, guid: 6fe40246284827e44bee2f6cf6815ed9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3788,12 +3726,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fe40246284827e44bee2f6cf6815ed9, type: 3}
---- !u!1 &2945681921345374013 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7921804885824546754, guid: 6fe40246284827e44bee2f6cf6815ed9,
-    type: 3}
-  m_PrefabInstance: {fileID: 4976140638540161279}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2945681921345374015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7921804885824546752, guid: 6fe40246284827e44bee2f6cf6815ed9,
