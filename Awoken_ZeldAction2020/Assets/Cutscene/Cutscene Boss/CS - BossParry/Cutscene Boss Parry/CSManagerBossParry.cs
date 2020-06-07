@@ -23,6 +23,16 @@ public class CSManagerBossParry : BasicCutSceneManager
     AnimationCurve timelineTimeProgression = null;
     #pragma warning restore CS0414
 
+    [Space]
+    [Header("Boss Shoot Sound")]
+    public AudioClip bossShoot;
+    [Range(0f, 1f)] public float bossShootVolume = 0.5f;
+
+    [Space]
+    [Header("Parry Sound")]
+    public AudioClip parrySound;
+    [Range(0f, 1f)] public float parrySoundVolume = 0.5f;
+
     private bool stopTimeline = false;
 
     private float curveValue = 1;
@@ -69,6 +79,8 @@ public class CSManagerBossParry : BasicCutSceneManager
                 currentPlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
                 inQTE = false;
                 stopTimeline = false;
+
+                SoundManager.Instance.sfxSource.Stop();
             }
         }
     }
@@ -77,5 +89,8 @@ public class CSManagerBossParry : BasicCutSceneManager
     {
         stopTimeline = true;
         inQTE = true;
+
+        SoundManager.Instance.PlaySfx(bossShoot, bossShootVolume);
+        SoundManager.Instance.PlaySfx(parrySound, parrySoundVolume);
     }
 }
