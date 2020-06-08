@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public enum GameState {Running, Pause, ProjectilePary, LvlFrameTransition, Dialogue, Death}
+    public enum GameState {Running, Pause, ProjectilePary, LvlFrameTransition, Dialogue, Death, Upgrade}
     public GameState gameState = GameState.Running;
 
     [Header("TimeManagement")]
@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
     [Header("BlackMelt")]
 
     public BlackMelt blackMelt = null;
+
+    [Header("Upgrade Menu")]
+
+    public GameObject upgradeUI = null; 
 
     //LoadScene
 
@@ -345,5 +349,22 @@ public class GameManager : MonoBehaviour
     {
         blackMelt.gameObject.SetActive(false);
         
+    }
+
+    public void ActiveUpgradeMenu()
+    {        
+        gameState = GameState.Upgrade;
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
+        upgradeUI.SetActive(true);
+
+    }
+
+    public IEnumerator QuitUpgradeMenu()
+    {
+        yield return new WaitForEndOfFrame();
+
+        gameState = GameState.Running;
+        upgradeUI.SetActive(false);
+
     }
 }

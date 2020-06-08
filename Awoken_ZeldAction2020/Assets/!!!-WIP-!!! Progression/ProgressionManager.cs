@@ -73,6 +73,9 @@ public class ProgressionManager : MonoBehaviour
 
     public int numberOfFragmentsInF3 = 0;
 
+    [HideInInspector]
+    public int totalFragmentsIG = 0;
+
     public Dictionary<int, bool> R1Fragments = new Dictionary<int, bool>();
     public Dictionary<int, bool> R2Fragments = new Dictionary<int, bool>();
     public Dictionary<int, bool> R3Fragments = new Dictionary<int, bool>();
@@ -101,6 +104,9 @@ public class ProgressionManager : MonoBehaviour
 
     public int availableFragments = 0;
     public int totalFragments = 0;
+
+    public int lvlOfHealUpgrade = 0;
+    public int lvlOfShieldUpgrade = 0;
 
     private void Awake()
     {
@@ -149,6 +155,8 @@ public class ProgressionManager : MonoBehaviour
         {
             F3Fragments.Add(i, false);
         }
+
+        totalFragmentsIG = numberOfFragmentsInR1 + numberOfFragmentsInR2 + numberOfFragmentsInR3 + numberOfFragmentsInF1 + numberOfFragmentsInF2 + numberOfFragmentsInF3;
         #endregion
 
         #region Player

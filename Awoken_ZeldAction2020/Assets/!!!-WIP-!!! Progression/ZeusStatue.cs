@@ -21,7 +21,10 @@ public class ZeusStatue : MonoBehaviour
         }
         else if (playerIsHere && isActivated && Input.GetButtonDown("Interraction") && canBeActivated)
         {
-            //Go to upgrade UI;
+            if(GameManager.Instance.gameState == GameManager.GameState.Running && PlayerStatusManager.Instance.currentState == PlayerStatusManager.State.neutral)
+            {
+                GameManager.Instance.ActiveUpgradeMenu();
+            }
         }
     }
 
