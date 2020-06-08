@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1592,12 +1592,12 @@ PrefabInstance:
     - target: {fileID: 7409857854302960890, guid: 5116f770b2435b24892f40f68ef7c226,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.831448
+      value: 16.916668
       objectReference: {fileID: 0}
     - target: {fileID: 7409857854302960890, guid: 5116f770b2435b24892f40f68ef7c226,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.70224
+      value: 7.541667
       objectReference: {fileID: 0}
     - target: {fileID: 7409857854302960890, guid: 5116f770b2435b24892f40f68ef7c226,
         type: 3}
@@ -8307,6 +8307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5580aa6eddcd75b4c80b4872ac9ba5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfFragmentsInThisScene: 0
   showGameplayElements: 0
   room2Door1: {fileID: 1948267829}
   room2Door2: {fileID: 382083266}
@@ -9585,7 +9586,9 @@ MonoBehaviour:
   - {fileID: 1514130773}
   allDialogue:
   - {fileID: 1334947972}
+  currentPlayableDirector: {fileID: 0}
   inDialogue: 0
+  inQTE: 0
   cinemachineAltar: {fileID: 960574650}
   cinemachine: {fileID: 495358596}
   playerUI: {fileID: 899285704}
@@ -41299,7 +41302,7 @@ PrefabInstance:
     - target: {fileID: 7169583901921163049, guid: 9e77a2ee0f56e0146aa03994123dd393,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.988337
+      value: 13.375
       objectReference: {fileID: 0}
     - target: {fileID: 7169583901921163049, guid: 9e77a2ee0f56e0146aa03994123dd393,
         type: 3}
