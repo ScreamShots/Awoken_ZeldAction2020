@@ -71,12 +71,18 @@ public class CSManagerBossParry : BasicCutSceneManager
             {
                 curveTime += Time.deltaTime;
                 curveValue = timelineTimeProgression.Evaluate(curveTime);
-                currentPlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(curveValue);
+                if (currentPlayableDirector.playableGraph.IsValid())
+                {
+                    currentPlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(curveValue);
+                }
             }
 
             if (Input.GetButtonDown("Block"))
             {
-                currentPlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
+                if (currentPlayableDirector.playableGraph.IsValid())
+                {
+                    currentPlayableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1);
+                }
                 inQTE = false;
                 stopTimeline = false;
 
