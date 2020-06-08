@@ -507,7 +507,9 @@ MonoBehaviour:
   allDialogue:
   - {fileID: 311612366}
   - {fileID: 609181561}
+  currentPlayableDirector: {fileID: 0}
   inDialogue: 0
+  inQTE: 0
 --- !u!4 &125157506
 Transform:
   m_ObjectHideFlags: 0
@@ -758,7 +760,9 @@ MonoBehaviour:
   allDialogue:
   - {fileID: 36133476}
   - {fileID: 1889688298}
+  currentPlayableDirector: {fileID: 0}
   inDialogue: 0
+  inQTE: 0
 --- !u!4 &177287056
 Transform:
   m_ObjectHideFlags: 0
@@ -2347,7 +2351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212171384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07743343, y: -1.0217094, z: -10}
+  m_LocalPosition: {x: 0.083333336, y: -1.0217094, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1076767811}
@@ -2765,6 +2769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a58aa515c20b7f4387c62afa2c0fb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfFragmentsInThisScene: 0
   CutScene_TempleFirstEntrance: {fileID: 177287055}
   CutScene_TempleSecondEntrance: {fileID: 125157505}
 --- !u!4 &1416884982
@@ -3731,7 +3736,7 @@ SpriteRenderer:
   m_Size: {x: 0.45833334, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1759454092
@@ -4556,6 +4561,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 371411269}
     m_Modifications:
+    - target: {fileID: 328240190502303233, guid: 722ebf4d15dc3aa40a17123561f39c03,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4590b1ed4cf4c07469db75874516a86d,
+        type: 3}
     - target: {fileID: 6015008601275773403, guid: 722ebf4d15dc3aa40a17123561f39c03,
         type: 3}
       propertyPath: m_LocalPosition.x
