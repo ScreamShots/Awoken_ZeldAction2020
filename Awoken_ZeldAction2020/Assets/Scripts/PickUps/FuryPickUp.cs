@@ -92,6 +92,7 @@ public class FuryPickUp : MonoBehaviour
         {
             if (canPickFullFury)
             {
+                PlayerManager.Instance.GetComponentInChildren<PlayerAnimator>().FurryFull();
                 detectedElement.transform.root.gameObject.GetComponent<PlayerAttack>().RegenFurry(furyToReload);
                 Destroy(gameObject);
                 SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
@@ -100,6 +101,7 @@ public class FuryPickUp : MonoBehaviour
             {
                 if (detectedElement.transform.root.gameObject.GetComponent<PlayerAttack>().currentFury < detectedElement.transform.root.gameObject.GetComponent<PlayerAttack>().maxFury)
                 {
+                    PlayerManager.Instance.GetComponentInChildren<PlayerAnimator>().FurryFull();
                     detectedElement.transform.root.gameObject.GetComponent<PlayerAttack>().RegenFurry(furyToReload);
                     Destroy(gameObject);
                     SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
@@ -122,8 +124,6 @@ public class FuryPickUp : MonoBehaviour
             maxTimeBtwFlash -= 0.02f;
             GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
-
-        SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
 
         Destroy(gameObject);
     }

@@ -232,4 +232,19 @@ public class PlayerAnimator : MonoBehaviour
     {
         plyAnimator.SetTrigger("Respawn");
     }
+
+    public void PickUp()
+    {
+        plyAnimator.SetTrigger("PickUp");
+    }
+
+    public void FurryFull()
+    {
+        plyAnimator.SetTrigger("FurryFull");
+    }
+
+    public void Upgrade()
+    {
+        plyAnimator.SetTrigger("Upgrade");
+    }
 }

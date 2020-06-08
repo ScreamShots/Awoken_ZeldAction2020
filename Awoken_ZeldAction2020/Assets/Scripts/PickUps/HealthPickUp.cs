@@ -89,6 +89,7 @@ public class HealthPickUp : MonoBehaviour
             if (canPickFullLife)
             {
                 detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().Heal(healToRegen);
+                PlayerManager.Instance.GetComponentInChildren<PlayerAnimator>().PickUp();
                 Destroy(gameObject);
                 SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
             }
@@ -97,6 +98,7 @@ public class HealthPickUp : MonoBehaviour
                 if (detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().currentHp < detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().maxHp)
                 {
                     detectedElement.transform.root.gameObject.GetComponent<BasicHealthSystem>().Heal(healToRegen);
+                    PlayerManager.Instance.GetComponentInChildren<PlayerAnimator>().PickUp();
                     Destroy(gameObject);
                     SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
                 }
@@ -118,7 +120,6 @@ public class HealthPickUp : MonoBehaviour
             maxTimeBtwFlash -= 0.02f;
             GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
-        //SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
 
         Destroy(gameObject);
     }

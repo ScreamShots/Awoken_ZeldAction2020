@@ -80,6 +80,7 @@ public class FragmentPickUp : MonoBehaviour
             ProgressionManager.Instance.availableFragments += fragmentToAdd;
             ProgressionManager.Instance.totalFragments += fragmentToAdd;
             SoundManager.Instance.PlaySfx(pickUpSoundScript.pickUp, pickUpSoundScript.pickUpVolume);
+            PlayerManager.Instance.GetComponentInChildren<PlayerAnimator>().PickUp();
 
             switch (SceneManager.GetActiveScene().buildIndex)
             {
