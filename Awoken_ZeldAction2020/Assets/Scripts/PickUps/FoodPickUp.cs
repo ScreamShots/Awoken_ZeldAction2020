@@ -22,6 +22,7 @@ public class FoodPickUp : MonoBehaviour
 
         if (detectedElement.tag == "HitBox" && detectedElement.transform.root.gameObject.tag == "Player")
         {
+            PlayerManager.Instance.GetComponentInChildren<PlayerAnimator>().PickUp();
             IsEnigma1Done.CollectFood();
             ProgressionManager.Instance.R1Vegetables[vegetableID] = true;
             ProgressionManager.Instance.SaveTheProgression();
