@@ -64,6 +64,8 @@ public class PlayerManager : MonoBehaviour
     //[SerializeField]
     //GameObject playerSound = null;
 
+    private bool cutsceneIsRunning = false;
+
     void Awake()
     {
         #region Make Singleton
@@ -87,31 +89,39 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerInitializeDialogue()
     {
-        attackZone.SetActive(false);
-        collisionDetection.SetActive(false);
-        hitBox.SetActive(false);
-        shieldZone.SetActive(false);
-        paryZone.SetActive(false);
+        if (!cutsceneIsRunning)
+        {
+            attackZone.SetActive(false);
+            collisionDetection.SetActive(false);
+            hitBox.SetActive(false);
+            shieldZone.SetActive(false);
+            paryZone.SetActive(false);
+        }
     }
 
     public void PlayerEndDialogue()
     {
-        attackZone.SetActive(true);
-        collisionDetection.SetActive(true);
-        hitBox.SetActive(true);
-        if (ProgressionManager.Instance.PlayerCapacity["Block"])
+        if (!cutsceneIsRunning)
         {
-            shieldZone.SetActive(true);
-        }
+            attackZone.SetActive(true);
+            collisionDetection.SetActive(true);
+            hitBox.SetActive(true);
+            if (ProgressionManager.Instance.PlayerCapacity["Block"])
+            {
+                shieldZone.SetActive(true);
+            }
 
-        if (ProgressionManager.Instance.PlayerCapacity["Pary"])
-        {
-            paryZone.SetActive(true);
-        }
+            if (ProgressionManager.Instance.PlayerCapacity["Pary"])
+            {
+                paryZone.SetActive(true);
+            }
+        } 
     }
 
     public void PlayerInitializeCutScene()
     {
+        cutsceneIsRunning = true;
+
         classicRender.SetActive(false);
         attackZone.SetActive(false);
         collisionDetection.SetActive(false);
@@ -124,6 +134,8 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerEndCutScene()
     {
+        cutsceneIsRunning = false;
+
         classicRender.SetActive(true);
         attackZone.SetActive(true);
         collisionDetection.SetActive(true);
