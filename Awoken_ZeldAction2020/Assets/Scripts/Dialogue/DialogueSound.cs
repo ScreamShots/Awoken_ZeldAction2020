@@ -139,11 +139,6 @@ public class DialogueSound : MonoBehaviour
         {
             Instance = this;
         }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
         #endregion
     }
 
