@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1801118361934519092}
   - component: {fileID: 2475210090585418759}
   - component: {fileID: 3619590588036001494}
+  - component: {fileID: 1115897035545481410}
   m_Layer: 0
   m_Name: LvlManager
   m_TagString: Untagged
@@ -117,6 +118,47 @@ MonoBehaviour:
   brazeroCam1: {fileID: 0}
   brazeroCam2: {fileID: 0}
   pipeEnigmaCam: {fileID: 0}
+--- !u!114 &1115897035545481410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801118361934519093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0ae0069339ad74ca5db9b4270aa55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfFragmentsInThisScene: 3
+  showIntroElements: 1
+  blockingTreeA2A3: {fileID: 0}
+  allVegetables:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enigmaOneCube: {fileID: 0}
+  enigmaOneCubePosition: {x: -18.7, y: 1.75, z: 0}
+  enigmaOnePressurePlate: {fileID: 0}
+  enigmaOneLever: {fileID: 0}
+  PNJ_Vegetables: {fileID: 0}
+  enigmaOne: {fileID: 0}
+  CutScene_VegetablesStart: {fileID: 0}
+  showZeusRevealElements: 0
+  allLightningsTraces:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  blockingElementsA6A7:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  showBlockUnlockElements: 0
+  CutScene_CaveOut: {fileID: 0}
+  showDoorElements: 1
+  doorToRegionTwo: {fileID: 0}
+  doorToRegionThree: {fileID: 0}
 --- !u!1 &1801118363122801962
 GameObject:
   m_ObjectHideFlags: 0
