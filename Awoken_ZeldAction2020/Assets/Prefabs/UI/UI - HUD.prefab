@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 3453740052982624323}
   - component: {fileID: 3453740052982624321}
   - component: {fileID: 3453740052982624322}
+  - component: {fileID: 1510244266629460638}
   m_Layer: 5
   m_Name: ShieldStaminaFill
   m_TagString: Untagged
@@ -487,6 +488,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1510244266629460638
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453740052982624380}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97133c9d4e0508c4ba90fb8b2e16dfea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3453740053052748378
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +611,7 @@ GameObject:
   - component: {fileID: 3453740053195517616}
   - component: {fileID: 3453740053195517622}
   - component: {fileID: 3453740053195517623}
+  - component: {fileID: 6684058173769152132}
   m_Layer: 5
   m_Name: ShieldStaminaBorder
   m_TagString: Untagged
@@ -653,6 +674,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &6684058173769152132
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453740053195517617}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50b752a685102104da2845ee8bcb9093, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3453740053467137182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,6 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343cdde7239077c46a44f238c801aa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  borderStaminaBar: {fileID: 3453740053195517623}
   fillStaminaBar: {fileID: 3453740052982624322}
   graduationStaminaBar: {fileID: 6796775268713073461}
   graduationBar:

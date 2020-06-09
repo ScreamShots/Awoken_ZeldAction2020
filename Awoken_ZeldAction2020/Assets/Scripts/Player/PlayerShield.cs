@@ -69,6 +69,8 @@ public class PlayerShield : MonoBehaviour
 
     #endregion
 
+    [HideInInspector] public bool elementBlocked = false;
+
     private void Start()
     {
         movementScript = GetComponent<PlayerMovement>();
@@ -378,8 +380,9 @@ public class PlayerShield : MonoBehaviour
     {
         currentStamina -= staminaLose;                              //Stamina lost due to attack block
 
-        StartCoroutine(OnBlocked());                                //KnockBack & Feedback
-        
+        elementBlocked = true;
+
+        StartCoroutine(OnBlocked());                                //KnockBack & Feedback     
     }
 
     IEnumerator OnBlocked()                                 //Manage the player KnockBack and the vibration feedback
