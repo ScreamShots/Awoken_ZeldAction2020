@@ -128,7 +128,7 @@ PrefabInstance:
         type: 3}
       propertyPath: turretShoot
       value: 
-      objectReference: {fileID: 8300000, guid: 1a0d7fb82bf86df4b8ac737bf1885215, type: 3}
+      objectReference: {fileID: 7386361268056843846}
     - target: {fileID: 4323053619276324297, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: turretShootSource
@@ -162,13 +162,19 @@ PrefabInstance:
     - target: {fileID: 6717055929522789550, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8035796086430515967, guid: b893fa2030ccae04983341f87053255e,
         type: 3}
       propertyPath: maxHp
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6488690689781879886, guid: b893fa2030ccae04983341f87053255e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b893fa2030ccae04983341f87053255e, type: 3}
+--- !u!82 &7386361268056843846 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7408743446655357998, guid: b893fa2030ccae04983341f87053255e,
+    type: 3}
+  m_PrefabInstance: {fileID: 22663791151821416}
+  m_PrefabAsset: {fileID: 0}
