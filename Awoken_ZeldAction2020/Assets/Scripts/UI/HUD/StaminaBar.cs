@@ -14,11 +14,21 @@ public class StaminaBar : MonoBehaviour
 
     private PlayerShield playerShieldSystem;
 
+    private Vector2 barBorderSizeDelta;
+    private Vector2 barFillSizeDelta;
+
+    private Sprite barBorderInitialSprite = null;
+    private Sprite barFillInitialSprite = null;
+
+    Animator barBorderAnimator = null;
+    Animator barFillAnimator = null;
+
     #endregion
 
     #region SerialiazeFiled var Statement
 
     [Header("Requiered Elements")]
+    [SerializeField] private Image borderStaminaBar = null;
     [SerializeField] private Image fillStaminaBar = null;
     [SerializeField] private Image graduationStaminaBar = null;
 
@@ -28,6 +38,15 @@ public class StaminaBar : MonoBehaviour
 
     private void Start()
     {
+        barBorderSizeDelta = borderStaminaBar.rectTransform.sizeDelta;
+        barFillSizeDelta = fillStaminaBar.rectTransform.sizeDelta;
+
+        barBorderInitialSprite = borderStaminaBar.sprite;
+        barFillInitialSprite = fillStaminaBar.sprite;
+
+        barBorderAnimator = borderStaminaBar.GetComponent<Animator>();
+        barFillAnimator = fillStaminaBar.GetComponent<Animator>();
+
         if (PlayerManager.Instance != null)
         {
             playerShieldSystem = PlayerManager.Instance.gameObject.GetComponent<PlayerShield>();       // getting the player's shield managment script
@@ -50,6 +69,8 @@ public class StaminaBar : MonoBehaviour
             fillStaminaBar.fillAmount = playerShieldSystem.currentStamina / playerShieldSystem.maxStamina;                     //Filling of the UI immage depends of the hp value of the player compare to his max health
 
             ShowBarGraduation();
+
+            BarShakingOnBlockedElement();
         }
     }
 
@@ -76,5 +97,33 @@ public class StaminaBar : MonoBehaviour
                 graduationStaminaBar.sprite = graduationBar[5];
                 break;
         }
+    }
+
+    private void BarShakingOnBlockedElement()
+    {
+        if (playerShieldSystem.elementBlocked)
+        {
+            barBorderAnimator.enabled = true;
+            barBorderAnimator.SetTrigger("BarBorder_Damage");
+
+            barFillAnimator.enabled = true;
+            barFillAnimator.SetTrigger("BarFill_Damage");
+
+            StartCoroutine(DisableAnimator());
+            playerShieldSystem.elementBlocked = false;
+        }
+    }
+
+    IEnumerator DisableAnimator()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        barBorderAnimator.enabled = false;
+        borderStaminaBar.rectTransform.sizeDelta = barBorderSizeDelta;
+        borderStaminaBar.sprite = barBorderInitialSprite;
+
+        barFillAnimator.enabled = false;
+        fillStaminaBar.rectTransform.sizeDelta = barFillSizeDelta;
+        fillStaminaBar.sprite = barFillInitialSprite;
     }
 }
