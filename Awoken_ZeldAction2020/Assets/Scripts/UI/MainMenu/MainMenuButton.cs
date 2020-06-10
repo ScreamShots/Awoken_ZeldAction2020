@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class MainMenuButton : MonoBehaviour, ISelectHandler
 {
     Button myButton = null;
+    Slider mySlider = null;
     TextMeshProUGUI myText = null;
 
     bool colorOnTransparent = false;
@@ -15,25 +16,56 @@ public class MainMenuButton : MonoBehaviour, ISelectHandler
 
     public UnityEvent onSelection;
 
+    private bool handleButton = false;
+    private bool handleSlider = false;
+
     private void Start()
     {
-        myButton = GetComponent<Button>();
+        if (gameObject.GetComponent<Button>() != null)
+        {
+            myButton = GetComponent<Button>();
+            handleButton = true;
+        }
+        else if (gameObject.GetComponent<Slider>() != null)
+        {
+            mySlider = GetComponent<Slider>();
+            handleSlider = true;
+        }
+
         myText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update()
     {
-        if (!myButton.IsInteractable() && !colorOnTransparent)
+        if (handleButton)
         {
-            colorOnTransparent = true;
-            colorOnOpac = false;
-            myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, myText.color.a * 0.5f);
+            if (!myButton.IsInteractable() && !colorOnTransparent)
+            {
+                colorOnTransparent = true;
+                colorOnOpac = false;
+                myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, myText.color.a * 0.5f);
+            }
+            else if (myButton.IsInteractable() && !colorOnOpac)
+            {
+                colorOnTransparent = false;
+                colorOnOpac = true;
+                myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 1);
+            }
         }
-        else if (myButton.IsInteractable() && !colorOnOpac)
+        else if (handleSlider)
         {
-            colorOnTransparent = false;
-            colorOnOpac = true;
-            myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 1);
+            if (!mySlider.IsInteractable() && !colorOnTransparent)
+            {
+                colorOnTransparent = true;
+                colorOnOpac = false;
+                myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, myText.color.a * 0.5f);
+            }
+            else if (mySlider.IsInteractable() && !colorOnOpac)
+            {
+                colorOnTransparent = false;
+                colorOnOpac = true;
+                myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 1);
+            }
         }
     }
 

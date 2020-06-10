@@ -27,6 +27,10 @@ public class MenuSound : MonoBehaviour
     public AudioClip pause;
     [Range(0f, 1f)] public float pauseVolume = 0.5f;
 
+    [Header("Slider Button")]
+    public AudioClip slider;
+    [Range(0f, 1f)] public float sliderVolume = 0.5f;
+
     private bool isPaused = false;
 
     #endregion
@@ -66,6 +70,11 @@ public class MenuSound : MonoBehaviour
             isPaused = true;
             SoundManager.Instance.PlayButton(pause, pauseVolume);
         }
+    }
+
+    public void SliderButton()
+    {
+        SoundManager.Instance.PlayButton(slider, sliderVolume);
     }
 
     void OnDisable()
