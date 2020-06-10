@@ -8,6 +8,17 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject[] allPauseButton = null;
     public GameObject eventSystem = null;
 
+    private void OnEnable()
+    {
+        StartCoroutine(FirstSelectedButton());
+    }
+
+    IEnumerator FirstSelectedButton()
+    {
+        yield return new WaitForEndOfFrame();
+        EventSystem.current.SetSelectedGameObject(allPauseButton[0]);
+    }
+
     public void Resume()
     {
         StartCoroutine(GameManager.Instance.EndGamePause());
