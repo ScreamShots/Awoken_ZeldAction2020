@@ -160,7 +160,6 @@ public class PoulionAttackReworked : MonoBehaviour
                     }                    
                     isStun = true;                                                                      //Apply Block behaviour and launch part3- stun
                     StartCoroutine(Stun());
-                    PlayerManager.Instance.GetComponent<PlayerCharge>().FastEndCharge();
                 }
             }
             else if (detectedElement.tag == "Wall")                                 //if the collided element is a obstacle

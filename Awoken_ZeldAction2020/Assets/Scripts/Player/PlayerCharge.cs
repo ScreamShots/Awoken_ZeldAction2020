@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerCharge : MonoBehaviour
 {
@@ -133,7 +134,7 @@ public class PlayerCharge : MonoBehaviour
         canCharge = true;
         explosionIsPlaying = false;
         lastPos = transform.position;
-        collisionDetection.layer = LayerMask.NameToLayer("Enemy");
+        collisionDetection.layer = LayerMask.NameToLayer("ChargeCollision");
         collisionDetectionSecurity.SetActive(true);
         trail.gameObject.SetActive(true);
 
@@ -174,6 +175,8 @@ public class PlayerCharge : MonoBehaviour
 
     public void FastEndCharge()
     {
+        StartCoroutine(GamePadVibration(0.9f, 0.3f));
+
         canFinishCharge = false;
         canCharge = false;
         trail.gameObject.SetActive(false);
@@ -215,6 +218,7 @@ public class PlayerCharge : MonoBehaviour
         trail.gameObject.SetActive(false);
         GetComponentInChildren<PlayerAnimator>().Slam();
         yield return new WaitForSeconds(0.40f);
+        StartCoroutine(GamePadVibration(0.9f, 0.3f));
         explosion.Play();
         explosionIsPlaying = true;
 
@@ -249,11 +253,22 @@ public class PlayerCharge : MonoBehaviour
 
     public void KnockBackEnemy(GameObject enemy)
     {
+        StartCoroutine(GamePadVibration(0.4f, 0.2f));
+
         if(enemy.GetComponent<EnemyKnockBackCaller>() != null)
         {
             enemy.GetComponent<EnemyKnockBackCaller>().KnockEnemy(knockBackStrenght, chargeDir);
         }
         enemy.GetComponent<BasicHealthSystem>().TakeDmg(knockBackDamage);
+    }
+
+    IEnumerator GamePadVibration(float intensity, float duration)
+    {
+        GamePad.SetVibration(PlayerIndex.One, intensity, intensity);
+
+        yield return new WaitForSeconds(duration);        
+
+        GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
     }
     
     private void OnDrawGizmosSelected()

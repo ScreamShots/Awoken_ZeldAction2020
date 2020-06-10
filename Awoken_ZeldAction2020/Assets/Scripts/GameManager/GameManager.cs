@@ -41,8 +41,7 @@ public class GameManager : MonoBehaviour
 
     [Header("GamePause")]
 
-    [SerializeField]
-    GameObject pauseUI = null;
+    public  GameObject pauseUI = null;
     bool gameIsPause = false;
     GameState lastGameState;
     GameObject lastES = null;
@@ -53,7 +52,11 @@ public class GameManager : MonoBehaviour
 
     [Header("Upgrade Menu")]
 
-    public GameObject upgradeUI = null; 
+    public GameObject upgradeUI = null;
+
+    [Header("Load Chapter Menu")]
+
+    public LoadChapterUI chapterUI = null;
 
     //LoadScene
 
@@ -149,6 +152,7 @@ public class GameManager : MonoBehaviour
         gameIsPause = true;
         Time.timeScale = 0;
         pauseUI.SetActive(true);
+        pauseUI.GetComponent<PauseMenuManager>().eventSystem.SetActive(true);
     }
 
     public IEnumerator EndGamePause()
@@ -164,6 +168,11 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
         pauseUI.SetActive(false);
+        if (chapterUI.gameObject.activeInHierarchy)
+        {
+            chapterUI.Back();
+
+        }
         if (lastES != null)
         {
             lastES.SetActive(true);

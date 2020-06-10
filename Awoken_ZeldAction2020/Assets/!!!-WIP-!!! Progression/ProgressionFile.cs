@@ -32,6 +32,9 @@ public class ProgressionFile
     public int availableFragments;
     public int totalFragemnts;
 
+    public int lvlOfHealthUpgrade;
+    public int lvlOfShieldUpgrade;
+
     public ProgressionFile (ProgressionManager progressionManager)
     {
         progressionTimeLineValue = (int)progressionManager.thisSessionTimeLine;
@@ -100,6 +103,9 @@ public class ProgressionFile
 
         availableFragments = progressionManager.availableFragments;
         totalFragemnts = progressionManager.totalFragments;
+
+        lvlOfHealthUpgrade = progressionManager.lvlOfHealUpgrade;
+        lvlOfShieldUpgrade = progressionManager.lvlOfShieldUpgrade;
     }
 
 }

@@ -6,6 +6,8 @@ public class OlympeTeleportPlateform : MonoBehaviour
 {
     [SerializeField]
     InterractionButton thisButton = null;
+    [SerializeField]
+    Animator sealAnimator = null;
 
     bool playerIsHere = false;
     bool canUseTp = false;
@@ -43,7 +45,7 @@ public class OlympeTeleportPlateform : MonoBehaviour
 
         if (playerIsHere && Input.GetButtonDown("Interraction"))
         {
-            Teleport();
+            StartCoroutine(Teleport());
         }
 
     }
@@ -72,10 +74,15 @@ public class OlympeTeleportPlateform : MonoBehaviour
         }
     }
 
-    public void Teleport()
+    public IEnumerator Teleport()
     {
+        GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
+        PlayerMovement.playerRgb.velocity = Vector2.zero;
         thisButton.HideButton();
         playerIsHere = false;
+        sealAnimator.SetTrigger("Teleporter_Activate");
+
+        yield return new WaitForSeconds(1f);       
 
         switch (ProgressionManager.Instance.thisSessionTimeLine)
         {
@@ -123,8 +130,6 @@ public class OlympeTeleportPlateform : MonoBehaviour
     void LaunchTransition(int targetedSceneIndex , int targetedStartZoneIndex)
     {
         SavePlayerInfos();
-
-        GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         GameManager.Instance.areaToLoad = targetedStartZoneIndex;
         GameManager.Instance.sceneToLoad = targetedSceneIndex;

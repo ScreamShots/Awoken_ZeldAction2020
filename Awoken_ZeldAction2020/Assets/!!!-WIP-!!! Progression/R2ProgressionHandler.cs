@@ -66,7 +66,7 @@ public class R2ProgressionHandler : BasicProgressionHandler
         shortCutLever.isPressed = false;
         arenaDoorOut.isDoorOpen = false;
 
-        CutScene_R2Entrance.GetComponent<BasicCutSceneManager>().StartCutScene();
+       CutScene_R2Entrance.GetComponent<BasicCutSceneManager>().StartCutScene();
     }
 
     protected override void OnSecondRegionEntrance()

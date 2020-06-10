@@ -250,9 +250,4 @@ public class DialogueManager : MonoBehaviour
         }
         typingAPhase = false;
     }
-
-    private void OnDestroy()
-    {
-        Debug.Log("destruction");
-    }
 }

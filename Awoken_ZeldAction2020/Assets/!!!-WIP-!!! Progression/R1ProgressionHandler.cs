@@ -100,7 +100,7 @@ public class R1ProgressionHandler : BasicProgressionHandler
             lightningTrace.SetActive(false);
         }
 
-        CutScene_VegetablesStart.GetComponent<BasicCutSceneManager>().StartCutScene();
+      CutScene_VegetablesStart.GetComponent<BasicCutSceneManager>().StartCutScene();
     }
 
     protected override void OnVegetablesStart()

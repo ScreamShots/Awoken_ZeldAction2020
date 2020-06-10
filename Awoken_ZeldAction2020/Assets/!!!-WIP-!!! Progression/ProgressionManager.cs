@@ -108,6 +108,11 @@ public class ProgressionManager : MonoBehaviour
     public int lvlOfHealUpgrade = 0;
     public int lvlOfShieldUpgrade = 0;
 
+    [Header("Save UI")]
+
+    [SerializeField]
+    private Animator animatorUI = null;
+
     private void Awake()
     {
         SaveSystem.DebugPath();
@@ -295,6 +300,10 @@ public class ProgressionManager : MonoBehaviour
 
     public void SaveTheProgression()
     {
+        StopAllCoroutines();
+        StartCoroutine(StopSaveUI());
+        
+
         switch (thisSessionTimeLine)
         {
             case ProgressionTimeLine.NewAdventure:
@@ -408,6 +417,17 @@ public class ProgressionManager : MonoBehaviour
         }
 
         SaveSystem.SaveData(this);
+
+
+    }
+
+    IEnumerator StopSaveUI()
+    {
+        animatorUI.SetTrigger("Appear");
+        yield return new WaitForSecondsRealtime(3f);
+        animatorUI.ResetTrigger("Appear");
+        animatorUI.ResetTrigger("Disappear");
+        animatorUI.SetTrigger("Disappear");
     }
 
     public void LoadTheProgression()
@@ -534,6 +554,253 @@ public class ProgressionManager : MonoBehaviour
         playerStamina = maxStamina;
 
         #endregion
+
+        #region Upgrade
+
+        availableFragments = 0;
+        totalFragments = 0;
+
+        lvlOfHealUpgrade = 0;
+        lvlOfShieldUpgrade = 0;
+
+        #endregion
+    }
+
+    public void LoadChapterSetup(int index)
+    {
+        #region Vegetables Dictionary Initialization
+
+        R1Vegetables = new Dictionary<int, bool>();
+
+        R1Vegetables.Add(1, true);
+        R1Vegetables.Add(2, true);
+        R1Vegetables.Add(3, true);
+        #endregion
+
+        #region Fragment Dictionaries Initialization
+
+        R1Fragments = new Dictionary<int, bool>();
+        R2Fragments = new Dictionary<int, bool>();
+        R3Fragments = new Dictionary<int, bool>();
+
+        F1Fragments = new Dictionary<int, bool>();
+        F2Fragments = new Dictionary<int, bool>();
+        F3Fragments = new Dictionary<int, bool>();
+
+        for (int i = 0; i < numberOfFragmentsInR1; i++)
+        {
+            R1Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInR2; i++)
+        {
+            R2Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInR3; i++)
+        {
+            R3Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF1; i++)
+        {
+            F1Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF2; i++)
+        {
+            F2Fragments.Add(i, false);
+        }
+        for (int i = 0; i < numberOfFragmentsInF3; i++)
+        {
+            F3Fragments.Add(i, false);
+        }
+        #endregion
+
+        #region Upgrade
+
+        availableFragments = 0;
+        totalFragments = 0;
+
+        lvlOfHealUpgrade = 0;
+        lvlOfShieldUpgrade = 0;
+
+        #endregion
+
+        switch (index)
+        {
+            case 0:
+
+                thisSessionTimeLine = ProgressionTimeLine.VegetablesEnd;
+                GameManager.Instance.areaToLoad = 0;
+                GameManager.Instance.sceneToLoad = 1;
+
+                #region Player
+
+                PlayerCapacity = new Dictionary<string, bool>();
+
+                PlayerCapacity.Add("Shield", false);
+                PlayerCapacity.Add("Block", false);
+                PlayerCapacity.Add("Pary", false);
+                PlayerCapacity.Add("Charge", false);
+
+                SetPlayerCapacity(true, false, false, false);
+
+                maxHp = 80f;
+                playerHp = maxHp;
+                maxStamina = 40f;
+                playerStamina = maxStamina;
+
+                #endregion
+                
+                break;
+            case 1:
+
+                thisSessionTimeLine = ProgressionTimeLine.OlympeFloorOneStart;
+                GameManager.Instance.areaToLoad = 0;
+                GameManager.Instance.sceneToLoad = 7;
+
+                #region Player
+
+                PlayerCapacity = new Dictionary<string, bool>();
+
+                PlayerCapacity.Add("Shield", false);
+                PlayerCapacity.Add("Block", false);
+                PlayerCapacity.Add("Pary", false);
+                PlayerCapacity.Add("Charge", false);
+
+                SetPlayerCapacity(true, true, false, false);
+
+                maxHp = 80f;
+                playerHp = maxHp;
+                maxStamina = 40f;
+                playerStamina = maxStamina;
+
+                #endregion
+                
+                break;
+            case 2:
+
+                thisSessionTimeLine = ProgressionTimeLine.OlympeFloorOneEnd;
+                GameManager.Instance.areaToLoad = 0;
+                GameManager.Instance.sceneToLoad = 5;
+
+                #region Player
+
+                PlayerCapacity = new Dictionary<string, bool>();
+
+                PlayerCapacity.Add("Shield", false);
+                PlayerCapacity.Add("Block", false);
+                PlayerCapacity.Add("Pary", false);
+                PlayerCapacity.Add("Charge", false);
+
+                SetPlayerCapacity(true, true, false, false);
+
+                maxHp = 80f;
+                playerHp = maxHp;
+                maxStamina = 40f;
+                playerStamina = maxStamina;
+
+                #endregion
+
+                break;
+            case 3:
+
+                thisSessionTimeLine = ProgressionTimeLine.OlympeFloorTwoStart;
+                GameManager.Instance.areaToLoad = 0;
+                GameManager.Instance.sceneToLoad = 8;
+
+                #region Player
+
+                PlayerCapacity = new Dictionary<string, bool>();
+
+                PlayerCapacity.Add("Shield", false);
+                PlayerCapacity.Add("Block", false);
+                PlayerCapacity.Add("Pary", false);
+                PlayerCapacity.Add("Charge", false);
+
+                SetPlayerCapacity(true, true, true, false);
+
+                maxHp = 100f;
+                playerHp = maxHp;
+                maxStamina = 50f;
+                playerStamina = maxStamina;
+
+                #endregion
+
+                break;
+            case 4:
+
+                thisSessionTimeLine = ProgressionTimeLine.OlympeFloorTwoEnd;
+                GameManager.Instance.areaToLoad = 0;
+                GameManager.Instance.sceneToLoad = 6;
+
+                #region Player
+
+                PlayerCapacity = new Dictionary<string, bool>();
+
+                PlayerCapacity.Add("Shield", false);
+                PlayerCapacity.Add("Block", false);
+                PlayerCapacity.Add("Pary", false);
+                PlayerCapacity.Add("Charge", false);
+
+                SetPlayerCapacity(true, true, true, false);
+
+                maxHp = 100f;
+                playerHp = maxHp;
+                maxStamina = 50f;
+                playerStamina = maxStamina;
+
+                #endregion
+
+                break;
+            case 5:
+
+                thisSessionTimeLine = ProgressionTimeLine.OlympeFloorThreeStart;
+                GameManager.Instance.areaToLoad = 0;
+                GameManager.Instance.sceneToLoad = 9;
+
+                #region Player
+
+                PlayerCapacity = new Dictionary<string, bool>();
+
+                PlayerCapacity.Add("Shield", false);
+                PlayerCapacity.Add("Block", false);
+                PlayerCapacity.Add("Pary", false);
+                PlayerCapacity.Add("Charge", false);
+
+                SetPlayerCapacity(true, true, true, true);
+
+                maxHp = 120f;
+                playerHp = maxHp;
+                maxStamina = 60f;
+                playerStamina = maxStamina;
+
+                #endregion
+
+                break; 
+            case 6:
+
+                thisSessionTimeLine = ProgressionTimeLine.OlympeFloorThreeEnded;
+                GameManager.Instance.areaToLoad = 0;
+                GameManager.Instance.sceneToLoad = 10;
+
+                #region Player
+
+                PlayerCapacity = new Dictionary<string, bool>();
+
+                PlayerCapacity.Add("Shield", false);
+                PlayerCapacity.Add("Block", false);
+                PlayerCapacity.Add("Pary", false);
+                PlayerCapacity.Add("Charge", false);
+
+                SetPlayerCapacity(true, true, true, true);
+
+                maxHp = 120f;
+                playerHp = maxHp;
+                maxStamina = 60f;
+                playerStamina = maxStamina;
+
+                #endregion
+
+                break;
+        }
     }
 
 #if UNITY_EDITOR
