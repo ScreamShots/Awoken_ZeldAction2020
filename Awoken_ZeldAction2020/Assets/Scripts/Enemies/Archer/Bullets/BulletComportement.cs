@@ -116,6 +116,11 @@ public class BulletComportement : MonoBehaviour
             if (other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Player"))
             {
                 player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+                if (projectileParticle != null)
+                {
+                    GameObject particleInstance = Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);
+                    Destroy(particleInstance, 1f);
+                }
                 Destroy(gameObject);
             }
         }
@@ -133,12 +138,22 @@ public class BulletComportement : MonoBehaviour
                 }
 
                 SoundManager.Instance.PlaySfx(bulletSoundScript.bulletHitEnemy, bulletSoundScript.bulletHitEnemyVolume);
+                if (projectileParticle != null)
+                {
+                    GameObject particleInstance = Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);
+                    Destroy(particleInstance, 1f);
+                }
                 Destroy(gameObject);
             }
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Default") || other.gameObject.layer == LayerMask.NameToLayer("ObjectToMove"))
         {
+            if (projectileParticle != null)
+            {
+                GameObject particleInstance = Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);
+                Destroy(particleInstance, 1f);
+            }
             Destroy(gameObject);
         }
 
@@ -147,15 +162,11 @@ public class BulletComportement : MonoBehaviour
     void OnBlocked()                        //What happen when the projectile is blocked
     {
         PlayerManager.Instance.gameObject.GetComponent<PlayerShield>().OnElementBlocked(staminaLoseOnBlock);        //cause player lost stamina
-        Destroy(gameObject);
-    }
-
-    void OnDestroy()
-    {
         if (projectileParticle != null)
         {
             GameObject particleInstance = Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);
             Destroy(particleInstance, 1f);
         }
+        Destroy(gameObject);
     }
 }
