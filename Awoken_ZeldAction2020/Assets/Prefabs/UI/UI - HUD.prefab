@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 234920410043080351}
   - component: {fileID: 1654894376762933481}
   - component: {fileID: 8952279930466383252}
+  - component: {fileID: 4775927556465266270}
   m_Layer: 5
   m_Name: FuryBackGround
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ea03777dad0bc048a0eff5aa1134df7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35483dc545571a547b93cf67ba4a4147, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -73,6 +74,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &4775927556465266270
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38903884351161063}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c9f8dbe042a84e4f8f4f30fd9670dc5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2930703865549360944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,6 +1359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   furryFillBar: {fileID: 3936146622980348845}
+  furryBorderBar: {fileID: 8952279930466383252}
   furryUI: {fileID: 5301849128334953269}
 --- !u!1 &3453740054553642153
 GameObject:
