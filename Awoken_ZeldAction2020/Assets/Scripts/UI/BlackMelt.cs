@@ -48,14 +48,4 @@ public class BlackMelt : MonoBehaviour
         onMeltOutEnd.RemoveAllListeners();
     }
 
-    void LoadingPoulionAppear()
-    {
-        loadingPoulion.SetActive(true);
-    }
-
-    void LoadingPoulionDiseappear()
-    {
-        loadingPoulion.SetActive(false);
-
-    }
 }

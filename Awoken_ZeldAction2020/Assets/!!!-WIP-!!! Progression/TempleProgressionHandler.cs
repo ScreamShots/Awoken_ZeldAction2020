@@ -12,12 +12,14 @@ public class TempleProgressionHandler : BasicProgressionHandler
     protected override void OnZeusReveal()
     {
         CutScene_TempleFirstEntrance.gameObject.SetActive(true);
-        CutScene_TempleFirstEntrance.StartCutScene();
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(CutScene_TempleFirstEntrance.StartCutScene);
+        
     }
 
     protected override void OnCaveOut()
     {
         CutScene_TempleSecondEntrance.gameObject.SetActive(true);
-        CutScene_TempleSecondEntrance.StartCutScene();
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(CutScene_TempleSecondEntrance.StartCutScene);
+        
     }
 }
