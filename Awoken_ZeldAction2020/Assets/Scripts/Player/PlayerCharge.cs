@@ -41,6 +41,35 @@ public class PlayerCharge : MonoBehaviour
     ParticleSystem explosion = null;
     [SerializeField]
     ParticleSystem trail = null;
+    [Space]
+    [Header("ScreenShake On Hit")]
+
+    [SerializeField]
+    [Min(0)]
+    private float intensityGlobal = 0;
+    [SerializeField]
+    [Min(0)]
+    private float intensityKnockBack = 0;
+    [SerializeField]
+    [Min(0)]
+    private float intensityExplode = 0;
+    [SerializeField]
+    [Min(0)]
+    private float frequencyGlobal = 0;
+    [SerializeField]
+    [Min(0)]
+    private float frequencyKnockBack = 0;
+    [SerializeField]
+    [Min(0)]
+    private float frequencyExplode = 0;
+    [SerializeField]
+    [Min(0)]
+    private float durationKnockBack = 0;
+    [SerializeField]
+    [Min(0)]
+    private float durationExplode = 0;
+
+
 
 
     #endregion
@@ -131,6 +160,16 @@ public class PlayerCharge : MonoBehaviour
         PlayerStatusManager.Instance.isCharging = true;
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         GetComponent<PlayerAttack>().currentFury = 0;
+
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.LaunchScreenShake(intensityGlobal, 0, frequencyGlobal, false);
+        }
+        else if (ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.LaunchScreenShake(intensityGlobal, 0, frequencyGlobal, false);
+        }
+
         canCharge = true;
         explosionIsPlaying = false;
         lastPos = transform.position;
@@ -181,6 +220,18 @@ public class PlayerCharge : MonoBehaviour
         canCharge = false;
         trail.gameObject.SetActive(false);
         explosion.Play();
+
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.StopScreenShakeExt(intensityGlobal, frequencyGlobal);
+            LvlManager.Instance.LaunchScreenShake(intensityExplode, durationExplode, frequencyExplode);
+        }
+        else if (ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.StopScreenShakeExt(intensityGlobal, frequencyGlobal);
+            ArenaManager.Instance.LaunchScreenShake(intensityExplode, durationExplode, frequencyExplode);
+        }
+
         explosionIsPlaying = true;
         GetComponentInChildren<PlayerAnimator>().HardEndCharge();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, areaRadius);
@@ -215,10 +266,30 @@ public class PlayerCharge : MonoBehaviour
         canFinishCharge = false;
         canCharge = false;
         PlayerMovement.playerRgb.velocity = Vector2.zero;
+
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.StopScreenShakeExt(intensityGlobal, frequencyGlobal);
+        }
+        else if(ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.StopScreenShakeExt(intensityGlobal, frequencyGlobal);
+        }
+
         trail.gameObject.SetActive(false);
         GetComponentInChildren<PlayerAnimator>().Slam();
         yield return new WaitForSeconds(0.40f);
         StartCoroutine(GamePadVibration(0.9f, 0.3f));
+
+        if (LvlManager.Instance != null)
+        {
+            LvlManager.Instance.LaunchScreenShake(intensityExplode, durationExplode, frequencyExplode);
+        }
+        else if (ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.LaunchScreenShake(intensityExplode, durationExplode, frequencyExplode);
+        }
+            
         explosion.Play();
         explosionIsPlaying = true;
 
@@ -254,6 +325,16 @@ public class PlayerCharge : MonoBehaviour
     public void KnockBackEnemy(GameObject enemy)
     {
         StartCoroutine(GamePadVibration(0.4f, 0.2f));
+
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.LaunchScreenShake(intensityKnockBack, durationKnockBack, frequencyKnockBack);
+        }
+        else if (ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.LaunchScreenShake(intensityKnockBack, durationKnockBack, frequencyKnockBack);
+        }
+
 
         if(enemy.GetComponent<EnemyKnockBackCaller>() != null)
         {

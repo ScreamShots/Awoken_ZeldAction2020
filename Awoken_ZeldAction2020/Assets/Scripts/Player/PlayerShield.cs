@@ -67,9 +67,23 @@ public class PlayerShield : MonoBehaviour
     [Min(0)]
     [SerializeField] float vibrateIntensity = 0;
 
+    [Header("ScreenShake On Block")]
+
+    [SerializeField]
+    [Min(0)]
+    private float intensity = 0;
+    [SerializeField]
+    [Min(0)]
+    private float duration = 0;
+    [SerializeField]
+    [Min(0)]
+    private float frequency = 0;
+
     #endregion
 
     [HideInInspector] public bool elementBlocked = false;
+    PlayerAttack attackScript = null;
+    float lastAttackValue = 0;
 
     private void Start()
     {
@@ -84,6 +98,8 @@ public class PlayerShield : MonoBehaviour
         {
             allParyZoneScript.Add(allParyHitZones[i].name, allParyHitZones[i].GetComponent<ParyHitZone>());
         }
+
+        attackScript = GetComponent<PlayerAttack>();
 
         //currentStamina = maxStamina;                                                            //Initializing stamina
     }
@@ -127,8 +143,17 @@ public class PlayerShield : MonoBehaviour
                 if (Input.GetButtonDown("Attack") && !PlayerStatusManager.Instance.cdOnAttack)              //Stop usage of shield when attack's input is pressed and attack.
                 {
                     DesactivateBlock();
-                    StartCoroutine(GetComponent<PlayerAttack>().LaunchAttack());
+                    StartCoroutine(attackScript.LaunchAttack());
                 }
+                else if (lastAttackValue == 0 && Input.GetAxis("Attack") != 0 )
+                {
+                    if (!PlayerStatusManager.Instance.cdOnAttack)
+                    {
+                        DesactivateBlock();
+                        StartCoroutine(attackScript.LaunchAttack());
+                    }
+                }
+                lastAttackValue = Input.GetAxis("Attack");
             }
 
             if (PlayerStatusManager.Instance.cdOnBlock)
@@ -394,6 +419,15 @@ public class PlayerShield : MonoBehaviour
         PlayerMovement.playerRgb.velocity = new Vector2(0, 0);
 
         GamePad.SetVibration(playerIndex, vibrateIntensity, vibrateIntensity);      //Start vibration (intensity depends on vibrate intensity)
+
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.LaunchScreenShake(intensity, duration, frequency);
+        }
+        else if (ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.LaunchScreenShake(intensity, duration, frequency);
+        }
 
         switch (movementScript.watchDirection)                  //KnockBack the player in the opposite direction of the watch direction (intensity depends on the knockback intensity)
         {

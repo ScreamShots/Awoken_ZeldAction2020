@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 /// <summary>
 /// Made by Antoine
@@ -15,6 +16,10 @@ public class ArenaManager : MonoBehaviour
     BossState3 bossState3Script;
     EnemySpawner enemySpawnerAScript;
     EnemySpawner enemySpawnerBScript;
+    [SerializeField]
+    CinemachineBrain thisCamBrain = null;
+    CinemachineVirtualCamera activeVCam = null;
+    CinemachineBasicMultiChannelPerlin activePerlinProfil = null;
 
     private int ennemisToKillToOpenGate;
     private int currentEnnemisKilled;
@@ -51,6 +56,20 @@ public class ArenaManager : MonoBehaviour
 
     PlayerCharge playerChargeScript;
     ProjectileParyBehaviour playerParyScript;
+
+    public static ArenaManager Instance = null;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -197,6 +216,65 @@ public class ArenaManager : MonoBehaviour
                     dialogue3Finish = true;
                     BossManager.Instance.dialogueState3Finish = true;
                 }
+            }
+        }
+    }
+
+    public void LaunchScreenShake(float intensity = 1, float duration = 1, float frequency = 1, bool autoStop = true)
+    {
+        activeVCam = thisCamBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        activePerlinProfil = activeVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        if(activePerlinProfil != null)
+        {
+            activePerlinProfil.m_AmplitudeGain += intensity;
+            activePerlinProfil.m_FrequencyGain += frequency;
+        }
+
+        if (autoStop)
+        {
+            StartCoroutine(StopScreenShake(intensity, duration, frequency, activePerlinProfil));
+        }
+
+    }
+
+    public void StopScreenShakeExt(float intensity = 1, float frequency = 1)
+    {
+        activeVCam = thisCamBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        activePerlinProfil = activeVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        if (activePerlinProfil != null)
+        {
+            activePerlinProfil.m_AmplitudeGain -= intensity;
+            activePerlinProfil.m_FrequencyGain -= frequency;
+
+            if (activePerlinProfil.m_AmplitudeGain < 0)
+            {
+                activePerlinProfil.m_AmplitudeGain = 0;
+            }
+            if (activePerlinProfil.m_FrequencyGain < 0)
+            {
+                activePerlinProfil.m_FrequencyGain = 0;
+            }
+        }
+    }
+
+    public IEnumerator StopScreenShake(float intensity, float duration, float frequency, CinemachineBasicMultiChannelPerlin targetShakeComponent)
+    {
+        yield return new WaitForSeconds(duration);
+
+        if(targetShakeComponent != null)
+        {
+            targetShakeComponent.m_AmplitudeGain -= intensity;
+            targetShakeComponent.m_FrequencyGain -= frequency;
+
+            if(targetShakeComponent.m_AmplitudeGain < 0)
+            {
+                targetShakeComponent.m_AmplitudeGain = 0;
+            }
+            if(targetShakeComponent.m_FrequencyGain < 0)
+            {
+                targetShakeComponent.m_FrequencyGain = 0;
             }
         }
     }

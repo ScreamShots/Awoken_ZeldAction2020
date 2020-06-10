@@ -55,6 +55,18 @@ public class ProjectileParyBehaviour : MonoBehaviour
     [SerializeField]
     [Min(0)]
     float timeBeforeLaunchBack = 0;
+
+    [Header("ScreenShake On Pary")]
+
+    [SerializeField]
+    [Min(0)]
+    private float intensity = 0;
+    [SerializeField]
+    [Min(0)]
+    private float duration = 0;
+    [SerializeField]
+    [Min(0)]
+    private float frequency = 0;
     #endregion
 
     #region HideInInspector Var Statement
@@ -167,6 +179,15 @@ public class ProjectileParyBehaviour : MonoBehaviour
             projectileBlockHandler.hasBeenLaunchBack = true;                                                    //tell the projectile he has been paried and launch back (all modification on the projectile are managed on intern)
         }
 
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.LaunchScreenShake(intensity, duration, frequency);
+        }
+        else if (ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.LaunchScreenShake(intensity, duration, frequency);
+        }
+        
         particlesDuringPary.Stop();
         particleEndPary.Play();
         orientationElements.SetActive(false);                                                                  //hide the orientation bar
