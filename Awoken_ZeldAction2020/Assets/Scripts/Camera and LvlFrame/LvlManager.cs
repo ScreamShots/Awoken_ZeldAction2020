@@ -24,6 +24,10 @@ public class LvlManager : MonoBehaviour
     [HideInInspector]
     public int lastLoadedstartZoneIndex = 0;
 
+    [HideInInspector]
+    CinemachineVirtualCamera activeVCam = null;
+    CinemachineBasicMultiChannelPerlin activePerlinProfil = null;
+
     private void Awake()
     {
         #region Make Singleton
@@ -66,6 +70,65 @@ public class LvlManager : MonoBehaviour
                 canEndTransition = false;
                 GameManager.Instance.gameState = GameManager.GameState.Running;
                 currentArea.LoadArea();
+            }
+        }
+    }
+
+    public void LaunchScreenShake(float intensity = 1, float duration = 1, float frequency = 1, bool autoStop = true)
+    {
+        activeVCam = lvlCamBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        activePerlinProfil = activeVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        if(activePerlinProfil != null)
+        {
+            activePerlinProfil.m_AmplitudeGain += intensity;
+            activePerlinProfil.m_FrequencyGain += frequency;
+        }
+
+        if (autoStop)
+        {
+            StartCoroutine(StopScreenShake(intensity, duration, frequency, activePerlinProfil));
+        }
+
+    }
+
+    public void StopScreenShakeExt(float intensity = 1, float frequency = 1)
+    {
+        activeVCam = lvlCamBrain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        activePerlinProfil = activeVCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        if (activePerlinProfil != null)
+        {
+            activePerlinProfil.m_AmplitudeGain -= intensity;
+            activePerlinProfil.m_FrequencyGain -= frequency;
+
+            if (activePerlinProfil.m_AmplitudeGain < 0)
+            {
+                activePerlinProfil.m_AmplitudeGain = 0;
+            }
+            if (activePerlinProfil.m_FrequencyGain < 0)
+            {
+                activePerlinProfil.m_FrequencyGain = 0;
+            }
+        }
+    }
+
+    public IEnumerator StopScreenShake(float intensity, float duration, float frequency, CinemachineBasicMultiChannelPerlin targetShakeComponent)
+    {
+        yield return new WaitForSeconds(duration);
+
+        if(targetShakeComponent != null)
+        {
+            targetShakeComponent.m_AmplitudeGain -= intensity;
+            targetShakeComponent.m_FrequencyGain -= frequency;
+
+            if(targetShakeComponent.m_AmplitudeGain < 0)
+            {
+                targetShakeComponent.m_AmplitudeGain = 0;
+            }
+            if(targetShakeComponent.m_FrequencyGain < 0)
+            {
+                targetShakeComponent.m_FrequencyGain = 0;
             }
         }
     }

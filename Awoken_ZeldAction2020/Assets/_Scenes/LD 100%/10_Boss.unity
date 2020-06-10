@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1920,6 +1920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c0c0d9f9b5e774e8e60a7c9cd142d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisCamBrain: {fileID: 1165299254}
   arenaZone: {fileID: 485339709}
   bossUI: {fileID: 1904872571811664540}
   gateEnter: {fileID: 6703945986299872525}
@@ -17260,6 +17261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1062363502}
   - component: {fileID: 1062363504}
+  - component: {fileID: 1062363503}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -17281,6 +17283,23 @@ Transform:
   m_Father: {fileID: 1049457131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1062363503
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062363501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1062363504
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -17835,6 +17854,7 @@ GameObject:
   - component: {fileID: 1120132465}
   - component: {fileID: 1120132467}
   - component: {fileID: 1120132466}
+  - component: {fileID: 1120132468}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -17909,6 +17929,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1120132468
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120132464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1122303326
 GameObject:
   m_ObjectHideFlags: 0
@@ -21033,7 +21070,6 @@ MonoBehaviour:
   inQTE: 0
   zeus: {fileID: 738783492}
   cutSceneUI: {fileID: 1745631102}
-  cinemachine: {fileID: 462450741}
   playerUI: {fileID: 478922113}
   bossUI: {fileID: 1904872571811664540}
   realBossRendering: {fileID: 1169084545}
@@ -25432,6 +25468,7 @@ GameObject:
   - component: {fileID: 1868255906}
   - component: {fileID: 1868255909}
   - component: {fileID: 1868255907}
+  - component: {fileID: 1868255908}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -25494,6 +25531,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 5
   m_MaximumOrthoSize: 5000
+--- !u!114 &1868255908
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868255905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1868255909
 MonoBehaviour:
   m_ObjectHideFlags: 3

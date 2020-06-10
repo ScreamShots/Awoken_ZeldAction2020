@@ -8,7 +8,6 @@ public class LakeCam : MonoBehaviour
     LakeDetectionZone detectionZoneScript;
 
     private bool isBlending = false;
-    private bool canTransiBack = false;
 
     #endregion
 

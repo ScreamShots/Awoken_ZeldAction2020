@@ -52,6 +52,25 @@ public class PlayerAttack : MonoBehaviour
     [Min(0)]
     [SerializeField] private float vibrateIntensity = 0;
 
+    [Header("ScreenShake On Attack")]
+
+    [SerializeField]
+    [Min(0)]
+    private float intensityNormalAttack = 0;
+    [SerializeField]
+    [Min(0)]
+    private float intensityHeavyAttack = 0;
+    [SerializeField]
+    [Min(0)]
+    private float frequencyNormalAttack = 0;
+    [SerializeField]
+    [Min(0)]
+    private float frequencyHeavyAttack = 0;
+    [SerializeField]
+    [Min(0)]
+    private float duration = 0;
+
+
     [Header("Fury")]
 
     [Min(0)]
@@ -66,6 +85,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private bool autoAttack = false;
 
     #endregion 
+    float lastAttackAxisValue = 0;
 
     private void Start()
     {
@@ -79,10 +99,23 @@ public class PlayerAttack : MonoBehaviour
         {
             AttackRotation();
 
-            if (Input.GetButtonDown("Attack") && PlayerStatusManager.Instance.canAttack)
+            if (Input.GetButtonDown("Attack"))
             {
-                StartCoroutine(LaunchAttack());
+                if (PlayerStatusManager.Instance.canAttack)
+                {
+                    StartCoroutine(LaunchAttack());
+                }
             }
+            else if (Input.GetAxis("Attack") != 0 && lastAttackAxisValue == 0)
+            {
+                if (PlayerStatusManager.Instance.canAttack)
+                {
+                    StartCoroutine(LaunchAttack());
+                }
+            }
+
+            lastAttackAxisValue = Input.GetAxis("Attack");
+
 
             if (autoAttack && PlayerStatusManager.Instance.canAttack)                                   //Dev Tools enabling the auto attack (to test max attack rate)
             {
@@ -241,6 +274,16 @@ public class PlayerAttack : MonoBehaviour
                         {
                             currentFury = maxFury;
                         }
+
+                        if(LvlManager.Instance != null)
+                        {
+                            LvlManager.Instance.LaunchScreenShake(intensityNormalAttack, duration, frequencyNormalAttack);
+                        }
+                        else if (ArenaManager.Instance != null)
+                        {
+                            ArenaManager.Instance.LaunchScreenShake(intensityNormalAttack, duration, frequencyNormalAttack);
+                        }
+
                         break;
 
                     case 2:
@@ -249,6 +292,16 @@ public class PlayerAttack : MonoBehaviour
                         {
                             currentFury = maxFury;
                         }
+
+                        if (LvlManager.Instance != null)
+                        {
+                            LvlManager.Instance.LaunchScreenShake(intensityNormalAttack, duration, frequencyNormalAttack);
+                        }
+                        else if (ArenaManager.Instance != null)
+                        {
+                            ArenaManager.Instance.LaunchScreenShake(intensityNormalAttack, duration, frequencyNormalAttack);
+                        }
+
                         break;
                     case 3:
                         currentFury += furyGainAttackThree;
@@ -256,6 +309,16 @@ public class PlayerAttack : MonoBehaviour
                         {
                             currentFury = maxFury;
                         }
+
+                        if (LvlManager.Instance != null)
+                        {
+                            LvlManager.Instance.LaunchScreenShake(intensityHeavyAttack, duration, frequencyHeavyAttack);
+                        }
+                        else if (ArenaManager.Instance != null)
+                        {
+                            ArenaManager.Instance.LaunchScreenShake(intensityHeavyAttack, duration, frequencyHeavyAttack);
+                        }
+
                         break;
                     default:
                         currentFury += furyGainAttackOne;
@@ -263,6 +326,16 @@ public class PlayerAttack : MonoBehaviour
                         {
                             currentFury = maxFury;
                         }
+
+                        if (LvlManager.Instance != null)
+                        {
+                            LvlManager.Instance.LaunchScreenShake(intensityNormalAttack, duration, frequencyNormalAttack);
+                        }
+                        else if (ArenaManager.Instance != null)
+                        {
+                            ArenaManager.Instance.LaunchScreenShake(intensityNormalAttack, duration, frequencyNormalAttack);
+                        }
+
                         break;
                 }
 

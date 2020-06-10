@@ -8,6 +8,15 @@ using UnityEngine.Events;
 public class PlayerHealthSystem : BasicHealthSystem
 {
     #region Serialized var Statement
+    [Header("ScreenShake On Hit")]
+
+    [SerializeField] [Min(0)]
+    private float intensity = 0;
+    [SerializeField] [Min(0)]
+    private float duration = 0;
+    [SerializeField] [Min(0)]
+    private float frequency = 0;
+
     [Header("KnockBack On Hit")]
     [SerializeField] [Min(0)]
     private float knockBackIntensity = 200;
@@ -186,6 +195,15 @@ public class PlayerHealthSystem : BasicHealthSystem
 
     void HitEffect(Vector3 sourcePos)
     {
+        if(LvlManager.Instance != null)
+        {
+            LvlManager.Instance.LaunchScreenShake(intensity, duration, frequency);
+        }
+        else if (ArenaManager.Instance != null)
+        {
+            ArenaManager.Instance.LaunchScreenShake(intensity, duration, frequency);
+        }        
+
         switch (PlayerStatusManager.Instance.currentState)
         {
             case PlayerStatusManager.State.neutral:

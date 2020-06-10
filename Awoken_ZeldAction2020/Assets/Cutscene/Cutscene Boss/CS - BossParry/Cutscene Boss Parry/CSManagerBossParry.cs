@@ -11,8 +11,6 @@ public class CSManagerBossParry : BasicCutSceneManager
     [SerializeField]
     GameObject cutSceneUI = null;
     [SerializeField]
-    GameObject cinemachine = null;
-    [SerializeField]
     GameObject playerUI = null;
     [SerializeField]
     GameObject bossUI = null;

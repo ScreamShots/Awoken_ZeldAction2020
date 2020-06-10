@@ -1973,6 +1973,9 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls: []
+  intensity: 2
+  duration: 0.3
+  frequency: 4
   knockBackIntensity: 150
   knockBackDuration: 0.15
   blockIntensityReductionRatio: 0.7
@@ -2029,6 +2032,11 @@ MonoBehaviour:
   timeBtwCombo: 0.25
   timeComboFade: 0.5
   vibrateIntensity: 0.02
+  intensityNormalAttack: 1
+  intensityHeavyAttack: 2
+  frequencyNormalAttack: 2
+  frequencyHeavyAttack: 4
+  duration: 0.25
   maxFury: 100
   furyGainAttackOne: 10
   furyGainAttackTwo: 10
@@ -2066,6 +2074,9 @@ MonoBehaviour:
   staminaReloadSpeed: 30
   timeBeforeReload: 2
   vibrateIntensity: 0.3
+  intensity: 1
+  duration: 0.2
+  frequency: 1
   elementBlocked: 0
 --- !u!114 &6285846879323941749
 MonoBehaviour:
@@ -2152,6 +2163,14 @@ MonoBehaviour:
   knockBackStrenght: 6
   explosion: {fileID: 3557050727639198685}
   trail: {fileID: 997760411061681976}
+  intensityGlobal: 0.4
+  intensityKnockBack: 1
+  intensityExplode: 1
+  frequencyGlobal: 2
+  frequencyKnockBack: 1
+  frequencyExplode: 1
+  durationKnockBack: 0.2
+  durationExplode: 0.4
   canCharge: 0
   needTofastEnd: 0
   explosionIsPlaying: 0
@@ -2180,6 +2199,9 @@ MonoBehaviour:
   angleAmplitude: 120
   rotaSpeed: 80
   timeBeforeLaunchBack: 4
+  intensity: 3
+  duration: 0.25
+  frequency: 4
   buttonIsPressed: 1
 --- !u!95 &6920300998927922022
 Animator:
