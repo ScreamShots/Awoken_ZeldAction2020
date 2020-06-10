@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float voiceDefaultVolume = 0.5f;
 
     [Space]
-    [Header("Voice")]
+    [Header("Cutscene")]
     [Range(0f, 1f)] public float cutsceneDefaultVolume = 0.5f;
 
     [Space]
