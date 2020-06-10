@@ -75,6 +75,7 @@ public class FurryBar : MonoBehaviour
     {
         if (!animationFurryFull)
         {
+            PlayerManager.Instance.GetComponentInChildren<PlayerAnimator>().FurryFull();
             furryBorderAnimator.enabled = true;
             furryBorderAnimator.SetTrigger("BarFurry_Full");
 
