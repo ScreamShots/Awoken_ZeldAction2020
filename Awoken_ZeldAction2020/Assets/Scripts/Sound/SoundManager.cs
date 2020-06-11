@@ -40,6 +40,10 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float cutsceneDefaultVolume = 0.5f;
 
     [Space]
+    [Header("Button")]
+    [Range(0f, 1f)] public float buttonDefaultVolume = 0.5f;
+
+    [Space]
     [Header("References")]
     public AudioSource musicSource;
     public AudioSource ambianceSource;
@@ -96,9 +100,24 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-// = = =
+    public void SetVolumeSfx(float vol)
+    {
+        sfxDefaultVolume = vol;  
+    }
 
-// = = = [ CLASS METHODS ] = = =
+    public void SetVolumeMusic(float vol)
+    {
+        musicDefaultVolume = vol;
+    }
+
+    public void SetVolumeVoice(float vol)
+    {
+        voiceDefaultVolume = vol;
+    }
+
+    // = = =
+
+    // = = = [ CLASS METHODS ] = = =
 
     // Start playing ambiance sound.
     public void PlayAmbiance(AudioClip ambiance, float volume = 1f)
@@ -309,7 +328,7 @@ public class SoundManager : MonoBehaviour
         buttonSource.pitch = pitch;
         if (!buttonSource.isPlaying)
         {
-            buttonSource.PlayOneShot(button, (sfxDefaultVolume * volume) * globalDefaultVolume);
+            buttonSource.PlayOneShot(button, (buttonDefaultVolume * volume) * globalDefaultVolume);
         }
 
         buttonSource.pitch = 1;
