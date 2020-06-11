@@ -108,7 +108,7 @@ MonoBehaviour:
   isCharging: 0
   isStun: 0
   stunCooldown: 0
-  prepareChargeTime: 1
+  prepareChargeTime: 0.8
   chargeSpeed: 350
   chargeDistance: 2.5
   stunTime: 2
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67f515bb13e3d242b3fcff1f498994d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 30
+  maxHp: 20
   currentHp: 0
   canTakeDmg: 1
   onDead:
