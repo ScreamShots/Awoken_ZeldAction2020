@@ -1328,6 +1328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51c8347b1f29dc4f9059115f1c6d09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whichVolume: 0
 --- !u!114 &77917182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,193 +1534,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 569979913179481379, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1885804344618892993, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1927775265397637644, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967274221355776933, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967274221355776933, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967274221355776933, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967274221355776933, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967274221355776933, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1967274221355776933, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3347955734038408518, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036872308505189199, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: aaronVoiceVolume
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858377384808416783, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858377384808416783, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858377384808416783, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858377384808416783, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858377384808416783, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 5470875007091685326, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715123026753684490, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715123026753684490, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715123026753684490, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715123026753684490, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715123026753684490, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6715123026753684490, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898092276945458735, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898092276945458735, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898092276945458735, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898092276945458735, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898092276945458735, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6902431410881958417, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7960022425836221395, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7960022425836221395, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7960022425836221395, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7960022425836221395, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7960022425836221395, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 8187482191896574320, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8201452245663837707, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8230288079264719069, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a, type: 3}
+--- !u!114 &129114540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 920265368648169595, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 129114539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d327aacc4a5ba4289f04042c71f77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &132531659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,6 +2297,7 @@ GameObject:
   - component: {fileID: 182270936}
   - component: {fileID: 182270935}
   - component: {fileID: 182270938}
+  - component: {fileID: 182270939}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -2555,7 +2384,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 182270939}
+        m_MethodName: SetQuality
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &182270936
 MonoBehaviour:
@@ -2619,6 +2459,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &182270939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182270933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7883b67d4393c9f4089c119368db951c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichType: 1
 --- !u!1 &235004996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3829,6 +3682,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 129114540}
+        m_MethodName: SetVolumeSfx
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &558121217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4101,7 +3965,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5910,6 +5774,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 129114540}
+        m_MethodName: SetVolumeMusic
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1045820351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5947,6 +5822,7 @@ GameObject:
   - component: {fileID: 1048631255}
   - component: {fileID: 1048631256}
   - component: {fileID: 1048631257}
+  - component: {fileID: 1048631258}
   m_Layer: 5
   m_Name: CheckBox
   m_TagString: Untagged
@@ -6032,6 +5908,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1048631258}
+        m_MethodName: SetFullScreen
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!114 &1048631257
 MonoBehaviour:
@@ -6059,6 +5946,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1048631258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048631254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7883b67d4393c9f4089c119368db951c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichType: 0
 --- !u!1 &1099268309
 GameObject:
   m_ObjectHideFlags: 0
@@ -7190,7 +7090,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -9062,6 +8962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51c8347b1f29dc4f9059115f1c6d09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whichVolume: 1
 --- !u!114 &1706596347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9412,6 +9313,17 @@ MonoBehaviour:
       - m_Target: {fileID: 138260760}
         m_MethodName: SliderButton
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 129114540}
+        m_MethodName: SetVolumeVoice
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9863,6 +9775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51c8347b1f29dc4f9059115f1c6d09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whichVolume: 2
 --- !u!114 &1867083874
 MonoBehaviour:
   m_ObjectHideFlags: 0

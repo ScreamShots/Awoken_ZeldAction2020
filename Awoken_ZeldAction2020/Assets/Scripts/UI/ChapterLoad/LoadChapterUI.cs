@@ -27,6 +27,10 @@ public class LoadChapterUI : MonoBehaviour
 
     public GameObject backButton = null;
 
+    [Header("Press Button")]
+    public AudioClip pressed;
+    [Range(0f, 1f)] public float pressedVolume = 0.5f;
+
     private void OnEnable()
     {
         UpdateUI();
@@ -40,6 +44,7 @@ public class LoadChapterUI : MonoBehaviour
             {
                 displayIndex += 1;
                 UpdateUI();
+                SoundManager.Instance.PlayButton(pressed, pressedVolume);
             }
         }
         else if (Input.GetButtonDown("LoadChapterLeft"))
@@ -48,6 +53,7 @@ public class LoadChapterUI : MonoBehaviour
             {
                 displayIndex -= 1;
                 UpdateUI();
+                SoundManager.Instance.PlayButton(pressed, pressedVolume);
             }
         }
     }

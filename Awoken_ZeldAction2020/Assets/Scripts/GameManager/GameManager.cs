@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
     public bool bossRoom = false;
 
     bool mainMenu = true;
+    [HideInInspector] public bool gameFullscren;
+    [HideInInspector] public int gameQuality = 2;
 
     void Awake()
     {
@@ -93,7 +95,7 @@ public class GameManager : MonoBehaviour
         //Test Transition
 
         LoadLvlAfterTransition(SceneManager.GetActiveScene(), LoadSceneMode.Single);
-
+        gameFullscren = true;
     }
 
     private void Update()
@@ -374,6 +376,5 @@ public class GameManager : MonoBehaviour
 
         gameState = GameState.Running;
         upgradeUI.SetActive(false);
-
     }
 }

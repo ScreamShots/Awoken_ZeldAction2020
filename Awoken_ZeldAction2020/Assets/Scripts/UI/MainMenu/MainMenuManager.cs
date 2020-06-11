@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class MainMenuManager : MonoBehaviour
 {
+    #region Variables
+
     [SerializeField]
     Button continueButton = null;
     [SerializeField]
@@ -29,6 +31,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject[] allGraphicButton = null;
     public GameObject[] allSoundButton = null;
     public GameObject[] allControlButton = null;
+
+    #endregion
 
     private void Awake()
     {
