@@ -13,6 +13,7 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject graphicMenuPannel = null;
     public GameObject soundMenuPannel = null;
     public GameObject controlMenuPannel = null;
+    public GameObject gameplayMenuPannel = null;
 
     [Header("All Buttons")]
 
@@ -21,6 +22,7 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject[] allGraphicButton = null;
     public GameObject[] allSoundButton = null;
     public GameObject[] allControlButton = null;
+    public GameObject[] allGameplayButton = null;
 
     public GameObject eventSystem = null;
 
@@ -109,6 +111,10 @@ public class PauseMenuManager : MonoBehaviour
                 {
                     button.SetActive(false);
                 }
+                foreach (GameObject button in allGameplayButton)
+                {
+                    button.SetActive(false);
+                }
                 foreach (GameObject button in allControlButton)
                 {
                     button.SetActive(false);
@@ -121,6 +127,7 @@ public class PauseMenuManager : MonoBehaviour
                 pausePannel.SetActive(false);
                 soundMenuPannel.SetActive(false);
                 graphicMenuPannel.SetActive(false);
+                gameplayMenuPannel.SetActive(false);
                 controlMenuPannel.SetActive(false);
                 optionMenuPannel.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(allOptionButton[0]);
@@ -154,6 +161,21 @@ public class PauseMenuManager : MonoBehaviour
                 soundMenuPannel.SetActive(true);
                 optionMenuPannel.SetActive(false);
                 EventSystem.current.SetSelectedGameObject(allSoundButton[0]);
+                break;
+
+            case "Gameplay":
+                foreach (GameObject button in allOptionButton)
+                {
+                    button.SetActive(false);
+                }
+                foreach (GameObject button in allGameplayButton)
+                {
+                    button.SetActive(true);
+                }
+
+                gameplayMenuPannel.SetActive(true);
+                optionMenuPannel.SetActive(false);
+                EventSystem.current.SetSelectedGameObject(allGameplayButton[0]);
                 break;
 
             case "Control":
