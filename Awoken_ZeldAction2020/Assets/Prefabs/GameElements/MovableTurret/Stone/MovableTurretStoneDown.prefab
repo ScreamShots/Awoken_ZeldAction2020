@@ -125,7 +125,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6b11fe0a79c10904c99708a3d7aa60cc, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -640,6 +640,8 @@ MonoBehaviour:
   playerPushing: 0
   move: {x: 0, y: 0}
   moveSpeed: 70
+  particleSpawn: {fileID: 0}
+  particleTrail: {fileID: 0}
 --- !u!114 &5916412010389041994
 MonoBehaviour:
   m_ObjectHideFlags: 0
