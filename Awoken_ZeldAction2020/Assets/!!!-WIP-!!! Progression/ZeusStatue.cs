@@ -13,6 +13,11 @@ public class ZeusStatue : MonoBehaviour
     bool isActivated = false;
     bool playerIsHere = false;
 
+    [Space]
+    [Header("Statue Sound")]
+    public AudioClip statueActivate;
+    [Range(0f, 1f)] public float statueActivateVolume = 0.5f;
+
     private void Update()
     {
         if(playerIsHere && !isActivated && Input.GetButtonDown("Interraction") && canBeActivated)
@@ -57,6 +62,8 @@ public class ZeusStatue : MonoBehaviour
 
     IEnumerator ActivateStatue()
     {
+        SoundManager.Instance.PlaySfx(statueActivate, statueActivateVolume);
+
         thisButton.HideButton();
         canBeActivated = false;
         thisAnimator.SetTrigger("Transform");
