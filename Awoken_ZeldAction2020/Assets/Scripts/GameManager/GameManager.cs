@@ -58,6 +58,10 @@ public class GameManager : MonoBehaviour
 
     public LoadChapterUI chapterUI = null;
 
+    [Header("Banner")]
+
+    public BannerScene bannerInterface = null;
+
     //LoadScene
 
     [HideInInspector]
@@ -368,6 +372,11 @@ public class GameManager : MonoBehaviour
         PlayerMovement.playerRgb.velocity = Vector2.zero;
         upgradeUI.SetActive(true);
 
+    }
+
+    public void showBanner(string scene)                //function to show banner specifif to scene, call it with string relative to scene name 
+    {
+        bannerInterface.ShowBanner(scene);
     }
 
     public IEnumerator QuitUpgradeMenu()
