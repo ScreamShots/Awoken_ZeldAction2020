@@ -15,10 +15,11 @@ public class Olympe2Room1 : EnigmaTool
     private bool state1;
     private bool state2;
     private bool state3;
-    protected override void Start()
-    {
 
-    }
+    public AudioClip globalResolve;
+    [Range(0f, 1f)] public float globalResolveVolume = 0.5f;
+
+    private bool doorIsOpen = false;
 
     // Update is called once per frame
     void Update()
@@ -71,6 +72,11 @@ public class Olympe2Room1 : EnigmaTool
         if(state1 == true && state2 == true && state3 == true)
         {
             isEnigmaDone = true;
+            if (!doorIsOpen)
+            {
+                SoundManager.Instance.PlaySfx(globalResolve, globalResolveVolume);
+                doorIsOpen = true;
+            }
         }
     }
 

@@ -732,22 +732,22 @@ PrefabInstance:
     - target: {fileID: 3600471405205291385, guid: 23ee70204f54bc6438f40af6466e1b35,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.7916665
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3600471405205291385, guid: 23ee70204f54bc6438f40af6466e1b35,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0416718
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5593818139855785899, guid: 23ee70204f54bc6438f40af6466e1b35,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 76
+      value: 77.04
       objectReference: {fileID: 0}
     - target: {fileID: 5593818139855785899, guid: 23ee70204f54bc6438f40af6466e1b35,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2083335
+      value: -4.753
       objectReference: {fileID: 0}
     - target: {fileID: 5593818139855785899, guid: 23ee70204f54bc6438f40af6466e1b35,
         type: 3}
@@ -798,6 +798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: rocks_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7893529251592016514, guid: 23ee70204f54bc6438f40af6466e1b35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23ee70204f54bc6438f40af6466e1b35, type: 3}
@@ -5502,6 +5507,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 590181001}
     m_Modifications:
+    - target: {fileID: 5080086520772683501, guid: e701ef381e95dca46aa00e0d19937808,
+        type: 3}
+      propertyPath: globalEnigmaSound
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7715597697350913964, guid: e701ef381e95dca46aa00e0d19937808,
         type: 3}
       propertyPath: linkedElements.Array.size
@@ -28578,6 +28588,7 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 934675294}
   - {fileID: 1370174060}
+  allPhantomWall: []
   pointOfRespawn: {fileID: 0}
   freeZoneCollider: {fileID: 2133701665}
   mustKillAllEnemies: 0
@@ -36351,6 +36362,7 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 1523191009}
   - {fileID: 2021324574}
+  allPhantomWall: []
   pointOfRespawn: {fileID: 0}
   freeZoneCollider: {fileID: 80066600}
   mustKillAllEnemies: 0
@@ -36905,6 +36917,7 @@ MonoBehaviour:
   - {fileID: 865402464}
   - {fileID: 541736729}
   allLinkedBlockers: []
+  allPhantomWall: []
   pointOfRespawn: {fileID: 665468984}
   freeZoneCollider: {fileID: 8870452}
   mustKillAllEnemies: 0
@@ -106748,6 +106761,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1792148771}
     m_Modifications:
+    - target: {fileID: 5080086520772683501, guid: e701ef381e95dca46aa00e0d19937808,
+        type: 3}
+      propertyPath: partialEngimaSound
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7715597697350913964, guid: e701ef381e95dca46aa00e0d19937808,
         type: 3}
       propertyPath: linkedElements.Array.size
@@ -108443,6 +108461,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 974327326}
     m_Modifications:
+    - target: {fileID: 5080086520772683501, guid: e701ef381e95dca46aa00e0d19937808,
+        type: 3}
+      propertyPath: partialEngimaSound
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7715597697350913964, guid: e701ef381e95dca46aa00e0d19937808,
         type: 3}
       propertyPath: linkedElements.Array.size
@@ -116622,6 +116645,7 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 654728196}
   - {fileID: 900424162}
+  allPhantomWall: []
   pointOfRespawn: {fileID: 0}
   freeZoneCollider: {fileID: 156194579}
   mustKillAllEnemies: 0
@@ -117516,6 +117540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: wall_ruined_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367835132449519256, guid: 403a68e09f4a9bc41930611dd310335c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8278475539242060827, guid: 403a68e09f4a9bc41930611dd310335c,
         type: 3}
@@ -120379,6 +120408,7 @@ MonoBehaviour:
   allLinkedBlockers:
   - {fileID: 548458931}
   - {fileID: 2060955064}
+  allPhantomWall: []
   pointOfRespawn: {fileID: 528572188}
   freeZoneCollider: {fileID: 1280619828}
   mustKillAllEnemies: 0

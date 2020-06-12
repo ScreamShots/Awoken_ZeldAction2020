@@ -11,10 +11,10 @@ public class Olympe1Room3 : EnigmaTool
     [SerializeField]
     private DoorBehavior door1 = null;
 
-    protected override void Start()
-    {
+    public AudioClip globalResolve;
+    [Range(0f, 1f)] public float globalResolveVolume = 0.5f;
 
-    }
+    private bool doorIsOpen = false;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +28,11 @@ public class Olympe1Room3 : EnigmaTool
         if (plate1.isPressed == true && plate2.isPressed == true)
         {
             isEnigmaDone = true;
+            if (!doorIsOpen)
+            {
+                SoundManager.Instance.PlaySfx(globalResolve, globalResolveVolume);
+                doorIsOpen = true;
+            }
         }
     }
 

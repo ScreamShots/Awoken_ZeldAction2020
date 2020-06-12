@@ -12,6 +12,11 @@ public class OlympeTeleportPlateform : MonoBehaviour
     bool playerIsHere = false;
     bool canUseTp = false;
 
+    [Space]
+    [Header("Teleport Sound")]
+    public AudioClip teleport;
+    [Range(0f, 1f)] public float teleportVolume = 0.5f;
+
 
     private void Update()
     {
@@ -86,6 +91,7 @@ public class OlympeTeleportPlateform : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
 
         PlayerManager.Instance.gameObject.GetComponentInChildren<PlayerAnimator>().Tp();
+        SoundManager.Instance.PlaySfx(teleport, teleportVolume);
 
         yield return new WaitForSeconds(0.5f);
 
