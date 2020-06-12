@@ -247,4 +247,9 @@ public class PlayerAnimator : MonoBehaviour
     {
         plyAnimator.SetTrigger("Upgrade");
     }
+
+    public void Tp()
+    {
+        plyAnimator.SetTrigger("Tp");
+    }
 }

@@ -78,11 +78,17 @@ public class OlympeTeleportPlateform : MonoBehaviour
     {
         GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
         PlayerMovement.playerRgb.velocity = Vector2.zero;
+
         thisButton.HideButton();
         playerIsHere = false;
         sealAnimator.SetTrigger("Teleporter_Activate");
 
-        yield return new WaitForSeconds(1f);       
+        yield return new WaitForSeconds(0.7f);
+
+        PlayerManager.Instance.gameObject.GetComponentInChildren<PlayerAnimator>().Tp();
+
+        yield return new WaitForSeconds(0.5f);
+
 
         switch (ProgressionManager.Instance.thisSessionTimeLine)
         {

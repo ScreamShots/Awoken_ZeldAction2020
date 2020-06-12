@@ -5921,6 +5921,9 @@ MonoBehaviour:
   currentPlayableDirector: {fileID: 0}
   inDialogue: 0
   inQTE: 0
+  onCutSceneEnd:
+    m_PersistentCalls:
+      m_Calls: []
   cinemachineAltar: {fileID: 806272981}
   playerUI: {fileID: 423810344}
 --- !u!1001 &186780167
@@ -6882,6 +6885,9 @@ MonoBehaviour:
   currentPlayableDirector: {fileID: 0}
   inDialogue: 0
   inQTE: 0
+  onCutSceneEnd:
+    m_PersistentCalls:
+      m_Calls: []
   cinemachineAltar: {fileID: 513792759}
   cinemachine: {fileID: 685819891}
   playerUI: {fileID: 423810344}
@@ -84999,6 +85005,11 @@ PrefabInstance:
       propertyPath: numberOfFragmentsInThisScene
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2475210090585418759, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1115897035545481410, guid: bfd8a1b1116eee44a942127d495471f1, type: 3}
     - {fileID: 3619590588036001494, guid: bfd8a1b1116eee44a942127d495471f1, type: 3}
@@ -111328,6 +111339,11 @@ PrefabInstance:
         type: 3}
       propertyPath: thisSessionTimeLine
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5698542408269402595, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6902431410881958417, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}

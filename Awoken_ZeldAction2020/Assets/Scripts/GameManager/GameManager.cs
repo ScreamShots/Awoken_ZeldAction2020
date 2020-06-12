@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     bool mainMenu = true;
     [HideInInspector] public bool gameFullscren;
     [HideInInspector] public int gameQuality = 2;
+    [HideInInspector] public bool securityChangeState = false;
 
     void Awake()
     {
@@ -346,7 +347,14 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        gameState = nextGS;
+        if(!securityChangeState)
+        {
+            gameState = nextGS;
+        }
+        else
+        {
+            securityChangeState = false;
+        }
     }
 
     public void BackToMainMenu()

@@ -65,6 +65,8 @@ public class R1ProgressionHandler : BasicProgressionHandler
     [Header("Door")]
 
     [SerializeField] bool showDoorElements;
+    [SerializeField] BasicCutSceneManager CutScene_OpenDoor1 = null;
+    [SerializeField] BasicCutSceneManager CutScene_OpenDoor2 = null;
     [Space]
 
     #region Serialize Var
@@ -196,7 +198,9 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnOlympeFloorOneEnd()
     {
-        base.OnOlympeFloorOneEnd();
+        CutScene_OpenDoor1.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(CutScene_OpenDoor1.StartCutScene);
+        CutScene_OpenDoor1.onCutSceneEnd.AddListener(BannerShow);
         doorToRegionTwo.isDoorOpen = true;
         EnigmaOneDone();
     }
@@ -224,7 +228,9 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnOlympeFloorTwoEnd()
     {
-        base.OnOlympeFloorTwoEnd();
+        CutScene_OpenDoor2.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(CutScene_OpenDoor2.StartCutScene);
+        CutScene_OpenDoor2.onCutSceneEnd.AddListener(BannerShow);
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
         EnigmaOneDone();

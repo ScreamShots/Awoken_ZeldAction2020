@@ -13,6 +13,8 @@ public class AreaManager : MonoBehaviour
     private GameObject[] allTransitionZone = null;
     [SerializeField]
     private GameObject[] allLinkedBlockers = null;
+    [SerializeField]
+    private GameObject[] allPhantomWall = null;
 
     public Transform pointOfRespawn = null;
     
@@ -72,6 +74,10 @@ public class AreaManager : MonoBehaviour
                     {
                         transZone.SetActive(true);
                     }
+                    foreach (GameObject wall in allPhantomWall)
+                    {
+                        wall.SetActive(false);
+                    }
                 }                
 
                 allEnemyAreDead = true;
@@ -110,6 +116,10 @@ public class AreaManager : MonoBehaviour
             foreach (EnemySpawner spawner in allEnemySpawners)
             {
                 allEnemiesToKill.Add(spawner.gameObject);
+            }
+            foreach(GameObject wall in allPhantomWall)
+            {
+                wall.SetActive(true);
             }
         }
 
@@ -152,6 +162,15 @@ public class AreaManager : MonoBehaviour
         {
             blocker.layer = LayerMask.NameToLayer("EnemyBlocker");
         }
+
+        if(allPhantomWall != null)
+        {
+            foreach (GameObject wall in allPhantomWall)
+            {
+                wall.SetActive(false);
+            }
+        }
+
         foreach (GameObject transZone in allTransitionZone)
         {
             transZone.SetActive(true);

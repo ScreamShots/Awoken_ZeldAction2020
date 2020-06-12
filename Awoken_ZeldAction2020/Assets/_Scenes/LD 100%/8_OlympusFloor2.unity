@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -23584,6 +23584,9 @@ MonoBehaviour:
   currentPlayableDirector: {fileID: 0}
   inDialogue: 0
   inQTE: 0
+  onCutSceneEnd:
+    m_PersistentCalls:
+      m_Calls: []
   cinemachineAltar: {fileID: 1720013629}
   cinemachine: {fileID: 1752607017}
   playerUI: {fileID: 451764532}
@@ -24731,6 +24734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfFragmentsInThisScene: 0
+  sceneIndex: 8
   canShowGameplayElements: 1
   room1Script: {fileID: 896885875}
   room2MoovingTurret: {fileID: 1450927115}

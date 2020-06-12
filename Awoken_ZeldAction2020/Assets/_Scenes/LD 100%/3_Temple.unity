@@ -510,6 +510,9 @@ MonoBehaviour:
   currentPlayableDirector: {fileID: 0}
   inDialogue: 0
   inQTE: 0
+  onCutSceneEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &125157506
 Transform:
   m_ObjectHideFlags: 0
@@ -763,6 +766,9 @@ MonoBehaviour:
   currentPlayableDirector: {fileID: 0}
   inDialogue: 0
   inQTE: 0
+  onCutSceneEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &177287056
 Transform:
   m_ObjectHideFlags: 0
@@ -2727,6 +2733,16 @@ PrefabInstance:
       propertyPath: thisSessionTimeLine
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5698542408269402595, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902431410881958417, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8230288079264719069, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -2770,6 +2786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfFragmentsInThisScene: 0
+  sceneIndex: 3
   CutScene_TempleFirstEntrance: {fileID: 177287055}
   CutScene_TempleSecondEntrance: {fileID: 125157505}
 --- !u!4 &1416884982

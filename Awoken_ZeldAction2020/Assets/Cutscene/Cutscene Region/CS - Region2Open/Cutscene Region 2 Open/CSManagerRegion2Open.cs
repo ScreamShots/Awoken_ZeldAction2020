@@ -19,8 +19,11 @@ public class CSManagerRegion2Open : BasicCutSceneManager
     [ContextMenu("StartCutSceneRegion2Open")]
     public override void StartCutScene()
     {
+        GameManager.Instance.securityChangeState = true;
         Cinemachine.SetActive(true);
 
         base.StartCutScene();
     }
+
+
 }

@@ -157,7 +157,7 @@ public class UpgradeMenuManager : MonoBehaviour
     {
         ProgressionManager.Instance.lvlOfShieldUpgrade += 1;
         ProgressionManager.Instance.availableFragments -= shieldUpgradeCost;
-        ProgressionManager.Instance.maxHp += 20;
+        ProgressionManager.Instance.maxStamina += 20;
         PlayerManager.Instance.GetComponent<PlayerShield>().maxStamina += 10;
         PlayerManager.Instance.GetComponent<PlayerShield>().currentStamina = PlayerManager.Instance.GetComponent<PlayerShield>().maxStamina;
 
