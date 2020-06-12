@@ -8,7 +8,7 @@ public class DialogueSound : MonoBehaviour
     #region Variables
     private DialogueManager dialogueManagerScript;
 
-    public enum enumSpeaking {Nobody, Aaron, Aaron_sleep, Aaron_shock, Aaron_jaded, Shield, Shield_angry, Shield_jaded, Shield_wary, Shield_shock, Zeus, Zeus_angry, Zeus_hide, PNJ_1, PNJ_2, PNJ_3, PNJ_4, Siren, Sheep, Sombrage, Cyclope, Grandma};
+    public enum enumSpeaking {Nobody, Aaron, Aaron_sleep, Aaron_shock, Aaron_jaded, Shield, Shield_angry, Shield_jaded, Shield_wary, Shield_shock, Zeus, Zeus_angry, Zeus_hide, PNJ_1, PNJ_2, PNJ_3, PNJ_4, Siren, Sheep, Sombrage, Cyclope, Grandma, Spartan};
     public enumSpeaking whoSpeaking = enumSpeaking.Nobody;
     public Sprite currentSprite;
 
@@ -36,6 +36,7 @@ public class DialogueSound : MonoBehaviour
     public Sprite sombrage = null;
     public Sprite cyclope = null;
     public Sprite grandma = null;
+    public Sprite spartan = null;
 
     [Space]
     [Header("Dialogue Sound")]
@@ -103,6 +104,9 @@ public class DialogueSound : MonoBehaviour
     public AudioClip grandmaVoice;
     [Range(0f, 1f)] public float grandmaVoiceVolume = 0.5f;
 
+    public AudioClip spartanVoice;
+    [Range(0f, 1f)] public float spartanVoiceVolume = 0.5f;
+
 
     private bool aaronIsSpeaking = false;
     private bool aaronSleepIsSpeaking = false;
@@ -125,6 +129,7 @@ public class DialogueSound : MonoBehaviour
     private bool sombrageIsSpeaking = false;
     private bool cyclopeIsSpeaking = false;
     private bool grandmaIsSpeaking = false;
+    private bool spartanIsSpeaking = false;
 
     #endregion
 
@@ -261,6 +266,10 @@ public class DialogueSound : MonoBehaviour
             {
                 whoSpeaking = enumSpeaking.Grandma;
             }
+            else if (currentSprite == spartan)
+            {
+                whoSpeaking = enumSpeaking.Spartan;
+            }
         }
         else
         {
@@ -287,6 +296,7 @@ public class DialogueSound : MonoBehaviour
             sombrageIsSpeaking = false;
             cyclopeIsSpeaking = false;
             grandmaIsSpeaking = false;
+            spartanIsSpeaking = false;
 }
     }
 
@@ -313,6 +323,7 @@ public class DialogueSound : MonoBehaviour
         if (numberSpeaker == 19) { sombrageIsSpeaking = true; } else { sombrageIsSpeaking = false; }
         if (numberSpeaker == 20) { cyclopeIsSpeaking = true; } else { cyclopeIsSpeaking = false; }
         if (numberSpeaker == 21) { grandmaIsSpeaking = true; } else { grandmaIsSpeaking = false; }
+        if (numberSpeaker == 22) { spartanIsSpeaking = true; } else { spartanIsSpeaking = false; }
     }
 
     void PlaySpeakSound()
@@ -488,6 +499,14 @@ public class DialogueSound : MonoBehaviour
                         SetSpeakingToTrue(21);
                         SoundManager.Instance.PlayVoice(grandmaVoice, grandmaVoiceVolume);
                         currentVoiceVolume = grandmaVoiceVolume;
+                    }
+                    break;
+                case enumSpeaking.Spartan:
+                    if (!spartanIsSpeaking)
+                    {
+                        SetSpeakingToTrue(22);
+                        SoundManager.Instance.PlayVoice(spartanVoice, spartanVoiceVolume);
+                        currentVoiceVolume = spartanVoiceVolume;
                     }
                     break;
             }
