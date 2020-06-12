@@ -31,6 +31,10 @@ public class MenuSound : MonoBehaviour
     public AudioClip slider;
     [Range(0f, 1f)] public float sliderVolume = 0.5f;
 
+    [Header("Upgrade Button")]
+    public AudioClip upgrade;
+    [Range(0f, 1f)] public float upgradeVolume = 0.5f;
+
     private bool isPaused = false;
 
     #endregion
@@ -46,6 +50,11 @@ public class MenuSound : MonoBehaviour
     public void ClickButton()
     {
         SoundManager.Instance.PlayButton(pressed, pressedVolume);
+    }
+
+    public void UpgradeButton()
+    {
+        SoundManager.Instance.PlayButton(upgrade, upgradeVolume);
     }
 
     public void SelectButton()
