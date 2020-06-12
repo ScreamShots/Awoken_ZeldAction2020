@@ -87,6 +87,7 @@ public class R1ProgressionHandler : BasicProgressionHandler
     protected override void OnNewAdventure()
     {
         CutScene_VegetablesStart.SetActive(true);
+        CutScene_VegetablesStart.GetComponent<BasicCutSceneManager>().onCutSceneEnd.AddListener(BannerShow);
         PNJ_Vegetables.SetActive(true);
         blockingTreeA2A3.SetActive(true);
 
@@ -105,6 +106,8 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnVegetablesStart()
     {
+        base.OnVegetablesStart();
+
         PNJ_Vegetables.SetActive(true);
         blockingTreeA2A3.SetActive(true);
 
@@ -136,6 +139,8 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnVegetablesEnd()
     {
+        base.OnVegetablesEnd();
+
         PNJ_Vegetables.SetActive(true);
         blockingTreeA2A3.SetActive(true);
 
@@ -159,6 +164,8 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnTempleFirstEntrance()
     {
+        base.OnTempleFirstEntrance();
+
         foreach (GameObject blockingElement in blockingElementsA6A7)
         {
             blockingElement.SetActive(true);
@@ -172,44 +179,52 @@ public class R1ProgressionHandler : BasicProgressionHandler
         CutScene_CaveOut.SetActive(true);
         EnigmaOneDone();
         CutScene_CaveOut.GetComponent<BasicCutSceneManager>().StartCutScene();
+        CutScene_CaveOut.GetComponent<BasicCutSceneManager>().onCutSceneEnd.AddListener(BannerShow);
     }
 
     protected override void OnCaveOut()
     {
+        base.OnCaveOut();
         EnigmaOneDone();
     }
 
     protected override void OnTempleSecondEntrance()
     {
+        base.OnTempleSecondEntrance();
         EnigmaOneDone();
     }
 
     protected override void OnOlympeFloorOneEnd()
     {
+        base.OnOlympeFloorOneEnd();
         doorToRegionTwo.isDoorOpen = true;
         EnigmaOneDone();
     }
 
     protected override void OnSecondRegionEntrance()
     {
+        base.OnSecondRegionEntrance();
         doorToRegionTwo.isDoorOpen = true;
         EnigmaOneDone();
     }
 
     protected override void OnSecondRegionBrazeros()
     {
+        base.OnSecondRegionBrazeros();
         doorToRegionTwo.isDoorOpen = true;
         EnigmaOneDone();
     }
 
     protected override void OnSecondRegionOut()
     {
+        base.OnSecondRegionOut();
         doorToRegionTwo.isDoorOpen = true;
         EnigmaOneDone();
     }
 
     protected override void OnOlympeFloorTwoEnd()
     {
+        base.OnOlympeFloorTwoEnd();
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
         EnigmaOneDone();
@@ -217,6 +232,7 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnThirdRegionEntrance()
     {
+        base.OnThirdRegionEntrance();
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
         EnigmaOneDone();
@@ -224,6 +240,7 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnThirdRegionOut()
     {
+        base.OnThirdRegionOut();
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
         EnigmaOneDone();
@@ -231,6 +248,7 @@ public class R1ProgressionHandler : BasicProgressionHandler
 
     protected override void OnEndAdventure()
     {
+        base.OnEndAdventure();
         doorToRegionTwo.isDoorOpen = true;
         doorToRegionThree.isDoorOpen = true;
         EnigmaOneDone();

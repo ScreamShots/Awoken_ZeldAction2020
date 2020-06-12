@@ -66,6 +66,8 @@ public class DialogueManager : MonoBehaviour
     bool restartGameplay = false;
     [HideInInspector] public Dialogue.DialogueUIPos currentDialoguePos = Dialogue.DialogueUIPos.Down;
 
+
+
     private void Awake()
     {
         if(Instance == null)

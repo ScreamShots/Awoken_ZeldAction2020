@@ -67,10 +67,13 @@ public class R2ProgressionHandler : BasicProgressionHandler
         arenaDoorOut.isDoorOpen = false;
 
        CutScene_R2Entrance.GetComponent<BasicCutSceneManager>().StartCutScene();
+        CutScene_R2Entrance.GetComponent<BasicCutSceneManager>().onCutSceneEnd.AddListener(BannerShow);
+
     }
 
     protected override void OnSecondRegionEntrance()
     {
+        base.OnSecondRegionEntrance();
         autelArea.canSpawnEnemies = true;
         CutScene_GetPary.SetActive(true);
         brazeroCam1.shortCutByProgression = false;
@@ -89,6 +92,7 @@ public class R2ProgressionHandler : BasicProgressionHandler
 
     protected override void OnSecondRegionBrazeros()
     {
+        base.OnSecondRegionBrazeros();
         autelArea.canSpawnEnemies = true;
         CutScene_GetPary.SetActive(true);
         pipeEnigmaCam.shortCutByProgression = false;
@@ -102,6 +106,7 @@ public class R2ProgressionHandler : BasicProgressionHandler
 
     protected override void OnShieldParyUnlocked()
     {
+        base.OnShieldParyUnlocked();
         enigmaParyScript.forceClose = true;
         pipeEnigmaCam.shortCutByProgression = false;
         pipeEnigmaLever.isPressed = false;

@@ -11,5 +11,6 @@ public class CaveProgressionHandler : BasicProgressionHandler
     {
         CutScene_FallFromOlympus.gameObject.SetActive(true);
         CutScene_FallFromOlympus.StartCutScene();
+        CutScene_FallFromOlympus.onCutSceneEnd.AddListener(BannerShow);
     }
 }

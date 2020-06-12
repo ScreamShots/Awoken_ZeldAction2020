@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Events;
 
 public class BasicCutSceneManager : MonoBehaviour
 {
@@ -17,6 +18,17 @@ public class BasicCutSceneManager : MonoBehaviour
     [HideInInspector] public bool inDialogue = false;
     [HideInInspector] public bool inQTE = false;
     int dialogueIndex;
+
+    [HideInInspector]
+    public UnityEvent onCutSceneEnd = null;
+
+    private void Awake()
+    {
+        if(onCutSceneEnd == null)
+        {
+            onCutSceneEnd = new UnityEvent();
+        }
+    }
 
     public virtual void Update()
     {
@@ -81,5 +93,7 @@ public class BasicCutSceneManager : MonoBehaviour
         PlayerManager.Instance.PlayerEndCutScene();
         GameManager.Instance.gameState = GameManager.GameState.Running;
         inDialogue = false;
+        onCutSceneEnd.Invoke();
+        onCutSceneEnd.RemoveAllListeners();
     }
 }

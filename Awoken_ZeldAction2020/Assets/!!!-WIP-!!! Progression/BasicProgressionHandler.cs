@@ -9,6 +9,7 @@ public abstract class BasicProgressionHandler : MonoBehaviour
     ProgressionManager.ProgressionTimeLine currentTL;
 
     public int numberOfFragmentsInThisScene = 0;
+    public int sceneIndex = 1;
 
     protected virtual void Start()
     {
@@ -106,132 +107,144 @@ public abstract class BasicProgressionHandler : MonoBehaviour
 
     protected virtual void OnNewAdventure()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnVegetablesStart()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnVegetablesEnd()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnZeusReveal()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnTempleFirstEntrance()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnShieldBlockUnlock()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnCaveOut()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnTempleSecondEntrance()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorOneStart()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorOneLREntrance()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorOneEnd()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnSecondRegionEntrance()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnSecondRegionBrazeros()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnShieldParyUnlocked()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnSecondRegionOut()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorTwoStart()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorTwoLREntrance()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorTwoEnd()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnThirdRegionEntrance()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnShieldChargeUnlock()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnThirdRegionOut()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorThreeStart()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorThreeLREntrance()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnOlympeFloorThreeEnded()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnZeusFightStarted()
     {
-
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
     }
 
     protected virtual void OnEndAdventure()
     {
+        GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(BannerShow);
+    }
 
+    public virtual void BannerShow()
+    {
+        GameManager.Instance.showBanner(sceneIndex);
+        StartCoroutine(HideBanner());
+    }
+
+    public virtual IEnumerator HideBanner()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GameManager.Instance.hideBanner();
     }
 
 #if UNITY_EDITOR

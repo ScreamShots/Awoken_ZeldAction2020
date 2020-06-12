@@ -47,10 +47,12 @@ public class R3ProgressionHandler : BasicProgressionHandler
         CutScene_R3Entrance.gameObject.SetActive(true);
         CutScene_UnlockCharge.gameObject.SetActive(true);
         CutScene_R3Entrance.StartCutScene();
+        CutScene_R3Entrance.onCutSceneEnd.AddListener(BannerShow);
     }
 
     protected override void OnThirdRegionEntrance()
     {
+        base.OnThirdRegionEntrance();
         autelArea.canSpawnEnemies = true;
         thisAltar.DesactivateAltarGraph();
         foreach (GameObject destructibleBloc in allDestructibleBlocsAfterAutel)
@@ -62,6 +64,7 @@ public class R3ProgressionHandler : BasicProgressionHandler
 
     protected override void OnShieldChargeUnlock()
     {
+        base.OnShieldChargeUnlock();
         foreach (GameObject destructibleBloc in allDestructibleBlocsAfterAutel)
         {
             destructibleBloc.SetActive(true);

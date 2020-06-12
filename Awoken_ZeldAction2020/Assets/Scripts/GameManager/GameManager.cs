@@ -269,6 +269,7 @@ public class GameManager : MonoBehaviour
     public void GoToScene()
     {
         SoundManager.Instance.SwitchScene(true);
+        hideBanner();
         if(sceneToLoad == 10)
         {
             bossRoom = true;

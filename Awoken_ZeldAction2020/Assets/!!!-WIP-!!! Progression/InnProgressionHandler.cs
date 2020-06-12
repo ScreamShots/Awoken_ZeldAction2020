@@ -16,6 +16,7 @@ public class InnProgressionHandler : BasicProgressionHandler
         PNJ_Customers.SetActive(true);
         CutScene_ZeusReveal.gameObject.SetActive(true);
         CutScene_ZeusReveal.StartCutScene();
+        CutScene_ZeusReveal.onCutSceneEnd.AddListener(BannerShow);
     }
 
 }

@@ -13,6 +13,7 @@ public class TempleProgressionHandler : BasicProgressionHandler
     {
         CutScene_TempleFirstEntrance.gameObject.SetActive(true);
         GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(CutScene_TempleFirstEntrance.StartCutScene);
+        CutScene_TempleFirstEntrance.onCutSceneEnd.AddListener(BannerShow);
         
     }
 
@@ -20,6 +21,7 @@ public class TempleProgressionHandler : BasicProgressionHandler
     {
         CutScene_TempleSecondEntrance.gameObject.SetActive(true);
         GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(CutScene_TempleSecondEntrance.StartCutScene);
-        
+        CutScene_TempleSecondEntrance.onCutSceneEnd.AddListener(BannerShow);
+
     }
 }
