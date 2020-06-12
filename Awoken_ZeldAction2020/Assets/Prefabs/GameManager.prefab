@@ -9264,6 +9264,7 @@ GameObject:
   - component: {fileID: 8628196686999098272}
   - component: {fileID: 220546194763750586}
   - component: {fileID: 6938450653281750561}
+  - component: {fileID: 250577800706062311}
   m_Layer: 5
   m_Name: Shield UP
   m_TagString: Untagged
@@ -9382,6 +9383,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8489880092808852098}
+        m_MethodName: UpgradeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &250577800706062311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381528238257909843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283da75e29d581e4a9f5eed71810f082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelection:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8489880092808852098}
+        m_MethodName: SelectButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4415272078515802701
 GameObject:
   m_ObjectHideFlags: 0
@@ -9394,6 +9432,7 @@ GameObject:
   - component: {fileID: 1844097689457869974}
   - component: {fileID: 5067760721236543708}
   - component: {fileID: 4513083627238663955}
+  - component: {fileID: 6028245761767609378}
   m_Layer: 5
   m_Name: Resume Button (UP)
   m_TagString: Untagged
@@ -9502,6 +9541,43 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5606231228775659389}
         m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8489880092808852098}
+        m_MethodName: ClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6028245761767609378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415272078515802701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283da75e29d581e4a9f5eed71810f082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelection:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8489880092808852098}
+        m_MethodName: SelectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11158,6 +11234,7 @@ GameObject:
   - component: {fileID: 4524357167289479245}
   - component: {fileID: 1478937703530287763}
   - component: {fileID: 2023988639737587558}
+  - component: {fileID: 5335690884967603202}
   m_Layer: 5
   m_Name: Health Up
   m_TagString: Untagged
@@ -11267,6 +11344,43 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5606231228775659389}
         m_MethodName: AugmentHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8489880092808852098}
+        m_MethodName: UpgradeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5335690884967603202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047945920459745164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283da75e29d581e4a9f5eed71810f082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelection:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8489880092808852098}
+        m_MethodName: SelectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19966,6 +20080,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036872308505189199, guid: 6fe40246284827e44bee2f6cf6815ed9,
+        type: 3}
+      propertyPath: spartan
+      value: 
+      objectReference: {fileID: 21300000, guid: c97967a9c97aee44889e259e4fa26804,
+        type: 3}
+    - target: {fileID: 4036872308505189199, guid: 6fe40246284827e44bee2f6cf6815ed9,
+        type: 3}
+      propertyPath: spartanVoice
+      value: 
+      objectReference: {fileID: 8300000, guid: fdcf31e842b99f644b6270820a4adab6, type: 3}
+    - target: {fileID: 4036872308505189199, guid: 6fe40246284827e44bee2f6cf6815ed9,
+        type: 3}
+      propertyPath: aaronVoiceVolume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7921804885824546752, guid: 6fe40246284827e44bee2f6cf6815ed9,
         type: 3}
