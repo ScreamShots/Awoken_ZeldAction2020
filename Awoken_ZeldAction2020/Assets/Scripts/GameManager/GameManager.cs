@@ -374,9 +374,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void showBanner(string scene)                //function to show banner specifif to scene, call it with string relative to scene name 
+    public void showBanner(int sceneIndex)                //function to show banner specifif to scene, call it with int relative to scene index
     {
-        bannerInterface.ShowBanner(scene);
+        bannerInterface.ShowBanner(sceneIndex);
     }
 
     public IEnumerator QuitUpgradeMenu()

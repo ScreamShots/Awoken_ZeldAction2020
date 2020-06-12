@@ -18,61 +18,61 @@ public class BannerScene : MonoBehaviour
     [ContextMenu("ShowBannerR1")]
     public void ShowBannerRegion1()         //function just for test with region 1
     {
-        ShowBanner("Region1");
+        ShowBanner(4);
     }
 
-    public void ShowBanner(string scene)
+    public void ShowBanner(int sceneIndex)
     {
         if (!bannerUI.gameObject.activeSelf)
         {
-            switch (scene)
+            switch (sceneIndex)
             {
-                case "Inn":
+                case 1:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[0];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "Cave":
+                case 2:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[1];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "Temple":
+                case 3:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[2];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "Region1":
+                case 4:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[3];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "Region2":
+                case 5:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[4];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "Region3":
+                case 6:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[5];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "OlympeFloor1":
+                case 7:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[6];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "OlympeFloor2":
+                case 8:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[7];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "OlympeFloor3":
+                case 9:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[8];
                     bannerAnimator.SetTrigger("Appear");
                     break;
-                case "Boss":
+                case 10:
                     bannerUI.gameObject.SetActive(true);
                     bannerUI.sprite = banner[9];
                     bannerAnimator.SetTrigger("Appear");
