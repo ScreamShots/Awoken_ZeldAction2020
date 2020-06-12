@@ -366,18 +366,22 @@ public class PlayerSound : MonoBehaviour
 
     void FurryIsFull()
     {
-        if(playerAttackScript.currentFury == playerAttackScript.maxFury)
+        if(playerChargeScript.enabled == true)
         {
-            if (!furryBarIsFull)
+            if (playerAttackScript.currentFury == playerAttackScript.maxFury)
             {
-                furryBarIsFull = true;
-                SoundManager.Instance.PlaySfx(furryBarFull, furryBarFullVolume);
+                if (!furryBarIsFull)
+                {
+                    furryBarIsFull = true;
+                    SoundManager.Instance.PlaySfx(furryBarFull, furryBarFullVolume);
+                }
+            }
+            else
+            {
+                furryBarIsFull = false;
             }
         }
-        else
-        {
-            furryBarIsFull = false;
-        }
+
     }
 
     void ShieldTakeOut()

@@ -379,6 +379,11 @@ public class GameManager : MonoBehaviour
         bannerInterface.ShowBanner(sceneIndex);
     }
 
+    public void hideBanner()
+    {
+        bannerInterface.HideBanner();
+    }
+
     public IEnumerator QuitUpgradeMenu()
     {
         yield return new WaitForEndOfFrame();
