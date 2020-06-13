@@ -41,6 +41,14 @@ public class FurryBar : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        if (animationFurryFull)
+        {
+            furryBorderAnimator.SetTrigger("BarFurry_Full");
+        }
+    }
+
     private void Update()
     {
         if (playerAttackScript != null && playerAttackScript.enabled == true)
