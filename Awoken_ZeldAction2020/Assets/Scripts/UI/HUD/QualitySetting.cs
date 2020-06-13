@@ -54,4 +54,9 @@ public class QualitySetting : MonoBehaviour
             GameManager.Instance.gameQuality = 2;
         }
     }
+
+    public void GodMode(bool checkBoxState)
+    {
+        GameManager.Instance.godModeOn = checkBoxState;
+    }
 }

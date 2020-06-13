@@ -115,7 +115,7 @@ public class BulletComportement : MonoBehaviour
         {
             if (other.CompareTag("HitBox") && other.gameObject.transform.root.CompareTag("Player"))
             {
-                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, staminaLoseOnBlock);
                 if (projectileParticle != null)
                 {
                     GameObject particleInstance = Instantiate(projectileParticle, transform.position, projectileParticle.transform.rotation);

@@ -122,7 +122,7 @@ public class PoulionAttack : MonoBehaviour
         if (collision.transform.root.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("HitBox"))
         {
             Stun();
-            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, 10);
         }
         if (collision.transform.root.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("ShieldZone"))
         {

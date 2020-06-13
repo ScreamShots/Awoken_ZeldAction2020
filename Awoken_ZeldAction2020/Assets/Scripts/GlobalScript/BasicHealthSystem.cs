@@ -51,7 +51,7 @@ public abstract class BasicHealthSystem : MonoBehaviour
         }
     }
 
-    public virtual void TakeDmg(float dmgTaken, Vector3 sourcePos)      //same methode as upward but with an upcharge for the player; //can be override in children class
+    public virtual void TakeDmg(float dmgTaken, Vector3 sourcePos, float staminaLost, bool canBeBlocked = true)      //same methode as upward but with an upcharge for the player; //can be override in children class
     {
         if (canTakeDmg)
         {

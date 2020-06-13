@@ -194,4 +194,10 @@ public class PauseMenuManager : MonoBehaviour
                 break;
         }
     }
+
+    public void QuitSettings()
+    {
+        PannelToActivate("Option");
+        PannelToActivate("Menu");
+    }
 }

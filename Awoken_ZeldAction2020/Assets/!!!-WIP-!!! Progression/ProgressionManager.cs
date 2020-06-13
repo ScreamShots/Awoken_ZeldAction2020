@@ -483,6 +483,9 @@ public class ProgressionManager : MonoBehaviour
         availableFragments = data.availableFragments;
         totalFragments = data.totalFragemnts;
 
+        lvlOfHealUpgrade = data.lvlOfHealthUpgrade;
+        lvlOfShieldUpgrade = data.lvlOfShieldUpgrade;
+
         GameManager.Instance.sceneToLoad = currentSceneIndex;
         GameManager.Instance.areaToLoad = currentAreaIndex;
         GameManager.Instance.blackMelt.gameObject.SetActive(true);

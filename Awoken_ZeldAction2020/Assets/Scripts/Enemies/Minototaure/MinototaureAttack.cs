@@ -168,7 +168,7 @@ public class MinototaureAttack : MonoBehaviour
                 else
                 {
                     lauchAttack = false;
-                    player.GetComponent<BasicHealthSystem>().TakeDmg(dmg, transform.position);
+                    player.GetComponent<BasicHealthSystem>().TakeDmg(dmg, transform.position, staminaLost);
                     //StartCoroutine(NotStunt());
                     isStun = true;
                     StartCoroutine(Stun(noBlockedStunTime));
@@ -177,7 +177,7 @@ public class MinototaureAttack : MonoBehaviour
             else if (minototaureDetectScript.isOverlappingPlayer)                                       //if shield is disabled
             {
                 lauchAttack = false;
-                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, staminaLost);
                 //StartCoroutine(NotStunt());
                 isStun = true;
                 StartCoroutine(Stun(noBlockedStunTime));
@@ -186,7 +186,7 @@ public class MinototaureAttack : MonoBehaviour
         else if (minototaureDetectScript.isOverlappingPlayer == true && !minototaureDetectScript.isOverlappingShield)           //if collide with player without shield
         {
             lauchAttack = false;
-            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, staminaLost);
             //StartCoroutine(NotStunt());
             isStun = true;
             StartCoroutine(Stun(noBlockedStunTime));

@@ -86,14 +86,94 @@ public class PlayerHealthSystem : BasicHealthSystem
         }
     }
 
-    public override void TakeDmg(float dmgTaken, Vector3 sourcePos)
+    public override void TakeDmg(float dmgTaken, Vector3 sourcePos, float staminaLost, bool canBeBlocked = true)
     {
-        base.TakeDmg(dmgTaken);
+        if (!GameManager.Instance.godModeOn)
+        {
+            Vector2 damageDirection = sourcePos - transform.position;
+            damageDirection.Normalize();
+            float ddAngle = Mathf.Atan2(damageDirection.y, damageDirection.x) * Mathf.Rad2Deg;
 
-        if(canTakeDmg && currentHp > 0) HitEffect(sourcePos);
+            if(ddAngle < 0)
+            {
+                ddAngle += 360;
+            }
 
-        bloodParticleInstance = Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
-        bloodParticleInstance.transform.parent = gameObject.transform;
+            if (PlayerStatusManager.Instance.isBlocking && canBeBlocked == true)
+            {
+                if (ddAngle > 22.5f && ddAngle < 67.5f)
+                {
+                    if(playerMoveScript.watchDirection == PlayerMovement.Direction.right || playerMoveScript.watchDirection == PlayerMovement.Direction.up)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+                else if (ddAngle > 67.5f && ddAngle < 112.5f)
+                {
+                    if (playerMoveScript.watchDirection == PlayerMovement.Direction.up)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+                else if (ddAngle > 112.5f && ddAngle < 157.5f)
+                {
+                    if (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.up)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+                else if (ddAngle > 157.5f && ddAngle < 202.5f)
+                {
+                    if (playerMoveScript.watchDirection == PlayerMovement.Direction.left)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+                else if (ddAngle > 202.5f && ddAngle < 247.5f)
+                {
+                    if (playerMoveScript.watchDirection == PlayerMovement.Direction.left || playerMoveScript.watchDirection == PlayerMovement.Direction.down)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+                else if (ddAngle > 247.5f && ddAngle < 292.5f)
+                {
+                    if (playerMoveScript.watchDirection == PlayerMovement.Direction.down)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+                else if (ddAngle > 292.5f && ddAngle < 337.5f)
+                {
+                    if (playerMoveScript.watchDirection == PlayerMovement.Direction.down || playerMoveScript.watchDirection == PlayerMovement.Direction.right)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+                else
+                {
+                    if (playerMoveScript.watchDirection == PlayerMovement.Direction.right)
+                    {
+                        playerShieldScript.OnElementBlocked(staminaLost);
+                        return;
+                    }
+                }
+            }
+
+            base.TakeDmg(dmgTaken);
+
+            if (canTakeDmg && currentHp > 0) HitEffect(sourcePos);
+
+            bloodParticleInstance = Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
+            bloodParticleInstance.transform.parent = gameObject.transform;
+        }
     }
 
     public override void Death()

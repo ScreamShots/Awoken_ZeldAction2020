@@ -176,7 +176,10 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+
+        pauseUI.GetComponent<PauseMenuManager>().QuitSettings();
         pauseUI.SetActive(false);
+
         if (chapterUI.gameObject.activeInHierarchy)
         {
             chapterUI.Back();

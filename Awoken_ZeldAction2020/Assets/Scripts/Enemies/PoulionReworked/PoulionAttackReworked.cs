@@ -134,7 +134,7 @@ public class PoulionAttackReworked : MonoBehaviour
                 }                
                 isStun = true;
                 StartCoroutine(Stun());
-                detectedElement.transform.root.gameObject.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+                detectedElement.transform.root.gameObject.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, staminaLost);
             }
             if (detectedElement.tag == "ShieldZone" && detectedElement.transform.root.gameObject.tag == "Player")   //if the collided element is a player shield zone
             {
@@ -223,7 +223,7 @@ public class PoulionAttackReworked : MonoBehaviour
                     poulionHealthScript.canTakeDmg = true;
                 }                
                 isStun = true;                                                              //if it's so we infligt damages to the player and launch the part3- stun
-                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+                player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, staminaLost);
                 StartCoroutine(Stun());
             }
         }
@@ -235,7 +235,7 @@ public class PoulionAttackReworked : MonoBehaviour
                 poulionHealthScript.canTakeDmg = true;
             }
             isStun = true;                                                                  //we infligt damages to the player and launch the part3- stun
-            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);
+            player.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, staminaLost);
             StartCoroutine(Stun());
         }
         else

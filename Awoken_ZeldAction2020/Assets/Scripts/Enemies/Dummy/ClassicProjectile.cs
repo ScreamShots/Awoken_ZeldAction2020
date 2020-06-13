@@ -93,7 +93,7 @@ public class ClassicProjectile : MonoBehaviour
         {
             if (element.transform.parent.tag == targetedElement && element.tag == "HitBox")     //if the projectile is in collision with the Hitbox of an element it is targeting
             {
-                element.transform.parent.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position);        //Inflict dmg to the collisioned target element
+                element.transform.parent.GetComponent<PlayerHealthSystem>().TakeDmg(dmg, transform.position, staminaLoseOnBlock);        //Inflict dmg to the collisioned target element
                 Destroy(gameObject);                                                            
             }
         }        
