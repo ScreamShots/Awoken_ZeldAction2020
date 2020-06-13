@@ -8,19 +8,29 @@ using UnityEngine;
 /// </summary>
 public class ActionLever : PressurePlateBehavior
 {
-    protected bool playerHere;
+    protected bool playerHereAttack;
+    protected bool playerHereCollision;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "AttackZone" && other.transform.root.tag == "Player")
         {
-            playerHere = true;
+            playerHereAttack = true;
+        }
+        if(other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+        {
+            playerHereCollision = true;
         }
     }
     protected override void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "AttackZone" && other.transform.root.tag == "Player")
         {
-            playerHere = false;
+            playerHereAttack = false;
+        }
+
+        if (other.tag == "CollisionDetection" && other.transform.root.tag == "Player")
+        {
+            playerHereCollision = true;
         }
     }
     protected override void OnTriggerStay2D(Collider2D other)
@@ -30,7 +40,12 @@ public class ActionLever : PressurePlateBehavior
 
     private void Update()
     {
-        if(playerHere && Input.GetButtonDown("Attack"))
+        if(Input.GetButtonDown("Attack") && playerHereAttack)
+        {
+            isPressed = true;
+        }
+
+        if(Input.GetButtonDown("Interraction") && playerHereCollision)
         {
             isPressed = true;
         }
