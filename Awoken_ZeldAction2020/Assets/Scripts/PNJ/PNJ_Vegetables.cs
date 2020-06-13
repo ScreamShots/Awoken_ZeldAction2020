@@ -31,6 +31,9 @@ public class PNJ_Vegetables : MonoBehaviour
             pnjDialogueTrigger.dialogueEnded = false;
             pnjDialogueTrigger.dialogueToPlay = endVegeDialogue;
             pnjDialogueTrigger.restartGameplayAtTheEnd = false;
+            pnjDialogueTrigger.target = "Exclamation";
+            pnjDialogueTrigger.canShowReaction = true;
+            pnjDialogueTrigger.SetReactionIcon("Exclamation_On");
             changedDialogue = true;
         }
 

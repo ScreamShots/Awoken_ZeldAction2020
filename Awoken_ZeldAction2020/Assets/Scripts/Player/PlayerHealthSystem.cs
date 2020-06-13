@@ -184,6 +184,8 @@ public class PlayerHealthSystem : BasicHealthSystem
             ProgressionManager.Instance.playerFury = 0;
             ProgressionManager.Instance.playerStamina = GetComponent<PlayerShield>().maxStamina;
 
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
+
             StartCoroutine(DeathFeedBack());           
         }
     }
@@ -191,7 +193,8 @@ public class PlayerHealthSystem : BasicHealthSystem
     IEnumerator DeathFeedBack()
     {
         playerDead = true;
-        PlayerMovement.playerRgb.velocity = Vector2.zero;
+
+        GameManager.Instance.gameState = GameManager.GameState.Death;
 
         if (PlayerStatusManager.Instance.isBlocking)
         {
@@ -200,15 +203,18 @@ public class PlayerHealthSystem : BasicHealthSystem
         if (PlayerStatusManager.Instance.isCharging)
         {
             GetComponent<PlayerCharge>().FastEndCharge();
-        }
 
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
+        }
         yield return new WaitForEndOfFrame();
 
         GameManager.Instance.PlayerDeath();
+
         if(LvlManager.Instance != null)
         {
             LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = 0.75f;
         }
+
         deathCam.SetActive(true);
 
         GetComponentInChildren<PlayerAnimator>().Die();
@@ -229,7 +235,6 @@ public class PlayerHealthSystem : BasicHealthSystem
         LvlManager.Instance.lvlCamBrain.m_DefaultBlend.m_Time = LvlManager.Instance.defaultblendTime;        
         LvlManager.Instance.InitializeLvl(GameManager.Instance.areaToLoad);
         playerDead = false;
-
     }
 
     void HitFlash()

@@ -9,6 +9,8 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField]
     bool triggerByZone = false;
     public bool restartGameplayAtTheEnd = true;
+    [SerializeField]
+    GameObject reactionIcon = null;
 
     [HideInInspector]
     public bool dialogueStarted;
@@ -18,6 +20,11 @@ public class DialogueTrigger : MonoBehaviour
     bool forceHide = false;
 
     InterractionButton buttonDisplay;
+
+    [HideInInspector]
+    public bool canShowReaction = false;
+    [HideInInspector]
+    public string target = null;
 
     private void Start()
     {
@@ -62,7 +69,15 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (triggerByZone)
             {
-                buttonDisplay.ShowButton();
+                if(canShowReaction && reactionIcon != null)
+                {
+                    SetReactionIcon(target + "_Off");
+                    StartCoroutine(showbuttonX());
+                }
+                else
+                {
+                    buttonDisplay.ShowButton();
+                }                
                 canStartDialogue = true;
             }            
         }
@@ -74,10 +89,28 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (triggerByZone)
             {
+                if (canShowReaction && reactionIcon != null && !forceHide)
+                {
+                    SetReactionIcon(target + "_On");
+                }
                 buttonDisplay.HideButton();
                 canStartDialogue = false;
             }
         }
+    }
+
+    IEnumerator showbuttonX()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (canStartDialogue)
+        {
+            buttonDisplay.ShowButton();
+        }        
+    }
+
+    public void SetReactionIcon(string trigger)
+    {
+        reactionIcon.GetComponent<Animator>().SetTrigger(trigger);
     }
 
  

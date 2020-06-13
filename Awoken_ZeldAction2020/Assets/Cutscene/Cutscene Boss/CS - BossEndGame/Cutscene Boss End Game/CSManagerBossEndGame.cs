@@ -11,8 +11,6 @@ public class CSManagerBossEndGame : BasicCutSceneManager
     [SerializeField]
     GameObject shield = null;
     [SerializeField]
-    GameObject cutSceneUI = null;
-    [SerializeField]
     GameObject cinemachine = null;
     [SerializeField]
     GameObject playerUI = null;

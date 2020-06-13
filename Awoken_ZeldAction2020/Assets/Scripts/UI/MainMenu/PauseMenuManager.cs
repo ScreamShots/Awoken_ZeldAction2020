@@ -192,12 +192,51 @@ public class PauseMenuManager : MonoBehaviour
                 optionMenuPannel.SetActive(false);
                 EventSystem.current.SetSelectedGameObject(allControlButton[0]);
                 break;
+            case "Quit":
+                foreach (GameObject button in allPauseButton)
+                {
+                    button.SetActive(false);
+                }
+                foreach (GameObject button in allGraphicButton)
+                {
+                    button.SetActive(false);
+                }
+                foreach (GameObject button in allSoundButton)
+                {
+                    button.SetActive(false);
+                }
+                foreach (GameObject button in allGameplayButton)
+                {
+                    button.SetActive(false);
+                }
+                foreach (GameObject button in allControlButton)
+                {
+                    button.SetActive(false);
+                }
+
+                pausePannel.SetActive(false);
+                soundMenuPannel.SetActive(false);
+                graphicMenuPannel.SetActive(false);
+                gameplayMenuPannel.SetActive(false);
+                controlMenuPannel.SetActive(false);
+
+                foreach (GameObject button in allOptionButton)
+                {
+                    button.SetActive(false);
+                }
+                foreach (GameObject button in allPauseButton)
+                {
+                    button.SetActive(true);
+                }
+
+                pausePannel.SetActive(true);
+                optionMenuPannel.SetActive(false);
+                break;
         }
     }
 
     public void QuitSettings()
     {
-        PannelToActivate("Option");
-        PannelToActivate("Menu");
+        PannelToActivate("Quit");
     }
 }

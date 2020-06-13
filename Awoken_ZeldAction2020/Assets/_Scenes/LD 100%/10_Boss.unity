@@ -867,13 +867,13 @@ VideoPlayer:
   m_VideoClip: {fileID: 32900000, guid: 120c5ffa5bad4d84792c9d53e198eaf5, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
+  m_TargetCamera: {fileID: 1165299251}
   m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 2
-  m_AspectRatio: 2
+  m_RenderMode: 1
+  m_AspectRatio: 5
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
@@ -2982,8 +2982,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 18c21224368d7db42ad213e15d15e8ec, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1001 &324521174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4707,8 +4710,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: e35c1e16aeb4ca04e8b37c3d7ea68401, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &478922113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3453740054351218691, guid: 606867b5c1253bd4e9a9cb8f63fad9b6,
@@ -5173,8 +5179,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 9406105dcf7c18347b540c7c924d4e44, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!4 &530692400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8040209731828791134, guid: 8fae5cd90667f51488a76459753c5b7c,
@@ -5626,8 +5635,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 152574a7d52401c4292759018c71dad7, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!4 &597129899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5594534752670030196, guid: 7f44363515940e749861a49cd65ef39a,
@@ -9728,8 +9740,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: bb66761ae25ddb14b8c7b7eded56294c, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &849938949
 GameObject:
   m_ObjectHideFlags: 0
@@ -12484,7 +12499,6 @@ MonoBehaviour:
       m_Calls: []
   zeus: {fileID: 2074194215}
   shield: {fileID: 1085571447}
-  cutSceneUI: {fileID: 941300993}
   cinemachine: {fileID: 459380633}
   playerUI: {fileID: 478922113}
   bossUI: {fileID: 1904872571811664540}
@@ -19562,8 +19576,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: bd022bb8d9a62924f80e5a77b444fa05, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1001 &1196608078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24381,8 +24398,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 3e4a340731621344f99a4936d0738559, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &1606198493
 GameObject:
   m_ObjectHideFlags: 0
@@ -25534,8 +25554,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 2909b53546ba85e4c9dd829a96981895, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1001 &1788747247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27214,8 +27237,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 58e5ae66612ddda4cb1c83699e42d03b, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &1904363339
 GameObject:
   m_ObjectHideFlags: 0
@@ -29291,8 +29317,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 7fc327cbe29f50045977a6df292054ed, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!4 &2088512198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8978531837786241349, guid: 7fdc08e65e3f6f34597b4271d84637e6,
@@ -29654,8 +29683,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: cd6a78773de772c4aa39451cde19edca, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &2136715462
 GameObject:
   m_ObjectHideFlags: 0

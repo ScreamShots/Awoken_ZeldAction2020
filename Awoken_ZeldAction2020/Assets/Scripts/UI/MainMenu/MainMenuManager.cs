@@ -92,6 +92,7 @@ public class MainMenuManager : MonoBehaviour
         GameManager.Instance.sceneToLoad = 1;
         GameManager.Instance.areaToLoad = 0;
         GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.gameState = GameManager.GameState.LvlFrameTransition;
         GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
         GameManager.Instance.blackMelt.MeltIn();
     }

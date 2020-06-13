@@ -5797,8 +5797,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 70b2e2122db166349ba5fd9989dbb420, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1001 &198631482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30712,7 +30715,7 @@ PrefabInstance:
     - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
         type: 3}
       propertyPath: LvlStarts.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
         type: 3}
@@ -30747,6 +30750,11 @@ PrefabInstance:
     - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
         type: 3}
       propertyPath: allAreaManager.Array.data[5]
+      value: 
+      objectReference: {fileID: 481961841}
+    - target: {fileID: 1801118361934519092, guid: bfd8a1b1116eee44a942127d495471f1,
+        type: 3}
+      propertyPath: LvlStarts.Array.data[1]
       value: 
       objectReference: {fileID: 481961841}
     - target: {fileID: 1801118361934519093, guid: bfd8a1b1116eee44a942127d495471f1,

@@ -260,6 +260,7 @@ public class GameManager : MonoBehaviour
     public void LaunchGameBack()
     {
         blackMelt.gameObject.SetActive(false);
+
         if(gameState != GameState.Dialogue)
         {
             StartCoroutine(ChangeGameState(GameState.Running));
@@ -309,6 +310,7 @@ public class GameManager : MonoBehaviour
     IEnumerator TransitionTimeBeforeLaunchBack()
     {
         yield return new WaitForSecondsRealtime(2f);
+        Debug.LogError("TransitionBeforeLaunchBack");
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         blackMelt.MeltOut();
     }
@@ -351,6 +353,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator ChangeGameState(GameState nextGS)
     {
         yield return new WaitForEndOfFrame();
+        Debug.LogError("ChangeGameState");
 
         if(!securityChangeState)
         {
