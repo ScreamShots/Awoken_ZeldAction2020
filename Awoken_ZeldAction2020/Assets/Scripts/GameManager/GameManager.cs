@@ -269,6 +269,7 @@ public class GameManager : MonoBehaviour
     public void LaunchGameBack()
     {
         blackMelt.gameObject.SetActive(false);
+        //Debug.LogError(gameState);
 
         if(gameState != GameState.Dialogue)
         {
@@ -357,8 +358,9 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ChangeGameState(GameState nextGS)
     {
+        Debug.LogError("ChangeGameState_Start");
         yield return null;
-        Debug.LogError("ChangeGameState");
+        Debug.LogError("ChangeGameState_End");
 
         if(!securityChangeState)
         {
