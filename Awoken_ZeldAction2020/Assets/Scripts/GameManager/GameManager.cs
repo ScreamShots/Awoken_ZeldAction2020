@@ -357,7 +357,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ChangeGameState(GameState nextGS)
     {
-        yield return new WaitForEndOfFrame();
+        yield return null;
         Debug.LogError("ChangeGameState");
 
         if(!securityChangeState)
