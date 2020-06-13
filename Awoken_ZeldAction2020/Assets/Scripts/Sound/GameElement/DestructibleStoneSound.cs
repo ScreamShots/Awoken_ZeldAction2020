@@ -8,6 +8,7 @@ public class DestructibleStoneSound : MonoBehaviour
     #region Variables
     public bool partialEngimaSound = false;
     public bool globalEnigmaSound = false;
+    public bool dontPlayDeadSound = false;
 
     [Space]
     [Header("Destroy Sound")]
@@ -45,7 +46,10 @@ public class DestructibleStoneSound : MonoBehaviour
             if (!blocIsDestroy)
             {
                 blocIsDestroy = true;
-                SoundManager.Instance.PlaySfx(destroySound, destroySoundVolume);
+                if (!dontPlayDeadSound)
+                {
+                    SoundManager.Instance.PlaySfx(destroySound, destroySoundVolume);
+                }
 
                 if (partialEngimaSound)
                 {
