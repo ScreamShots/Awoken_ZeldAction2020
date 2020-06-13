@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     bool mainMenu = true;
     [HideInInspector] public bool gameFullscren;
     [HideInInspector] public int gameQuality = 2;
+    [HideInInspector] public bool godModeOn = false;
     [HideInInspector] public bool securityChangeState = false;
     [HideInInspector] public bool gameStarted = false;
 

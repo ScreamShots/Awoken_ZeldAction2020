@@ -8,7 +8,7 @@ public class QualitySetting : MonoBehaviour
     Dropdown dropdownScript = null;
     Toggle toggleScript = null;
 
-    public enum enumType { Checkbox, Dropdown };
+    public enum enumType { Checkbox, Dropdown, GodMode };
     public enumType whichType;
 
     void Start()
@@ -22,6 +22,11 @@ public class QualitySetting : MonoBehaviour
         {
             dropdownScript = GetComponent<Dropdown>();
             dropdownScript.value = GameManager.Instance.gameQuality;
+        }
+        else if (whichType == enumType.GodMode)
+        {
+            toggleScript = GetComponent<Toggle>();
+            toggleScript.isOn = GameManager.Instance.godModeOn;
         }
     }
 
