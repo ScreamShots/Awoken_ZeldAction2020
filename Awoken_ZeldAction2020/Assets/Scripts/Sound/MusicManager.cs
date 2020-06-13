@@ -359,6 +359,7 @@ public class MusicManager : MonoBehaviour
                 else if (!BossManager.Instance.canStartBossFight)
                 {
                     musicBoss = false;
+                    SoundManager.Instance.musicSource.Stop();
                 }
                 break;
         }
