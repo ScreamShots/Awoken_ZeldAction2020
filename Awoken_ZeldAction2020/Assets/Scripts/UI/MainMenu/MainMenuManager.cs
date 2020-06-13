@@ -36,8 +36,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        Screen.fullScreen = true;
-        GameManager.Instance.gameFullscren = true;
         introVideoPlayer.loopPointReached += OnEndIntro;
         eventSystem.gameObject.SetActive(false);
         blackScreen.SetActive(true);
