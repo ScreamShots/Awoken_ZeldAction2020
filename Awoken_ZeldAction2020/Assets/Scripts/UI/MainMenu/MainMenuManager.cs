@@ -14,6 +14,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     VideoPlayer introVideoPlayer = null;
     [SerializeField]
+    VideoStream introController = null;
+    [SerializeField]
     GameObject eventSystem = null;
     [SerializeField]
     GameObject blackScreen = null;
@@ -36,13 +38,25 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        introVideoPlayer.loopPointReached += OnEndIntro;
-        eventSystem.gameObject.SetActive(false);
-        blackScreen.SetActive(true);
+        if (!GameManager.Instance.gameStarted)
+        {
+            introVideoPlayer.loopPointReached += OnEndIntro;
+            eventSystem.gameObject.SetActive(false);
+            blackScreen.SetActive(true);
+            StartCoroutine(introController.PlayVideo());
+            GameManager.Instance.gameStarted = true;
+        }
+        else
+        {
+            eventSystem.SetActive(false);
+            GameManager.Instance.blackMelt.onMeltOutEnd.AddListener(ActiveES);
+        }
+
     }
 
     private void Start()
     {
+
         if (!SaveSystem.FilePresencePing())
         {
             continueButton.interactable = false;
@@ -73,7 +87,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void LaunchNewGame()
     {
-
         eventSystem.SetActive(false);
         ProgressionManager.Instance.ResetProgressionManager();
         GameManager.Instance.sceneToLoad = 1;
@@ -206,5 +219,10 @@ public class MainMenuManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(allControlButton[0]);
                 break;
         }
+    }
+
+    void ActiveES()
+    {
+        eventSystem.SetActive(true);
     }
 }

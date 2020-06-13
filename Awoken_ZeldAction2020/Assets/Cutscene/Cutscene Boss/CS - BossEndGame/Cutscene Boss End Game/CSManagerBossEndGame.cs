@@ -20,25 +20,24 @@ public class CSManagerBossEndGame : BasicCutSceneManager
     GameObject bossUI = null;
     [SerializeField]
     GameObject realBossRendering = null;
+    [SerializeField]
+    VideoStream outro = null;
 
     override public void EndOfCutScene()
     {
         zeus.SetActive(false);
-        shield.SetActive(false);
-        cutSceneUI.SetActive(false);
+        shield.SetActive(false);      
         cinemachine.SetActive(false);
-        playerUI.SetActive(true);
-        bossUI.SetActive(true);
-
+        outro.onVideoEnd.AddListener(PostCreditAction);
+        StartCoroutine(outro.PlayVideo());
         base.EndOfCutScene();
 
         ProgressionManager.Instance.thisSessionTimeLine = ProgressionManager.ProgressionTimeLine.EndAdventure;
         ProgressionManager.Instance.SaveTheProgression();
 
-        GameManager.Instance.areaToLoad = 0;
-        GameManager.Instance.sceneToLoad = 0;
+        GameManager.Instance.gameState = GameManager.GameState.Dialogue;
 
-        GameManager.Instance.GoToScene();
+       
     }
 
     [ContextMenu("StartCutSceneBossEndGame")]
@@ -55,5 +54,13 @@ public class CSManagerBossEndGame : BasicCutSceneManager
     public void StopBossMusic()
     {
         SoundManager.Instance.FadeOutMusic(3f);
+    }
+
+    public void PostCreditAction()
+    {
+        GameManager.Instance.areaToLoad = 0;
+       GameManager.Instance.sceneToLoad = 0;
+
+       GameManager.Instance.GoToScene();
     }
 }

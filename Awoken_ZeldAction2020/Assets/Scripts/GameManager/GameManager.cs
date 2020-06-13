@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool gameFullscren;
     [HideInInspector] public int gameQuality = 2;
     [HideInInspector] public bool securityChangeState = false;
+    [HideInInspector] public bool gameStarted = false;
 
     void Awake()
     {

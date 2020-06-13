@@ -35,6 +35,9 @@ public class ShowValueSlider : MonoBehaviour
 
     public void textUpdate(float value)
     {
-        percentageText.text = Mathf.RoundToInt(value * 100) + "%";
+        if (gameObject.activeInHierarchy)
+        {
+            percentageText.text = Mathf.RoundToInt(value * 100) + "%";
+        }        
     }
 }
