@@ -288,6 +288,7 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.SwitchScene(true);
         hideBanner();
         SceneManager.LoadSceneAsync(sceneToLoad);
+        Debug.LogError("I'm here");
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         SceneManager.sceneLoaded += LoadLvlAfterTransition;
     }
@@ -358,7 +359,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ChangeGameState(GameState nextGS)
     {
-        Debug.LogError("ChangeGameState_Start");
+        yield return new WaitForSecondsRealtime(0.05f);
         yield return null;
         Debug.LogError("ChangeGameState_End");
 
