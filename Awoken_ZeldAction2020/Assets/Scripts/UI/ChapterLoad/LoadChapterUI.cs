@@ -91,6 +91,7 @@ public class LoadChapterUI : MonoBehaviour
         GameManager.Instance.blackMelt.gameObject.SetActive(true);
         GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
         GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.pauseUI.GetComponent<PauseMenuManager>().EndGamePause);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.pauseUI.GetComponent<PauseMenuManager>().QuitSettings);
         GameManager.Instance.blackMelt.onMeltInEnd.AddListener(Back);
         GameManager.Instance.blackMelt.MeltIn();
     }
