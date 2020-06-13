@@ -127,6 +127,15 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(EndGamePause());
             }
         }
+
+        if(SceneManager.GetActiveScene().buildIndex == 10)
+        {
+            bossRoom = true;
+        }
+        else
+        {
+            bossRoom = false;
+        }
     }
 
     public void ProjectileParyStart(GameObject target)
@@ -277,10 +286,6 @@ public class GameManager : MonoBehaviour
     {
         SoundManager.Instance.SwitchScene(true);
         hideBanner();
-        if(sceneToLoad == 10)
-        {
-            bossRoom = true;
-        }
         SceneManager.LoadSceneAsync(sceneToLoad);
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         SceneManager.sceneLoaded += LoadLvlAfterTransition;
@@ -310,6 +315,7 @@ public class GameManager : MonoBehaviour
     IEnumerator TransitionTimeBeforeLaunchBack()
     {
         yield return new WaitForSecondsRealtime(2f);
+        Debug.LogError("TransitionTimeBeforeLaunchBack");
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         blackMelt.MeltOut();
     }
@@ -352,6 +358,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator ChangeGameState(GameState nextGS)
     {
         yield return new WaitForEndOfFrame();
+        Debug.LogError("ChangeGameState");
 
         if(!securityChangeState)
         {
