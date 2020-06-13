@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -23441,8 +23441,6 @@ MonoBehaviour:
   plate1: {fileID: 861699907}
   plate2: {fileID: 729049195}
   door1: {fileID: 393599535}
-  partialResolve: {fileID: 8300000, guid: c35a86868ea926e4ca9301e05e19f625, type: 3}
-  partialResolveVolume: 0.3
   globalResolve: {fileID: 8300000, guid: 237e7c581c67e25419e5afd342fa955d, type: 3}
   globalResolveVolume: 0.3
 --- !u!4 &964650736
@@ -30556,7 +30554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805696460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.779, y: 30.159, z: -0.12695312}
+  m_LocalPosition: {x: 17.779, y: 30.56, z: -0.12695312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1601037776}
@@ -30824,7 +30822,7 @@ PrefabInstance:
     - target: {fileID: 1801118363122801967, guid: bfd8a1b1116eee44a942127d495471f1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3455181
+      value: 22.494482
       objectReference: {fileID: 0}
     - target: {fileID: 1801118363122801967, guid: bfd8a1b1116eee44a942127d495471f1,
         type: 3}
