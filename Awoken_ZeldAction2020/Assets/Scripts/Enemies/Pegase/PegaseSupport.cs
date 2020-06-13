@@ -55,7 +55,10 @@ public class PegaseSupport : MonoBehaviour
     {
         foreach (GameObject enemy in protectedEnemies)
         {
-            enemy.GetComponent<EnemyHealthSystem>().DesactivatePegaseProtection();
+            if(enemy != null)
+            {
+                enemy.GetComponent<EnemyHealthSystem>().DesactivatePegaseProtection();
+            }            
         }
     }
 

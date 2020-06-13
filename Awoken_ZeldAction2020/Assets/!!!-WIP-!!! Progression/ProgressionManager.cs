@@ -495,6 +495,8 @@ public class ProgressionManager : MonoBehaviour
 
     public void ResetProgressionManager()
     {
+        thisSessionTimeLine = ProgressionTimeLine.NewAdventure;
+
         #region Vegetables Dictionary Initialization
 
         R1Vegetables = new Dictionary<int, bool>();
