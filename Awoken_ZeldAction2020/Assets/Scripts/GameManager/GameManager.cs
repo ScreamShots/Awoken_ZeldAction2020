@@ -136,6 +136,14 @@ public class GameManager : MonoBehaviour
         {
             bossRoom = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            if(gameState != GameState.Running)
+            {
+                gameState = GameState.Running;
+            }
+        }
     }
 
     public void ProjectileParyStart(GameObject target)
@@ -413,4 +421,6 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Running;
         upgradeUI.SetActive(false);
     }
+
+
 }

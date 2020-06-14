@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1147,8 +1147,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 8143bbbb8b5a67d41acb203e0d163870, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1001 &245855566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1337,7 +1340,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1484,8 +1487,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: ed342f29ec8e5664cb294d44745ba71a, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &402004295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,8 +1788,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: fcc315a896ee5cc4c946ddaaa35b9070, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &531705150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4516,7 +4525,7 @@ PrefabInstance:
     - target: {fileID: 4376248640292230207, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
       propertyPath: thisSessionTimeLine
-      value: 26
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5698542408269402595, guid: 14f44afe4eb01ab4aae0477c9e3f8e5a,
         type: 3}
@@ -5180,8 +5189,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: d4bd108cca28c494b9d5c00fa2d530e6, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &1295072581
 GameObject:
   m_ObjectHideFlags: 0
