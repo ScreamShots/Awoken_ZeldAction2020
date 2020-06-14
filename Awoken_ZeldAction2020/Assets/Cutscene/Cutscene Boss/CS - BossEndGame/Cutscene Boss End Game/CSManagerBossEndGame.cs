@@ -57,8 +57,10 @@ public class CSManagerBossEndGame : BasicCutSceneManager
     public void PostCreditAction()
     {
         GameManager.Instance.areaToLoad = 0;
-       GameManager.Instance.sceneToLoad = 0;
+        GameManager.Instance.sceneToLoad = 0;
+        GameManager.Instance.blackMelt.gameObject.SetActive(true);
+        GameManager.Instance.blackMelt.onMeltInEnd.AddListener(GameManager.Instance.GoToScene);
+        GameManager.Instance.blackMelt.MeltIn();
 
-       GameManager.Instance.GoToScene();
     }
 }

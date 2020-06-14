@@ -269,7 +269,6 @@ public class GameManager : MonoBehaviour
     public void LaunchGameBack()
     {
         blackMelt.gameObject.SetActive(false);
-        //Debug.LogError(gameState);
 
         if(gameState != GameState.Dialogue)
         {
@@ -280,7 +279,7 @@ public class GameManager : MonoBehaviour
     [ContextMenu("ReloadScene")]
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GoToScene()
@@ -288,7 +287,6 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.SwitchScene(true);
         hideBanner();
         SceneManager.LoadSceneAsync(sceneToLoad);
-        Debug.LogError("I'm here");
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         SceneManager.sceneLoaded += LoadLvlAfterTransition;
     }
@@ -317,7 +315,6 @@ public class GameManager : MonoBehaviour
     IEnumerator TransitionTimeBeforeLaunchBack()
     {
         yield return new WaitForSecondsRealtime(2f);
-        Debug.LogError("TransitionTimeBeforeLaunchBack");
         blackMelt.onMeltOutEnd.AddListener(LaunchGameBack);
         blackMelt.MeltOut();
     }
@@ -361,7 +358,6 @@ public class GameManager : MonoBehaviour
     {
        yield return new WaitForSecondsRealtime(0.05f);
         yield return null;
-        Debug.LogError("ChangeGameState_End");
 
         if(!securityChangeState)
         {
@@ -395,6 +391,7 @@ public class GameManager : MonoBehaviour
     {        
         gameState = GameState.Upgrade;
         PlayerMovement.playerRgb.velocity = Vector2.zero;
+        PlayerManager.Instance.PlayerInitializeDialogue();
         upgradeUI.SetActive(true);
 
     }
@@ -412,7 +409,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator QuitUpgradeMenu()
     {
         yield return new WaitForEndOfFrame();
-
+        PlayerManager.Instance.PlayerEndDialogue();
         gameState = GameState.Running;
         upgradeUI.SetActive(false);
     }

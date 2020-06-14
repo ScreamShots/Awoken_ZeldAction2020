@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     GameObject collisionDetection = null;
     [SerializeField]
-    GameObject hitBox = null;
+    public GameObject hitBox = null;
     [SerializeField]
     PlayerHealthSystem healthSystem = null;
 

@@ -38,6 +38,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (!GameManager.Instance.gameStarted)
         {
             introVideoPlayer.loopPointReached += OnEndIntro;
