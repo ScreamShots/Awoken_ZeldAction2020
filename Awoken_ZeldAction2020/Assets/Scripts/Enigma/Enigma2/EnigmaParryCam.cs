@@ -38,6 +38,8 @@ public class EnigmaParryCam : MonoBehaviour
         {
             isBlending = true;
             turretShootScript.isActivated = false;
+            GameManager.Instance.gameState = GameManager.GameState.Dialogue;
+            PlayerMovement.playerRgb.velocity = Vector2.zero;
             StartCoroutine(DeZoomArena());
         }
 
@@ -60,6 +62,7 @@ public class EnigmaParryCam : MonoBehaviour
         {
             turretShootScript.isActivated = true;
         }
+        GameManager.Instance.gameState = GameManager.GameState.Running;
         isBlending = false;
     }
 }
