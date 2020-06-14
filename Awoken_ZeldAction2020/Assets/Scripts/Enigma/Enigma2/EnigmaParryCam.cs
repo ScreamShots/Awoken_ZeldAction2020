@@ -58,11 +58,14 @@ public class EnigmaParryCam : MonoBehaviour
 
         camArena3.SetActive(true);
         globalArenaCam.SetActive(false);
+
+        yield return new WaitForSeconds(1.5f);
+
         if (!enigma2Script.distanceLever1.isPressed)
         {
             turretShootScript.isActivated = true;
+            GameManager.Instance.gameState = GameManager.GameState.Running;
         }
-        GameManager.Instance.gameState = GameManager.GameState.Running;
         isBlending = false;
     }
 }
