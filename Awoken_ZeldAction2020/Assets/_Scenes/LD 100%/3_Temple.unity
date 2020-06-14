@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -167,8 +167,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 2e3a4be76ff2b0e40bd16718443d7228, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1 &85361377
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,8 +915,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 2a703cade94cf5645b55b900bc7a6e4a, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1001 &311878611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1540,8 +1546,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: 5ece029d51a7c064895532418be9084d, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!4 &609181562
 Transform:
   m_ObjectHideFlags: 0
@@ -2357,7 +2366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212171384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.083333336, y: -1.0217094, z: -10}
+  m_LocalPosition: {x: 0.07816204, y: -1.0217094, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1076767811}
@@ -4219,8 +4228,11 @@ MonoBehaviour:
   dialogueToPlay: {fileID: 11400000, guid: a0810e289c14b5f428e28e259e001c5b, type: 2}
   triggerByZone: 0
   restartGameplayAtTheEnd: 0
+  reactionIcon: {fileID: 0}
   dialogueStarted: 0
   dialogueEnded: 0
+  canShowReaction: 0
+  target: 
 --- !u!1001 &2000931588
 PrefabInstance:
   m_ObjectHideFlags: 0

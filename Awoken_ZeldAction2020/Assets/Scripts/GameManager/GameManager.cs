@@ -359,7 +359,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ChangeGameState(GameState nextGS)
     {
-        yield return new WaitForSecondsRealtime(0.05f);
+       yield return new WaitForSecondsRealtime(0.05f);
         yield return null;
         Debug.LogError("ChangeGameState_End");
 
